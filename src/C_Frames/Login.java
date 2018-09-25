@@ -75,6 +75,11 @@ public class Login extends javax.swing.JFrame {
         btnCerrar.setBorder(null);
         btnCerrar.setBorderPainted(false);
         btnCerrar.setFocusPainted(false);
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
 
         btnIngresar.setBackground(new java.awt.Color(254, 254, 254));
         btnIngresar.setForeground(new java.awt.Color(254, 254, 254));
@@ -188,6 +193,10 @@ public class Login extends javax.swing.JFrame {
         if(evt.getKeyChar() == KeyEvent.VK_ENTER)
             btnIngresar.doClick();
     }//GEN-LAST:event_C_txfUsuarioKeyTyped
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+    System.exit(0);
+    }//GEN-LAST:event_btnCerrarActionPerformed
 
     /**
      * @param args the command line arguments
