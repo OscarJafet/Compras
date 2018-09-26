@@ -43,7 +43,7 @@ public class C_ADD_Categorias extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        C_ADD_Categoria_cmbEst = new javax.swing.JComboBox<>();
+        C_ADD_Categoria_cmbEst = new javax.swing.JComboBox<String>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -102,7 +102,7 @@ public class C_ADD_Categorias extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(1, 1, 1));
         jLabel3.setText("ESTATUS");
 
-        C_ADD_Categoria_cmbEst.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estado", "A", "B" }));
+        C_ADD_Categoria_cmbEst.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Estado", "A", "B" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
