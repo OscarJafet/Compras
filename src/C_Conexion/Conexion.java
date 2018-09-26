@@ -158,7 +158,8 @@ public class Conexion {
         }
     }
     
-    public void Unidad_Search(String Nombre,JTable tabla){
+    
+        public void Unidad_Search(String Nombre,JTable tabla){
          DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
         if(Nombre.isEmpty())
             Sql = "select * from UnidadMedida";
@@ -183,6 +184,42 @@ public class Conexion {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+         public void Producto_Search(String Nombre,JTable tabla){
+         DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
+        if(Nombre.isEmpty())
+            Sql = "select * from Productos";
+        else if(!Nombre.isEmpty())
+            Sql = "select * from Productos where nombre = '"+Nombre+"'";
+        
+               try {
+            stn=(Statement) con.createStatement();
+            rs=stn.executeQuery(Sql);
+        
+            while(rs.next()){
+                String idPro=rs.getString("idproducto");
+                String Nom=rs.getString("nombre");
+                String descripcion=rs.getString("descripcion");
+                String punto = rs.getString("puntoreorden");
+                String compra = rs.getString("preciocompra");
+                String venta = rs.getString("precioventa");
+                String ingrediente = rs.getString("ingredienteactivo");
+                String banda = rs.getString("bandatoxicologica");
+                String apli = rs.getString("aplicacion");
+                String uso = rs.getString("uso");
+                String estatus = rs.getString("estatus");
+                String lab = rs.getString("idlaboratorio");
+                String cat = rs.getString("idcategoria");
+                Object datosRenglon[]={ idPro, Nom, descripcion,punto,compra,venta,ingrediente,banda,apli,uso,estatus,lab,cat};
+                tablaTemp.addRow(datosRenglon);
+            }
+            
+            tabla.setModel(tablaTemp);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 
     /**
      * @return the con

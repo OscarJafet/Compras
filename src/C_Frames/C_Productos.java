@@ -233,7 +233,7 @@ public class C_Productos extends javax.swing.JPanel {
     private void btnConsEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsEstadosActionPerformed
         borrarTabla(tblPro);
         erp.OpenCon("ERP", "erp");
-        erp.Lab_Search(txfNombrePro.getText(), tblPro);
+        erp.Producto_Search(txfNombrePro.getText(), tblPro);
     }//GEN-LAST:event_btnConsEstadosActionPerformed
 
     private void btnElimEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElimEstadosActionPerformed
