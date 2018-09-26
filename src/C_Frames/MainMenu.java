@@ -23,14 +23,14 @@ public class MainMenu extends javax.swing.JFrame {
     String dia = String.valueOf(fecha.get(Calendar.DAY_OF_MONTH));
     String mes = String.valueOf(fecha.get(Calendar.MONTH));
     String año = String.valueOf(fecha.get(Calendar.YEAR));
-    
+
     public MainMenu() {
         initComponents();
-        this.lblFecha.setText(dia+"/"+mes+"/"+año);
+        this.lblFecha.setText(dia + "/" + mes + "/" + año);
     }
-   
-   
-    String[] titulos = new String[] {"ESTADOS", "CIUDADES","PERCEPCIONES ","DEDUCCIONES"};
+
+    String[] titulos = new String[]{"ESTADOS", "CIUDADES", "PERCEPCIONES ", "DEDUCCIONES"};
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -313,8 +313,9 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
         if (JOptionPane.showConfirmDialog(rootPane, "¿Desea  salir del sistema?",
-                "Salir del sistema", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+                "Salir del sistema", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             System.exit(0);
+        }
     }//GEN-LAST:event_lblCerrarMouseClicked
 
     private void lblMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizarMouseClicked
@@ -375,9 +376,10 @@ public class MainMenu extends javax.swing.JFrame {
         jFrames.repaint();
     }//GEN-LAST:event_C_PDActionPerformed
 
-    void setTitulo(int i){
-            lblTitulo.setText(titulos[i]);
+    void setTitulo(int i) {
+        lblTitulo.setText(titulos[i]);
     }
+
     /**
      * @param args the command line arguments
      */
