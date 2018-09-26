@@ -115,6 +115,11 @@ public class MainMenu extends javax.swing.JFrame {
         C_PP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ProductosP.png"))); // NOI18N
 
         C_PD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Productos.png"))); // NOI18N
+        C_PD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                C_PDActionPerformed(evt);
+            }
+        });
 
         C_SC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Sucursal.png"))); // NOI18N
 
@@ -359,6 +364,16 @@ public class MainMenu extends javax.swing.JFrame {
         jFrames.revalidate();
         jFrames.repaint();
     }//GEN-LAST:event_C_UMActionPerformed
+
+    private void C_PDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_PDActionPerformed
+        C_Productos erp = new C_Productos();
+        erp.setSize(jFrames.getSize());
+        erp.setLocation(0, 0);
+        jFrames.removeAll();
+        jFrames.add(erp);
+        jFrames.revalidate();
+        jFrames.repaint();
+    }//GEN-LAST:event_C_PDActionPerformed
 
     void setTitulo(int i){
             lblTitulo.setText(titulos[i]);

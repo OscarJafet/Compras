@@ -245,6 +245,9 @@
               <Image iconType="3" name="/Imagenes/Productos.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C_PDActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="C_SC">
           <Properties>
