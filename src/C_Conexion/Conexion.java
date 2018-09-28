@@ -21,11 +21,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Conexion {
     public static String conexionURL;
-    private static Connection con=null;
-    private Statement stn=null;
-    private ResultSet rs=null;
+    public static Connection con=null;
+    public Statement stn=null;
+    public ResultSet rs=null;
     JTable tablaTemp;
-    String Sql;
+    public String Sql;
     public boolean conex;
     public static Connection getConnection(String User, String Password){
         if(con == null){

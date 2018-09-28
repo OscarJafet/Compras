@@ -7,6 +7,12 @@
 package C_Frames;
 
 import C_Conexion.Conexion;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -18,11 +24,51 @@ public class C_ADD_Producto extends javax.swing.JFrame {
      * Creates new form C_ADD_Producto
      */
     Conexion erp;
+    DefaultComboBoxModel modelocombo = new DefaultComboBoxModel();
+    DefaultComboBoxModel modelocombo1 = new DefaultComboBoxModel();
+           
     public C_ADD_Producto() {
         initComponents();
         erp = new Conexion();
+        llenarCombo1();
+        llenarCombo2();
     }
-
+    
+    public void llenarCombo1(){
+        try {
+            erp.OpenCon("ERP", "erp");
+            erp.stn= (Statement) erp.con.createStatement();
+            erp.rs= erp.stn.executeQuery("select * from Laboratorios");
+            modelocombo.addElement("Seleccione Laboratorio");
+            cmbLab.setModel(modelocombo);
+            while (erp.rs.next()){
+                modelocombo.addElement(erp.rs.getObject("nombre"));
+                cmbLab.setModel(modelocombo);
+            }
+        
+        }catch(SQLException ex){
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+        public void llenarCombo2(){
+        try {
+            erp.OpenCon("ERP", "erp");
+            erp.stn= (Statement) erp.con.createStatement();
+            erp.rs= erp.stn.executeQuery("select * from Categorias");
+            modelocombo1.addElement("Seleccione Categoria");
+            cmbCat.setModel(modelocombo1);
+            while (erp.rs.next()){
+                modelocombo1.addElement(erp.rs.getObject("nombre"));
+                cmbCat.setModel(modelocombo1);
+            }
+        
+        }catch(SQLException ex){
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -166,8 +212,6 @@ public class C_ADD_Producto extends javax.swing.JFrame {
         jLabel13.setForeground(new java.awt.Color(1, 1, 1));
         jLabel13.setText("ID CATEGORIA");
 
-        cmbLab.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         cmbCat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -184,7 +228,7 @@ public class C_ADD_Producto extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnAgregar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -194,36 +238,35 @@ public class C_ADD_Producto extends javax.swing.JFrame {
                                     .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txfBanda))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txfDescripcion))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel2)
-                                            .addGap(33, 33, 33)
-                                            .addComponent(txfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(1, 1, 1)
-                                                .addComponent(jLabel7)
-                                                .addGap(23, 23, 23)
-                                                .addComponent(txfVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel5)
-                                                    .addComponent(jLabel6))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(txfPunto, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-                                                    .addComponent(txfCompra)))))
-                                    .addGap(0, 0, Short.MAX_VALUE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
+                                .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txfIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txfDescripcion))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(33, 33, 33)
+                                        .addComponent(txfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGap(1, 1, 1)
+                                            .addComponent(jLabel7)
+                                            .addGap(23, 23, 23)
+                                            .addComponent(txfVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel5)
+                                                .addComponent(jLabel6))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(txfPunto, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                                                .addComponent(txfCompra))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txfIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(29, 29, 29)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -249,7 +292,7 @@ public class C_ADD_Producto extends javax.swing.JFrame {
                                             .addComponent(jLabel12)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(cmbLab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(0, 109, Short.MAX_VALUE)))))
+                                .addGap(0, 80, Short.MAX_VALUE)))))
                 .addGap(26, 26, 26))
         );
         jPanel1Layout.setVerticalGroup(
