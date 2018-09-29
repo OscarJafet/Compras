@@ -261,16 +261,16 @@ public class C_Productos extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAgrEstadosActionPerformed
 
     private void btnEditarEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarEstadosActionPerformed
-        C_MOD_Laboratorios edg=new C_MOD_Laboratorios();
-        edg.setLocationRelativeTo(edg);
-        edg.setVisible(true);
+        C_MOD_Productos edP=new C_MOD_Productos();
+        edP.setLocationRelativeTo(edP);
+        edP.setVisible(true);
         int ID = 0;
         try{
             ID = Integer.parseInt(tblPro.getValueAt(tblPro.getSelectedRow(),0)+"");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
-        edg.txfIdLab.setText(ID+"");
+        edP.txfIDProducto.setText(ID+"");
     }//GEN-LAST:event_btnEditarEstadosActionPerformed
 
     private void btnRefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefrescarActionPerformed
