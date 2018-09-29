@@ -53,7 +53,7 @@ public class C_Productos extends javax.swing.JPanel {
         jPanel1.setForeground(new java.awt.Color(254, 254, 254));
 
         txfNombrePro.setBackground(new java.awt.Color(254, 254, 254));
-        txfNombrePro.setForeground(new java.awt.Color(254, 254, 254));
+        txfNombrePro.setForeground(new java.awt.Color(1, 1, 1));
         txfNombrePro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txfNombreProActionPerformed(evt);
@@ -247,7 +247,7 @@ public class C_Productos extends javax.swing.JPanel {
         int dialogButton = JOptionPane.YES_NO_OPTION;
         JOptionPane.showConfirmDialog (null, "Desea eliminar","Informacion", dialogButton);
         if(dialogButton == JOptionPane.YES_OPTION) {
-            erp.SQL("update Laboratorios set estatus = 'B' where idCategoria = "+ID);
+            erp.SQL("update Productos set estatus = 'B' where idproducto = "+ID);
             if(dialogButton == JOptionPane.NO_OPTION) {
                 remove(dialogButton);
             }
