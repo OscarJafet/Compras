@@ -53,7 +53,7 @@ public class C_Productos extends javax.swing.JPanel {
         jPanel1.setForeground(new java.awt.Color(254, 254, 254));
 
         txfNombrePro.setBackground(new java.awt.Color(254, 254, 254));
-        txfNombrePro.setForeground(new java.awt.Color(254, 254, 254));
+        txfNombrePro.setForeground(new java.awt.Color(1, 1, 1));
         txfNombrePro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txfNombreProActionPerformed(evt);
@@ -247,7 +247,7 @@ public class C_Productos extends javax.swing.JPanel {
         int dialogButton = JOptionPane.YES_NO_OPTION;
         JOptionPane.showConfirmDialog (null, "Desea eliminar","Informacion", dialogButton);
         if(dialogButton == JOptionPane.YES_OPTION) {
-            erp.SQL("update Laboratorios set estatus = 'B' where idCategoria = "+ID);
+            erp.SQL("update Productos set estatus = 'B' where idproducto = "+ID);
             if(dialogButton == JOptionPane.NO_OPTION) {
                 remove(dialogButton);
             }
@@ -261,16 +261,16 @@ public class C_Productos extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAgrEstadosActionPerformed
 
     private void btnEditarEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarEstadosActionPerformed
-        C_MOD_Laboratorios edg=new C_MOD_Laboratorios();
-        edg.setLocationRelativeTo(edg);
-        edg.setVisible(true);
+        C_MOD_Productos edP=new C_MOD_Productos();
+        edP.setLocationRelativeTo(edP);
+        edP.setVisible(true);
         int ID = 0;
         try{
             ID = Integer.parseInt(tblPro.getValueAt(tblPro.getSelectedRow(),0)+"");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
-        edg.txfIdLab.setText(ID+"");
+        edP.txfIDProducto.setText(ID+"");
     }//GEN-LAST:event_btnEditarEstadosActionPerformed
 
     private void btnRefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefrescarActionPerformed
