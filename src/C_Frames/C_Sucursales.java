@@ -40,9 +40,9 @@ public class C_Sucursales extends javax.swing.JPanel {
         txfBuscar = new javax.swing.JTextField();
         btnConsultarSucursal = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblUM = new javax.swing.JTable();
+        tblsucursal = new javax.swing.JTable();
         btnAgregarPercepcion = new javax.swing.JButton();
-        btnEditarPercecion = new javax.swing.JButton();
+        btnEditarsucursal = new javax.swing.JButton();
         btnEliminarPercepcion = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -74,7 +74,7 @@ public class C_Sucursales extends javax.swing.JPanel {
         add(btnConsultarSucursal);
         btnConsultarSucursal.setBounds(540, 10, 60, 50);
 
-        tblUM.setModel(new javax.swing.table.DefaultTableModel(
+        tblsucursal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -90,7 +90,7 @@ public class C_Sucursales extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblUM);
+        jScrollPane1.setViewportView(tblsucursal);
 
         add(jScrollPane1);
         jScrollPane1.setBounds(30, 80, 789, 311);
@@ -108,17 +108,17 @@ public class C_Sucursales extends javax.swing.JPanel {
         add(btnAgregarPercepcion);
         btnAgregarPercepcion.setBounds(760, 430, 81, 57);
 
-        btnEditarPercecion.setBackground(new java.awt.Color(254, 254, 254));
-        btnEditarPercecion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon-cambiar.png"))); // NOI18N
-        btnEditarPercecion.setBorderPainted(false);
-        btnEditarPercecion.setContentAreaFilled(false);
-        btnEditarPercecion.addActionListener(new java.awt.event.ActionListener() {
+        btnEditarsucursal.setBackground(new java.awt.Color(254, 254, 254));
+        btnEditarsucursal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon-cambiar.png"))); // NOI18N
+        btnEditarsucursal.setBorderPainted(false);
+        btnEditarsucursal.setContentAreaFilled(false);
+        btnEditarsucursal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarPercecionActionPerformed(evt);
+                btnEditarsucursalActionPerformed(evt);
             }
         });
-        add(btnEditarPercecion);
-        btnEditarPercecion.setBounds(580, 430, 81, 57);
+        add(btnEditarsucursal);
+        btnEditarsucursal.setBounds(580, 430, 81, 57);
 
         btnEliminarPercepcion.setBackground(new java.awt.Color(254, 254, 254));
         btnEliminarPercepcion.setForeground(new java.awt.Color(254, 254, 254));
@@ -167,7 +167,7 @@ public class C_Sucursales extends javax.swing.JPanel {
     private void btnEliminarPercepcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPercepcionActionPerformed
         int ID = 0;
         try{
-            ID = Integer.parseInt(tblUM.getValueAt(tblUM.getSelectedRow(),0)+"");
+            ID = Integer.parseInt(tblsucursal.getValueAt(tblsucursal.getSelectedRow(),0)+"");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
@@ -193,28 +193,28 @@ public void borrarTabla(JTable tab) {
     }
     
     private void btnConsultarSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarSucursalActionPerformed
-        borrarTabla(tblUM);
+        borrarTabla(tblsucursal);
         erp.OpenCon("ERP", "erp");
-        erp.Sucursales_Search(txfBuscar.getText(),tblUM);
+        erp.Sucursales_Search(txfBuscar.getText(),tblsucursal);
     }//GEN-LAST:event_btnConsultarSucursalActionPerformed
 
-    private void btnEditarPercecionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarPercecionActionPerformed
-        C_MOD_Unidad erp =new C_MOD_Unidad();
-        erp.setLocationRelativeTo(erp);
-        erp.setVisible(true);
+    private void btnEditarsucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarsucursalActionPerformed
+        C_MOD_Sucursales suc =new C_MOD_Sucursales();
+        suc.setLocationRelativeTo(suc);
+        suc.setVisible(true);
         int ID = 0;
         try{
-            ID = Integer.parseInt(tblUM.getValueAt(tblUM.getSelectedRow(),0)+"");
+            ID = Integer.parseInt(tblsucursal.getValueAt(tblsucursal.getSelectedRow(),0)+"");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
-        erp.Id.setText(ID+"");
-    }//GEN-LAST:event_btnEditarPercecionActionPerformed
+      suc.txfIdSucursal.setText(ID+"");
+    }//GEN-LAST:event_btnEditarsucursalActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        borrarTabla(tblUM);
+        borrarTabla(tblsucursal);
         erp.OpenCon("ERP", "erp");
-        erp.Unidad_Search(txfBuscar.getText(),tblUM);
+        erp.Unidad_Search(txfBuscar.getText(),tblsucursal);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txfBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfBuscarActionPerformed
@@ -225,13 +225,13 @@ public void borrarTabla(JTable tab) {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarPercepcion;
     private javax.swing.JButton btnConsultarSucursal;
-    private javax.swing.JButton btnEditarPercecion;
+    private javax.swing.JButton btnEditarsucursal;
     private javax.swing.JButton btnEliminarPercepcion;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblUM;
+    private javax.swing.JTable tblsucursal;
     private javax.swing.JTextField txfBuscar;
     // End of variables declaration//GEN-END:variables
 }
