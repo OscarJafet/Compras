@@ -60,7 +60,7 @@ public class C_Sucursales extends javax.swing.JPanel {
             }
         });
         add(txfBuscar);
-        txfBuscar.setBounds(200, 30, 330, 20);
+        txfBuscar.setBounds(200, 30, 330, 30);
 
         btnConsultarSucursal.setBackground(new java.awt.Color(254, 254, 254));
         btnConsultarSucursal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon-buscar.png"))); // NOI18N
@@ -159,7 +159,7 @@ public class C_Sucursales extends javax.swing.JPanel {
     }//GEN-LAST:event_txfConsultarActionPerformed
 
     private void btnAgregarPercepcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPercepcionActionPerformed
-        C_ADD_Unidad erp = new C_ADD_Unidad();
+        C_ADD_Sucursales erp = new C_ADD_Sucursales();
         erp.setLocationRelativeTo(erp);
         erp.setVisible(true);
     }//GEN-LAST:event_btnAgregarPercepcionActionPerformed

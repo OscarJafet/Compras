@@ -255,6 +255,9 @@
               <Image iconType="3" name="/Imagenes/Sucursal.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C_SCActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="C_ES">
           <Properties>

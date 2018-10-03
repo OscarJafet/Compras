@@ -122,6 +122,11 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         C_SC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Sucursal.png"))); // NOI18N
+        C_SC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                C_SCActionPerformed(evt);
+            }
+        });
 
         C_ES.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ExistenciaS.png"))); // NOI18N
 
@@ -375,6 +380,16 @@ public class MainMenu extends javax.swing.JFrame {
         jFrames.revalidate();
         jFrames.repaint();
     }//GEN-LAST:event_C_PDActionPerformed
+
+    private void C_SCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_SCActionPerformed
+        C_Sucursales erp = new C_Sucursales();
+        erp.setSize(jFrames.getSize());
+        erp.setLocation(0, 0);
+        jFrames.removeAll();
+        jFrames.add(erp);
+        jFrames.revalidate();
+        jFrames.repaint();
+    }//GEN-LAST:event_C_SCActionPerformed
 
     void setTitulo(int i) {
         lblTitulo.setText(titulos[i]);
