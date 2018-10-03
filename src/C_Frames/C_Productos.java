@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package C_Frames;
+
 import C_Conexion.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,14 +12,15 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
- * @author king6
+ * @author Jose
  */
 public class C_Productos extends javax.swing.JPanel {
 
     /**
-     * Creates new form C_Productos
+     * Creates new form Percepciones1
      */
     Conexion erp;
     public C_Productos() {
@@ -36,51 +37,53 @@ public class C_Productos extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        txfNombrePro = new javax.swing.JTextField();
-        btnConsEstados = new javax.swing.JButton();
+        txfBuscar = new javax.swing.JTextField();
+        btnConsultarSucursal = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPro = new javax.swing.JTable();
-        btnElimEstados = new javax.swing.JButton();
-        btnAgrEstados = new javax.swing.JButton();
-        btnEditarEstados = new javax.swing.JButton();
-        btnRefrescar = new javax.swing.JButton();
+        btnAgregarPercepcion = new javax.swing.JButton();
+        btnEditarPercecion = new javax.swing.JButton();
+        btnEliminarPercepcion = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(861, 554));
+        setBackground(new java.awt.Color(254, 254, 254));
+        setForeground(new java.awt.Color(254, 254, 254));
+        setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(253, 251, 251));
-        jPanel1.setForeground(new java.awt.Color(254, 254, 254));
-
-        txfNombrePro.setBackground(new java.awt.Color(254, 254, 254));
-        txfNombrePro.setForeground(new java.awt.Color(1, 1, 1));
-        txfNombrePro.addActionListener(new java.awt.event.ActionListener() {
+        txfBuscar.setBackground(new java.awt.Color(254, 254, 254));
+        txfBuscar.setForeground(new java.awt.Color(1, 1, 1));
+        txfBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txfNombreProActionPerformed(evt);
+                txfBuscarActionPerformed(evt);
             }
         });
+        add(txfBuscar);
+        txfBuscar.setBounds(200, 30, 330, 30);
 
-        btnConsEstados.setBackground(new java.awt.Color(254, 254, 254));
-        btnConsEstados.setForeground(new java.awt.Color(254, 254, 254));
-        btnConsEstados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon-buscar.png"))); // NOI18N
-        btnConsEstados.setBorderPainted(false);
-        btnConsEstados.setContentAreaFilled(false);
-        btnConsEstados.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultarSucursal.setBackground(new java.awt.Color(254, 254, 254));
+        btnConsultarSucursal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon-buscar.png"))); // NOI18N
+        btnConsultarSucursal.setBorderPainted(false);
+        btnConsultarSucursal.setContentAreaFilled(false);
+        btnConsultarSucursal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsEstadosActionPerformed(evt);
+                btnConsultarSucursalActionPerformed(evt);
             }
         });
+        add(btnConsultarSucursal);
+        btnConsultarSucursal.setBounds(540, 10, 60, 50);
 
         tblPro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID Producto", "Nombre", "Descripcion", "Punto Reorden", "Precio Compra", "Precio Venta ", "Ingrediente Activo", "Banda Toxicologica", "Aplicacion ", "uso", "estatus", "ID Laboratorio", "ID Categoria "
+                "IDPRODUCTO", "NOMBRE", "DESCRIPCION", "PUNTOREORDEN", "PRECIOCOMPRA", "PRECIOVENTA", "INGREDIENTEACTIVO", "BANDATOXICOLOGICA", "APLICACION", "USO", "ESTATUS", "IDLABORATORIO", "IDCATEGORIA"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, true, true, true, true, true, true, true, true
+                false, false, false, false, true, false, false, false, false, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -89,138 +92,96 @@ public class C_Productos extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblPro);
 
-        btnElimEstados.setBackground(new java.awt.Color(254, 254, 254));
-        btnElimEstados.setForeground(new java.awt.Color(254, 254, 254));
-        btnElimEstados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borar1-icon.png"))); // NOI18N
-        btnElimEstados.setBorderPainted(false);
-        btnElimEstados.setContentAreaFilled(false);
-        btnElimEstados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnElimEstadosActionPerformed(evt);
-            }
-        });
+        add(jScrollPane1);
+        jScrollPane1.setBounds(30, 80, 789, 311);
 
-        btnAgrEstados.setBackground(new java.awt.Color(254, 254, 254));
-        btnAgrEstados.setForeground(new java.awt.Color(254, 254, 254));
-        btnAgrEstados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregar.png"))); // NOI18N
-        btnAgrEstados.setToolTipText("");
-        btnAgrEstados.setBorderPainted(false);
-        btnAgrEstados.setContentAreaFilled(false);
-        btnAgrEstados.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregarPercepcion.setBackground(new java.awt.Color(254, 254, 254));
+        btnAgregarPercepcion.setForeground(new java.awt.Color(254, 254, 254));
+        btnAgregarPercepcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregar.png"))); // NOI18N
+        btnAgregarPercepcion.setBorderPainted(false);
+        btnAgregarPercepcion.setContentAreaFilled(false);
+        btnAgregarPercepcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgrEstadosActionPerformed(evt);
+                btnAgregarPercepcionActionPerformed(evt);
             }
         });
+        add(btnAgregarPercepcion);
+        btnAgregarPercepcion.setBounds(760, 430, 81, 57);
 
-        btnEditarEstados.setBackground(new java.awt.Color(254, 254, 254));
-        btnEditarEstados.setForeground(new java.awt.Color(254, 254, 254));
-        btnEditarEstados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon-cambiar.png"))); // NOI18N
-        btnEditarEstados.setBorderPainted(false);
-        btnEditarEstados.addActionListener(new java.awt.event.ActionListener() {
+        btnEditarPercecion.setBackground(new java.awt.Color(254, 254, 254));
+        btnEditarPercecion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon-cambiar.png"))); // NOI18N
+        btnEditarPercecion.setBorderPainted(false);
+        btnEditarPercecion.setContentAreaFilled(false);
+        btnEditarPercecion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarEstadosActionPerformed(evt);
+                btnEditarPercecionActionPerformed(evt);
             }
         });
+        add(btnEditarPercecion);
+        btnEditarPercecion.setBounds(580, 430, 81, 57);
 
-        btnRefrescar.setBackground(new java.awt.Color(254, 254, 254));
-        btnRefrescar.setForeground(new java.awt.Color(254, 254, 254));
-        btnRefrescar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/refresh_icon.png"))); // NOI18N
-        btnRefrescar.setBorderPainted(false);
-        btnRefrescar.setContentAreaFilled(false);
-        btnRefrescar.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminarPercepcion.setBackground(new java.awt.Color(254, 254, 254));
+        btnEliminarPercepcion.setForeground(new java.awt.Color(254, 254, 254));
+        btnEliminarPercepcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borar1-icon.png"))); // NOI18N
+        btnEliminarPercepcion.setBorderPainted(false);
+        btnEliminarPercepcion.setContentAreaFilled(false);
+        btnEliminarPercepcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRefrescarActionPerformed(evt);
+                btnEliminarPercepcionActionPerformed(evt);
             }
         });
+        add(btnEliminarPercepcion);
+        btnEliminarPercepcion.setBounds(690, 420, 52, 67);
 
         jLabel1.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel1.setText("BUSCAR POR NOMBRE DEL PRODUCTO");
+        jLabel1.setText("BUSCAR POR NOMBRE");
+        add(jLabel1);
+        jLabel1.setBounds(40, 30, 129, 16);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(71, 71, 71)
-                        .addComponent(txfNombrePro, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnConsEstados)
-                        .addGap(53, 53, 53))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(btnRefrescar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEditarEstados)
-                        .addGap(51, 51, 51)
-                        .addComponent(btnElimEstados)
-                        .addGap(41, 41, 41)))
-                .addComponent(btnAgrEstados)
-                .addGap(36, 36, 36))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnConsEstados))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txfNombrePro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))))
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRefrescar)
-                    .addComponent(btnElimEstados)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(btnAgrEstados))
-                    .addComponent(btnEditarEstados, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 861, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        jButton1.setBackground(new java.awt.Color(254, 254, 254));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/refresh_icon.png"))); // NOI18N
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1);
+        jButton1.setBounds(10, 440, 68, 60);
+        add(jLabel2);
+        jLabel2.setBounds(343, 465, 0, 0);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txfNombreProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfNombreProActionPerformed
+    private void txfConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfConsultarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txfNombreProActionPerformed
+    }//GEN-LAST:event_txfConsultarActionPerformed
 
-    public void borrarTabla(JTable tab) {
+    private void btnAgregarPercepcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPercepcionActionPerformed
+        C_ADD_Producto erp = new C_ADD_Producto();
+        erp.setLocationRelativeTo(erp);
+        erp.setVisible(true);
+    }//GEN-LAST:event_btnAgregarPercepcionActionPerformed
+
+    private void btnEliminarPercepcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPercepcionActionPerformed
+        int ID = 0;
+        try{
+            ID = Integer.parseInt(tblPro.getValueAt(tblPro.getSelectedRow(),0)+"");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
+        }
+        //confirma eliminacion
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+            JOptionPane.showConfirmDialog (null, "Desea eliminar","Informacion", dialogButton);
+            if(dialogButton == JOptionPane.YES_OPTION) {
+                erp.SQL("update UnidadMedida set estatus = 'B' where idUnidad = "+ID);
+            if(dialogButton == JOptionPane.NO_OPTION) {
+                  remove(dialogButton);
+                }
+              }
+    }//GEN-LAST:event_btnEliminarPercepcionActionPerformed
+public void borrarTabla(JTable tab) {
         try {
             DefaultTableModel tabT = (DefaultTableModel) tab.getModel();
             for (int i = tabT.getRowCount() - 1; i > -1; i--) {
@@ -230,64 +191,47 @@ public class C_Productos extends javax.swing.JPanel {
        
         }
     }
-    private void btnConsEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsEstadosActionPerformed
+    
+    private void btnConsultarSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarSucursalActionPerformed
         borrarTabla(tblPro);
         erp.OpenCon("ERP", "erp");
-        erp.Producto_Search(txfNombrePro.getText(), tblPro);
-    }//GEN-LAST:event_btnConsEstadosActionPerformed
+        erp.Producto_Search(txfBuscar.getText(),tblPro);
+    }//GEN-LAST:event_btnConsultarSucursalActionPerformed
 
-    private void btnElimEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElimEstadosActionPerformed
+    private void btnEditarPercecionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarPercecionActionPerformed
+        C_MOD_Productos pro =new C_MOD_Productos();
+        pro.setLocationRelativeTo(pro);
+        pro.setVisible(true);
         int ID = 0;
         try{
             ID = Integer.parseInt(tblPro.getValueAt(tblPro.getSelectedRow(),0)+"");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
-        //confirma eliminacion
-        int dialogButton = JOptionPane.YES_NO_OPTION;
-        JOptionPane.showConfirmDialog (null, "Desea eliminar","Informacion", dialogButton);
-        if(dialogButton == JOptionPane.YES_OPTION) {
-            erp.SQL("update Productos set estatus = 'B' where idproducto = "+ID);
-            if(dialogButton == JOptionPane.NO_OPTION) {
-                remove(dialogButton);
-            }
-        }
-    }//GEN-LAST:event_btnElimEstadosActionPerformed
+        pro.txfIDProducto.setText(ID+"");
+    }//GEN-LAST:event_btnEditarPercecionActionPerformed
 
-    private void btnAgrEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgrEstadosActionPerformed
-        C_ADD_Producto edg=new C_ADD_Producto();
-        edg.setLocationRelativeTo(edg);
-        edg.setVisible(true);
-    }//GEN-LAST:event_btnAgrEstadosActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        borrarTabla(tblPro);
+        erp.OpenCon("ERP", "erp");
+        erp.Unidad_Search(txfBuscar.getText(),tblPro);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void btnEditarEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarEstadosActionPerformed
-        C_MOD_Productos edP=new C_MOD_Productos();
-        edP.setLocationRelativeTo(edP);
-        edP.setVisible(true);
-        int ID = 0;
-        try{
-            ID = Integer.parseInt(tblPro.getValueAt(tblPro.getSelectedRow(),0)+"");
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
-        }
-        edP.txfIDProducto.setText(ID+"");
-    }//GEN-LAST:event_btnEditarEstadosActionPerformed
-
-    private void btnRefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefrescarActionPerformed
-
-    }//GEN-LAST:event_btnRefrescarActionPerformed
+    private void txfBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txfBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgrEstados;
-    private javax.swing.JButton btnConsEstados;
-    private javax.swing.JButton btnEditarEstados;
-    private javax.swing.JButton btnElimEstados;
-    private javax.swing.JButton btnRefrescar;
+    private javax.swing.JButton btnAgregarPercepcion;
+    private javax.swing.JButton btnConsultarSucursal;
+    private javax.swing.JButton btnEditarPercecion;
+    private javax.swing.JButton btnEliminarPercepcion;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable tblPro;
-    private javax.swing.JTextField txfNombrePro;
+    private javax.swing.JTable tblPro;
+    private javax.swing.JTextField txfBuscar;
     // End of variables declaration//GEN-END:variables
 }
