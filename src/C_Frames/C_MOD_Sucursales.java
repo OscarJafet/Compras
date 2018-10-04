@@ -40,7 +40,7 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
             erp.OpenCon("ERP", "erp");
             erp.stn= (Statement) erp.con.createStatement();
             erp.rs= erp.stn.executeQuery("select * from ciudad");
-            modelocombo.addElement("Seleccione cuidad");
+            modelocombo.addElement("Seleccione ciudad");
             CB_Cuidad.setModel(modelocombo);
             while (erp.rs.next()){
                 modelocombo.addElement(erp.rs.getObject("nombre"));
@@ -123,7 +123,7 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel12.setText("ID LABORATORIO");
+        jLabel12.setText("NOMBRE CIUDAD");
 
         jLabel3.setBackground(new java.awt.Color(254, 254, 254));
         jLabel3.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
@@ -282,7 +282,7 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
             +"colonia ='"+C_ADD_SUCUSALR_txfcol.getText()+"',"
             +"codigopostal ='"+C_ADD_SUCUSALR_txfcodPos.getText()+"',"
             +"presupuesto ="+Double.parseDouble(C_ADD_SUCUSALR_txfPres.getText())+","
-            +"idcuidad ="+CB_Cuidad.getSelectedIndex()
+            +"idciudad ="+CB_Cuidad.getSelectedIndex()
             +" where idsucursal ="
             +ID);
     }//GEN-LAST:event_btnAgrefarEstadosActionPerformed
@@ -340,8 +340,8 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
     private javax.swing.JTextField C_ADD_SUCUSALR_txfcol;
     private javax.swing.JTextField C_ADD_SUCUSALR_txfdir;
     private javax.swing.JTextField C_ADD_SUCUSALR_txftel;
-    private javax.swing.JButton btnAgrefarEstados;
-    private javax.swing.JButton jButton1;
+    public javax.swing.JButton btnAgrefarEstados;
+    public javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
