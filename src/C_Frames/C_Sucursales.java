@@ -165,7 +165,7 @@ public class C_Sucursales extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAgregarPercepcionActionPerformed
 
     private void btnEliminarPercepcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPercepcionActionPerformed
-        int ID = 0;
+      int ID = 0;
         try{
             ID = Integer.parseInt(tblsucursal.getValueAt(tblsucursal.getSelectedRow(),0)+"");
         }catch(Exception e){
@@ -180,6 +180,7 @@ public class C_Sucursales extends javax.swing.JPanel {
                   remove(dialogButton);
                 }
               }
+        
     }//GEN-LAST:event_btnEliminarPercepcionActionPerformed
 public void borrarTabla(JTable tab) {
         try {
@@ -196,6 +197,7 @@ public void borrarTabla(JTable tab) {
         borrarTabla(tblsucursal);
         erp.OpenCon("ERP", "erp");
         erp.Sucursales_Search(txfBuscar.getText(),tblsucursal);
+        
     }//GEN-LAST:event_btnConsultarSucursalActionPerformed
 
     private void btnEditarsucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarsucursalActionPerformed
