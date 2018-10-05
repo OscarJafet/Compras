@@ -436,6 +436,9 @@
         <Component class="javax.swing.JTextField" name="txfDescripcion">
         </Component>
         <Component class="javax.swing.JTextField" name="txfPunto">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txfPuntoKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txfCompra">
         </Component>

@@ -188,9 +188,9 @@ public class Conexion {
          public void Producto_Search(String Nombre,JTable tabla){
          DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
         if(Nombre.isEmpty())
-            Sql = "select * from Productos";
+            Sql = "select * from Productos where estatus='A'";
         else if(!Nombre.isEmpty())
-            Sql = "select * from Productos where nombre = '"+Nombre+"'";
+            Sql = "select * from Productos where nombre = '"+Nombre+"'and estatus='A'";
         
                try {
             stn=(Statement) con.createStatement();
