@@ -159,7 +159,7 @@ public class C_Productos extends javax.swing.JPanel {
     }//GEN-LAST:event_txfConsultarActionPerformed
 
     private void btnAgregarPercepcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPercepcionActionPerformed
-        C_ADD_Producto erp = new C_ADD_Producto();
+        C_ADD_Productos erp = new C_ADD_Productos();
         erp.setLocationRelativeTo(erp);
         erp.setVisible(true);
     }//GEN-LAST:event_btnAgregarPercepcionActionPerformed
