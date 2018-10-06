@@ -59,6 +59,11 @@ public class C_Sucursales extends javax.swing.JPanel {
                 txfBuscarActionPerformed(evt);
             }
         });
+        txfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfBuscarKeyTyped(evt);
+            }
+        });
         add(txfBuscar);
         txfBuscar.setBounds(200, 30, 330, 30);
 
@@ -88,6 +93,11 @@ public class C_Sucursales extends javax.swing.JPanel {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblsucursal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblsucursalMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblsucursal);
@@ -165,7 +175,7 @@ public class C_Sucursales extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAgregarPercepcionActionPerformed
 
     private void btnEliminarPercepcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPercepcionActionPerformed
-        int ID = 0;
+      int ID = 0;
         try{
             ID = Integer.parseInt(tblsucursal.getValueAt(tblsucursal.getSelectedRow(),0)+"");
         }catch(Exception e){
@@ -180,6 +190,7 @@ public class C_Sucursales extends javax.swing.JPanel {
                   remove(dialogButton);
                 }
               }
+        
     }//GEN-LAST:event_btnEliminarPercepcionActionPerformed
 public void borrarTabla(JTable tab) {
         try {
@@ -196,6 +207,7 @@ public void borrarTabla(JTable tab) {
         borrarTabla(tblsucursal);
         erp.OpenCon("ERP", "erp");
         erp.Sucursales_Search(txfBuscar.getText(),tblsucursal);
+        
     }//GEN-LAST:event_btnConsultarSucursalActionPerformed
 
     private void btnEditarsucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarsucursalActionPerformed
@@ -220,6 +232,32 @@ public void borrarTabla(JTable tab) {
     private void txfBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txfBuscarActionPerformed
+
+    private void tblsucursalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblsucursalMouseClicked
+        String a,b,c,d,e,f,h,i;
+        
+        a=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),0);
+        b=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),1);
+        c=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),2);
+        d=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),3);
+        e=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),4);
+        f=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),5);
+        h=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),6);
+        
+                       
+        
+         C_MOD_Sucursales suc= new C_MOD_Sucursales();
+         suc.setLocationRelativeTo(suc);
+         suc.Datos(a, b, c, d, e, f, h);
+         suc.setVisible(true);
+       
+
+    }//GEN-LAST:event_tblsucursalMouseClicked
+
+    private void txfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyTyped
+         char c = evt.getKeyChar();
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z'))  evt.consume();
+    }//GEN-LAST:event_txfBuscarKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

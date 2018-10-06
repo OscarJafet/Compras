@@ -223,7 +223,7 @@ public class Conexion {
          public void Sucursales_Search(String Nombre,JTable tabla){
          DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
         if(Nombre.isEmpty())
-            Sql = "select * from sucursal";
+            Sql = "select * from sucursal where estatus='A'";
         else if(!Nombre.isEmpty())
             Sql = "select * from sucursal where nombre = '"+Nombre+"'";
         
@@ -390,6 +390,10 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
         }
      
      }
+
+    public void setLocationRelativeTo(Conexion erp) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     /**
      * @return the con
