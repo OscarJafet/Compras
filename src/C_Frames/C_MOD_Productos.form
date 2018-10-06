@@ -121,12 +121,12 @@
                                       <Component id="txfAplicacion" alignment="0" pref="282" max="32767" attributes="0"/>
                                       <Component id="txfUso" alignment="0" max="32767" attributes="0"/>
                                       <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Component id="cmbLab" min="-2" max="-2" attributes="0"/>
                                               <Component id="txfVenta" min="-2" pref="49" max="-2" attributes="0"/>
-                                              <Component id="txfIngrediente" min="-2" pref="218" max="-2" attributes="0"/>
-                                              <Component id="txfBanda" min="-2" pref="208" max="-2" attributes="0"/>
+                                              <Component id="txfIngrediente" pref="218" max="32767" attributes="0"/>
                                               <Component id="cmbCat" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txfBanda" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
@@ -302,6 +302,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txfNombre">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txfNombreKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
@@ -380,6 +383,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txfBanda">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txfBandaKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel10">
           <Properties>

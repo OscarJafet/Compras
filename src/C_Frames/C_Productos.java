@@ -54,9 +54,9 @@ public class C_Productos extends javax.swing.JPanel {
 
         txfBuscar.setBackground(new java.awt.Color(254, 254, 254));
         txfBuscar.setForeground(new java.awt.Color(1, 1, 1));
-        txfBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txfBuscarActionPerformed(evt);
+        txfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfBuscarKeyTyped(evt);
             }
         });
         add(txfBuscar);
@@ -217,9 +217,12 @@ public void borrarTabla(JTable tab) {
         erp.Unidad_Search(txfBuscar.getText(),tblPro);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void txfBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txfBuscarActionPerformed
+    private void txfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyTyped
+        char c=evt.getKeyChar();
+        if((c<'0' || c>'9')&&(c<'a' || c>'z')&&(c<'A' || c>'Z')){
+            evt.consume();
+        }      
+    }//GEN-LAST:event_txfBuscarKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

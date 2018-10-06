@@ -65,15 +65,10 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="btnCancelar" min="-2" pref="65" max="-2" attributes="0"/>
-                                  <EmptySpace pref="440" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="112" pref="480" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="btnCancelar" min="-2" pref="65" max="-2" attributes="0"/>
+                              <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="btnLimpiar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="btnAgregar" min="-2" max="-2" attributes="0"/>
@@ -432,6 +427,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txfNombre">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txfNombreKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txfDescripcion">
         </Component>
@@ -447,6 +445,9 @@
         <Component class="javax.swing.JTextField" name="txfIngrediente">
         </Component>
         <Component class="javax.swing.JTextField" name="txfBanda">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txfBandaKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txfAplicacion">
         </Component>
