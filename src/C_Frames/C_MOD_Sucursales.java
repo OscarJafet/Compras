@@ -113,6 +113,7 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(254, 254, 254));
         jButton1.setForeground(new java.awt.Color(254, 254, 254));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon-cancelar.png"))); // NOI18N
+        jButton1.setToolTipText("Cerrar");
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +125,7 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
         btnAgrefarEstados.setBackground(new java.awt.Color(254, 254, 254));
         btnAgrefarEstados.setForeground(new java.awt.Color(254, 254, 254));
         btnAgrefarEstados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/refresh_icon.png"))); // NOI18N
-        btnAgrefarEstados.setToolTipText("");
+        btnAgrefarEstados.setToolTipText("Actualizar");
         btnAgrefarEstados.setBorderPainted(false);
         btnAgrefarEstados.setContentAreaFilled(false);
         btnAgrefarEstados.addActionListener(new java.awt.event.ActionListener() {

@@ -80,6 +80,7 @@ public class C_ADD_Sucursales extends javax.swing.JFrame {
         btnAgregar.setBackground(new java.awt.Color(254, 254, 254));
         btnAgregar.setForeground(new java.awt.Color(254, 254, 254));
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregar.png"))); // NOI18N
+        btnAgregar.setToolTipText("Guadar");
         btnAgregar.setBorderPainted(false);
         btnAgregar.setContentAreaFilled(false);
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -91,6 +92,7 @@ public class C_ADD_Sucursales extends javax.swing.JFrame {
         btnCancelar.setBackground(new java.awt.Color(254, 254, 254));
         btnCancelar.setForeground(new java.awt.Color(254, 254, 254));
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon-cancelar.png"))); // NOI18N
+        btnCancelar.setToolTipText("Cerrar");
         btnCancelar.setBorderPainted(false);
         btnCancelar.setContentAreaFilled(false);
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -102,6 +104,7 @@ public class C_ADD_Sucursales extends javax.swing.JFrame {
         btnLimpiar.setBackground(new java.awt.Color(254, 254, 254));
         btnLimpiar.setForeground(new java.awt.Color(254, 254, 254));
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borar1-icon.png"))); // NOI18N
+        btnLimpiar.setToolTipText("Limpiar Campos");
         btnLimpiar.setBorderPainted(false);
         btnLimpiar.setContentAreaFilled(false);
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
