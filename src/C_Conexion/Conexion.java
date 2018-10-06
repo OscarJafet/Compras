@@ -188,9 +188,9 @@ public class Conexion {
          public void Producto_Search(String Nombre,JTable tabla){
          DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
         if(Nombre.isEmpty())
-            Sql = "select * from Productos";
+            Sql = "select * from Productos where estatus='A'";
         else if(!Nombre.isEmpty())
-            Sql = "select * from Productos where nombre = '"+Nombre+"'";
+            Sql = "select * from Productos where nombre = '"+Nombre+"'and estatus='A'";
         
                try {
             stn=(Statement) con.createStatement();
@@ -251,6 +251,145 @@ public class Conexion {
         }
     }
 
+public void ExistenciaSucursal_search(JTable tabla,String Sql){
+         DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
+        
+           
+           
+      
+              
+        
+               try {
+            stn=(Statement) con.createStatement();
+            rs=stn.executeQuery(Sql);
+        
+            while(rs.next()){
+                
+                String idLab1=rs.getString("IDPRESENTACION");
+                String idLab2=rs.getString("IDSUCURSAL");
+                String idLab=rs.getString("NOMBRE");
+                String Nom=rs.getString("PRECIOVENTA");
+                String Ori=rs.getString("PUNTOREORDEN");
+                
+                String Stat2 = rs.getString("CANTIDAD");
+                String Stat = rs.getString("NOM");
+                 String Stat3 = rs.getString("NO");
+                Object datosRenglon[]={idLab1,idLab2, idLab, Nom, Ori,Stat2,Stat,Stat3};
+                tablaTemp.addRow(datosRenglon);
+            }
+            
+            
+            tabla.setModel(tablaTemp);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+
+
+public void ExistenciaSucursal_search_nombre(JTable tabla, String Sql){
+         DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
+               try {
+            stn=(Statement) con.createStatement();
+            rs=stn.executeQuery(Sql);
+        
+            while(rs.next()){
+               String idLab1=rs.getString("IDPRESENTACION");
+                String idLab2=rs.getString("IDSUCURSAL");
+                String idLab=rs.getString("NOMBRE");
+                String Nom=rs.getString("PRECIOVENTA");
+                String Ori=rs.getString("PUNTOREORDEN");
+                
+                String Stat2 = rs.getString("CANTIDAD");
+                String Stat = rs.getString("NOM");
+                 String Stat3 = rs.getString("NO");
+                Object datosRenglon[]={idLab1,idLab2, idLab, Nom, Ori,Stat2,Stat,Stat3};
+                tablaTemp.addRow(datosRenglon);
+            }
+            
+            tabla.setModel(tablaTemp);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
+         DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
+               try {
+            stn=(Statement) con.createStatement();
+            rs=stn.executeQuery(Sql);
+        
+            while(rs.next()){
+                String idLab1=rs.getString("IDSUCURSAL");
+                String idLab2=rs.getString("IDPRESENTACION");
+                String idLab=rs.getString("NOMBRE");
+                String Nom=rs.getString("PRECIOVENTA");
+                String Ori=rs.getString("PUNTOREORDEN");
+                
+                String Stat2 = rs.getString("CANTIDAD");
+                String Stat = rs.getString("NOM");
+                 String Stat3 = rs.getString("NO");
+                Object datosRenglon[]={idLab1,idLab2,idLab, Nom, Ori,Stat2,Stat,Stat3};
+                tablaTemp.addRow(datosRenglon);
+            }
+            
+            tabla.setModel(tablaTemp);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+ public void consultaregistroE(JTable tabla){
+       
+        DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
+        String cadenaSQL="select IDSUCURSAL,NOMBRE from sucursal where ESTATUS='A'";
+           
+        try {
+            stn=(java.sql.Statement) con.createStatement();
+            rs=stn.executeQuery(cadenaSQL);
+        
+            while(rs.next()){
+                
+                 String X=rs.getString("IDSUCURSAL");
+                   String Y=rs.getString("NOMBRE");
+                    
+                       
+                Object datosRenglon[]={X,Y};
+                tablaTemp.addRow(datosRenglon);
+            }
+            tabla.setModel(tablaTemp);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+     }
+     
+      public void consultaregistroPR(JTable tabla){
+       
+        DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
+        String cadenaSQL="select pp.IDPresentacion, pt.NOMBRE, EM.NOMBRE AS EMPAQUE from \n" +
+"              presentacionESproducto pp inner join productos pt \n" +
+"                on pp.idproducto=pt.idproducto inner join EMPAQUES EM ON em.idempaque=pp.idempaque where pt.ESTATUS = 'A'";
+           
+        try {
+            stn=(java.sql.Statement) con.createStatement();
+            rs=stn.executeQuery(cadenaSQL);
+        
+            while(rs.next()){
+                
+                 String X=rs.getString("IDPRESENTACION");
+                   String Y=rs.getString("NOMBRE");
+                   String Y2=rs.getString("EMPAQUE"); 
+                       
+                Object datosRenglon[]={X,Y,Y2};
+                tablaTemp.addRow(datosRenglon);
+            }
+            tabla.setModel(tablaTemp);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+     }
 
     /**
      * @return the con

@@ -58,6 +58,11 @@ public class C_ADD_Categorias extends javax.swing.JFrame {
 
         C_ADD_Categoria_txfNom.setBackground(new java.awt.Color(254, 254, 254));
         C_ADD_Categoria_txfNom.setForeground(new java.awt.Color(1, 1, 1));
+        C_ADD_Categoria_txfNom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                C_ADD_Categoria_txfNomActionPerformed(evt);
+            }
+        });
         C_ADD_Categoria_txfNom.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 C_ADD_Categoria_txfNomKeyTyped(evt);
@@ -181,14 +186,18 @@ public class C_ADD_Categorias extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void C_ADD_Categoria_txfNomKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_Categoria_txfNomKeyTyped
-        //char c=evt.getKeyChar();
-        //if((c<'a' || c>'z')&&(c<'A' || c>'Z')) evt.consume();
+        char c=evt.getKeyChar();
+        if((c<'a' || c>'z')&&(c<'A' || c>'Z')) evt.consume();
     }//GEN-LAST:event_C_ADD_Categoria_txfNomKeyTyped
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         this.C_ADD_Categoria_txfNom.setText("");
         this.C_ADD_Categoria_cmbEst.setSelectedIndex(0);
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void C_ADD_Categoria_txfNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_ADD_Categoria_txfNomActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_C_ADD_Categoria_txfNomActionPerformed
 
     /**
      * @param args the command line arguments
