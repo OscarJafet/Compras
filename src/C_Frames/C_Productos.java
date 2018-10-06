@@ -6,9 +6,12 @@
 package C_Frames;
 
 import C_Conexion.Conexion;
+import static C_Conexion.Conexion.con;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -171,7 +174,7 @@ public class C_Productos extends javax.swing.JPanel {
         if (con>=0){
             ID = Integer.parseInt(tblPro.getValueAt(tblPro.getSelectedRow(),0)+"");
             if(JOptionPane.showConfirmDialog (null, "Desea eliminar","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
-                erp.SQL("update productos set estatus = 'B' where idproducto = "+ID);
+                ProcedimientoProductos();
             }
         }else {
             JOptionPane.showMessageDialog(null,"-1","Error" ,JOptionPane.INFORMATION_MESSAGE);
@@ -221,7 +224,26 @@ public void borrarTabla(JTable tab) {
             evt.consume();
         }      
     }//GEN-LAST:event_txfBuscarKeyTyped
-
+      public void ProcedimientoProductos(){
+           int ID = 0;
+     
+           ID = Integer.parseInt(tblPro.getValueAt(tblPro.getSelectedRow(),0)+"");
+          try {
+          CallableStatement cst= con.prepareCall("{call ELPRO (?,?)}");
+            cst.setInt(1, ID);
+            
+            cst.registerOutParameter(2,java.sql.Types.VARCHAR);
+            cst.execute();
+            
+            String msg= cst.getString(2);
+            JOptionPane.showMessageDialog(null,msg,"Error" ,JOptionPane.INFORMATION_MESSAGE);
+          }
+          catch (SQLException ex){
+              JOptionPane.showMessageDialog(null,"Seleccione un renglon",ex.getMessage() ,JOptionPane.INFORMATION_MESSAGE);
+          }
+          
+          
+      }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarPercepcion;

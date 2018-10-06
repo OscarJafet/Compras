@@ -390,7 +390,7 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
         }
      
      }
-
+      
     public void setLocationRelativeTo(Conexion erp) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
