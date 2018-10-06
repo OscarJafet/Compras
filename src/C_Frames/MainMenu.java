@@ -137,6 +137,11 @@ public class MainMenu extends javax.swing.JFrame {
 
         C_ES.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ExistenciaS.png"))); // NOI18N
         C_ES.setToolTipText("Existencias Sucursal\n");
+        C_ES.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                C_ESActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpLogoLayout = new javax.swing.GroupLayout(jpLogo);
         jpLogo.setLayout(jpLogoLayout);
@@ -398,6 +403,16 @@ public class MainMenu extends javax.swing.JFrame {
         jFrames.revalidate();
         jFrames.repaint();
     }//GEN-LAST:event_C_SCActionPerformed
+
+    private void C_ESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_ESActionPerformed
+       C_ExistenciaSucursal erp = new C_ExistenciaSucursal();
+        erp.setSize(jFrames.getSize());
+        erp.setLocation(0, 0);
+        jFrames.removeAll();
+        jFrames.add(erp);
+        jFrames.revalidate();
+        jFrames.repaint();
+    }//GEN-LAST:event_C_ESActionPerformed
 
     void setTitulo(int i) {
         lblTitulo.setText(titulos[i]);
