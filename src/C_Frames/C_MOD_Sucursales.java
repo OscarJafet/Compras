@@ -35,15 +35,18 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
         llenarCombo1();
 
     }
-      public void llenarCombo1(){
+    
+     public void llenarCombo1(){
         try {
             erp.OpenCon("ERP", "erp");
             erp.stn= (Statement) erp.con.createStatement();
             erp.rs= erp.stn.executeQuery("select * from ciudad");
-            modelocombo.addElement("Seleccione ciudad");
+            modelocombo.addElement("Seleccione cuidad");
             CB_Cuidad.setModel(modelocombo);
             while (erp.rs.next()){
-                modelocombo.addElement(erp.rs.getObject("nombre"));
+                 String ID= String.valueOf(erp.rs.getObject("idciudad"));
+                String nombre= String.valueOf(erp.rs.getObject("nombre"));
+                modelocombo.addElement(ID+" "+nombre);
                 CB_Cuidad.setModel(modelocombo);
             }
         
@@ -51,6 +54,19 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+      
+         public void Datos(String a, String b,String c,String d, String e,String f, String h){
+           txfIdSucursal.setText(a);
+           txfNombre.setText(b);
+           C_ADD_SUCUSALR_txftel.setText(c);
+           C_ADD_SUCUSALR_txfdir.setText(d);
+           C_ADD_SUCUSALR_txfcol.setText(e);
+           C_ADD_SUCUSALR_txfcodPos.setText(f);
+           C_ADD_SUCUSALR_txfPres.setText(h);
+           
+           
+          
     }
     
     /**
@@ -121,6 +137,12 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(1, 1, 1));
         jLabel2.setText("NOMBRE");
 
+        txfNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfNombreKeyTyped(evt);
+            }
+        });
+
         jLabel12.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(1, 1, 1));
         jLabel12.setText("NOMBRE CIUDAD");
@@ -132,6 +154,11 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
 
         C_ADD_SUCUSALR_txftel.setBackground(new java.awt.Color(254, 254, 254));
         C_ADD_SUCUSALR_txftel.setForeground(new java.awt.Color(1, 1, 1));
+        C_ADD_SUCUSALR_txftel.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                C_ADD_SUCUSALR_txftelKeyTyped(evt);
+            }
+        });
 
         jLabel4.setBackground(new java.awt.Color(254, 254, 254));
         jLabel4.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
@@ -145,6 +172,11 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
                 C_ADD_SUCUSALR_txfdirActionPerformed(evt);
             }
         });
+        C_ADD_SUCUSALR_txfdir.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                C_ADD_SUCUSALR_txfdirKeyTyped(evt);
+            }
+        });
 
         jLabel5.setBackground(new java.awt.Color(254, 254, 254));
         jLabel5.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
@@ -153,6 +185,11 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
 
         C_ADD_SUCUSALR_txfcol.setBackground(new java.awt.Color(254, 254, 254));
         C_ADD_SUCUSALR_txfcol.setForeground(new java.awt.Color(1, 1, 1));
+        C_ADD_SUCUSALR_txfcol.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                C_ADD_SUCUSALR_txfcolKeyTyped(evt);
+            }
+        });
 
         jLabel6.setBackground(new java.awt.Color(254, 254, 254));
         jLabel6.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
@@ -161,6 +198,11 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
 
         C_ADD_SUCUSALR_txfcodPos.setBackground(new java.awt.Color(254, 254, 254));
         C_ADD_SUCUSALR_txfcodPos.setForeground(new java.awt.Color(1, 1, 1));
+        C_ADD_SUCUSALR_txfcodPos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                C_ADD_SUCUSALR_txfcodPosKeyTyped(evt);
+            }
+        });
 
         jLabel7.setBackground(new java.awt.Color(254, 254, 254));
         jLabel7.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
@@ -169,6 +211,11 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
 
         C_ADD_SUCUSALR_txfPres.setBackground(new java.awt.Color(254, 254, 254));
         C_ADD_SUCUSALR_txfPres.setForeground(new java.awt.Color(1, 1, 1));
+        C_ADD_SUCUSALR_txfPres.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                C_ADD_SUCUSALR_txfPresKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -273,18 +320,21 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgrefarEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgrefarEstadosActionPerformed
+    
         erp.OpenCon("ERP", "erp");
-        int ID = Integer.parseInt(txfIdSucursal.getText());
+        int ID = Integer.parseInt(txfIdSucursal.getText());        
         erp.SQL("update sucursal set nombre ="
-            +"'"+txfNombre.getText()+"',"
-            +"telefono ='"+C_ADD_SUCUSALR_txftel.getText()+"',"
-            +"direccion ='"+C_ADD_SUCUSALR_txfdir.getText()+"',"
-            +"colonia ='"+C_ADD_SUCUSALR_txfcol.getText()+"',"
-            +"codigopostal ='"+C_ADD_SUCUSALR_txfcodPos.getText()+"',"
-            +"presupuesto ="+Double.parseDouble(C_ADD_SUCUSALR_txfPres.getText())+","
-            +"idciudad ="+CB_Cuidad.getSelectedIndex()
-            +" where idsucursal ="
-            +ID);
+                +"'"+txfNombre.getText()+"',"
+                +"telefono ='"+C_ADD_SUCUSALR_txftel.getText()+"',"
+                +"direccion ='"+C_ADD_SUCUSALR_txfdir.getText()+"',"
+                +"colonia ='"+C_ADD_SUCUSALR_txfcol.getText()+"',"
+                +"codigopostal ='"+C_ADD_SUCUSALR_txfcodPos.getText()+"',"
+                +"presupuesto ="+Double.parseDouble(C_ADD_SUCUSALR_txfPres.getText())+","
+                +"idciudad ="+CB_Cuidad.getSelectedIndex()
+                +" where idsucursal ="
+                +ID);  
+       
+        
     }//GEN-LAST:event_btnAgrefarEstadosActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -294,6 +344,39 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
     private void C_ADD_SUCUSALR_txfdirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_ADD_SUCUSALR_txfdirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_C_ADD_SUCUSALR_txfdirActionPerformed
+
+    private void txfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfNombreKeyTyped
+        char c = evt.getKeyChar();
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txfNombreKeyTyped
+
+    private void C_ADD_SUCUSALR_txftelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_SUCUSALR_txftelKeyTyped
+        int c=evt.getKeyChar();
+        if(c<'0' || c>'9')evt.consume();
+    }//GEN-LAST:event_C_ADD_SUCUSALR_txftelKeyTyped
+
+    private void C_ADD_SUCUSALR_txfdirKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_SUCUSALR_txfdirKeyTyped
+        char c=evt.getKeyChar();
+        if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<'0'|| c>'9') &&(c>'#'|| c<'#')) evt.consume();
+    }//GEN-LAST:event_C_ADD_SUCUSALR_txfdirKeyTyped
+
+    private void C_ADD_SUCUSALR_txfcolKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_SUCUSALR_txfcolKeyTyped
+        char c = evt.getKeyChar();
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z'))  evt.consume();
+        
+    }//GEN-LAST:event_C_ADD_SUCUSALR_txfcolKeyTyped
+
+    private void C_ADD_SUCUSALR_txfcodPosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_SUCUSALR_txfcodPosKeyTyped
+        int c=evt.getKeyChar();
+        if(c<'0' || c>'9')evt.consume();
+    }//GEN-LAST:event_C_ADD_SUCUSALR_txfcodPosKeyTyped
+
+    private void C_ADD_SUCUSALR_txfPresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_SUCUSALR_txfPresKeyTyped
+        int c=evt.getKeyChar();
+        if((c<'0' || c>'9')&&(c<'.'||c>'.'))evt.consume();
+    }//GEN-LAST:event_C_ADD_SUCUSALR_txfPresKeyTyped
 
     /**
      * @param args the command line arguments
