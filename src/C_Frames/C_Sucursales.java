@@ -108,6 +108,7 @@ public class C_Sucursales extends javax.swing.JPanel {
         btnAgregarPercepcion.setBackground(new java.awt.Color(254, 254, 254));
         btnAgregarPercepcion.setForeground(new java.awt.Color(254, 254, 254));
         btnAgregarPercepcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregar.png"))); // NOI18N
+        btnAgregarPercepcion.setToolTipText("Guardar");
         btnAgregarPercepcion.setBorderPainted(false);
         btnAgregarPercepcion.setContentAreaFilled(false);
         btnAgregarPercepcion.addActionListener(new java.awt.event.ActionListener() {
@@ -120,6 +121,7 @@ public class C_Sucursales extends javax.swing.JPanel {
 
         btnEditarsucursal.setBackground(new java.awt.Color(254, 254, 254));
         btnEditarsucursal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon-cambiar.png"))); // NOI18N
+        btnEditarsucursal.setToolTipText("Actualizar");
         btnEditarsucursal.setBorderPainted(false);
         btnEditarsucursal.setContentAreaFilled(false);
         btnEditarsucursal.addActionListener(new java.awt.event.ActionListener() {
@@ -133,6 +135,7 @@ public class C_Sucursales extends javax.swing.JPanel {
         btnEliminarPercepcion.setBackground(new java.awt.Color(254, 254, 254));
         btnEliminarPercepcion.setForeground(new java.awt.Color(254, 254, 254));
         btnEliminarPercepcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borar1-icon.png"))); // NOI18N
+        btnEliminarPercepcion.setToolTipText("Baja");
         btnEliminarPercepcion.setBorderPainted(false);
         btnEliminarPercepcion.setContentAreaFilled(false);
         btnEliminarPercepcion.addActionListener(new java.awt.event.ActionListener() {
@@ -151,6 +154,7 @@ public class C_Sucursales extends javax.swing.JPanel {
 
         jButton1.setBackground(new java.awt.Color(254, 254, 254));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/refresh_icon.png"))); // NOI18N
+        jButton1.setToolTipText("Activar");
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
