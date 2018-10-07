@@ -75,6 +75,16 @@ public class C_MOD_Productos extends javax.swing.JFrame {
         }
         
     }
+           public void Datos(String a, String b,String c,String d, String e,String f, String h, String i){
+           txfIDProducto.setText(a);
+           txfNombre.setText(b);
+           txfDescripcion.setText(c);
+           txfPunto.setText(d);
+           txfIngrediente.setText(e);
+           txfBanda.setText(f);
+           txfAplicacion.setText(h);
+           txfUso.setText(i);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -321,7 +331,21 @@ public class C_MOD_Productos extends javax.swing.JFrame {
 
     private void btnAgrefarEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgrefarEstadosActionPerformed
         int idl = 0,idc=0;
-               StringTokenizer numero = new StringTokenizer(cmbLab.getSelectedItem().toString()," ");
+        String n=txfNombre.getText();
+        String d= txfDescripcion.getText();
+        String p= txfPunto.getText();
+        String i= txfIngrediente.getText();
+        String ap=txfAplicacion.getText();
+        String u=txfUso.getText();
+        String ba=txfBanda.getText();
+        int la= cmbLab.getSelectedIndex();
+        int ca= cmbCat.getSelectedIndex();
+        
+        
+ 
+        if((!n.isEmpty())&&(!d.isEmpty())&&(!p.isEmpty())&&(!i.isEmpty())&&(!ap.isEmpty())&&(!u.isEmpty())&&(!ba.isEmpty())&&(la!=0)&&(ca!=0))
+        {
+        StringTokenizer numero = new StringTokenizer(cmbLab.getSelectedItem().toString()," ");
         erp.OpenCon("ERP", "erp");
         int C = 0;
         while(numero.hasMoreTokens()){
@@ -355,6 +379,10 @@ public class C_MOD_Productos extends javax.swing.JFrame {
                 +"idcategoria ="+idc
                 +" where idproducto ="
                 +ID);
+        }
+                else {
+            JOptionPane.showMessageDialog(null,"No se permiten campos vacios o Categoria y/o Laboratorio sin asignar","Error" ,JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnAgrefarEstadosActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

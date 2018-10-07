@@ -87,10 +87,10 @@
                 <Column editable="false" title="INGREDIENTEACTIVO" type="java.lang.Object"/>
                 <Column editable="false" title="BANDATOXICOLOGICA" type="java.lang.Object"/>
                 <Column editable="false" title="APLICACION" type="java.lang.Object"/>
-                <Column editable="true" title="USO" type="java.lang.Object"/>
-                <Column editable="true" title="ESTATUS" type="java.lang.Object"/>
-                <Column editable="true" title="IDLABORATORIO" type="java.lang.Object"/>
-                <Column editable="true" title="IDCATEGORIA" type="java.lang.Object"/>
+                <Column editable="false" title="USO" type="java.lang.Object"/>
+                <Column editable="false" title="ESTATUS" type="java.lang.Object"/>
+                <Column editable="false" title="IDLABORATORIO" type="java.lang.Object"/>
+                <Column editable="false" title="IDCATEGORIA" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">

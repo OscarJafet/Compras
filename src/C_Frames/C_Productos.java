@@ -86,7 +86,7 @@ public class C_Productos extends javax.swing.JPanel {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, true, true, true, true
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -175,7 +175,7 @@ public class C_Productos extends javax.swing.JPanel {
     private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
         int ID = 0;
         int con=tblPro.getSelectedRow();
-        String es= String.valueOf(tblPro.getValueAt(tblPro.getSelectedRow(),10));
+        String es= String.valueOf(tblPro.getValueAt(tblPro.getSelectedRow(),8));
         if (con>=0){
             if (es.equals("A"))
             {
@@ -225,7 +225,7 @@ public void borrarTabla(JTable tab) {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
                 int ID = 0;
         int con=tblPro.getSelectedRow();
-        String es= String.valueOf(tblPro.getValueAt(tblPro.getSelectedRow(),10));
+        String es= String.valueOf(tblPro.getValueAt(tblPro.getSelectedRow(),8));
         if (con>=0){
             if (es.equals("B"))
             {
@@ -249,12 +249,24 @@ public void borrarTabla(JTable tab) {
     }//GEN-LAST:event_txfBuscarKeyTyped
 
     private void tblProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProMouseClicked
+        String a,b,c,d,e,f,h,i;
         
-        if (evt.getClickCount()==2){
-        C_MOD_Productos pro =new C_MOD_Productos();
-        pro.setLocationRelativeTo(pro);
-        pro.setVisible(true);
-        }
+        a=(String) tblPro.getValueAt(tblPro.getSelectedRow(),0);
+        b=(String) tblPro.getValueAt(tblPro.getSelectedRow(),1);
+        c=(String) tblPro.getValueAt(tblPro.getSelectedRow(),2);
+        d=(String) tblPro.getValueAt(tblPro.getSelectedRow(),3);
+        e=(String) tblPro.getValueAt(tblPro.getSelectedRow(),4);
+        f=(String) tblPro.getValueAt(tblPro.getSelectedRow(),5);
+        h=(String) tblPro.getValueAt(tblPro.getSelectedRow(),6);
+        i=(String) tblPro.getValueAt(tblPro.getSelectedRow(),7);
+        
+                       
+         if (evt.getClickCount()==2){
+         C_MOD_Productos pro= new C_MOD_Productos();
+         pro.setLocationRelativeTo(pro);
+         pro.Datos(a, b, c, d, e, f, h,i);
+         pro.setVisible(true);
+         }
     }//GEN-LAST:event_tblProMouseClicked
       public void ProcedimientoProductos(){
            int ID = 0;
@@ -268,10 +280,10 @@ public void borrarTabla(JTable tab) {
             cst.execute();
             
             String msg= cst.getString(2);
-            JOptionPane.showMessageDialog(null,msg,"Error" ,JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,msg,"Accion Realizada" ,JOptionPane.INFORMATION_MESSAGE);
           }
           catch (SQLException ex){
-              JOptionPane.showMessageDialog(null,"Seleccione un renglon",ex.getMessage() ,JOptionPane.INFORMATION_MESSAGE);
+              JOptionPane.showMessageDialog(null,ex.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
           }
           
           
@@ -289,10 +301,10 @@ public void borrarTabla(JTable tab) {
             cst.execute();
             
             String msg= cst.getString(2);
-            JOptionPane.showMessageDialog(null,msg,"Error" ,JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,msg,"Accion Realizada" ,JOptionPane.INFORMATION_MESSAGE);
           }
           catch (SQLException ex){
-              JOptionPane.showMessageDialog(null,"Seleccione un renglon",ex.getMessage() ,JOptionPane.INFORMATION_MESSAGE);
+              JOptionPane.showMessageDialog(null,ex.getMessage(),"Error",JOptionPane.INFORMATION_MESSAGE);
           }
           
           
