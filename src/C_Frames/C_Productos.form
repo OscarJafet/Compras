@@ -79,13 +79,11 @@
         <Component class="javax.swing.JTable" name="tblPro">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="13" rowCount="0">
+              <Table columnCount="11" rowCount="0">
                 <Column editable="false" title="IDPRODUCTO" type="java.lang.Object"/>
                 <Column editable="false" title="NOMBRE" type="java.lang.Object"/>
                 <Column editable="false" title="DESCRIPCION" type="java.lang.Object"/>
                 <Column editable="false" title="PUNTOREORDEN" type="java.lang.Object"/>
-                <Column editable="true" title="PRECIOCOMPRA" type="java.lang.Object"/>
-                <Column editable="false" title="PRECIOVENTA" type="java.lang.Object"/>
                 <Column editable="false" title="INGREDIENTEACTIVO" type="java.lang.Object"/>
                 <Column editable="false" title="BANDATOXICOLOGICA" type="java.lang.Object"/>
                 <Column editable="false" title="APLICACION" type="java.lang.Object"/>
@@ -99,6 +97,9 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblProMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

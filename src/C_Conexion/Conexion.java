@@ -190,7 +190,7 @@ public class Conexion {
         if(Nombre.isEmpty())
             Sql = "select * from Productos where estatus='A'";
         else if(!Nombre.isEmpty())
-            Sql = "select * from Productos where nombre = '"+Nombre+"'and estatus='A'";
+            Sql = "select * from Productos where nombre = '"+Nombre+"'";
         
                try {
             stn=(Statement) con.createStatement();
@@ -201,8 +201,6 @@ public class Conexion {
                 String Nom=rs.getString("nombre");
                 String descripcion=rs.getString("descripcion");
                 String punto = rs.getString("puntoreorden");
-                String compra = rs.getString("preciocompra");
-                String venta = rs.getString("precioventa");
                 String ingrediente = rs.getString("ingredienteactivo");
                 String banda = rs.getString("bandatoxicologica");
                 String apli = rs.getString("aplicacion");
@@ -210,7 +208,7 @@ public class Conexion {
                 String estatus = rs.getString("estatus");
                 String lab = rs.getString("idlaboratorio");
                 String cat = rs.getString("idcategoria");
-                Object datosRenglon[]={ idPro, Nom, descripcion,punto,compra,venta,ingrediente,banda,apli,uso,estatus,lab,cat};
+                Object datosRenglon[]={ idPro, Nom, descripcion,punto,ingrediente,banda,apli,uso,estatus,lab,cat};
                 tablaTemp.addRow(datosRenglon);
             }
             

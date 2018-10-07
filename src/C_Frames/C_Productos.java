@@ -82,15 +82,20 @@ public class C_Productos extends javax.swing.JPanel {
 
             },
             new String [] {
-                "IDPRODUCTO", "NOMBRE", "DESCRIPCION", "PUNTOREORDEN", "PRECIOCOMPRA", "PRECIOVENTA", "INGREDIENTEACTIVO", "BANDATOXICOLOGICA", "APLICACION", "USO", "ESTATUS", "IDLABORATORIO", "IDCATEGORIA"
+                "IDPRODUCTO", "NOMBRE", "DESCRIPCION", "PUNTOREORDEN", "INGREDIENTEACTIVO", "BANDATOXICOLOGICA", "APLICACION", "USO", "ESTATUS", "IDLABORATORIO", "IDCATEGORIA"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, false, false, false, false, true, true, true, true
+                false, false, false, false, false, false, false, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblPro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblPro);
@@ -170,14 +175,19 @@ public class C_Productos extends javax.swing.JPanel {
     private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
         int ID = 0;
         int con=tblPro.getSelectedRow();
-        
+        String es= String.valueOf(tblPro.getValueAt(tblPro.getSelectedRow(),10));
         if (con>=0){
+            if (es.equals("A"))
+            {
             ID = Integer.parseInt(tblPro.getValueAt(tblPro.getSelectedRow(),0)+"");
             if(JOptionPane.showConfirmDialog (null, "Desea eliminar","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
                 ProcedimientoProductos();
+                }
+            }else{
+                JOptionPane.showMessageDialog(null,"Seleccione un Producto en alta","Error" ,JOptionPane.INFORMATION_MESSAGE);
             }
         }else {
-            JOptionPane.showMessageDialog(null,"-1","Error" ,JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Seleccione un Producto","Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
 
         //confirma eliminacion
@@ -213,23 +223,66 @@ public void borrarTabla(JTable tab) {
     }//GEN-LAST:event_btnEditarProductoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        borrarTabla(tblPro);
-        erp.OpenCon("ERP", "erp");
-        erp.Unidad_Search(txfBuscar.getText(),tblPro);
+                int ID = 0;
+        int con=tblPro.getSelectedRow();
+        String es= String.valueOf(tblPro.getValueAt(tblPro.getSelectedRow(),10));
+        if (con>=0){
+            if (es.equals("B"))
+            {
+            ID = Integer.parseInt(tblPro.getValueAt(tblPro.getSelectedRow(),0)+"");
+            if(JOptionPane.showConfirmDialog (null, "Desea dar de alta","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
+                ProcedimientoProductosAlta();
+                }
+            }else{
+                JOptionPane.showMessageDialog(null,"Seleccione un Producto en baja","Error" ,JOptionPane.INFORMATION_MESSAGE);
+            }
+        }else {
+            JOptionPane.showMessageDialog(null,"Seleccione un Producto","Error" ,JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyTyped
         char c=evt.getKeyChar();
-        if((c<'0' || c>'9')&&(c<'a' || c>'z')&&(c<'A' || c>'Z')){
+        if((c<'0' || c>'9')&&(c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')){
             evt.consume();
         }      
     }//GEN-LAST:event_txfBuscarKeyTyped
+
+    private void tblProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProMouseClicked
+        
+        if (evt.getClickCount()==2){
+        C_MOD_Productos pro =new C_MOD_Productos();
+        pro.setLocationRelativeTo(pro);
+        pro.setVisible(true);
+        }
+    }//GEN-LAST:event_tblProMouseClicked
       public void ProcedimientoProductos(){
            int ID = 0;
      
            ID = Integer.parseInt(tblPro.getValueAt(tblPro.getSelectedRow(),0)+"");
           try {
           CallableStatement cst= con.prepareCall("{call ELPRO (?,?)}");
+            cst.setInt(1, ID);
+            
+            cst.registerOutParameter(2,java.sql.Types.VARCHAR);
+            cst.execute();
+            
+            String msg= cst.getString(2);
+            JOptionPane.showMessageDialog(null,msg,"Error" ,JOptionPane.INFORMATION_MESSAGE);
+          }
+          catch (SQLException ex){
+              JOptionPane.showMessageDialog(null,"Seleccione un renglon",ex.getMessage() ,JOptionPane.INFORMATION_MESSAGE);
+          }
+          
+          
+      }
+      
+            public void ProcedimientoProductosAlta(){
+           int ID = 0;
+     
+           ID = Integer.parseInt(tblPro.getValueAt(tblPro.getSelectedRow(),0)+"");
+          try {
+          CallableStatement cst= con.prepareCall("{call ALTAPRO (?,?)}");
             cst.setInt(1, ID);
             
             cst.registerOutParameter(2,java.sql.Types.VARCHAR);
