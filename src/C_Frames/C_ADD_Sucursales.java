@@ -366,7 +366,7 @@ public class C_ADD_Sucursales extends javax.swing.JFrame {
                 
         }
         erp.OpenCon("ERP", "erp");
-      erp.SQL("insert into sucursal values (ERP.SucID.nextval,"
+      erp.SQL("insert into sucursal values (ERP.sunu.nextval,"
               + "'"+ C_ADD_SUCUSALR_txfnom.getText()+"',"
               + "'"+ C_ADD_SUCUSALR_txftel.getText()+"',"
               + "'"+C_ADD_SUCUSALR_txfdir.getText()+"',"
@@ -408,13 +408,13 @@ public class C_ADD_Sucursales extends javax.swing.JFrame {
 
     private void C_ADD_SUCUSALR_txfdirKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_SUCUSALR_txfdirKeyTyped
         char c=evt.getKeyChar();
-        if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<'0'|| c>'9') &&(c>'#'|| c<'#')&&(c>' '|| c<' ')) evt.consume();
+        if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<'0'|| c>'9') &&(c>'#'|| c<'#')&&(c>' '|| c<' ')&&(c<'.'||c>'.')) evt.consume();
 
     }//GEN-LAST:event_C_ADD_SUCUSALR_txfdirKeyTyped
 
     private void C_ADD_SUCUSALR_txfcolKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_SUCUSALR_txfcolKeyTyped
         char c=evt.getKeyChar();
-        if((c<'a' || c>'z')&&(c<'A' || c>'Z')) evt.consume();
+        if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c>' '|| c<' ')) evt.consume();
     }//GEN-LAST:event_C_ADD_SUCUSALR_txfcolKeyTyped
 
     private void C_ADD_SUCUSALR_txfcodPosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_SUCUSALR_txfcodPosKeyTyped

@@ -260,11 +260,12 @@ public void borrarTabla(JTable tab) {
         h=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),6);
         
                        
-       
+         if (evt.getClickCount()==2){
          C_MOD_Sucursales suc= new C_MOD_Sucursales();
-         suc.setLocationRelativeTo(null);
+         suc.setLocationRelativeTo(suc);
          suc.Datos(a, b, c, d, e, f, h);
          suc.setVisible(true);
+         }
          
     }//GEN-LAST:event_tblsucursalMouseClicked
       public void ProcedimientoSucursal(){
