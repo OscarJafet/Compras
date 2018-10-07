@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -35,15 +36,17 @@ public class C_MOD_Productos extends javax.swing.JFrame {
         llenarCombo1();
         llenarCombo2();
     }
-        public void llenarCombo1(){
+    public void llenarCombo1(){
         try {
             erp.OpenCon("ERP", "erp");
             erp.stn= (Statement) erp.con.createStatement();
-            erp.rs= erp.stn.executeQuery("select * from Laboratorios");
+            erp.rs= erp.stn.executeQuery("select * from Laboratorios where estatus='A'");
             modelocombo.addElement("Seleccione Laboratorio");
             cmbLab.setModel(modelocombo);
             while (erp.rs.next()){
-                modelocombo.addElement(erp.rs.getObject("nombre"));
+                String ID= String.valueOf(erp.rs.getObject("idlaboratorio"));
+                String nombre= String.valueOf(erp.rs.getObject("nombre"));
+                modelocombo.addElement(ID+" "+nombre);
                 cmbLab.setModel(modelocombo);
             }
         
@@ -57,11 +60,13 @@ public class C_MOD_Productos extends javax.swing.JFrame {
         try {
             erp.OpenCon("ERP", "erp");
             erp.stn= (Statement) erp.con.createStatement();
-            erp.rs= erp.stn.executeQuery("select * from Categorias");
+            erp.rs= erp.stn.executeQuery("select * from Categorias where estatus='A'");
             modelocombo1.addElement("Seleccione Categoria");
             cmbCat.setModel(modelocombo1);
             while (erp.rs.next()){
-                modelocombo1.addElement(erp.rs.getObject("nombre"));
+                String ID= String.valueOf(erp.rs.getObject("idcategoria"));
+                String nombre= String.valueOf(erp.rs.getObject("nombre"));
+                modelocombo1.addElement(ID+" "+nombre);
                 cmbCat.setModel(modelocombo1);
             }
         
@@ -343,7 +348,28 @@ public class C_MOD_Productos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgrefarEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgrefarEstadosActionPerformed
-       erp.OpenCon("ERP", "erp");
+        int idl = 0,idc=0;
+               StringTokenizer numero = new StringTokenizer(cmbLab.getSelectedItem().toString()," ");
+        erp.OpenCon("ERP", "erp");
+        int C = 0;
+        while(numero.hasMoreTokens()){
+                String a = numero.nextToken();
+              C++;
+              if (C == 1)
+                  idl = Integer.parseInt(a);
+                
+        }
+        
+        StringTokenizer numero1 = new StringTokenizer(cmbCat.getSelectedItem().toString()," ");
+        erp.OpenCon("ERP", "erp");
+        int C1 = 0;
+        while(numero1.hasMoreTokens()){
+                String a = numero1.nextToken();
+              C1++;
+              if (C1 == 1)
+                  idc = Integer.parseInt(a);
+                
+        }
        int ID = Integer.parseInt(txfIDProducto.getText());
        erp.SQL("update Productos set nombre ="
                 +"'"+txfNombre.getText()+"',"
@@ -355,8 +381,8 @@ public class C_MOD_Productos extends javax.swing.JFrame {
                 +"bandatoxicologica ='"+txfBanda.getText()+"',"
                 +"aplicacion ='"+txfAplicacion.getText()+"',"
                 +"uso ='"+txfUso.getText()+"',"
-                +"idlaboratorio ="+cmbLab.getSelectedIndex()+","
-                +"idcategoria ="+cmbCat.getSelectedIndex()
+                +"idlaboratorio ="+idl+","
+                +"idcategoria ="+idc
                 +" where idproducto ="
                 +ID);
     }//GEN-LAST:event_btnAgrefarEstadosActionPerformed

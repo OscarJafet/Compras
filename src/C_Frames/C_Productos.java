@@ -41,12 +41,12 @@ public class C_Productos extends javax.swing.JPanel {
     private void initComponents() {
 
         txfBuscar = new javax.swing.JTextField();
-        btnConsultarSucursal = new javax.swing.JButton();
+        btnConsultarProducto = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPro = new javax.swing.JTable();
-        btnAgregarPercepcion = new javax.swing.JButton();
-        btnEditarPercecion = new javax.swing.JButton();
-        btnEliminarPercepcion = new javax.swing.JButton();
+        btnAgregarProducto = new javax.swing.JButton();
+        btnEditarProducto = new javax.swing.JButton();
+        btnEliminarProducto = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -65,17 +65,17 @@ public class C_Productos extends javax.swing.JPanel {
         add(txfBuscar);
         txfBuscar.setBounds(200, 30, 330, 30);
 
-        btnConsultarSucursal.setBackground(new java.awt.Color(254, 254, 254));
-        btnConsultarSucursal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon-buscar.png"))); // NOI18N
-        btnConsultarSucursal.setBorderPainted(false);
-        btnConsultarSucursal.setContentAreaFilled(false);
-        btnConsultarSucursal.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultarProducto.setBackground(new java.awt.Color(254, 254, 254));
+        btnConsultarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon-buscar.png"))); // NOI18N
+        btnConsultarProducto.setBorderPainted(false);
+        btnConsultarProducto.setContentAreaFilled(false);
+        btnConsultarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarSucursalActionPerformed(evt);
+                btnConsultarProductoActionPerformed(evt);
             }
         });
-        add(btnConsultarSucursal);
-        btnConsultarSucursal.setBounds(540, 10, 60, 50);
+        add(btnConsultarProducto);
+        btnConsultarProducto.setBounds(540, 10, 60, 50);
 
         tblPro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -98,43 +98,43 @@ public class C_Productos extends javax.swing.JPanel {
         add(jScrollPane1);
         jScrollPane1.setBounds(30, 80, 789, 311);
 
-        btnAgregarPercepcion.setBackground(new java.awt.Color(254, 254, 254));
-        btnAgregarPercepcion.setForeground(new java.awt.Color(254, 254, 254));
-        btnAgregarPercepcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregar.png"))); // NOI18N
-        btnAgregarPercepcion.setBorderPainted(false);
-        btnAgregarPercepcion.setContentAreaFilled(false);
-        btnAgregarPercepcion.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregarProducto.setBackground(new java.awt.Color(254, 254, 254));
+        btnAgregarProducto.setForeground(new java.awt.Color(254, 254, 254));
+        btnAgregarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregar.png"))); // NOI18N
+        btnAgregarProducto.setBorderPainted(false);
+        btnAgregarProducto.setContentAreaFilled(false);
+        btnAgregarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarPercepcionActionPerformed(evt);
+                btnAgregarProductoActionPerformed(evt);
             }
         });
-        add(btnAgregarPercepcion);
-        btnAgregarPercepcion.setBounds(760, 430, 81, 57);
+        add(btnAgregarProducto);
+        btnAgregarProducto.setBounds(760, 430, 81, 57);
 
-        btnEditarPercecion.setBackground(new java.awt.Color(254, 254, 254));
-        btnEditarPercecion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon-cambiar.png"))); // NOI18N
-        btnEditarPercecion.setBorderPainted(false);
-        btnEditarPercecion.setContentAreaFilled(false);
-        btnEditarPercecion.addActionListener(new java.awt.event.ActionListener() {
+        btnEditarProducto.setBackground(new java.awt.Color(254, 254, 254));
+        btnEditarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon-cambiar.png"))); // NOI18N
+        btnEditarProducto.setBorderPainted(false);
+        btnEditarProducto.setContentAreaFilled(false);
+        btnEditarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarPercecionActionPerformed(evt);
+                btnEditarProductoActionPerformed(evt);
             }
         });
-        add(btnEditarPercecion);
-        btnEditarPercecion.setBounds(580, 430, 81, 57);
+        add(btnEditarProducto);
+        btnEditarProducto.setBounds(580, 430, 81, 57);
 
-        btnEliminarPercepcion.setBackground(new java.awt.Color(254, 254, 254));
-        btnEliminarPercepcion.setForeground(new java.awt.Color(254, 254, 254));
-        btnEliminarPercepcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borar1-icon.png"))); // NOI18N
-        btnEliminarPercepcion.setBorderPainted(false);
-        btnEliminarPercepcion.setContentAreaFilled(false);
-        btnEliminarPercepcion.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminarProducto.setBackground(new java.awt.Color(254, 254, 254));
+        btnEliminarProducto.setForeground(new java.awt.Color(254, 254, 254));
+        btnEliminarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borar1-icon.png"))); // NOI18N
+        btnEliminarProducto.setBorderPainted(false);
+        btnEliminarProducto.setContentAreaFilled(false);
+        btnEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarPercepcionActionPerformed(evt);
+                btnEliminarProductoActionPerformed(evt);
             }
         });
-        add(btnEliminarPercepcion);
-        btnEliminarPercepcion.setBounds(690, 420, 52, 67);
+        add(btnEliminarProducto);
+        btnEliminarProducto.setBounds(690, 420, 52, 67);
 
         jLabel1.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(1, 1, 1));
@@ -161,13 +161,13 @@ public class C_Productos extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txfConsultarActionPerformed
 
-    private void btnAgregarPercepcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPercepcionActionPerformed
+    private void btnAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoActionPerformed
         C_ADD_Productos erp = new C_ADD_Productos();
         erp.setLocationRelativeTo(erp);
         erp.setVisible(true);
-    }//GEN-LAST:event_btnAgregarPercepcionActionPerformed
+    }//GEN-LAST:event_btnAgregarProductoActionPerformed
 
-    private void btnEliminarPercepcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPercepcionActionPerformed
+    private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
         int ID = 0;
         int con=tblPro.getSelectedRow();
         
@@ -181,7 +181,7 @@ public class C_Productos extends javax.swing.JPanel {
         }
 
         //confirma eliminacion
-    }//GEN-LAST:event_btnEliminarPercepcionActionPerformed
+    }//GEN-LAST:event_btnEliminarProductoActionPerformed
 public void borrarTabla(JTable tab) {
         try {
             DefaultTableModel tabT = (DefaultTableModel) tab.getModel();
@@ -193,13 +193,13 @@ public void borrarTabla(JTable tab) {
         }
     }
     
-    private void btnConsultarSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarSucursalActionPerformed
+    private void btnConsultarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarProductoActionPerformed
         borrarTabla(tblPro);
         erp.OpenCon("ERP", "erp");
         erp.Producto_Search(txfBuscar.getText(),tblPro);
-    }//GEN-LAST:event_btnConsultarSucursalActionPerformed
+    }//GEN-LAST:event_btnConsultarProductoActionPerformed
 
-    private void btnEditarPercecionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarPercecionActionPerformed
+    private void btnEditarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProductoActionPerformed
         C_MOD_Productos pro =new C_MOD_Productos();
         pro.setLocationRelativeTo(pro);
         pro.setVisible(true);
@@ -210,7 +210,7 @@ public void borrarTabla(JTable tab) {
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
         pro.txfIDProducto.setText(ID+"");
-    }//GEN-LAST:event_btnEditarPercecionActionPerformed
+    }//GEN-LAST:event_btnEditarProductoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         borrarTabla(tblPro);
@@ -246,10 +246,10 @@ public void borrarTabla(JTable tab) {
       }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregarPercepcion;
-    private javax.swing.JButton btnConsultarSucursal;
-    private javax.swing.JButton btnEditarPercecion;
-    private javax.swing.JButton btnEliminarPercepcion;
+    private javax.swing.JButton btnAgregarProducto;
+    private javax.swing.JButton btnConsultarProducto;
+    private javax.swing.JButton btnEditarProducto;
+    private javax.swing.JButton btnEliminarProducto;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
