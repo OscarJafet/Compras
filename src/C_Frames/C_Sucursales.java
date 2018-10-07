@@ -6,9 +6,12 @@
 package C_Frames;
 
 import C_Conexion.Conexion;
+import static C_Conexion.Conexion.con;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -179,22 +182,17 @@ public class C_Sucursales extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAgregarPercepcionActionPerformed
 
     private void btnEliminarPercepcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPercepcionActionPerformed
-      int ID = 0;
-        try{
-            ID = Integer.parseInt(tblsucursal.getValueAt(tblsucursal.getSelectedRow(),0)+"");
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
-        }
-        //confirma eliminacion
-        int dialogButton = JOptionPane.YES_NO_OPTION;
-            JOptionPane.showConfirmDialog (null, "Desea eliminar","Informacion", dialogButton);
-            if(dialogButton == JOptionPane.YES_OPTION) {
-                erp.SQL("update UnidadMedida set estatus = 'B' where idUnidad = "+ID);
-            if(dialogButton == JOptionPane.NO_OPTION) {
-                  remove(dialogButton);
-                }
-              }
+        int ID = 0;
+        int con=tblsucursal.getSelectedRow();
         
+        if (con>=0){
+            ID = Integer.parseInt(tblsucursal.getValueAt(tblsucursal.getSelectedRow(),0)+"");
+            if(JOptionPane.showConfirmDialog (null, "Desea eliminar","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
+                ProcedimientoSucursal();
+            }
+        }else {
+            JOptionPane.showMessageDialog(null,"-1","Error" ,JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnEliminarPercepcionActionPerformed
 public void borrarTabla(JTable tab) {
         try {
@@ -228,14 +226,27 @@ public void borrarTabla(JTable tab) {
     }//GEN-LAST:event_btnEditarsucursalActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        borrarTabla(tblsucursal);
-        erp.OpenCon("ERP", "erp");
-        erp.Unidad_Search(txfBuscar.getText(),tblsucursal);
+        int ID = 0;
+        int con=tblsucursal.getSelectedRow();
+        
+        if (con>=0){
+            ID = Integer.parseInt(tblsucursal.getValueAt(tblsucursal.getSelectedRow(),0)+"");
+            if(JOptionPane.showConfirmDialog (null, "Desea dar de Activar","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
+                ProcedimientoSucursalAlta();
+            }
+        }else {
+            JOptionPane.showMessageDialog(null,"-1","Error" ,JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txfBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txfBuscarActionPerformed
+
+    private void txfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyTyped
+         char c = evt.getKeyChar();
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z'))  evt.consume();
+    }//GEN-LAST:event_txfBuscarKeyTyped
 
     private void tblsucursalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblsucursalMouseClicked
         String a,b,c,d,e,f,h,i;
@@ -254,15 +265,48 @@ public void borrarTabla(JTable tab) {
          suc.setLocationRelativeTo(suc);
          suc.Datos(a, b, c, d, e, f, h);
          suc.setVisible(true);
-       
-
     }//GEN-LAST:event_tblsucursalMouseClicked
-
-    private void txfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyTyped
-         char c = evt.getKeyChar();
-        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z'))  evt.consume();
-    }//GEN-LAST:event_txfBuscarKeyTyped
-
+      public void ProcedimientoSucursal(){
+           int ID = 0;
+     
+           ID = Integer.parseInt(tblsucursal.getValueAt(tblsucursal.getSelectedRow(),0)+"");
+          try {
+          CallableStatement cst= con.prepareCall("{call BajasSucursal(?,?)}");
+            cst.setInt(1, ID);
+            
+            cst.registerOutParameter(2,java.sql.Types.VARCHAR);
+            cst.execute();
+            
+            String msg= cst.getString(2);
+            JOptionPane.showMessageDialog(null,msg,"Error" ,JOptionPane.INFORMATION_MESSAGE);
+          }
+          catch (SQLException ex){
+              JOptionPane.showMessageDialog(null,"Seleccione un renglon",ex.getMessage() ,JOptionPane.INFORMATION_MESSAGE);
+          }
+          
+          
+      }
+      
+            public void ProcedimientoSucursalAlta(){
+           int ID = 0;
+     
+           ID = Integer.parseInt(tblsucursal.getValueAt(tblsucursal.getSelectedRow(),0)+"");
+          try {
+          CallableStatement cst= con.prepareCall("{call AltaSucursal(?,?)}");
+            cst.setInt(1, ID);
+            
+            cst.registerOutParameter(2,java.sql.Types.VARCHAR);
+            cst.execute();
+            
+            String msg= cst.getString(2);
+            JOptionPane.showMessageDialog(null,msg,"Error" ,JOptionPane.INFORMATION_MESSAGE);
+          }
+          catch (SQLException ex){
+              JOptionPane.showMessageDialog(null,"Seleccione un renglon",ex.getMessage() ,JOptionPane.INFORMATION_MESSAGE);
+          }
+          
+          
+      }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarPercepcion;
