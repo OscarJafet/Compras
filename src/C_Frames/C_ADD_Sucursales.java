@@ -326,7 +326,7 @@ public class C_ADD_Sucursales extends javax.swing.JFrame {
         try {
             erp.OpenCon("ERP", "erp");
             erp.stn= (Statement) erp.con.createStatement();
-            erp.rs= erp.stn.executeQuery("select * from ciudad");
+            erp.rs= erp.stn.executeQuery("select * from ciudad where estatus='A'");
             modelocombo.addElement("Seleccione cuidad");
             CB_CUIDAD.setModel(modelocombo);
             while (erp.rs.next()){
