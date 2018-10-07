@@ -118,6 +118,11 @@ public class MainMenu extends javax.swing.JFrame {
 
         C_PP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ProductosP.png"))); // NOI18N
         C_PP.setToolTipText("Presentacion Producto");
+        C_PP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                C_PPActionPerformed(evt);
+            }
+        });
 
         C_PD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Productos.png"))); // NOI18N
         C_PD.setToolTipText("Laboratorio\n");
@@ -203,7 +208,7 @@ public class MainMenu extends javax.swing.JFrame {
                     .addComponent(C_PP, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(C_ES, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(C_SC, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4))
@@ -413,6 +418,17 @@ public class MainMenu extends javax.swing.JFrame {
         jFrames.revalidate();
         jFrames.repaint();
     }//GEN-LAST:event_C_ESActionPerformed
+
+    private void C_PPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_PPActionPerformed
+        // TODO add your handling code here:
+         C_PresentacionP erp = new C_PresentacionP();
+        erp.setSize(jFrames.getSize());
+        erp.setLocation(0, 0);
+        jFrames.removeAll();
+        jFrames.add(erp);
+        jFrames.revalidate();
+        jFrames.repaint();
+    }//GEN-LAST:event_C_PPActionPerformed
 
     void setTitulo(int i) {
         lblTitulo.setText(titulos[i]);

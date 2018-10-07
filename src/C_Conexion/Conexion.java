@@ -390,6 +390,41 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
         }
      
      }
+      public void Presentacion_seacrh(String Nombre, JTable tabla){
+        DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
+        if(Nombre.isEmpty())
+            Sql = "select PresentacionesProducto.idPresentacion, PresentacionesProducto.precioCompra,\n" +
+"PresentacionesProducto.precioVenta,PresentacionesProducto.puntoReorden,\n" +
+"PresentacionesProducto.idProducto,PresentacionesProducto.idEmpaque\n" +
+"from presentacionesproducto\n" +
+"inner join ERP.Productos\n" +
+"on PresentacionesProducto.idProducto = Productos.idProducto and Productos.estatus = 'A'";
+        else if(!Nombre.isEmpty()){
+            Sql = "select * from ERP.PresentacionesProducto "
+                    + "where ERP.Producto.idProducto =  ERP.PresentacionesProducto.idProducto and "
+                    + "ERP.Productos.estatus = 'A'";
+        }
+        System.out.println(Sql);
+               try {
+            stn= con.createStatement();
+            rs=stn.executeQuery(Sql);
+        
+            while(rs.next()){
+                String idPress=rs.getString("idPresentacion");
+                String preCom=rs.getString("precioCompra");
+                String preVent=rs.getString("precioVenta");
+                String pReorden = rs.getString("puntoReorden");
+                String idPro = rs.getString("idProducto");
+                String idEmp = rs.getString("idEmpaque");
+                Object datosRenglon[]={idPress, preCom, preVent,pReorden,idPro,idEmp};
+                tablaTemp.addRow(datosRenglon);
+            }
+            
+            tabla.setModel(tablaTemp);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
       
     public void setLocationRelativeTo(Conexion erp) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
