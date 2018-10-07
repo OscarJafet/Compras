@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -35,6 +36,9 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
         llenarCombo1();
 
     }
+     private JTextField jTextFieldName = new JTextField();
+      private int limite = 5;
+      private int limite2 = 10;
     
      public void llenarCombo1(){
         try {
@@ -355,12 +359,15 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
 
     private void C_ADD_SUCUSALR_txftelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_SUCUSALR_txftelKeyTyped
         int c=evt.getKeyChar();
-        if(c<'0' || c>'9')evt.consume();
+        if((c<'0' || c>'9')&&(c<'-' || c>'-'))evt.consume();
+                if (C_ADD_SUCUSALR_txftel.getText().length() == limite2) {
+        evt.consume();
+        }
     }//GEN-LAST:event_C_ADD_SUCUSALR_txftelKeyTyped
 
     private void C_ADD_SUCUSALR_txfdirKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_SUCUSALR_txfdirKeyTyped
         char c=evt.getKeyChar();
-        if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<'0'|| c>'9') &&(c>'#'|| c<'#')) evt.consume();
+        if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<'0'|| c>'9') &&(c>'#'|| c<'#')&&(c<' ' || c>' ')) evt.consume();
     }//GEN-LAST:event_C_ADD_SUCUSALR_txfdirKeyTyped
 
     private void C_ADD_SUCUSALR_txfcolKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_SUCUSALR_txfcolKeyTyped
@@ -372,6 +379,9 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
     private void C_ADD_SUCUSALR_txfcodPosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_SUCUSALR_txfcodPosKeyTyped
         int c=evt.getKeyChar();
         if(c<'0' || c>'9')evt.consume();
+        if (C_ADD_SUCUSALR_txfcodPos.getText().length() == limite) {
+        evt.consume();
+        }
     }//GEN-LAST:event_C_ADD_SUCUSALR_txfcodPosKeyTyped
 
     private void C_ADD_SUCUSALR_txfPresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_SUCUSALR_txfPresKeyTyped
