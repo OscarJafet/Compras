@@ -237,7 +237,7 @@ public void borrarTabla(JTable tab) {
         }
         //confirma eliminacion
         int dialogButton = JOptionPane.YES_NO_OPTION;
-            JOptionPane.showConfirmDialog (null, "Desea eliminar","Informacion", dialogButton);
+            JOptionPane.showConfirmDialog (null, "En busca de señales de vida.(ojo eliminan empaques)","Informacion", dialogButton);
             if(dialogButton == JOptionPane.YES_OPTION) {
                 erp.SQL("update Empaques set estatus = 'B' where idEmpaque = "+ID);
             if(dialogButton == JOptionPane.NO_OPTION) {
