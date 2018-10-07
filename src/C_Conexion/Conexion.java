@@ -388,19 +388,29 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
         }
      
      }
-      public void Presentacion_seacrh(String Nombre, JTable tabla){
+      public void Presentacion_seacrh(String Nombre, JTable tabla,char Stat){
         DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
-        if(Nombre.isEmpty())
+        if(Nombre.isEmpty()&&Stat =='E')
             Sql = "select PresentacionesProducto.idPresentacion, PresentacionesProducto.precioCompra,\n" +
 "PresentacionesProducto.precioVenta,PresentacionesProducto.puntoReorden,\n" +
-"PresentacionesProducto.idProducto,PresentacionesProducto.idEmpaque\n" +
+"PresentacionesProducto.idProducto,PresentacionesProducto.idEmpaque,PresentacionesProducto.estatus\n" +
 "from presentacionesproducto\n" +
 "inner join ERP.Productos\n" +
 "on PresentacionesProducto.idProducto = Productos.idProducto and Productos.estatus = 'A'";
-        else if(!Nombre.isEmpty()){
-            Sql = "select * from ERP.PresentacionesProducto "
-                    + "where ERP.Producto.idProducto =  ERP.PresentacionesProducto.idProducto and "
-                    + "ERP.Productos.estatus = 'A'";
+        else if(!Nombre.isEmpty()&&Stat =='E'){
+            Sql = "select PresentacionesProducto.idPresentacion, PresentacionesProducto.precioCompra,\n" +
+"PresentacionesProducto.precioVenta,PresentacionesProducto.puntoReorden,\n" +
+"PresentacionesProducto.idProducto,PresentacionesProducto.idEmpaque,PresentacionesProducto.estatus\n" +
+"from presentacionesproducto\n" +
+"inner join ERP.Productos\n" +
+"on PresentacionesProducto.idProducto = Productos.idProducto and Productos.estatus = 'A' and Productos.nombre = '"+Nombre+"'";
+        }else if (Stat == 'A' || Stat == 'B'){
+            Sql = "select PresentacionesProducto.idPresentacion, PresentacionesProducto.precioCompra,\n" +
+"PresentacionesProducto.precioVenta,PresentacionesProducto.puntoReorden,\n" +
+"PresentacionesProducto.idProducto,PresentacionesProducto.idEmpaque,PresentacionesProducto.estatus\n" +
+"from presentacionesproducto\n" +
+"inner join ERP.Productos\n" +
+"on PresentacionesProducto.idProducto = Productos.idProducto and PresentacionesProducto.estatus = '"+Stat+"'";
         }
         System.out.println(Sql);
                try {
@@ -414,7 +424,8 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
                 String pReorden = rs.getString("puntoReorden");
                 String idPro = rs.getString("idProducto");
                 String idEmp = rs.getString("idEmpaque");
-                Object datosRenglon[]={idPress, preCom, preVent,pReorden,idPro,idEmp};
+                String stat = rs.getString("estatus");
+                Object datosRenglon[]={idPress, preCom, preVent,pReorden,idPro,idEmp,stat};
                 tablaTemp.addRow(datosRenglon);
             }
             

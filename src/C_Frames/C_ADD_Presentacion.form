@@ -81,7 +81,6 @@
                               <Component id="cmbEmp" min="-2" max="-2" attributes="0"/>
                               <Component id="cmbProd" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
