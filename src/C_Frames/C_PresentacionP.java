@@ -56,6 +56,7 @@ public class C_PresentacionP extends javax.swing.JPanel {
         btnAgregarDe = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        cmbSe = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(254, 254, 254));
         setForeground(new java.awt.Color(254, 254, 254));
@@ -63,6 +64,11 @@ public class C_PresentacionP extends javax.swing.JPanel {
 
         txfConsultar.setBackground(new java.awt.Color(254, 254, 254));
         txfConsultar.setForeground(new java.awt.Color(1, 1, 1));
+        txfConsultar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txfConsultarMouseClicked(evt);
+            }
+        });
         add(txfConsultar);
         txfConsultar.setBounds(180, 30, 386, 25);
 
@@ -97,11 +103,11 @@ public class C_PresentacionP extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID Presentación", "Precio compra", "Precio venta", "Punto reorden", "ID Producto", "ID Empaque"
+                "ID Presentación", "Precio compra", "Precio venta", "Punto reorden", "ID Producto", "ID Empaque", "Estatus"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -125,7 +131,7 @@ public class C_PresentacionP extends javax.swing.JPanel {
             }
         });
         add(btnConsultar);
-        btnConsultar.setBounds(580, 10, 75, 57);
+        btnConsultar.setBounds(720, 10, 75, 57);
 
         btnAgregarDe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregar.png"))); // NOI18N
         btnAgregarDe.setBorderPainted(false);
@@ -161,6 +167,15 @@ public class C_PresentacionP extends javax.swing.JPanel {
         });
         add(jButton1);
         jButton1.setBounds(38, 468, 97, 73);
+
+        cmbSe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estatus", "A", "B" }));
+        cmbSe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cmbSeMouseClicked(evt);
+            }
+        });
+        add(cmbSe);
+        cmbSe.setBounds(600, 30, 90, 20);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarDeduccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarDeduccionesActionPerformed
@@ -225,7 +240,7 @@ public void borrarTabla(JTable tab) {
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         borrarTabla(tablaPress);
         erp.OpenCon("ERP", "erp");
-        erp.Presentacion_seacrh(txfConsultar.getText(), tablaPress);
+        erp.Presentacion_seacrh(txfConsultar.getText(), tablaPress,cmbSe.getItemAt(cmbSe.getSelectedIndex()).charAt(0));
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnEliDeduccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliDeduccionesActionPerformed
@@ -237,9 +252,9 @@ public void borrarTabla(JTable tab) {
         }
         //confirma eliminacion
         int dialogButton = JOptionPane.YES_NO_OPTION;
-            JOptionPane.showConfirmDialog (null, "En busca de señales de vida.(ojo eliminan empaques)","Informacion", dialogButton);
+            JOptionPane.showConfirmDialog (null, "¿Desea eliminarlo?","Informacion", dialogButton);
             if(dialogButton == JOptionPane.YES_OPTION) {
-                erp.SQL("update Empaques set estatus = 'B' where idEmpaque = "+ID);
+                erp.SQL("update PresentacionesProducto set estatus = 'B' where idPresentacion = "+ID);
             if(dialogButton == JOptionPane.NO_OPTION) {
                   remove(dialogButton);
                 }
@@ -260,8 +275,18 @@ public void borrarTabla(JTable tab) {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         borrarTabla(tablaPress);
         erp.OpenCon("ERP", "erp");
-        erp.Emp_Search(txfConsultar.getText(), tablaPress);
+        erp.Presentacion_seacrh(txfConsultar.getText(), tablaPress,cmbSe.getItemAt(cmbSe.getSelectedIndex()).charAt(0));
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cmbSeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbSeMouseClicked
+        // TODO add your handling code here:
+        //txfConsultar.setText("");
+    }//GEN-LAST:event_cmbSeMouseClicked
+
+    private void txfConsultarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txfConsultarMouseClicked
+        // TODO add your handling code here:
+        //cmbSe.setSelectedIndex(0);
+    }//GEN-LAST:event_txfConsultarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -269,6 +294,7 @@ public void borrarTabla(JTable tab) {
     public javax.swing.JButton btnConsultar;
     public javax.swing.JButton btnEditarDeducciones;
     public javax.swing.JButton btnEliDeducciones;
+    private javax.swing.JComboBox<String> cmbSe;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
