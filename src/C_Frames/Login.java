@@ -170,6 +170,7 @@ public class Login extends javax.swing.JFrame {
             if(erp.Log_in(C_txfUsuario.getText(), C_txfContraseña.getText())){
                 MainMenu edg = new MainMenu();
                 edg.setVisible(true);
+                edg.usuario=String.valueOf(erp.Name(C_txfUsuario.getText().toString()));
                 dispose();
             }else
                 JOptionPane.showMessageDialog(null,"Usuario/contraseña no validos","Error" ,JOptionPane.INFORMATION_MESSAGE);

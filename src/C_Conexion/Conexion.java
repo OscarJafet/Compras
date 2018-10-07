@@ -27,6 +27,7 @@ public class Conexion {
     JTable tablaTemp;
     public String Sql;
     public boolean conex;
+    private String usuarioname;
     public static Connection getConnection(String User, String Password){
         if(con == null){
             conexionURL = "jdbc:oracle:thin:@localhost:1521:XE";
@@ -62,24 +63,30 @@ public class Conexion {
           }
      }
      public boolean Log_in(String Usr, String Psw){
-       Sql = "select * from ERP.Usuarios where nombre ='"+Usr+"' and contraseña = '"+Psw+"'";
-         try {
+       Sql = "select estatus from ERP.Usuarios where nombre ='"+Usr+"' and contraseña = '"+Psw+"'";
+           
+        try {
+          
+          String status = null;
             stn=(Statement) con.createStatement();
             rs=stn.executeQuery(Sql);
-            String NOM = "";
-            String PSW = "";
+      
+       
             while(rs.next()){
-                NOM=rs.getString("NOMBRE");
-                PSW=rs.getString("CONTRASEÑA");
+                     status=rs.getString("ESTATUS");   
             }
-            if(NOM.equals(Usr) && PSW.equals(Psw))
-                return true;
-            else
-                return false;
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,ex.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
+            if(status!=null){
+                if(status.toString().equals("A")){
+                    setUsuario(String.valueOf(Usr));
+                    return true;  
+                }else 
+                     return false;
+            }         
+        } catch (Exception ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            JOptionPane.showMessageDialog(null, "Usuario incorrecto o contraseña incorrecta");
             return false;
-        }   
      }
              
      
@@ -438,7 +445,46 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
     public void setLocationRelativeTo(Conexion erp) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
+            public String Name(Object username){
+       
+       
+        Sql="select distinct em.nombre, em.apaterno from usuarios us "
+                + "inner join empleados em on em.idempleado=us.idempleado "
+                + "where us.nombre='"+username+"' " ;
+           
+        try {
+          
+          String status = null;
+              String apellido= null;
+            stn= con.createStatement();
+            rs=stn.executeQuery(Sql);
+      
+       
+            while(rs.next()){
+                     status=rs.getString("NOMBRE");  
+                      apellido=rs.getString("APATERNO");  
+            }
+            
+                    return status +" " +apellido;  
+                      
+        } catch (Exception ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            JOptionPane.showConfirmDialog(null, "User incorrecto");
+            return "";
+     
+     }
+        
+        
+        
+        public void setUsuario(String Usuario){
+            usuarioname=Usuario;
+        }
+        
+        public String getUsuario(){
+            return usuarioname;
+        }
     /**
      * @return the con
      */

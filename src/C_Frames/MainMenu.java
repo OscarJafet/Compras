@@ -23,7 +23,7 @@ public class MainMenu extends javax.swing.JFrame {
     String dia = String.valueOf(fecha.get(Calendar.DAY_OF_MONTH));
     String mes = String.valueOf(fecha.get(Calendar.MONTH));
     String año = String.valueOf(fecha.get(Calendar.YEAR));
-
+    String usuario;
     public MainMenu() {
         initComponents();
         this.lblFecha.setText(dia + "/" + mes + "/" + año);
@@ -53,6 +53,8 @@ public class MainMenu extends javax.swing.JFrame {
         C_PD = new javax.swing.JButton();
         C_SC = new javax.swing.JButton();
         C_ES = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        lblUsuario = new javax.swing.JLabel();
         jpTitulo = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
@@ -64,6 +66,13 @@ public class MainMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         jpLogo.setBackground(new java.awt.Color(254, 254, 254));
         jpLogo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 240, 0)));
@@ -148,6 +157,14 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/if_Close_1891023.png"))); // NOI18N
+        jButton1.setText("Cerrar Sesion");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpLogoLayout = new javax.swing.GroupLayout(jpLogo);
         jpLogo.setLayout(jpLogoLayout);
         jpLogoLayout.setHorizontalGroup(
@@ -156,18 +173,28 @@ public class MainMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jpLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpLogoLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jpLogoLayout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jpLogoLayout.createSequentialGroup()
+                        .addGroup(jpLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpLogoLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jpLogoLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(C_PD, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jpLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton1)
+                                    .addGroup(jpLogoLayout.createSequentialGroup()
+                                        .addComponent(C_PP, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(C_SC, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(C_ES, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap())))
             .addGroup(jpLogoLayout.createSequentialGroup()
                 .addGroup(jpLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpLogoLayout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addGroup(jpLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jpLogoLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(C_Lab, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -176,18 +203,16 @@ public class MainMenu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(C_UM, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(C_EM, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(C_EM, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpLogoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblUsuario))
+                    .addGroup(jpLogoLayout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addGroup(jpLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpLogoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(C_PD, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(C_PP, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(C_SC, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(C_ES, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
         );
         jpLogoLayout.setVerticalGroup(
             jpLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,9 +233,13 @@ public class MainMenu extends javax.swing.JFrame {
                     .addComponent(C_PP, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(C_ES, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(C_SC, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addComponent(lblUsuario)
+                .addGap(30, 30, 30)
                 .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
                 .addComponent(jLabel4))
         );
 
@@ -324,7 +353,7 @@ public class MainMenu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
+            .addComponent(jpLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jpTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -430,6 +459,19 @@ public class MainMenu extends javax.swing.JFrame {
         jFrames.repaint();
     }//GEN-LAST:event_C_PPActionPerformed
 
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        lblUsuario.setText("Usuario: "+usuario);
+    }//GEN-LAST:event_formWindowGainedFocus
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       if(JOptionPane.showConfirmDialog (null, "Desea cerrar la sesion","Cerrar Sesion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
+        
+            Login lo= new Login();
+            lo.setVisible(true);
+            dispose();
+       }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     void setTitulo(int i) {
         lblTitulo.setText(titulos[i]);
     }
@@ -478,6 +520,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton C_PP;
     private javax.swing.JButton C_SC;
     private javax.swing.JButton C_UM;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jFrames;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -491,5 +534,6 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel lblMinimizar;
     private javax.swing.JLabel lblTitulo;
     public javax.swing.JLabel lblUsers;
+    private javax.swing.JLabel lblUsuario;
     // End of variables declaration//GEN-END:variables
 }
