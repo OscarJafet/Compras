@@ -83,6 +83,11 @@ public class C_Unidad extends javax.swing.JPanel {
             }
         ));
         tblUM.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblUM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblUMMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblUM);
 
         add(jScrollPane1);
@@ -159,20 +164,21 @@ public class C_Unidad extends javax.swing.JPanel {
 
     private void btnEliminarPercepcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPercepcionActionPerformed
         int ID = 0;
-        try{
-            ID = Integer.parseInt(tblUM.getValueAt(tblUM.getSelectedRow(),0)+"");
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
-        }
-        //confirma eliminacion
-        int dialogButton = JOptionPane.YES_NO_OPTION;
-            JOptionPane.showConfirmDialog (null, "Desea eliminar","Informacion", dialogButton);
-            if(dialogButton == JOptionPane.YES_OPTION) {
-                erp.SQL("update UnidadMedida set estatus = 'B' where idUnidad = "+ID);
-            if(dialogButton == JOptionPane.NO_OPTION) {
-                  remove(dialogButton);
+        int con = tblUM.getSelectedRow();
+
+        if (con >= 0) {
+            String es = String.valueOf(tblUM.getValueAt(con, 3));
+            if (es.equals("A")) {
+                ID = Integer.parseInt(tblUM.getValueAt(tblUM.getSelectedRow(), 0) + "");
+                if (JOptionPane.showConfirmDialog(null, "Desea Eliminar", "Informacion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    erp.SQL("update UnidadMedida set estatus='B' where idUnidadMedida =" + ID);
                 }
-              }
+            } else {
+                JOptionPane.showMessageDialog(null, "Seleccione un producto con estatus A", "Error", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un renglon", "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnEliminarPercepcionActionPerformed
 public void borrarTabla(JTable tab) {
         try {
@@ -192,8 +198,14 @@ public void borrarTabla(JTable tab) {
     }//GEN-LAST:event_btnConsultarPercepcionActionPerformed
 
     private void btnEditarPercecionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarPercecionActionPerformed
+        String a = (String) tblUM.getValueAt(tblUM.getSelectedRow(), 0);
+        String b = (String) tblUM.getValueAt(tblUM.getSelectedRow(), 1);
+        String c = (String) tblUM.getValueAt(tblUM.getSelectedRow(), 2);
+        
+        
         C_MOD_Unidad erp =new C_MOD_Unidad();
         erp.setLocationRelativeTo(erp);
+        erp.Datos(a, b, c);
         erp.setVisible(true);
         int ID = 0;
         try{
@@ -205,14 +217,46 @@ public void borrarTabla(JTable tab) {
     }//GEN-LAST:event_btnEditarPercecionActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        borrarTabla(tblUM);
-        erp.OpenCon("ERP", "erp");
-        erp.Unidad_Search(txfBuscar.getText(),tblUM);
+        int ID = 0;
+        int con = tblUM.getSelectedRow();
+
+        if (con >= 0) {
+            String es = String.valueOf(tblUM.getValueAt(con, 3));
+            if (es.equals("B")) {
+                ID = Integer.parseInt(tblUM.getValueAt(tblUM.getSelectedRow(), 0) + "");
+                if (JOptionPane.showConfirmDialog(null, "Desea dar de Activar", "Informacion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    erp.SQL("update UnidadMedida set estatus='A' where idUnidadMedida =" + ID);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Seleccione un producto con estatus B", "Error", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un renglon", "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txfBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txfBuscarActionPerformed
+
+    private void tblUMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUMMouseClicked
+        String a=(String) tblUM.getValueAt(tblUM.getSelectedRow(),0);
+        String b=(String) tblUM.getValueAt(tblUM.getSelectedRow(),1);
+        String c=(String) tblUM.getValueAt(tblUM.getSelectedRow(),2);
+        
+                       
+         if (evt.getClickCount()==2){
+         C_MOD_Unidad UM= new C_MOD_Unidad();
+         UM.setLocationRelativeTo(UM);
+         UM.Datos(a, b, c);
+         UM.setVisible(true);
+         }
+
+        
+
+
+
+    }//GEN-LAST:event_tblUMMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

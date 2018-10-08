@@ -26,6 +26,13 @@ public class C_MOD_Unidad extends javax.swing.JFrame {
         this.Id.setEditable(false);
         erp = new Conexion();
     }
+    
+    public void Datos(String a, String b, String c) {
+        Id.setText(a);
+        nom.setText(b);
+        sg.setText(c);
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
