@@ -169,7 +169,7 @@ public class Conexion {
         public void Unidad_Search(String Nombre,JTable tabla){
          DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
         if(Nombre.isEmpty())
-            Sql = "select * from UnidadMedida";
+            Sql = "select * from UnidadMedida where estatus='A'";
         else if(!Nombre.isEmpty())
             Sql = "select * from UnidadMedida where nombre = '"+Nombre+"'";
         

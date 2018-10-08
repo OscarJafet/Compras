@@ -79,9 +79,10 @@ public class C_Unidad extends javax.swing.JPanel {
 
             },
             new String [] {
-                "id.Percepcion", "Nombre", "Descripción", "Dias a pagar"
+                "ID UNIDAD", "NOMBRE", "SIGLAS", "ESTATUS"
             }
         ));
+        tblUM.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tblUM);
 
         add(jScrollPane1);
