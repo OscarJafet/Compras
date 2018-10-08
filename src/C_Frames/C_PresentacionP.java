@@ -115,6 +115,12 @@ public class C_PresentacionP extends javax.swing.JPanel {
             }
         });
         tablaPress.setToolTipText("");
+        tablaPress.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tablaPress.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaPressMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaPress);
 
         add(jScrollPane1);
@@ -287,6 +293,11 @@ public void borrarTabla(JTable tab) {
         // TODO add your handling code here:
         //cmbSe.setSelectedIndex(0);
     }//GEN-LAST:event_txfConsultarMouseClicked
+
+    private void tablaPressMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPressMouseClicked
+        // TODO add your handling code here:
+        btnEditarDeducciones.doClick();
+    }//GEN-LAST:event_tablaPressMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
