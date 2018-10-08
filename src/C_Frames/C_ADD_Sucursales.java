@@ -412,7 +412,7 @@ public class C_ADD_Sucursales extends javax.swing.JFrame {
 
     private void C_ADD_SUCUSALR_txfnomKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_SUCUSALR_txfnomKeyTyped
         char c=evt.getKeyChar();
-        if((c<'a' || c>'z')&&(c<'A' || c>'Z')) evt.consume();
+        if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')) evt.consume();
     }//GEN-LAST:event_C_ADD_SUCUSALR_txfnomKeyTyped
 
     private void C_ADD_SUCUSALR_txftelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_SUCUSALR_txftelKeyTyped

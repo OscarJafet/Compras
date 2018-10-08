@@ -245,7 +245,7 @@ public void borrarTabla(JTable tab) {
 
     private void txfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyTyped
          char c = evt.getKeyChar();
-        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z'))  evt.consume();
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')&&(c<' '||c>' '))  evt.consume();
     }//GEN-LAST:event_txfBuscarKeyTyped
 
     private void tblsucursalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblsucursalMouseClicked
@@ -257,7 +257,7 @@ public void borrarTabla(JTable tab) {
         d=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),3);
         e=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),4);
         f=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),5);
-        h=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),6);
+        h=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),7);
         
                        
          if (evt.getClickCount()==2){

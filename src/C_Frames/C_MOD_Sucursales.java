@@ -379,7 +379,7 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
 
     private void txfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfNombreKeyTyped
         char c = evt.getKeyChar();
-        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) {
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')&&(c<' '||c>' ')) {
             evt.consume();
         }
     }//GEN-LAST:event_txfNombreKeyTyped
