@@ -354,28 +354,45 @@ public class C_ADD_Sucursales extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-              int idc =0;
-        StringTokenizer numero = new StringTokenizer(CB_CUIDAD.getSelectedItem().toString()," ");
+        String ba,b,c,d,e;
+        ba=C_ADD_SUCUSALR_txfnom.getText();
+        b=C_ADD_SUCUSALR_txftel.getText();
+        c=C_ADD_SUCUSALR_txfdir.getText();
+        d=C_ADD_SUCUSALR_txfcol.getText();
+        String h=C_ADD_SUCUSALR_txfcodPos.getText();
+        e=C_ADD_SUCUSALR_txfPres.getText();
+        int f=cmbEstatus.getSelectedIndex();
+        int g=CB_CUIDAD.getSelectedIndex();
+        
+        
+        int idc = 0;
+        if((!ba.isEmpty())&&(!b.isEmpty())&&(!c.isEmpty())&&(!d.isEmpty())&&(!e.isEmpty())&&(!h.isEmpty())&&(f!=0)&&(g!=0)){
+        StringTokenizer numero = new StringTokenizer(CB_CUIDAD.getSelectedItem().toString(), " ");
         erp.OpenCon("ERP", "erp");
         int C = 0;
-        while(numero.hasMoreTokens()){
-                String a = numero.nextToken();
-              C++;
-              if (C == 1)
-                  idc = Integer.parseInt(a);
-                
+        while (numero.hasMoreTokens()) {
+            String a = numero.nextToken();
+            C++;
+            if (C == 1) {
+                idc = Integer.parseInt(a);
+            }
+
         }
         erp.OpenCon("ERP", "erp");
-      erp.SQL("insert into sucursal values (ERP.sunu.nextval,"
-              + "'"+ C_ADD_SUCUSALR_txfnom.getText()+"',"
-              + "'"+ C_ADD_SUCUSALR_txftel.getText()+"',"
-              + "'"+C_ADD_SUCUSALR_txfdir.getText()+"',"
-              + "'"+C_ADD_SUCUSALR_txfcol.getText()+"',"
-              + "'"+C_ADD_SUCUSALR_txfcodPos.getText()+"',"
-              + Float.parseFloat(C_ADD_SUCUSALR_txfPres.getText())+","
-              + "'"+cmbEstatus.getItemAt(cmbEstatus.getSelectedIndex()).charAt(0)+"',"
-              +idc
-              +")");
+        erp.SQL("insert into sucursal values (ERP.sunu.nextval,"
+                + "'" + C_ADD_SUCUSALR_txfnom.getText() + "',"
+                + "'" + C_ADD_SUCUSALR_txftel.getText() + "',"
+                + "'" + C_ADD_SUCUSALR_txfdir.getText() + "',"
+                + "'" + C_ADD_SUCUSALR_txfcol.getText() + "',"
+                + "'" + C_ADD_SUCUSALR_txfcodPos.getText() + "',"
+                + Float.parseFloat(C_ADD_SUCUSALR_txfPres.getText()) + ","
+                + "'" + cmbEstatus.getItemAt(cmbEstatus.getSelectedIndex()).charAt(0) + "',"
+                + idc
+                + ")");
+        }
+        else {
+            JOptionPane.showMessageDialog(null,"No se permiten campos vacios o Cuidad sin asignar","Error" ,JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed

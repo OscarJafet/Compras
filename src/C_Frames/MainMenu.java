@@ -136,7 +136,7 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         C_PD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Productos.png"))); // NOI18N
-        C_PD.setToolTipText("Laboratorio\n");
+        C_PD.setToolTipText("Productos");
         C_PD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 C_PDActionPerformed(evt);

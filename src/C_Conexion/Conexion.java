@@ -395,29 +395,29 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
         }
      
      }
-      public void Presentacion_seacrh(String Nombre, JTable tabla,char Stat){
+      public void Presentacion_seacrh(String Nombre, JTable tabla, char Stat) {
         DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
-        if(Nombre.isEmpty()&&Stat =='E')
-            Sql = "select PresentacionesProducto.idPresentacion, PresentacionesProducto.precioCompra,\n" +
-"PresentacionesProducto.precioVenta,PresentacionesProducto.puntoReorden,\n" +
-"PresentacionesProducto.idProducto,PresentacionesProducto.idEmpaque,PresentacionesProducto.estatus\n" +
-"from presentacionesproducto\n" +
-"inner join ERP.Productos\n" +
-"on PresentacionesProducto.idProducto = Productos.idProducto and Productos.estatus = 'A'";
-        else if(!Nombre.isEmpty()&&Stat =='E'){
-            Sql = "select PresentacionesProducto.idPresentacion, PresentacionesProducto.precioCompra,\n" +
-"PresentacionesProducto.precioVenta,PresentacionesProducto.puntoReorden,\n" +
-"PresentacionesProducto.idProducto,PresentacionesProducto.idEmpaque,PresentacionesProducto.estatus\n" +
-"from presentacionesproducto\n" +
-"inner join ERP.Productos\n" +
-"on PresentacionesProducto.idProducto = Productos.idProducto and Productos.estatus = 'A' and Productos.nombre = '"+Nombre+"'";
-        }else if (Stat == 'A' || Stat == 'B'){
-            Sql = "select PresentacionesProducto.idPresentacion, PresentacionesProducto.precioCompra,\n" +
-"PresentacionesProducto.precioVenta,PresentacionesProducto.puntoReorden,\n" +
-"PresentacionesProducto.idProducto,PresentacionesProducto.idEmpaque,PresentacionesProducto.estatus\n" +
-"from presentacionesproducto\n" +
-"inner join ERP.Productos\n" +
-"on PresentacionesProducto.idProducto = Productos.idProducto and PresentacionesProducto.estatus = '"+Stat+"'";
+        if (Nombre.isEmpty() && Stat == 'E') {
+            Sql = "select PresentacionesProducto.idPresentacion, PresentacionesProducto.precioCompra,\n"
+                    + "PresentacionesProducto.precioVenta,PresentacionesProducto.puntoReorden,\n"
+                    + "PresentacionesProducto.idProducto,PresentacionesProducto.idEmpaque,PresentacionesProducto.estatus\n"
+                    + "from presentacionesproducto\n"
+                    + "inner join ERP.Productos\n"
+                    + "on PresentacionesProducto.idProducto = Productos.idProducto and Productos.estatus = 'A'";
+        } else if (!Nombre.isEmpty() && Stat == 'E') {
+            Sql = "select PresentacionesProducto.idPresentacion, PresentacionesProducto.precioCompra,\n"
+                    + "PresentacionesProducto.precioVenta,PresentacionesProducto.puntoReorden,\n"
+                    + "PresentacionesProducto.idProducto,PresentacionesProducto.idEmpaque,PresentacionesProducto.estatus\n"
+                    + "from presentacionesproducto\n"
+                    + "inner join ERP.Productos\n"
+                    + "on PresentacionesProducto.idProducto = Productos.idProducto and Productos.estatus = 'A' and Productos.nombre = '" + Nombre + "'";
+        } else if (Stat == 'A' || Stat == 'B') {
+            Sql = "select PresentacionesProducto.idPresentacion, PresentacionesProducto.precioCompra,\n"
+                    + "PresentacionesProducto.precioVenta,PresentacionesProducto.puntoReorden,\n"
+                    + "PresentacionesProducto.idProducto,PresentacionesProducto.idEmpaque,PresentacionesProducto.estatus\n"
+                    + "from presentacionesproducto\n"
+                    + "inner join ERP.Productos\n"
+                    + "on PresentacionesProducto.idProducto = Productos.idProducto and PresentacionesProducto.estatus = '" + Stat + "'";
         }
         System.out.println(Sql);
                try {

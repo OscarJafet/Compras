@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -325,7 +326,30 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgrefarEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgrefarEstadosActionPerformed
-    
+          String ba,b,c,d,e;
+        ba=txfNombre.getText();
+        b=C_ADD_SUCUSALR_txftel.getText();
+        c=C_ADD_SUCUSALR_txfdir.getText();
+        d=C_ADD_SUCUSALR_txfcol.getText();
+        String h=C_ADD_SUCUSALR_txfcodPos.getText();
+        e=C_ADD_SUCUSALR_txfPres.getText();
+        int g=CB_Cuidad.getSelectedIndex();
+        
+        
+        int idc = 0;
+        if((!ba.isEmpty())&&(!b.isEmpty())&&(!c.isEmpty())&&(!d.isEmpty())&&(!h.isEmpty())&&(!e.isEmpty())&&(g!=0)){
+        StringTokenizer numero = new StringTokenizer(CB_Cuidad.getSelectedItem().toString(), " ");
+        erp.OpenCon("ERP", "erp");
+        int C = 0;
+        while (numero.hasMoreTokens()) {
+            String a = numero.nextToken();
+            C++;
+            if (C == 1) {
+                idc = Integer.parseInt(a);
+            }
+
+        }
+  
         erp.OpenCon("ERP", "erp");
         int ID = Integer.parseInt(txfIdSucursal.getText());        
         erp.SQL("update sucursal set nombre ="
@@ -335,10 +359,13 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
                 +"colonia ='"+C_ADD_SUCUSALR_txfcol.getText()+"',"
                 +"codigopostal ='"+C_ADD_SUCUSALR_txfcodPos.getText()+"',"
                 +"presupuesto ="+Double.parseDouble(C_ADD_SUCUSALR_txfPres.getText())+","
-                +"idciudad ="+CB_Cuidad.getSelectedIndex()
+                +"idciudad ="+idc
                 +" where idsucursal ="
                 +ID);  
-       
+        }
+        else {
+            JOptionPane.showMessageDialog(null,"No se permiten campos vacios o Cuidad sin asignar","Error" ,JOptionPane.INFORMATION_MESSAGE);
+        }
         
     }//GEN-LAST:event_btnAgrefarEstadosActionPerformed
 
