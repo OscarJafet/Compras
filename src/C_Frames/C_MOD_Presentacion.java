@@ -124,9 +124,19 @@ public void llenarCombo2(){
 
         preCom.setBackground(new java.awt.Color(254, 254, 254));
         preCom.setForeground(new java.awt.Color(1, 1, 1));
+        preCom.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                preComKeyTyped(evt);
+            }
+        });
 
         preVen.setBackground(new java.awt.Color(254, 254, 254));
         preVen.setForeground(new java.awt.Color(1, 1, 1));
+        preVen.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                preVenKeyTyped(evt);
+            }
+        });
 
         btnEliminarDed.setBackground(new java.awt.Color(254, 254, 254));
         btnEliminarDed.setForeground(new java.awt.Color(254, 254, 254));
@@ -152,6 +162,11 @@ public void llenarCombo2(){
 
         preRe.setBackground(new java.awt.Color(254, 254, 254));
         preRe.setForeground(new java.awt.Color(1, 1, 1));
+        preRe.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                preReKeyTyped(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(1, 1, 1));
@@ -286,6 +301,7 @@ public void llenarCombo2(){
 
     private void btnAgregarDedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDedActionPerformed
  //ing code here:
+ 
         erp.OpenCon("ERP", "erp");
        int ID =Integer.parseInt(Id.getText()),idEmp = 0,idPro = 0;
         float Vent = 0,Com = 0,Re = 0;
@@ -301,6 +317,7 @@ public void llenarCombo2(){
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         
         }
+        if(Vent > Com)
        erp.SQL("update PresentacionesProducto set precioCompra = "+Com+",precioVenta = "+Vent+", puntoReorden = "+Re+", idProducto = "+idPro+","
                + "idEmpaque = "+idEmp+",estatus = '"+cmbSe.getItemAt(cmbSe.getSelectedIndex()).charAt(0)+"' where idPresentacion = "+ID);
     }//GEN-LAST:event_btnAgregarDedActionPerformed
@@ -326,6 +343,27 @@ public void llenarCombo2(){
     private void cmbSeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbSeActionPerformed
+
+    private void preComKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_preComKeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar();
+        if((c<'0' || c>'9')&& (c>'.' || c<'.'))
+            evt.consume();
+    }//GEN-LAST:event_preComKeyTyped
+
+    private void preVenKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_preVenKeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar();
+        if((c<'0' || c>'9')&& (c>'.' || c<'.'))
+            evt.consume();
+    }//GEN-LAST:event_preVenKeyTyped
+
+    private void preReKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_preReKeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar();
+        if((c<'0' || c>'9')&& (c>'.' || c<'.'))
+            evt.consume();
+    }//GEN-LAST:event_preReKeyTyped
 
     /**
      * @param args the command line arguments

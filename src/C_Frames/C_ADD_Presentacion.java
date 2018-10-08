@@ -142,6 +142,12 @@ public void llenarCombo2(){
         jLabel4.setForeground(new java.awt.Color(1, 1, 1));
         jLabel4.setText("ID EMPAQUE");
 
+        PreV.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                PreVKeyTyped(evt);
+            }
+        });
+
         jLabel2.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(1, 1, 1));
         jLabel2.setText("ID PRODUCTO");
@@ -155,6 +161,12 @@ public void llenarCombo2(){
         jLabel3.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(1, 1, 1));
         jLabel3.setText("PRECIO COMPRA");
+
+        PreC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                PreCKeyTyped(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(254, 254, 254));
         jButton2.setForeground(new java.awt.Color(254, 254, 254));
@@ -170,6 +182,12 @@ public void llenarCombo2(){
         jLabel5.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(1, 1, 1));
         jLabel5.setText("PUNTO REORDEN");
+
+        pReo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                pReoKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -306,6 +324,27 @@ public void llenarCombo2(){
         cmbEmp.removeAllItems();
         llenarCombo2();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void PreCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PreCKeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar();
+        if((c<'0' || c>'9')&& (c>'.' || c<'.'))
+            evt.consume();
+    }//GEN-LAST:event_PreCKeyTyped
+
+    private void PreVKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PreVKeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar();
+        if((c<'0' || c>'9')&& (c>'.' || c<'.'))
+            evt.consume();
+    }//GEN-LAST:event_PreVKeyTyped
+
+    private void pReoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pReoKeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar();
+        if((c<'0' || c>'9')&& (c>'.' || c<'.'))
+            evt.consume();
+    }//GEN-LAST:event_pReoKeyTyped
 
     /**
      * @param args the command line arguments

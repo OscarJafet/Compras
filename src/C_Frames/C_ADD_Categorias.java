@@ -187,7 +187,9 @@ public class C_ADD_Categorias extends javax.swing.JFrame {
 
     private void C_ADD_Categoria_txfNomKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_Categoria_txfNomKeyTyped
         char c=evt.getKeyChar();
-        if((c<'a' || c>'z')&&(c<'A' || c>'Z')) evt.consume();
+        if((c<'0' || c>'9')&&(c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')){
+            evt.consume();
+        } 
     }//GEN-LAST:event_C_ADD_Categoria_txfNomKeyTyped
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed

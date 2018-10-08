@@ -213,6 +213,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="PreV">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="PreVKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
@@ -254,6 +257,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="PreC">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="PreCKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton2">
           <Properties>
@@ -285,6 +291,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="pReo">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="pReoKeyTyped"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
