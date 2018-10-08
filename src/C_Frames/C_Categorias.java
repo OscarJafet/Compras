@@ -262,6 +262,7 @@ public void borrarTabla(JTable tab) {
 
     private void C_Categorias_tblDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C_Categorias_tblDatosMouseClicked
         // TODO add your handling code here:
+        if(evt.getClickCount()==2)
         btnActualizar.doClick();
     }//GEN-LAST:event_C_Categorias_tblDatosMouseClicked
 
