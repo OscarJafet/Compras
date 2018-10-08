@@ -82,11 +82,11 @@ public class C_Productos extends javax.swing.JPanel {
 
             },
             new String [] {
-                "IDPRODUCTO", "NOMBRE", "DESCRIPCION", "PUNTOREORDEN", "INGREDIENTEACTIVO", "BANDATOXICOLOGICA", "APLICACION", "USO", "ESTATUS", "IDLABORATORIO", "IDCATEGORIA"
+                "IDPRODUCTO", "NOMBRE", "DESCRIPCION", "INGREDIENTEACTIVO", "BANDATOXICOLOGICA", "APLICACION", "USO", "ESTATUS", "IDLABORATORIO", "IDCATEGORIA"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -175,7 +175,7 @@ public class C_Productos extends javax.swing.JPanel {
     private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
         int ID = 0;
         int con=tblPro.getSelectedRow();
-        String es= String.valueOf(tblPro.getValueAt(tblPro.getSelectedRow(),8));
+        String es= String.valueOf(tblPro.getValueAt(tblPro.getSelectedRow(),7));
         if (con>=0){
             if (es.equals("A"))
             {
@@ -225,7 +225,7 @@ public void borrarTabla(JTable tab) {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
                 int ID = 0;
         int con=tblPro.getSelectedRow();
-        String es= String.valueOf(tblPro.getValueAt(tblPro.getSelectedRow(),8));
+        String es= String.valueOf(tblPro.getValueAt(tblPro.getSelectedRow(),7));
         if (con>=0){
             if (es.equals("B"))
             {
@@ -254,7 +254,6 @@ public void borrarTabla(JTable tab) {
         a=(String) tblPro.getValueAt(tblPro.getSelectedRow(),0);
         b=(String) tblPro.getValueAt(tblPro.getSelectedRow(),1);
         c=(String) tblPro.getValueAt(tblPro.getSelectedRow(),2);
-        d=(String) tblPro.getValueAt(tblPro.getSelectedRow(),3);
         e=(String) tblPro.getValueAt(tblPro.getSelectedRow(),4);
         f=(String) tblPro.getValueAt(tblPro.getSelectedRow(),5);
         h=(String) tblPro.getValueAt(tblPro.getSelectedRow(),6);
@@ -264,7 +263,7 @@ public void borrarTabla(JTable tab) {
          if (evt.getClickCount()==2){
          C_MOD_Productos pro= new C_MOD_Productos();
          pro.setLocationRelativeTo(pro);
-         pro.Datos(a, b, c, d, e, f, h,i);
+         pro.Datos(a, b, c,e, f, h,i);
          pro.setVisible(true);
          }
     }//GEN-LAST:event_tblProMouseClicked

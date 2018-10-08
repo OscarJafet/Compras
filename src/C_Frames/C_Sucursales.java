@@ -191,7 +191,7 @@ public class C_Sucursales extends javax.swing.JPanel {
                 ProcedimientoSucursal();
             }
         }else {
-            JOptionPane.showMessageDialog(null,"-1","Error" ,JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Seleccione un renglon","Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnEliminarPercepcionActionPerformed
 public void borrarTabla(JTable tab) {
@@ -235,7 +235,7 @@ public void borrarTabla(JTable tab) {
                 ProcedimientoSucursalAlta();
             }
         }else {
-            JOptionPane.showMessageDialog(null,"-1","Error" ,JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Seleccione un renglon","Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -280,7 +280,7 @@ public void borrarTabla(JTable tab) {
             cst.execute();
             
             String msg= cst.getString(2);
-            JOptionPane.showMessageDialog(null,msg,"Error" ,JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,msg,"Informacion" ,JOptionPane.INFORMATION_MESSAGE);
           }
           catch (SQLException ex){
               JOptionPane.showMessageDialog(null,"Seleccione un renglon",ex.getMessage() ,JOptionPane.INFORMATION_MESSAGE);
@@ -301,7 +301,7 @@ public void borrarTabla(JTable tab) {
             cst.execute();
             
             String msg= cst.getString(2);
-            JOptionPane.showMessageDialog(null,msg,"Error" ,JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,msg,"Informacion" ,JOptionPane.INFORMATION_MESSAGE);
           }
           catch (SQLException ex){
               JOptionPane.showMessageDialog(null,"Seleccione un renglon",ex.getMessage() ,JOptionPane.INFORMATION_MESSAGE);

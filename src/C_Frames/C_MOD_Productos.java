@@ -75,11 +75,10 @@ public class C_MOD_Productos extends javax.swing.JFrame {
         }
         
     }
-           public void Datos(String a, String b,String c,String d, String e,String f, String h, String i){
+           public void Datos(String a, String b,String c, String e,String f, String h, String i){
            txfIDProducto.setText(a);
            txfNombre.setText(b);
            txfDescripcion.setText(c);
-           txfPunto.setText(d);
            txfIngrediente.setText(e);
            txfBanda.setText(f);
            txfAplicacion.setText(h);
@@ -103,8 +102,6 @@ public class C_MOD_Productos extends javax.swing.JFrame {
         txfNombre = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txfDescripcion = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        txfPunto = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txfIngrediente = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -169,10 +166,6 @@ public class C_MOD_Productos extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(1, 1, 1));
         jLabel4.setText("DESCRIPCION");
-
-        jLabel5.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel5.setText("PUNTO REORDEN");
 
         jLabel8.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(1, 1, 1));
@@ -250,10 +243,6 @@ public class C_MOD_Productos extends javax.swing.JFrame {
                                     .addComponent(txfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txfIDProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(36, 36, 36)
-                                .addComponent(txfPunto, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(56, 56, 56)
                                 .addComponent(txfDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -276,13 +265,9 @@ public class C_MOD_Productos extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txfDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(txfPunto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(49, 49, 49)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(txfIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -306,9 +291,9 @@ public class C_MOD_Productos extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13)
                             .addComponent(cmbCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 8, Short.MAX_VALUE))
+                        .addGap(0, 9, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 188, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(btnAgrefarEstados, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -333,7 +318,6 @@ public class C_MOD_Productos extends javax.swing.JFrame {
         int idl = 0,idc=0;
         String n=txfNombre.getText();
         String d= txfDescripcion.getText();
-        String p= txfPunto.getText();
         String i= txfIngrediente.getText();
         String ap=txfAplicacion.getText();
         String u=txfUso.getText();
@@ -343,7 +327,7 @@ public class C_MOD_Productos extends javax.swing.JFrame {
         
         
  
-        if((!n.isEmpty())&&(!d.isEmpty())&&(!p.isEmpty())&&(!i.isEmpty())&&(!ap.isEmpty())&&(!u.isEmpty())&&(!ba.isEmpty())&&(la!=0)&&(ca!=0))
+        if((!n.isEmpty())&&(!d.isEmpty())&&(!i.isEmpty())&&(!ap.isEmpty())&&(!u.isEmpty())&&(!ba.isEmpty())&&(la!=0)&&(ca!=0))
         {
         StringTokenizer numero = new StringTokenizer(cmbLab.getSelectedItem().toString()," ");
         erp.OpenCon("ERP", "erp");
@@ -370,7 +354,6 @@ public class C_MOD_Productos extends javax.swing.JFrame {
        erp.SQL("update Productos set nombre ="
                 +"'"+txfNombre.getText()+"',"
                 +"descripcion ='"+txfDescripcion.getText()+"',"
-                +"puntoreorden ="+Integer.parseInt(txfPunto.getText())+","
                 +"ingredienteactivo ='"+txfIngrediente.getText()+"',"
                 +"bandatoxicologica ='"+txfBanda.getText()+"',"
                 +"aplicacion ='"+txfAplicacion.getText()+"',"
@@ -451,7 +434,6 @@ public class C_MOD_Productos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -461,7 +443,6 @@ public class C_MOD_Productos extends javax.swing.JFrame {
     public javax.swing.JTextField txfIDProducto;
     private javax.swing.JTextField txfIngrediente;
     private javax.swing.JTextField txfNombre;
-    private javax.swing.JTextField txfPunto;
     private javax.swing.JTextField txfUso;
     // End of variables declaration//GEN-END:variables
 }

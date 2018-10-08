@@ -92,7 +92,6 @@ public class C_ADD_Productos extends javax.swing.JFrame {
         cmbEstatus = new javax.swing.JComboBox<String>();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -101,7 +100,6 @@ public class C_ADD_Productos extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         txfNombre = new javax.swing.JTextField();
         txfDescripcion = new javax.swing.JTextField();
-        txfPunto = new javax.swing.JTextField();
         txfIngrediente = new javax.swing.JTextField();
         txfBanda = new javax.swing.JTextField();
         txfAplicacion = new javax.swing.JTextField();
@@ -164,10 +162,6 @@ public class C_ADD_Productos extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(1, 1, 1));
         jLabel4.setText("DESCRIPCION");
 
-        jLabel5.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel5.setText("PUNTO REORDEN");
-
         jLabel8.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(1, 1, 1));
         jLabel8.setText("INGREDIENTE ACTIVO");
@@ -201,12 +195,6 @@ public class C_ADD_Productos extends javax.swing.JFrame {
         txfDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txfDescripcionKeyTyped(evt);
-            }
-        });
-
-        txfPunto.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txfPuntoKeyTyped(evt);
             }
         });
 
@@ -248,10 +236,6 @@ public class C_ADD_Productos extends javax.swing.JFrame {
                                 .addComponent(txfIngrediente))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(36, 36, 36)
-                                        .addComponent(txfPunto, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel4)
@@ -296,11 +280,8 @@ public class C_ADD_Productos extends javax.swing.JFrame {
                             .addComponent(cmbEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(txfPunto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
+                        .addGap(41, 41, 41)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(txfIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -351,7 +332,6 @@ public class C_ADD_Productos extends javax.swing.JFrame {
         int idl = 0,idc=0;
         String n=txfNombre.getText();
         String d= txfDescripcion.getText();
-        String p= txfPunto.getText();
         String i= txfIngrediente.getText();
         String ap=txfAplicacion.getText();
         String u=txfUso.getText();
@@ -362,7 +342,7 @@ public class C_ADD_Productos extends javax.swing.JFrame {
         
         
  
-        if((!n.isEmpty())&&(!d.isEmpty())&&(!p.isEmpty())&&(!i.isEmpty())&&(!ap.isEmpty())&&(!u.isEmpty())&&(!ba.isEmpty())&&(la!=0)&&(ca!=0)&&(es!=0))
+        if((!n.isEmpty())&&(!d.isEmpty())&&(!i.isEmpty())&&(!ap.isEmpty())&&(!u.isEmpty())&&(!ba.isEmpty())&&(la!=0)&&(ca!=0)&&(es!=0))
         {
         StringTokenizer numero = new StringTokenizer(cmbLab.getSelectedItem().toString()," ");   
         erp.OpenCon("ERP", "erp");
@@ -389,7 +369,6 @@ public class C_ADD_Productos extends javax.swing.JFrame {
             erp.SQL("insert into Productos values (ERP.PROID.nextval,"
                 +"'"+txfNombre.getText()+"',"
                 +"'"+txfDescripcion.getText()+"',"
-                +Integer.parseInt(txfPunto.getText())+","
                 +"'"+txfIngrediente.getText()+"',"
                 +"'"+txfBanda.getText()+"',"
                 +"'"+txfAplicacion.getText()+"',"
@@ -415,17 +394,11 @@ public class C_ADD_Productos extends javax.swing.JFrame {
         this.txfDescripcion.setText("");
         this.txfIngrediente.setText("");
         this.txfNombre.setText("");
-        this.txfPunto.setText("");
         this.txfUso.setText("");
         this.cmbEstatus.setSelectedIndex(0);
         this.cmbLab.setSelectedIndex(0);
         this.cmbCat.setSelectedIndex(0);
     }//GEN-LAST:event_btnLimpiarActionPerformed
-
-    private void txfPuntoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfPuntoKeyTyped
-            int c=evt.getKeyChar();
-        if((c<'0' || c>'9')) evt.consume();
-    }//GEN-LAST:event_txfPuntoKeyTyped
 
     private void txfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfNombreKeyTyped
                 char c=evt.getKeyChar();
@@ -497,7 +470,6 @@ public class C_ADD_Productos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -506,7 +478,6 @@ public class C_ADD_Productos extends javax.swing.JFrame {
     private javax.swing.JTextField txfDescripcion;
     private javax.swing.JTextField txfIngrediente;
     private javax.swing.JTextField txfNombre;
-    private javax.swing.JTextField txfPunto;
     private javax.swing.JTextField txfUso;
     // End of variables declaration//GEN-END:variables
 }

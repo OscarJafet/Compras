@@ -207,7 +207,6 @@ public class Conexion {
                 String idPro=rs.getString("idproducto");
                 String Nom=rs.getString("nombre");
                 String descripcion=rs.getString("descripcion");
-                String punto = rs.getString("puntoreorden");
                 String ingrediente = rs.getString("ingredienteactivo");
                 String banda = rs.getString("bandatoxicologica");
                 String apli = rs.getString("aplicacion");
@@ -215,7 +214,7 @@ public class Conexion {
                 String estatus = rs.getString("estatus");
                 String lab = rs.getString("idlaboratorio");
                 String cat = rs.getString("idcategoria");
-                Object datosRenglon[]={ idPro, Nom, descripcion,punto,ingrediente,banda,apli,uso,estatus,lab,cat};
+                Object datosRenglon[]={ idPro, Nom, descripcion,ingrediente,banda,apli,uso,estatus,lab,cat};
                 tablaTemp.addRow(datosRenglon);
             }
             
