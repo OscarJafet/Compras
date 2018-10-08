@@ -116,7 +116,7 @@ public class Conexion {
     public void Lab_Search(String Nombre, JTable tabla){
          DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
         if(Nombre.isEmpty())
-            Sql = "select * from Laboratorios";
+            Sql = "select * from Laboratorios where estatus='A'";
         else if(!Nombre.isEmpty())
             Sql = "select * from Laboratorios where nombre = '"+Nombre+"'";
         try {

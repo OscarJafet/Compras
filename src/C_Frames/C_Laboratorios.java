@@ -56,7 +56,6 @@ public class C_Laboratorios extends javax.swing.JPanel {
         setForeground(new java.awt.Color(254, 254, 254));
 
         C_Laboratorios_txfLab.setBackground(new java.awt.Color(254, 254, 254));
-        C_Laboratorios_txfLab.setForeground(new java.awt.Color(254, 254, 254));
         C_Laboratorios_txfLab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 C_Laboratorios_txfLabActionPerformed(evt);
@@ -88,6 +87,13 @@ public class C_Laboratorios extends javax.swing.JPanel {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblLab.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblLab.setShowHorizontalLines(false);
+        tblLab.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblLabMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblLab);
@@ -215,20 +221,22 @@ public void borrarTabla(JTable tab) {
 
     private void btnElimEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElimEstadosActionPerformed
         int ID = 0;
-        try{
+        int con=tblLab.getSelectedRow();
+        
+        if (con>=0){
+            String es= String.valueOf(tblLab.getValueAt(con,3));
+            if(es.equals("A"))
+            {
             ID = Integer.parseInt(tblLab.getValueAt(tblLab.getSelectedRow(),0)+"");
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
+            if(JOptionPane.showConfirmDialog (null, "Desea Eliminar","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
+               erp.SQL("update laboratorios set estatus='B' where idlaboratorio ="+ID);
+            }
+            }else{
+                JOptionPane.showMessageDialog(null,"Seleccione un producto con estatus A","Error" ,JOptionPane.INFORMATION_MESSAGE);
+            }
+        }else {
+            JOptionPane.showMessageDialog(null,"Seleccione un renglon","Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
-        //confirma eliminacion
-        int dialogButton = JOptionPane.YES_NO_OPTION;
-            JOptionPane.showConfirmDialog (null, "Desea eliminar","Informacion", dialogButton);
-            if(dialogButton == JOptionPane.YES_OPTION) {
-                erp.SQL("update Laboratorios set estatus = 'B' where idCategoria = "+ID);
-            if(dialogButton == JOptionPane.NO_OPTION) {
-                  remove(dialogButton);
-                }
-              }
     }//GEN-LAST:event_btnElimEstadosActionPerformed
 
     private void btnAgrEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgrEstadosActionPerformed
@@ -239,25 +247,62 @@ public void borrarTabla(JTable tab) {
     }//GEN-LAST:event_btnAgrEstadosActionPerformed
 
     private void btnEditarEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarEstadosActionPerformed
-        C_MOD_Laboratorios edg=new C_MOD_Laboratorios();
-        edg.setLocationRelativeTo(edg);
-        edg.setVisible(true);
+        String a=(String) tblLab.getValueAt(tblLab.getSelectedRow(),0);
+        String b=(String) tblLab.getValueAt(tblLab.getSelectedRow(),1);
+        String c=(String) tblLab.getValueAt(tblLab.getSelectedRow(),2);
+        
+        C_MOD_Laboratorios lab=new C_MOD_Laboratorios();
+        lab.setLocationRelativeTo(lab);
+        lab.Datos(a, b, c);
+        lab.setVisible(true);
         int ID = 0;
         try{
             ID = Integer.parseInt(tblLab.getValueAt(tblLab.getSelectedRow(),0)+"");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
-        edg.txfIdLab.setText(ID+"");
+        lab.txfIdLab.setText(ID+"");
     }//GEN-LAST:event_btnEditarEstadosActionPerformed
 
     private void btnRefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefrescarActionPerformed
-       
+        int ID = 0;
+        int con=tblLab.getSelectedRow();
+        
+        if (con>=0){
+            String es= String.valueOf(tblLab.getValueAt(con,3));
+            if(es.equals("B"))
+            {
+            ID = Integer.parseInt(tblLab.getValueAt(tblLab.getSelectedRow(),0)+"");
+            if(JOptionPane.showConfirmDialog (null, "Desea dar de Activar","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
+               erp.SQL("update laboratorios set estatus='A' where idlaboratorio ="+ID);
+            }
+            }else{
+                JOptionPane.showMessageDialog(null,"Seleccione un producto con estatus B","Error" ,JOptionPane.INFORMATION_MESSAGE);
+            }
+        }else {
+            JOptionPane.showMessageDialog(null,"Seleccione un renglon","Error" ,JOptionPane.INFORMATION_MESSAGE);
+        }     
     }//GEN-LAST:event_btnRefrescarActionPerformed
 
     private void C_Laboratorios_txfLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_Laboratorios_txfLabActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_C_Laboratorios_txfLabActionPerformed
+
+    private void tblLabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLabMouseClicked
+        String a=(String) tblLab.getValueAt(tblLab.getSelectedRow(),0);
+        String b=(String) tblLab.getValueAt(tblLab.getSelectedRow(),1);
+        String c=(String) tblLab.getValueAt(tblLab.getSelectedRow(),2);
+        
+                       
+         if (evt.getClickCount()==2){
+         C_MOD_Laboratorios lab= new C_MOD_Laboratorios();
+         lab.setLocationRelativeTo(lab);
+         lab.Datos(a, b, c);
+         lab.setVisible(true);
+         }
+
+        
+    }//GEN-LAST:event_tblLabMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

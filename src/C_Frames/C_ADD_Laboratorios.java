@@ -189,8 +189,8 @@ public class C_ADD_Laboratorios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgrefarEstadosActionPerformed
 
     private void txfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfNombreKeyTyped
-        //char c=evt.getKeyChar();
-        //if((c<'a' || c>'z')&&(c<'A' || c>'Z')) evt.consume();
+        char c=evt.getKeyChar();
+        if((c<'a' || c>'z')&&(c<'A' || c>'Z')) evt.consume();
     }//GEN-LAST:event_txfNombreKeyTyped
 
     private void txfOrigenKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfOrigenKeyTyped

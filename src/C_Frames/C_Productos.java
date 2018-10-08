@@ -93,6 +93,7 @@ public class C_Productos extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblPro.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblPro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblProMouseClicked(evt);
@@ -208,8 +209,19 @@ public void borrarTabla(JTable tab) {
     }//GEN-LAST:event_btnConsultarProductoActionPerformed
 
     private void btnEditarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProductoActionPerformed
+        String a=(String) tblPro.getValueAt(tblPro.getSelectedRow(),0);
+        String b=(String) tblPro.getValueAt(tblPro.getSelectedRow(),1);
+        String c=(String) tblPro.getValueAt(tblPro.getSelectedRow(),2);
+        String ce=(String) tblPro.getValueAt(tblPro.getSelectedRow(),3);
+        String f=(String) tblPro.getValueAt(tblPro.getSelectedRow(),4);
+        String h=(String) tblPro.getValueAt(tblPro.getSelectedRow(),5);
+        String i=(String) tblPro.getValueAt(tblPro.getSelectedRow(),6);
+
+        
+        
         C_MOD_Productos pro =new C_MOD_Productos();
         pro.setLocationRelativeTo(pro);
+        pro.Datos(a, b, c, ce, f, h,i);
         pro.setVisible(true);
         int ID = 0;
         try{

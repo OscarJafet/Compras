@@ -98,6 +98,7 @@ public class C_Sucursales extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblsucursal.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblsucursal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblsucursalMouseClicked(evt);
@@ -186,9 +187,16 @@ public class C_Sucursales extends javax.swing.JPanel {
         int con=tblsucursal.getSelectedRow();
         
         if (con>=0){
+            
+            String es= String.valueOf(tblsucursal.getValueAt(con,7));
+            if(es.equals("A"))
+            {
             ID = Integer.parseInt(tblsucursal.getValueAt(tblsucursal.getSelectedRow(),0)+"");
             if(JOptionPane.showConfirmDialog (null, "Desea eliminar","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
                 ProcedimientoSucursal();
+            }
+            }else {
+                JOptionPane.showMessageDialog(null,"Seleccione un producto con estatus A","Error" ,JOptionPane.INFORMATION_MESSAGE);
             }
         }else {
             JOptionPane.showMessageDialog(null,"Seleccione un renglon","Error" ,JOptionPane.INFORMATION_MESSAGE);
@@ -213,9 +221,21 @@ public void borrarTabla(JTable tab) {
     }//GEN-LAST:event_btnConsultarSucursalActionPerformed
 
     private void btnEditarsucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarsucursalActionPerformed
+        
+        String a=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),0);
+        String b=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),1);
+        String c=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),2);
+        String d=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),3);
+        String ce=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),4);
+        String f=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),5);
+        String h=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),7);
+
+        
         C_MOD_Sucursales suc =new C_MOD_Sucursales();
         suc.setLocationRelativeTo(suc);
+        suc.Datos(a, b, c, d, ce, f, h);
         suc.setVisible(true);
+        
         int ID = 0;
         try{
             ID = Integer.parseInt(tblsucursal.getValueAt(tblsucursal.getSelectedRow(),0)+"");
@@ -230,9 +250,15 @@ public void borrarTabla(JTable tab) {
         int con=tblsucursal.getSelectedRow();
         
         if (con>=0){
+            String es= String.valueOf(tblsucursal.getValueAt(con,7));
+            if(es.equals("B"))
+            {
             ID = Integer.parseInt(tblsucursal.getValueAt(tblsucursal.getSelectedRow(),0)+"");
             if(JOptionPane.showConfirmDialog (null, "Desea dar de Activar","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
                 ProcedimientoSucursalAlta();
+            }
+            }else{
+                JOptionPane.showMessageDialog(null,"Seleccione un producto con estatus B","Error" ,JOptionPane.INFORMATION_MESSAGE);
             }
         }else {
             JOptionPane.showMessageDialog(null,"Seleccione un renglon","Error" ,JOptionPane.INFORMATION_MESSAGE);

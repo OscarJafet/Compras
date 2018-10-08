@@ -26,6 +26,14 @@ public class C_MOD_Laboratorios extends javax.swing.JFrame {
         erp = new Conexion();
         this.txfIdLab.setEditable(false);
     }
+    
+    
+         public void Datos(String a, String b,String c){
+           txfIdLab.setText(a);
+           txfNom.setText(b);
+           txfOrigen.setText(c);
+           
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,7 +54,7 @@ public class C_MOD_Laboratorios extends javax.swing.JFrame {
         txfOrigen = new javax.swing.JTextField();
         btnAgrefarEstados = new javax.swing.JButton();
         txfIdLab = new javax.swing.JTextField();
-        cmb = new javax.swing.JComboBox<>();
+        cmb = new javax.swing.JComboBox<String>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(254, 254, 254));
@@ -96,6 +104,11 @@ public class C_MOD_Laboratorios extends javax.swing.JFrame {
 
         txfOrigen.setBackground(new java.awt.Color(254, 254, 254));
         txfOrigen.setForeground(new java.awt.Color(1, 1, 1));
+        txfOrigen.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfOrigenKeyTyped(evt);
+            }
+        });
 
         btnAgrefarEstados.setBackground(new java.awt.Color(254, 254, 254));
         btnAgrefarEstados.setForeground(new java.awt.Color(254, 254, 254));
@@ -112,7 +125,7 @@ public class C_MOD_Laboratorios extends javax.swing.JFrame {
         txfIdLab.setBackground(new java.awt.Color(253, 239, 239));
         txfIdLab.setForeground(new java.awt.Color(1, 1, 1));
 
-        cmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B" }));
+        cmb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "A", "B" }));
         cmb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbActionPerformed(evt);
@@ -141,7 +154,7 @@ public class C_MOD_Laboratorios extends javax.swing.JFrame {
                         .addGap(22, 22, 22)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cmb, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txfOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txfOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 140, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -201,8 +214,8 @@ public class C_MOD_Laboratorios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgrefarEstadosActionPerformed
 
     private void txfNomKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfNomKeyTyped
-        //char c=evt.getKeyChar();
-        //if((c<'a' || c>'z')&&(c<'A' || c>'Z')) evt.consume();
+        char c=evt.getKeyChar();
+        if((c<'a' || c>'z')&&(c<'A' || c>'Z')) evt.consume();
     }//GEN-LAST:event_txfNomKeyTyped
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -212,6 +225,11 @@ public class C_MOD_Laboratorios extends javax.swing.JFrame {
     private void cmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbActionPerformed
+
+    private void txfOrigenKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfOrigenKeyTyped
+        char c=evt.getKeyChar();
+        if((c<'a' || c>'z')&&(c<'A' || c>'Z')) evt.consume();
+    }//GEN-LAST:event_txfOrigenKeyTyped
 
     /**
      * @param args the command line arguments
