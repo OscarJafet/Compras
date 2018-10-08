@@ -175,22 +175,20 @@ public class C_Productos extends javax.swing.JPanel {
     private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
         int ID = 0;
         int con=tblPro.getSelectedRow();
-        String es= String.valueOf(tblPro.getValueAt(tblPro.getSelectedRow(),7));
         if (con>=0){
-            if (es.equals("A"))
-            {
+            String es= String.valueOf(tblPro.getValueAt(con,7));
+            if(es.equals("A"))
+            {    
             ID = Integer.parseInt(tblPro.getValueAt(tblPro.getSelectedRow(),0)+"");
             if(JOptionPane.showConfirmDialog (null, "Desea eliminar","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
                 ProcedimientoProductos();
-                }
-            }else{
-                JOptionPane.showMessageDialog(null,"Seleccione un Producto en alta","Error" ,JOptionPane.INFORMATION_MESSAGE);
+            }
+            }else {
+                JOptionPane.showMessageDialog(null,"Seleccione un producto con estatus A","Error" ,JOptionPane.INFORMATION_MESSAGE);
             }
         }else {
-            JOptionPane.showMessageDialog(null,"Seleccione un Producto","Error" ,JOptionPane.INFORMATION_MESSAGE);
-        }
-
-        //confirma eliminacion
+            JOptionPane.showMessageDialog(null,"Seleccione un producto","Error" ,JOptionPane.INFORMATION_MESSAGE);
+        }       //confirma eliminacion
     }//GEN-LAST:event_btnEliminarProductoActionPerformed
 public void borrarTabla(JTable tab) {
         try {
@@ -223,21 +221,21 @@ public void borrarTabla(JTable tab) {
     }//GEN-LAST:event_btnEditarProductoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-                int ID = 0;
+        int ID = 0;
         int con=tblPro.getSelectedRow();
-        String es= String.valueOf(tblPro.getValueAt(tblPro.getSelectedRow(),7));
         if (con>=0){
-            if (es.equals("B"))
-            {
+            String es= String.valueOf(tblPro.getValueAt(con,7));
+            if(es.equals("B"))
+            {    
             ID = Integer.parseInt(tblPro.getValueAt(tblPro.getSelectedRow(),0)+"");
             if(JOptionPane.showConfirmDialog (null, "Desea dar de alta","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
                 ProcedimientoProductosAlta();
-                }
-            }else{
-                JOptionPane.showMessageDialog(null,"Seleccione un Producto en baja","Error" ,JOptionPane.INFORMATION_MESSAGE);
+            }
+            }else {
+                JOptionPane.showMessageDialog(null,"Seleccione un producto con estatus B","Error" ,JOptionPane.INFORMATION_MESSAGE);
             }
         }else {
-            JOptionPane.showMessageDialog(null,"Seleccione un Producto","Error" ,JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Seleccione un producto","Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -254,16 +252,16 @@ public void borrarTabla(JTable tab) {
         a=(String) tblPro.getValueAt(tblPro.getSelectedRow(),0);
         b=(String) tblPro.getValueAt(tblPro.getSelectedRow(),1);
         c=(String) tblPro.getValueAt(tblPro.getSelectedRow(),2);
-        e=(String) tblPro.getValueAt(tblPro.getSelectedRow(),4);
-        f=(String) tblPro.getValueAt(tblPro.getSelectedRow(),5);
-        h=(String) tblPro.getValueAt(tblPro.getSelectedRow(),6);
-        i=(String) tblPro.getValueAt(tblPro.getSelectedRow(),7);
+        e=(String) tblPro.getValueAt(tblPro.getSelectedRow(),3);
+        f=(String) tblPro.getValueAt(tblPro.getSelectedRow(),4);
+        h=(String) tblPro.getValueAt(tblPro.getSelectedRow(),5);
+        i=(String) tblPro.getValueAt(tblPro.getSelectedRow(),6);
         
                        
          if (evt.getClickCount()==2){
          C_MOD_Productos pro= new C_MOD_Productos();
          pro.setLocationRelativeTo(pro);
-         pro.Datos(a, b, c,e, f, h,i);
+         pro.Datos(a, b, c, e, f, h,i);
          pro.setVisible(true);
          }
     }//GEN-LAST:event_tblProMouseClicked
