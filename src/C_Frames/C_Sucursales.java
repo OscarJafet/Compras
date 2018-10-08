@@ -98,6 +98,7 @@ public class C_Sucursales extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblsucursal.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblsucursal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblsucursalMouseClicked(evt);

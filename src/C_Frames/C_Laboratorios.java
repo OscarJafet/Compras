@@ -90,6 +90,8 @@ public class C_Laboratorios extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblLab.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblLab.setShowHorizontalLines(false);
         jScrollPane1.setViewportView(tblLab);
 
         btnElimEstados.setBackground(new java.awt.Color(254, 254, 254));

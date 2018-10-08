@@ -93,6 +93,7 @@ public class C_Productos extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblPro.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblPro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblProMouseClicked(evt);
