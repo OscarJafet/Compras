@@ -92,6 +92,8 @@ public void llenarCombo2(){
         jLabel3 = new javax.swing.JLabel();
         PreC = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        pReo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(254, 254, 254));
@@ -165,6 +167,10 @@ public void llenarCombo2(){
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel5.setText("PUNTO REORDEN");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -195,10 +201,14 @@ public void llenarCombo2(){
                         .addGap(18, 18, 18)
                         .addComponent(PreC, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(PreV, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PreV, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pReo, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,7 +216,9 @@ public void llenarCombo2(){
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(cmbProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(pReo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -246,7 +258,7 @@ public void llenarCombo2(){
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         int idP = 0;
         int idE = 0;
-        float Pre = 0, preCom = 0;
+        float Pre = 0, preCom = 0, preR = 0;
         StringTokenizer idPr = new StringTokenizer(cmbProd.getItemAt(cmbProd.getSelectedIndex()).toString()," ");
         StringTokenizer idEmp = new StringTokenizer(cmbEmp.getItemAt(cmbEmp.getSelectedIndex()).toString()," ");
         try{
@@ -255,11 +267,12 @@ public void llenarCombo2(){
             idE = Integer.parseInt(idEmp.nextToken());
             Pre = Float.parseFloat(PreV.getText());
             preCom = Float.parseFloat(PreC.getText());
+            preR = Float.parseFloat(pReo.getText());
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         
         }//insert into Empaques values(ERP.EmpID.nextval,'nombre',500,'A',1);
-        erp.SQL("call ERP.ADD_PressProd ("+idP+","+idE+","+Pre+","+preCom+")");
+        erp.SQL("call ERP.ADD_PressProd ("+idP+","+idE+","+Pre+","+preCom+","+preR+")");
         if(preCom > Pre)
                 JOptionPane.showMessageDialog(null,"Precio venta es menor al precio de compra\nDebido a eso no se insertara una presentación","Error" ,JOptionPane.INFORMATION_MESSAGE);
             
@@ -373,6 +386,8 @@ public void llenarCombo2(){
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField pReo;
     // End of variables declaration//GEN-END:variables
 }
