@@ -83,6 +83,12 @@ public class C_Categorias extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        C_Categorias_tblDatos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        C_Categorias_tblDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                C_Categorias_tblDatosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(C_Categorias_tblDatos);
 
         btnNuevo.setBackground(new java.awt.Color(254, 254, 254));
@@ -238,6 +244,12 @@ public void borrarTabla(JTable tab) {
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
+        if((C_Categorias_tblDatos.getValueAt(C_Categorias_tblDatos.getSelectedRow(), 2)+"") == "A")
+            edg.C_MOD_Categorias_cmb.setSelectedIndex(0);
+        else
+            edg.C_MOD_Categorias_cmb.setSelectedIndex(1);
+        
+        edg.C_MOD_Categorias_txfCiudad.setText(C_Categorias_tblDatos.getValueAt(C_Categorias_tblDatos.getSelectedRow(), 1)+"");
         edg.txfIdCiu.setText(ID+"");
     }//GEN-LAST:event_btnActualizarActionPerformed
 
@@ -247,6 +259,11 @@ public void borrarTabla(JTable tab) {
       erp.OpenCon("ERP", "erp");
       erp.Categorias_Search(C_Categorias_txfBuscar.getText(),C_Categorias_tblDatos);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void C_Categorias_tblDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C_Categorias_tblDatosMouseClicked
+        // TODO add your handling code here:
+        btnActualizar.doClick();
+    }//GEN-LAST:event_C_Categorias_tblDatosMouseClicked
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

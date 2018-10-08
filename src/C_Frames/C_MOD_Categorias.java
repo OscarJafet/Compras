@@ -228,7 +228,7 @@ public class C_MOD_Categorias extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> C_MOD_Categorias_cmb;
+    public javax.swing.JComboBox<String> C_MOD_Categorias_cmb;
     public javax.swing.JTextField C_MOD_Categorias_txfCiudad;
     public javax.swing.JButton btnAgrefarEstados;
     public javax.swing.JButton jButton1;
