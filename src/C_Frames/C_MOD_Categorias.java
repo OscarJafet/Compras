@@ -175,6 +175,10 @@ public class C_MOD_Categorias extends javax.swing.JFrame {
     private void C_MOD_Categorias_txfCiudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_MOD_Categorias_txfCiudadKeyTyped
         //char c=evt.getKeyChar();
         //if((c<'a' || c>'z')&&(c<'A' || c>'Z')) evt.consume();
+                char c=evt.getKeyChar();
+        if((c<'0' || c>'9')&&(c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')){
+            evt.consume();
+        } 
     }//GEN-LAST:event_C_MOD_Categorias_txfCiudadKeyTyped
 
     private void C_MOD_Categorias_cmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_MOD_Categorias_cmbActionPerformed
