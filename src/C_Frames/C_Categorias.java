@@ -223,15 +223,13 @@ public void borrarTabla(JTable tab) {
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
         //confirma eliminacion
-        int dialogButton = JOptionPane.YES_NO_OPTION;
-            JOptionPane.showConfirmDialog (null, "Desea eliminar","Informacion", dialogButton);
-            if(dialogButton == JOptionPane.YES_OPTION) {
-                erp.SQL("update Laboratorios set estatus = 'B' where idLaboratorio = "+ID);
-            if(dialogButton == JOptionPane.NO_OPTION) {
-                  remove(dialogButton);
-                }
-              }
-                //
+         if(JOptionPane.showConfirmDialog(null, "¿Desea darlo de alta?","Informacion",
+        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                erp.SQL("update Categorias set estatus = 'B' where idCategoria = "+ID);
+              }else{
+                JOptionPane.showMessageDialog(null,"NO Eliminado","Infromación" ,JOptionPane.INFORMATION_MESSAGE);
+            }
+              btnBuscar.doClick();  //
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -254,10 +252,20 @@ public void borrarTabla(JTable tab) {
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        borrarTabla(C_Categorias_tblDatos);
-        Conexion erp = new Conexion();
-      erp.OpenCon("ERP", "erp");
-      erp.Categorias_Search(C_Categorias_txfBuscar.getText(),C_Categorias_tblDatos);
+       int ID = 0;
+        try{
+            ID = Integer.parseInt(C_Categorias_tblDatos.getValueAt(C_Categorias_tblDatos.getSelectedRow(),0)+"");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
+        }
+        //confirma eliminacion
+            if(JOptionPane.showConfirmDialog(null, "¿Desea darlo de alta?","Informacion",
+        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                erp.SQL("update Categorias set estatus = 'A' where idCategoria = "+ID);
+              }else{
+                JOptionPane.showMessageDialog(null,"NO Actualizado","Infromación" ,JOptionPane.INFORMATION_MESSAGE);
+            }
+            btnBuscar.doClick();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void C_Categorias_tblDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C_Categorias_tblDatosMouseClicked
