@@ -61,7 +61,7 @@ public class C_MOD_Laboratorios extends javax.swing.JFrame {
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(254, 254, 254));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "EDITAR ESTADOS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 0))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "EDITAR LABORATORIO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 0))); // NOI18N
 
         jLabel1.setBackground(new java.awt.Color(254, 254, 254));
         jLabel1.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
@@ -125,7 +125,7 @@ public class C_MOD_Laboratorios extends javax.swing.JFrame {
         txfIdLab.setBackground(new java.awt.Color(253, 239, 239));
         txfIdLab.setForeground(new java.awt.Color(1, 1, 1));
 
-        cmb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "A", "B" }));
+        cmb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Estado", "A", "B" }));
         cmb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbActionPerformed(evt);
@@ -209,13 +209,23 @@ public class C_MOD_Laboratorios extends javax.swing.JFrame {
 
     private void btnAgrefarEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgrefarEstadosActionPerformed
        erp.OpenCon("ERP", "erp");
+       String n= txfNom.getText();
+       String o= txfOrigen.getText();
+       int es= cmb.getSelectedIndex();
+       if (!n.isEmpty()&&!o.isEmpty()&& es!=0){
        int ID = Integer.parseInt(txfIdLab.getText()+"");
        erp.SQL("update Laboratorios set nombre = '"+txfNom.getText()+"', estatus = '"+cmb.getItemAt(cmb.getSelectedIndex()).charAt(0)+"',origen = '"+txfOrigen.getText()+"' where idLaboratorio = "+ID);
+              }
+       else{
+           JOptionPane.showMessageDialog(null,"No se permiten campos vacios o estatus sin asignar","Error" ,JOptionPane.INFORMATION_MESSAGE);
+       }
     }//GEN-LAST:event_btnAgrefarEstadosActionPerformed
 
     private void txfNomKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfNomKeyTyped
-        char c=evt.getKeyChar();
-        if((c<'a' || c>'z')&&(c<'A' || c>'Z')) evt.consume();
+                char c=evt.getKeyChar();
+        if((c<'0' || c>'9')&&(c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')){
+            evt.consume();
+        }
     }//GEN-LAST:event_txfNomKeyTyped
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -227,8 +237,10 @@ public class C_MOD_Laboratorios extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbActionPerformed
 
     private void txfOrigenKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfOrigenKeyTyped
-        char c=evt.getKeyChar();
-        if((c<'a' || c>'z')&&(c<'A' || c>'Z')) evt.consume();
+                char c=evt.getKeyChar();
+        if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')){
+            evt.consume();
+        }
     }//GEN-LAST:event_txfOrigenKeyTyped
 
     /**

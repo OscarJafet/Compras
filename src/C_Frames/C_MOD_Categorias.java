@@ -42,7 +42,7 @@ public class C_MOD_Categorias extends javax.swing.JFrame {
         C_MOD_Categorias_txfCiudad = new javax.swing.JTextField();
         txfIdCiu = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        C_MOD_Categorias_cmb = new javax.swing.JComboBox<>();
+        C_MOD_Categorias_cmb = new javax.swing.JComboBox<String>();
         btnAgrefarEstados = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
@@ -51,7 +51,7 @@ public class C_MOD_Categorias extends javax.swing.JFrame {
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(254, 254, 254));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(206, 255, 0)), "MODIFICAR CIUDAD", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 0))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(206, 255, 0)), "MODIFICAR CATEGORIA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 0))); // NOI18N
 
         jLabel1.setBackground(new java.awt.Color(1, 1, 1));
         jLabel1.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
@@ -78,7 +78,7 @@ public class C_MOD_Categorias extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(1, 1, 1));
         jLabel4.setText("ESTATUS CIUDAD");
 
-        C_MOD_Categorias_cmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B" }));
+        C_MOD_Categorias_cmb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Estado", "A", "B" }));
         C_MOD_Categorias_cmb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 C_MOD_Categorias_cmbActionPerformed(evt);
@@ -173,10 +173,9 @@ public class C_MOD_Categorias extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void C_MOD_Categorias_txfCiudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_MOD_Categorias_txfCiudadKeyTyped
-        //char c=evt.getKeyChar();
-        //if((c<'a' || c>'z')&&(c<'A' || c>'Z')) evt.consume();
+
                 char c=evt.getKeyChar();
-        if((c<'0' || c>'9')&&(c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')){
+        if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')){
             evt.consume();
         } 
     }//GEN-LAST:event_C_MOD_Categorias_txfCiudadKeyTyped
@@ -187,8 +186,14 @@ public class C_MOD_Categorias extends javax.swing.JFrame {
 
     private void btnAgrefarEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgrefarEstadosActionPerformed
        erp.OpenCon("ERP", "erp");
+      String n= C_MOD_Categorias_txfCiudad.getText();
+      int es= C_MOD_Categorias_cmb.getSelectedIndex();
+      if(!n.isEmpty()&& es!=0){
         int i = Integer.parseInt(txfIdCiu.getText());
         erp.SQL("update Categorias set nombre = '"+C_MOD_Categorias_txfCiudad.getText()+"', estatus = '"+C_MOD_Categorias_cmb.getItemAt(C_MOD_Categorias_cmb.getSelectedIndex()).charAt(0)+"' where idCategoria = "+i);
+              }else{
+           JOptionPane.showMessageDialog(null,"No se permiten campos vacios o estatus sin asignar","Error" ,JOptionPane.INFORMATION_MESSAGE);
+       }
     }//GEN-LAST:event_btnAgrefarEstadosActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

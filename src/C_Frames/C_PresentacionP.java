@@ -59,7 +59,7 @@ public class C_PresentacionP extends javax.swing.JPanel {
         btnAgregarDe = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        cmbSe = new javax.swing.JComboBox<>();
+        cmbSe = new javax.swing.JComboBox<String>();
 
         setBackground(new java.awt.Color(254, 254, 254));
         setForeground(new java.awt.Color(254, 254, 254));
@@ -70,6 +70,11 @@ public class C_PresentacionP extends javax.swing.JPanel {
         txfConsultar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txfConsultarMouseClicked(evt);
+            }
+        });
+        txfConsultar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfConsultarKeyTyped(evt);
             }
         });
         add(txfConsultar);
@@ -177,7 +182,7 @@ public class C_PresentacionP extends javax.swing.JPanel {
         add(jButton1);
         jButton1.setBounds(38, 468, 97, 73);
 
-        cmbSe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estatus", "A", "B" }));
+        cmbSe.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Estatus", "A", "B" }));
         cmbSe.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cmbSeMouseClicked(evt);
@@ -260,7 +265,7 @@ public void borrarTabla(JTable tab) {
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
         //confirma eliminacion
-            if(JOptionPane.showConfirmDialog(null, "¿Desea darlo de eliminarlo?","Informacion",
+            if(JOptionPane.showConfirmDialog(null, "¿Desea darlo de baja?","Informacion",
         JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 erp.SQL("update PresentacionesProducto set estatus = 'B' where idPresentacion = "+ID);
               }else{
@@ -316,6 +321,13 @@ public void borrarTabla(JTable tab) {
         if(evt.getClickCount()==2)
         btnEditarDeducciones.doClick();
     }//GEN-LAST:event_tablaPressMouseClicked
+
+    private void txfConsultarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfConsultarKeyTyped
+                        char c=evt.getKeyChar();
+        if((c<'0' || c>'9')&&(c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txfConsultarKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

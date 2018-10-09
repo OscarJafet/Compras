@@ -198,11 +198,11 @@ public void borrarTabla(JTable tab) {
     }//GEN-LAST:event_btnConsultarPercepcionActionPerformed
 
     private void btnEditarPercecionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarPercecionActionPerformed
+        int con = tblUM.getSelectedRow();
+        if (con >= 0) {
         String a = (String) tblUM.getValueAt(tblUM.getSelectedRow(), 0);
         String b = (String) tblUM.getValueAt(tblUM.getSelectedRow(), 1);
-        String c = (String) tblUM.getValueAt(tblUM.getSelectedRow(), 2);
-        
-        
+        String c = (String) tblUM.getValueAt(tblUM.getSelectedRow(), 2);        
         C_MOD_Unidad erp =new C_MOD_Unidad();
         erp.setLocationRelativeTo(erp);
         erp.Datos(a, b, c);
@@ -214,6 +214,9 @@ public void borrarTabla(JTable tab) {
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
         erp.Id.setText(ID+"");
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un renglon", "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnEditarPercecionActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

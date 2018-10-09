@@ -228,7 +228,7 @@ public void borrarTabla(JTable tab) {
             if(es.equals("A"))
             {
             ID = Integer.parseInt(tblLab.getValueAt(tblLab.getSelectedRow(),0)+"");
-            if(JOptionPane.showConfirmDialog (null, "Desea Eliminar","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
+            if(JOptionPane.showConfirmDialog (null, "Desea dar de baja","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
                erp.SQL("update laboratorios set estatus='B' where idlaboratorio ="+ID);
             }
             }else{
@@ -247,6 +247,9 @@ public void borrarTabla(JTable tab) {
     }//GEN-LAST:event_btnAgrEstadosActionPerformed
 
     private void btnEditarEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarEstadosActionPerformed
+        int con=tblLab.getSelectedRow();
+        
+        if (con>=0){
         String a=(String) tblLab.getValueAt(tblLab.getSelectedRow(),0);
         String b=(String) tblLab.getValueAt(tblLab.getSelectedRow(),1);
         String c=(String) tblLab.getValueAt(tblLab.getSelectedRow(),2);
@@ -262,6 +265,10 @@ public void borrarTabla(JTable tab) {
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
         lab.txfIdLab.setText(ID+"");
+        }
+        else {
+            JOptionPane.showMessageDialog(null,"Seleccione un renglon","Error" ,JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnEditarEstadosActionPerformed
 
     private void btnRefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefrescarActionPerformed
@@ -273,7 +280,7 @@ public void borrarTabla(JTable tab) {
             if(es.equals("B"))
             {
             ID = Integer.parseInt(tblLab.getValueAt(tblLab.getSelectedRow(),0)+"");
-            if(JOptionPane.showConfirmDialog (null, "Desea dar de Activar","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
+            if(JOptionPane.showConfirmDialog (null, "Desea dar de alta","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
                erp.SQL("update laboratorios set estatus='A' where idlaboratorio ="+ID);
             }
             }else{

@@ -87,7 +87,7 @@ public class C_Sucursales extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID SUCURSAL", "NOMBRE", "TELEFONO", "DIRECCION", "COLONIA", "CODIGOPOSTAL", "PRESUPUESTO", "ESTATUS", "CUIDAD"
+                "ID SUCURSAL", "NOMBRE", "TELEFONO", "DIRECCION", "COLONIA", "CODIGOPOSTAL", "PRESUPUESTO", "ESTATUS", "CIUDAD"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -196,7 +196,7 @@ public class C_Sucursales extends javax.swing.JPanel {
                 ProcedimientoSucursal();
             }
             }else {
-                JOptionPane.showMessageDialog(null,"Seleccione un producto con estatus A","Error" ,JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Seleccione una sucursal con estatus A","Error" ,JOptionPane.INFORMATION_MESSAGE);
             }
         }else {
             JOptionPane.showMessageDialog(null,"Seleccione un renglon","Error" ,JOptionPane.INFORMATION_MESSAGE);
@@ -221,7 +221,8 @@ public void borrarTabla(JTable tab) {
     }//GEN-LAST:event_btnConsultarSucursalActionPerformed
 
     private void btnEditarsucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarsucursalActionPerformed
-        
+        int con=tblsucursal.getSelectedRow();
+        if (con>=0){
         String a=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),0);
         String b=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),1);
         String c=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),2);
@@ -243,6 +244,9 @@ public void borrarTabla(JTable tab) {
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
       suc.txfIdSucursal.setText(ID+"");
+      }else {
+            JOptionPane.showMessageDialog(null,"Seleccione un renglon","Error" ,JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnEditarsucursalActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -254,11 +258,11 @@ public void borrarTabla(JTable tab) {
             if(es.equals("B"))
             {
             ID = Integer.parseInt(tblsucursal.getValueAt(tblsucursal.getSelectedRow(),0)+"");
-            if(JOptionPane.showConfirmDialog (null, "Desea dar de Activar","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
+            if(JOptionPane.showConfirmDialog (null, "Desea dar de Alta","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
                 ProcedimientoSucursalAlta();
             }
             }else{
-                JOptionPane.showMessageDialog(null,"Seleccione un producto con estatus B","Error" ,JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Seleccione una ciudad con estatus B","Error" ,JOptionPane.INFORMATION_MESSAGE);
             }
         }else {
             JOptionPane.showMessageDialog(null,"Seleccione un renglon","Error" ,JOptionPane.INFORMATION_MESSAGE);

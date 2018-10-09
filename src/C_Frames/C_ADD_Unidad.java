@@ -43,14 +43,14 @@ public class C_ADD_Unidad extends javax.swing.JFrame {
         txfSiglas = new javax.swing.JTextField();
         btnLimpiarPerce = new javax.swing.JButton();
         btnAgregarPerce = new javax.swing.JButton();
-        cmb = new javax.swing.JComboBox<>();
+        cmb = new javax.swing.JComboBox<String>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(254, 254, 254));
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(254, 254, 254));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "AGREGAR PERCEPCIONES", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 43, 0))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "AGREGAR UNIDAD", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 43, 0))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(1, 1, 1));
@@ -74,6 +74,11 @@ public class C_ADD_Unidad extends javax.swing.JFrame {
 
         txfSiglas.setBackground(new java.awt.Color(254, 254, 254));
         txfSiglas.setForeground(new java.awt.Color(1, 1, 1));
+        txfSiglas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfSiglasKeyTyped(evt);
+            }
+        });
 
         btnLimpiarPerce.setBackground(new java.awt.Color(254, 254, 254));
         btnLimpiarPerce.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon-cancelar.png"))); // NOI18N
@@ -96,7 +101,7 @@ public class C_ADD_Unidad extends javax.swing.JFrame {
             }
         });
 
-        cmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estado", "A", "B" }));
+        cmb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Estado", "A", "B" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -168,14 +173,30 @@ public class C_ADD_Unidad extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimpiarPerceActionPerformed
 
     private void btnAgregarPerceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPerceActionPerformed
+        String n= txfNombrePerce.getText();
+        String s= txfSiglas.getText();
+        int es= cmb.getSelectedIndex();
         erp.OpenCon("ERP", "erp");
+        if (!n.isEmpty()&&!s.isEmpty()&& es!=0){
         erp.SQL("insert into UnidadMedida values (ERP.UniID.nextval,'"+txfNombrePerce.getText()+"', '"+txfSiglas.getText()+"', '"+cmb.getItemAt(cmb.getSelectedIndex()).charAt(0)+"')");
-        
+        }else{
+           JOptionPane.showMessageDialog(null,"No se permiten campos vacios o estatus sin asignar","Error" ,JOptionPane.INFORMATION_MESSAGE);
+       }
     }//GEN-LAST:event_btnAgregarPerceActionPerformed
 
     private void txfNombrePerceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfNombrePerceKeyTyped
-        // TODO add your handling code here:
+                char c=evt.getKeyChar();
+        if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')){
+            evt.consume();
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_txfNombrePerceKeyTyped
+
+    private void txfSiglasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfSiglasKeyTyped
+                char c=evt.getKeyChar();
+        if((c<'a' || c>'z')&&(c<'A' || c>'Z')){
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_txfSiglasKeyTyped
 
     /**
      * @param args the command line arguments
