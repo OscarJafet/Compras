@@ -260,14 +260,14 @@ public void borrarTabla(JTable tab) {
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
         //confirma eliminacion
-        int dialogButton = JOptionPane.YES_NO_OPTION;
-            JOptionPane.showConfirmDialog (null, "¿Desea eliminarlo?","Informacion", dialogButton);
-            if(dialogButton == JOptionPane.YES_OPTION) {
+            if(JOptionPane.showConfirmDialog(null, "¿Desea darlo de eliminarlo?","Informacion",
+        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 erp.SQL("update PresentacionesProducto set estatus = 'B' where idPresentacion = "+ID);
-            if(dialogButton == JOptionPane.NO_OPTION) {
-                  remove(dialogButton);
-                }
-              }
+              }else{
+                JOptionPane.showMessageDialog(null,"NO Eliminado","Infromación" ,JOptionPane.INFORMATION_MESSAGE);
+            }
+              btnConsultar.doClick();
+            
     }//GEN-LAST:event_btnEliDeduccionesActionPerformed
 
     private void btnAgregarDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDeActionPerformed
@@ -287,18 +287,18 @@ public void borrarTabla(JTable tab) {
           int ID = 0;
           try{
           ID = Integer.parseInt(""+tablaPress.getValueAt(tablaPress.getSelectedRow(), 0));
-          int dialogButton = JOptionPane.YES_NO_OPTION;
-            JOptionPane.showConfirmDialog (null, "¿Desea darlo de alta?","Informacion", dialogButton);
-            if(dialogButton == JOptionPane.YES_OPTION) {
+            if(JOptionPane.showConfirmDialog(null, "¿Desea darlo de alta?","Informacion",
+        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 erp.SQL("update PresentacionesProducto set estatus = 'A' where idPresentacion = "+ID);
-            if(dialogButton == JOptionPane.NO_OPTION) {
-                  remove(dialogButton);
-                }
-              }
+            
+              }else{
+                JOptionPane.showMessageDialog(null,"NO Actualizado","Infromación" ,JOptionPane.INFORMATION_MESSAGE);
+            }
           }catch(Exception e){
               JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
           }
       } 
+        btnConsultar.doClick();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cmbSeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbSeMouseClicked
