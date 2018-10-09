@@ -108,6 +108,7 @@ public class Empaques extends javax.swing.JPanel {
             }
         });
         tablaEmp.setToolTipText("");
+        tablaEmp.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tablaEmp);
 
         add(jScrollPane1);

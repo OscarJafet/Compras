@@ -216,7 +216,7 @@ public class C_ADD_Emp extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         
         }//insert into Empaques values(ERP.EmpID.nextval,'nombre',500,'A',1);
-        erp.SQL("insert into Empaques values(ERP.EmpID.nextval,'"+nom.getText()+"',"+cap+",'"+cmb.getItemAt(cmb.getSelectedIndex()).charAt(0)+"',"+idu+")");
+        erp.SQL("insert into Empaques values(ERP.EMID.nextval,'"+nom.getText()+"',"+cap+",'"+cmb.getItemAt(cmb.getSelectedIndex()).charAt(0)+"',"+idu+")");
         }else{
            JOptionPane.showMessageDialog(null,"No se permiten campos vacios o estatus sin asignar","Error" ,JOptionPane.INFORMATION_MESSAGE);
        }

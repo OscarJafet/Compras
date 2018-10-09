@@ -187,9 +187,13 @@ public class C_ADD_Laboratorios extends javax.swing.JFrame {
     private void btnAgrefarEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgrefarEstadosActionPerformed
        String n= txfNombre.getText();
        String o= txfOrigen.getText();
-       int es= cmb.getSelectedIndex();
+       String E=String.valueOf(cmb.getSelectedItem());
+       char C= Character.valueOf(E.charAt(0));
+       int es=cmb.getSelectedIndex();
+       E="insert into Laboratorios values (LabID.nextval,'"+n+"','"+o+"','"+C+"')";
+       erp.OpenCon("ERP", "erp");
        if (!n.isEmpty()&&!o.isEmpty()&& es!=0){
-        erp.SQL("insert into Laboratorios values (ERP.LabID.nextval,'"+txfNombre.getText()+"','"+txfOrigen.getText()+"','"+cmb.getItemAt(cmb.getSelectedIndex()).charAt(0)+"')");
+        erp.SQL(E);
        }
        else{
            JOptionPane.showMessageDialog(null,"No se permiten campos vacios o estatus sin asignar","Error" ,JOptionPane.INFORMATION_MESSAGE);

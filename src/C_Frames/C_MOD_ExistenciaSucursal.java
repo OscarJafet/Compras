@@ -201,8 +201,8 @@ public class C_MOD_ExistenciaSucursal extends javax.swing.JFrame {
         
         if(C_ExistenciaSucursal_tabla.getSelectedRow() > -1 && !txfCantidadNueva.getText().isEmpty()){
              int i = Integer.parseInt(txfCantidadNueva.getText().toString());
-//             if(i < Integer.parseInt(C_ExistenciaSucursal_tabla.getValueAt(C_ExistenciaSucursal_tabla.getSelectedRow(), 4).toString())){
-//                 JOptionPane.showMessageDialog(null, "Tu cantidad es escasa a punto de Reorden");}
+             if(i <= Integer.parseInt(C_ExistenciaSucursal_tabla.getValueAt(C_ExistenciaSucursal_tabla.getSelectedRow(), 4).toString())){
+                 JOptionPane.showMessageDialog(null, "Producto escaso en sucursal: "+ C_ExistenciaSucursal_tabla.getValueAt(C_ExistenciaSucursal_tabla.getSelectedRow(), 2).toString());}
              
 erp.SQL("update EXISTENCIASUCURSAL set CANTIDAD = "+i+" where  IDSUCURSAL = "+
         Integer.parseInt(C_ExistenciaSucursal_tabla.getValueAt(C_ExistenciaSucursal_tabla.getSelectedRow(), 0).toString())+" and IDPRESENTACION = "+
