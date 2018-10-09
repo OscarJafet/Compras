@@ -217,6 +217,9 @@ public class Conexion {
                 Object datosRenglon[]={ idPro, Nom, descripcion,ingrediente,banda,apli,uso,estatus,lab,cat};
                 tablaTemp.addRow(datosRenglon);
             }
+            if (tablaTemp.getRowCount() == 0){
+                JOptionPane.showMessageDialog(null,"El producto no se encuentra en la Base de Datos","Información",JOptionPane.INFORMATION_MESSAGE);
+            }
             
             tabla.setModel(tablaTemp);
         } catch (SQLException ex) {
