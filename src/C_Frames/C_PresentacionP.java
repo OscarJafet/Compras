@@ -193,8 +193,14 @@ public class C_PresentacionP extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarDeduccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarDeduccionesActionPerformed
-
-        C_MOD_Presentacion erp = new C_MOD_Presentacion();
+int A = 0;
+        try{
+            A = Integer.parseInt((tablaPress.getValueAt(tablaPress.getSelectedRow(), 0)+""));
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,"Selecione un valor valido de la tabla","Información", JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(A >= 1){
+            C_MOD_Presentacion erp = new C_MOD_Presentacion();
          erp.setLocationRelativeTo(erp);
         erp.setVisible(true);
         int ID = 0;
@@ -238,6 +244,7 @@ public class C_PresentacionP extends javax.swing.JPanel {
                 System.out.println("entro");
                 erp.cmbEmp.setSelectedIndex(i);
             }
+        }
         }
     
     }//GEN-LAST:event_btnEditarDeduccionesActionPerformed

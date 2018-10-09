@@ -141,7 +141,7 @@ public class Conexion {
     public void Emp_Search(String Nombre,JTable tabla){
          DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
         if(Nombre.isEmpty())
-            Sql = "select * from Empaques";
+            Sql = "select * from Empaques where estatus='A'";
         else if(!Nombre.isEmpty())
             Sql = "select * from Empaques where nombre = '"+Nombre+"'";
         
