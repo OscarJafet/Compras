@@ -296,6 +296,7 @@ public void borrarTabla(JTable tab) {
 
     private void tablaPressMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPressMouseClicked
         // TODO add your handling code here:
+        if(evt.getClickCount()==2)
         btnEditarDeducciones.doClick();
     }//GEN-LAST:event_tablaPressMouseClicked
 

@@ -434,6 +434,27 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
                 Object datosRenglon[]={idPress, preCom, preVent,pReorden,idPro,idEmp,stat};
                 tablaTemp.addRow(datosRenglon);
             }
+            Sql = "select Productos.nombre from Productos\n"
+                    + "inner join ERP.PresentacionesProducto\n"
+                    + "on PresentacionesProducto.idProducto = Productos.idProducto";
+            stn= con.createStatement();
+            rs=stn.executeQuery(Sql);
+        
+            for (int i = 0; rs.next(); i++) {
+                 String nombre=rs.getString("nombre");
+                 tablaTemp.setValueAt(tablaTemp.getValueAt(i, 4)+" "+nombre, i, 4);
+            }
+            
+            Sql = "select Empaques.nombre from Empaques\n"
+                    + "inner join ERP.PresentacionesProducto\n"
+                    + "on PresentacionesProducto.idEmpaque = Empaques.idEmpaque";
+            stn= con.createStatement();
+            rs=stn.executeQuery(Sql);
+        
+            for (int i = 0; rs.next(); i++) {
+                 String nombre=rs.getString("nombre");
+                 tablaTemp.setValueAt(tablaTemp.getValueAt(i, 5)+" "+nombre, i, 5);
+            }
             
             tabla.setModel(tablaTemp);
         } catch (SQLException ex) {
