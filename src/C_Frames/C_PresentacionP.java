@@ -6,9 +6,12 @@
 package C_Frames;
 
 import C_Conexion.Conexion;
+import static C_Conexion.Conexion.con;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.StringTokenizer;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -279,9 +282,23 @@ public void borrarTabla(JTable tab) {
     }//GEN-LAST:event_btnAgregarDeMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        borrarTabla(tablaPress);
-        erp.OpenCon("ERP", "erp");
-        erp.Presentacion_seacrh(txfConsultar.getText(), tablaPress,cmbSe.getItemAt(cmbSe.getSelectedIndex()).charAt(0));
+       //System.out.println(tablaPress.getValueAt(tablaPress.getSelectedRow(), 6));
+        if ((tablaPress.getValueAt(tablaPress.getSelectedRow(), 6)+"").equals("B")){
+          int ID = 0;
+          try{
+          ID = Integer.parseInt(""+tablaPress.getValueAt(tablaPress.getSelectedRow(), 0));
+          int dialogButton = JOptionPane.YES_NO_OPTION;
+            JOptionPane.showConfirmDialog (null, "¿Desea darlo de alta?","Informacion", dialogButton);
+            if(dialogButton == JOptionPane.YES_OPTION) {
+                erp.SQL("update PresentacionesProducto set estatus = 'A' where idPresentacion = "+ID);
+            if(dialogButton == JOptionPane.NO_OPTION) {
+                  remove(dialogButton);
+                }
+              }
+          }catch(Exception e){
+              JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
+          }
+      } 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cmbSeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbSeMouseClicked
