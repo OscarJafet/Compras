@@ -125,6 +125,10 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="lblreloj" min="-2" pref="60" max="-2" attributes="0"/>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="C_Pv" min="-2" pref="60" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
@@ -151,7 +155,9 @@
                       <Component id="C_ES" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
                       <Component id="C_SC" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="147" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="C_Pv" min="-2" pref="60" max="-2" attributes="0"/>
+                  <EmptySpace pref="69" max="32767" attributes="0"/>
                   <Component id="lblUsuario" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -304,6 +310,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="jLabel5"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="C_Pv">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagenes/Sucursal.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Sucursales"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C_PvActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

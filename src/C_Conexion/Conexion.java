@@ -464,29 +464,34 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
     public void Proveedores_Search(String Nombre,JTable tabla){
          DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
         if(Nombre.isEmpty())
-            Sql = "select * from ¨Proveedores where estatus='A'";
+            Sql = "select * from Proveedores where estatus='A'";
+            
         else if(!Nombre.isEmpty())
-            Sql = "select * from Proveedores where nombre = '"+Nombre+"'";
+            Sql = "select * from Proveedores where nombre like '"+Nombre+"%'";
         
                try {
             stn=(Statement) con.createStatement();
             rs=stn.executeQuery(Sql);
         
             while(rs.next()){
-                String idsuc=rs.getString("idsucursal");
+                String idsuc=rs.getString("idProveedor");
                 String Nom=rs.getString("nombre");
                 String tel=rs.getString("telefono");
                 String email=rs.getString("email");
                 String dir=rs.getString("direccion");
                 String col=rs.getString("colonia");
                 String cp=rs.getString("codigopostal");
-                String pre=rs.getString("presupuesto");
                 String Stat = rs.getString("estatus");
-                String ciu=rs.getString("idciudad");
-                Object datosRenglon[]={idsuc,Nom,email,tel,dir,col,cp,pre,Stat,ciu};
+                Object datosRenglon[]={idsuc,Nom,email,tel,dir,col,cp,Stat};
                 tablaTemp.addRow(datosRenglon);
             }
-            
+            Sql = "select Ciudad.nombre from ERP.ciudad inner join ERP.proveedores on proveedores.idciudad=erp.ciudad.idciudad";
+            stn= con.createStatement();
+            rs=stn.executeQuery(Sql);
+            for (int i = 0; rs.next(); i++) {
+                 String nombre=rs.getString("nombre");
+                 tablaTemp.setValueAt(" "+nombre, i, 8);
+            }
             tabla.setModel(tablaTemp);
         } catch (SQLException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);

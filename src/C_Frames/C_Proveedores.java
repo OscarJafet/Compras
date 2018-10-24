@@ -90,7 +90,7 @@ public class C_Proveedores extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID PROVEEDOR", "NOMBRE", "TELEFONO", "EMAIL", "DIRECCION", "COLONIA", "CODIGOPOSTAL", "CIUDAD", "ESTATUS"
+                "ID PROVEEDOR", "NOMBRE", "TELEFONO", "EMAIL", "DIRECCION", "COLONIA", "CODIGOPOSTAL", "ESTATUS", "CUIDAD"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -219,7 +219,7 @@ public void borrarTabla(JTable tab) {
     private void btnConsultarSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarSucursalActionPerformed
         borrarTabla(tblpROVEEDORES);
         erp.OpenCon("ERP", "erp");
-        erp.Sucursales_Search(txfBuscar.getText(),tblpROVEEDORES);
+        erp.Proveedores_Search(txfBuscar.getText(),tblpROVEEDORES);
         
     }//GEN-LAST:event_btnConsultarSucursalActionPerformed
 
@@ -301,7 +301,7 @@ public void borrarTabla(JTable tab) {
     private void txfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyReleased
         borrarTabla(tblpROVEEDORES);
         erp.OpenCon("ERP", "erp");
-        erp.Sucursales_Search(txfBuscar.getText(),tblpROVEEDORES);
+        erp.Proveedores_Search(txfBuscar.getText(), tblpROVEEDORES);
 
 
     }//GEN-LAST:event_txfBuscarKeyReleased

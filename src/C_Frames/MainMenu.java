@@ -56,6 +56,7 @@ public class MainMenu extends javax.swing.JFrame {
         C_ES = new javax.swing.JButton();
         lblUsuario = new javax.swing.JLabel();
         lblreloj = new javax.swing.JLabel();
+        C_Pv = new javax.swing.JButton();
         jpTitulo = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
@@ -161,6 +162,14 @@ public class MainMenu extends javax.swing.JFrame {
 
         lblreloj.setText("jLabel5");
 
+        C_Pv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Sucursal.png"))); // NOI18N
+        C_Pv.setToolTipText("Sucursales");
+        C_Pv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                C_PvActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpLogoLayout = new javax.swing.GroupLayout(jpLogo);
         jpLogo.setLayout(jpLogoLayout);
         jpLogoLayout.setHorizontalGroup(
@@ -206,7 +215,10 @@ public class MainMenu extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblreloj, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblreloj, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpLogoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(C_Pv, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jpLogoLayout.setVerticalGroup(
@@ -228,7 +240,9 @@ public class MainMenu extends javax.swing.JFrame {
                     .addComponent(C_PP, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(C_ES, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(C_SC, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(C_Pv, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(lblUsuario)
                 .addGap(30, 30, 30)
                 .addGroup(jpLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -482,6 +496,17 @@ public class MainMenu extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void C_PvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_PvActionPerformed
+        C_Proveedores erp = new C_Proveedores();
+        erp.setSize(jFrames.getSize());
+        erp.setLocation(0, 0);
+        jFrames.removeAll();
+        jFrames.add(erp);
+        jFrames.revalidate();
+        jFrames.repaint();
+
+    }//GEN-LAST:event_C_PvActionPerformed
+
     void setTitulo(int i) {
         lblTitulo.setText(titulos[i]);
     }
@@ -528,6 +553,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton C_Lab;
     private javax.swing.JButton C_PD;
     private javax.swing.JButton C_PP;
+    private javax.swing.JButton C_Pv;
     private javax.swing.JButton C_SC;
     private javax.swing.JButton C_UM;
     private javax.swing.JButton jButton1;
