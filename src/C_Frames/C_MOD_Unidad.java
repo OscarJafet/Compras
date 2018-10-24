@@ -54,13 +54,13 @@ public class C_MOD_Unidad extends javax.swing.JFrame {
         btnEditarPerce = new javax.swing.JButton();
         Id = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        cmb = new javax.swing.JComboBox<>();
+        cmb = new javax.swing.JComboBox<String>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(254, 254, 254));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "EDITAR PERCEPCIONES", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 0))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "EDITAR UNIDAD\n", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 0))); // NOI18N
 
         btnLimpiarPerce.setBackground(new java.awt.Color(254, 254, 254));
         btnLimpiarPerce.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon-cancelar.png"))); // NOI18N
@@ -83,6 +83,11 @@ public class C_MOD_Unidad extends javax.swing.JFrame {
 
         nom.setBackground(new java.awt.Color(254, 254, 254));
         nom.setForeground(new java.awt.Color(1, 1, 1));
+        nom.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nomKeyTyped(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(1, 1, 1));
@@ -94,6 +99,11 @@ public class C_MOD_Unidad extends javax.swing.JFrame {
 
         sg.setBackground(new java.awt.Color(254, 254, 254));
         sg.setForeground(new java.awt.Color(1, 1, 1));
+        sg.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                sgKeyTyped(evt);
+            }
+        });
 
         btnEditarPerce.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/refresh_icon.png"))); // NOI18N
         btnEditarPerce.setBorderPainted(false);
@@ -107,7 +117,7 @@ public class C_MOD_Unidad extends javax.swing.JFrame {
         Id.setBackground(new java.awt.Color(253, 239, 239));
         Id.setForeground(new java.awt.Color(1, 1, 1));
 
-        cmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B" }));
+        cmb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Estado", "A", "B" }));
         cmb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbActionPerformed(evt);
@@ -194,13 +204,35 @@ public class C_MOD_Unidad extends javax.swing.JFrame {
 
     private void btnEditarPerceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarPerceActionPerformed
        erp.OpenCon("ERP", "erp");
+        String n=nom .getText();
+        String s= sg.getText();
+        int es= cmb.getSelectedIndex();
+        erp.OpenCon("ERP", "erp");
+        if (!n.isEmpty()&&!s.isEmpty()&& es!=0){
        int ID =Integer.parseInt(Id.getText());
        erp.SQL("update UnidadMedida set nombre = '"+nom.getText()+"', siglas = '"+sg.getText()+"',estatus = '"+cmb.getItemAt(cmb.getSelectedIndex()).charAt(0)+"' where idUnidad = "+ID);
+        }else{
+           JOptionPane.showMessageDialog(null,"No se permiten campos vacios o estatus sin asignar","Error" ,JOptionPane.INFORMATION_MESSAGE);
+       }
     }//GEN-LAST:event_btnEditarPerceActionPerformed
 
     private void btnLimpiarPerceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarPerceActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnLimpiarPerceActionPerformed
+
+    private void nomKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nomKeyTyped
+                        char c=evt.getKeyChar();
+        if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')){
+            evt.consume();
+        }
+    }//GEN-LAST:event_nomKeyTyped
+
+    private void sgKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sgKeyTyped
+                char c=evt.getKeyChar();
+        if((c<'a' || c>'z')&&(c<'A' || c>'Z')){
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_sgKeyTyped
 
     /**
      * @param args the command line arguments

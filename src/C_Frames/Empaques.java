@@ -108,6 +108,7 @@ public class Empaques extends javax.swing.JPanel {
             }
         });
         tablaEmp.setToolTipText("");
+        tablaEmp.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tablaEmp);
 
         add(jScrollPane1);
@@ -193,21 +194,23 @@ public void borrarTabla(JTable tab) {
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnEliDeduccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliDeduccionesActionPerformed
-       int ID = 0;
-        try{
+        int ID = 0;
+        int con=tablaEmp.getSelectedRow();
+        
+        if (con>=0){
+            String es= String.valueOf(tablaEmp.getValueAt(con,3));
+            if(es.equals("A"))
+            {
             ID = Integer.parseInt(tablaEmp.getValueAt(tablaEmp.getSelectedRow(),0)+"");
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
+            if(JOptionPane.showConfirmDialog (null, "Desea dar de baja","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
+               erp.SQL("update empaques set estatus='B' where idempaque ="+ID);
+            }
+            }else{
+                JOptionPane.showMessageDialog(null,"Seleccione un producto con estatus A","Error" ,JOptionPane.INFORMATION_MESSAGE);
+            }
+        }else {
+            JOptionPane.showMessageDialog(null,"Seleccione un renglon","Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
-        //confirma eliminacion
-        int dialogButton = JOptionPane.YES_NO_OPTION;
-            JOptionPane.showConfirmDialog (null, "Desea eliminar","Informacion", dialogButton);
-            if(dialogButton == JOptionPane.YES_OPTION) {
-                erp.SQL("update Empaques set estatus = 'B' where idEmpaque = "+ID);
-            if(dialogButton == JOptionPane.NO_OPTION) {
-                  remove(dialogButton);
-                }
-              }
     }//GEN-LAST:event_btnEliDeduccionesActionPerformed
 
     private void btnAgregarDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDeActionPerformed
@@ -222,9 +225,23 @@ public void borrarTabla(JTable tab) {
     }//GEN-LAST:event_btnAgregarDeMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        borrarTabla(tablaEmp);
-        erp.OpenCon("ERP", "erp");
-        erp.Emp_Search(txfConsultar.getText(), tablaEmp);
+        int ID = 0;
+        int con=tablaEmp.getSelectedRow();
+        
+        if (con>=0){
+            String es= String.valueOf(tablaEmp.getValueAt(con,3));
+            if(es.equals("B"))
+            {
+            ID = Integer.parseInt(tablaEmp.getValueAt(tablaEmp.getSelectedRow(),0)+"");
+            if(JOptionPane.showConfirmDialog (null, "Desea dar de alta","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
+               erp.SQL("update empaques set estatus='A' where idempaque ="+ID);
+            }
+            }else{
+                JOptionPane.showMessageDialog(null,"Seleccione un producto con estatus B","Error" ,JOptionPane.INFORMATION_MESSAGE);
+            }
+        }else {
+            JOptionPane.showMessageDialog(null,"Seleccione un renglon","Error" ,JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

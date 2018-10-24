@@ -89,7 +89,7 @@
                 <Column editable="false" title="CODIGOPOSTAL" type="java.lang.Object"/>
                 <Column editable="false" title="PRESUPUESTO" type="java.lang.Object"/>
                 <Column editable="false" title="ESTATUS" type="java.lang.Object"/>
-                <Column editable="false" title="CUIDAD" type="java.lang.Object"/>
+                <Column editable="false" title="CIUDAD" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">

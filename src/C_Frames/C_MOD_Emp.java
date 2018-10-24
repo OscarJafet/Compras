@@ -46,13 +46,13 @@ public class C_MOD_Emp extends javax.swing.JFrame {
         cap = new javax.swing.JTextField();
         btnEliminarDed = new javax.swing.JButton();
         btnAgregarDed = new javax.swing.JButton();
-        cmb = new javax.swing.JComboBox<>();
+        cmb = new javax.swing.JComboBox<String>();
 
         setBackground(new java.awt.Color(254, 254, 254));
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(254, 254, 254));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "EDITAR DEDUCCIONES", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 0))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "EDITAR EMPAQUES", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 0))); // NOI18N
         jPanel1.setForeground(new java.awt.Color(254, 254, 254));
 
         lblIdDeduccion.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
@@ -74,12 +74,27 @@ public class C_MOD_Emp extends javax.swing.JFrame {
         Id.setEditable(false);
         Id.setBackground(new java.awt.Color(254, 254, 254));
         Id.setForeground(new java.awt.Color(1, 1, 1));
+        Id.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                IdKeyTyped(evt);
+            }
+        });
 
         nom.setBackground(new java.awt.Color(254, 254, 254));
         nom.setForeground(new java.awt.Color(1, 1, 1));
+        nom.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nomKeyTyped(evt);
+            }
+        });
 
         cap.setBackground(new java.awt.Color(254, 254, 254));
         cap.setForeground(new java.awt.Color(1, 1, 1));
+        cap.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                capKeyTyped(evt);
+            }
+        });
 
         btnEliminarDed.setBackground(new java.awt.Color(254, 254, 254));
         btnEliminarDed.setForeground(new java.awt.Color(254, 254, 254));
@@ -103,7 +118,7 @@ public class C_MOD_Emp extends javax.swing.JFrame {
             }
         });
 
-        cmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B" }));
+        cmb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Estado", "A", "B" }));
         cmb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbActionPerformed(evt);
@@ -184,6 +199,10 @@ public class C_MOD_Emp extends javax.swing.JFrame {
     private void btnAgregarDedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDedActionPerformed
  //ing code here:
         erp.OpenCon("ERP", "erp");
+        String no = nom.getText();
+        String ca= this.cap.getText();
+        int es= cmb.getSelectedIndex();
+        if (!no.isEmpty()&&!ca.isEmpty()&&es!=0){
        int ID =Integer.parseInt(Id.getText());
         float cap = 0;
         try{
@@ -193,6 +212,9 @@ public class C_MOD_Emp extends javax.swing.JFrame {
         
         }
        erp.SQL("update Empaques set nombre = '"+nom.getText()+"',capacidad = "+cap+", estatus = '"+cmb.getItemAt(cmb.getSelectedIndex()).charAt(0)+"' where idEmpaque = "+ID);
+       }else{
+           JOptionPane.showMessageDialog(null,"No se permiten campos vacios o estatus sin asignar","Error" ,JOptionPane.INFORMATION_MESSAGE);
+       }
     }//GEN-LAST:event_btnAgregarDedActionPerformed
 
     private void btnEliminarDedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDedActionPerformed
@@ -202,6 +224,27 @@ public class C_MOD_Emp extends javax.swing.JFrame {
     private void cmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbActionPerformed
+
+    private void IdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IdKeyTyped
+                char c=evt.getKeyChar();
+        if((c<'0' || c>'9')){
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_IdKeyTyped
+
+    private void nomKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nomKeyTyped
+                        char c=evt.getKeyChar();
+        if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')){
+            evt.consume();
+        }
+    }//GEN-LAST:event_nomKeyTyped
+
+    private void capKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_capKeyTyped
+                char c=evt.getKeyChar();
+        if((c<'0' || c>'9')&&(c<'.' || c>'.')){
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_capKeyTyped
 
     /**
      * @param args the command line arguments

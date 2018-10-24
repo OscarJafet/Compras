@@ -209,6 +209,8 @@ public void borrarTabla(JTable tab) {
     }//GEN-LAST:event_btnConsultarProductoActionPerformed
 
     private void btnEditarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProductoActionPerformed
+        int con=tblPro.getSelectedRow();
+        if (con>=0){
         String a=(String) tblPro.getValueAt(tblPro.getSelectedRow(),0);
         String b=(String) tblPro.getValueAt(tblPro.getSelectedRow(),1);
         String c=(String) tblPro.getValueAt(tblPro.getSelectedRow(),2);
@@ -230,6 +232,9 @@ public void borrarTabla(JTable tab) {
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
         pro.txfIDProducto.setText(ID+"");
+        }else {
+            JOptionPane.showMessageDialog(null,"Seleccione un producto","Error" ,JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnEditarProductoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

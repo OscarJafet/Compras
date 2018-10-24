@@ -49,7 +49,7 @@ public class C_ADD_Categorias extends javax.swing.JFrame {
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(254, 254, 254));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(40, 183, 41)), "AGREGAR CIUDAD", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 0))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(40, 183, 41)), "AGREGAR CATEGORIA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 0))); // NOI18N
         jPanel1.setForeground(new java.awt.Color(254, 254, 254));
 
         jLabel1.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
@@ -181,13 +181,20 @@ public class C_ADD_Categorias extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+      String n= C_ADD_Categoria_txfNom.getText();
+      int es= C_ADD_Categoria_cmbEst.getSelectedIndex();
       erp.OpenCon("ERP", "erp");
+      if(!n.isEmpty()&& es!=0){
       erp.SQL("insert into Categorias values (ERP.CatID.nextval, '"+C_ADD_Categoria_txfNom.getText()+"','"+ C_ADD_Categoria_cmbEst.getItemAt(C_ADD_Categoria_cmbEst.getSelectedIndex()).charAt(0)+"')");
+      }else{
+           JOptionPane.showMessageDialog(null,"No se permiten campos vacios o estatus sin asignar","Error" ,JOptionPane.INFORMATION_MESSAGE);
+       }
+      
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void C_ADD_Categoria_txfNomKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_Categoria_txfNomKeyTyped
         char c=evt.getKeyChar();
-        if((c<'0' || c>'9')&&(c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')){
+        if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')){
             evt.consume();
         } 
     }//GEN-LAST:event_C_ADD_Categoria_txfNomKeyTyped

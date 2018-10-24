@@ -6,9 +6,12 @@
 package C_Frames;
 
 import C_Conexion.Conexion;
+import static C_Conexion.Conexion.con;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.StringTokenizer;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -56,7 +59,7 @@ public class C_PresentacionP extends javax.swing.JPanel {
         btnAgregarDe = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        cmbSe = new javax.swing.JComboBox<>();
+        cmbSe = new javax.swing.JComboBox<String>();
 
         setBackground(new java.awt.Color(254, 254, 254));
         setForeground(new java.awt.Color(254, 254, 254));
@@ -67,6 +70,11 @@ public class C_PresentacionP extends javax.swing.JPanel {
         txfConsultar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txfConsultarMouseClicked(evt);
+            }
+        });
+        txfConsultar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfConsultarKeyTyped(evt);
             }
         });
         add(txfConsultar);
@@ -174,7 +182,7 @@ public class C_PresentacionP extends javax.swing.JPanel {
         add(jButton1);
         jButton1.setBounds(38, 468, 97, 73);
 
-        cmbSe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estatus", "A", "B" }));
+        cmbSe.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Estatus", "A", "B" }));
         cmbSe.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cmbSeMouseClicked(evt);
@@ -185,8 +193,14 @@ public class C_PresentacionP extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarDeduccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarDeduccionesActionPerformed
-
-        C_MOD_Presentacion erp = new C_MOD_Presentacion();
+int A = 0;
+        try{
+            A = Integer.parseInt((tablaPress.getValueAt(tablaPress.getSelectedRow(), 0)+""));
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,"Selecione un valor valido de la tabla","Información", JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(A >= 1){
+            C_MOD_Presentacion erp = new C_MOD_Presentacion();
          erp.setLocationRelativeTo(erp);
         erp.setVisible(true);
         int ID = 0;
@@ -231,6 +245,7 @@ public class C_PresentacionP extends javax.swing.JPanel {
                 erp.cmbEmp.setSelectedIndex(i);
             }
         }
+        }
     
     }//GEN-LAST:event_btnEditarDeduccionesActionPerformed
 public void borrarTabla(JTable tab) {
@@ -257,14 +272,14 @@ public void borrarTabla(JTable tab) {
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
         //confirma eliminacion
-        int dialogButton = JOptionPane.YES_NO_OPTION;
-            JOptionPane.showConfirmDialog (null, "¿Desea eliminarlo?","Informacion", dialogButton);
-            if(dialogButton == JOptionPane.YES_OPTION) {
+            if(JOptionPane.showConfirmDialog(null, "¿Desea darlo de baja?","Informacion",
+        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 erp.SQL("update PresentacionesProducto set estatus = 'B' where idPresentacion = "+ID);
-            if(dialogButton == JOptionPane.NO_OPTION) {
-                  remove(dialogButton);
-                }
-              }
+              }else{
+                JOptionPane.showMessageDialog(null,"NO Eliminado","Infromación" ,JOptionPane.INFORMATION_MESSAGE);
+            }
+              btnConsultar.doClick();
+            
     }//GEN-LAST:event_btnEliDeduccionesActionPerformed
 
     private void btnAgregarDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDeActionPerformed
@@ -279,9 +294,23 @@ public void borrarTabla(JTable tab) {
     }//GEN-LAST:event_btnAgregarDeMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        borrarTabla(tablaPress);
-        erp.OpenCon("ERP", "erp");
-        erp.Presentacion_seacrh(txfConsultar.getText(), tablaPress,cmbSe.getItemAt(cmbSe.getSelectedIndex()).charAt(0));
+       //System.out.println(tablaPress.getValueAt(tablaPress.getSelectedRow(), 6));
+        if ((tablaPress.getValueAt(tablaPress.getSelectedRow(), 6)+"").equals("B")){
+          int ID = 0;
+          try{
+          ID = Integer.parseInt(""+tablaPress.getValueAt(tablaPress.getSelectedRow(), 0));
+            if(JOptionPane.showConfirmDialog(null, "¿Desea darlo de alta?","Informacion",
+        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                erp.SQL("update PresentacionesProducto set estatus = 'A' where idPresentacion = "+ID);
+            
+              }else{
+                JOptionPane.showMessageDialog(null,"NO Actualizado","Infromación" ,JOptionPane.INFORMATION_MESSAGE);
+            }
+          }catch(Exception e){
+              JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
+          }
+      } 
+        btnConsultar.doClick();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cmbSeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbSeMouseClicked
@@ -299,6 +328,13 @@ public void borrarTabla(JTable tab) {
         if(evt.getClickCount()==2)
         btnEditarDeducciones.doClick();
     }//GEN-LAST:event_tablaPressMouseClicked
+
+    private void txfConsultarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfConsultarKeyTyped
+                        char c=evt.getKeyChar();
+        if((c<'0' || c>'9')&&(c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txfConsultarKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

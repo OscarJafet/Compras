@@ -47,21 +47,31 @@ public class C_ADD_Emp extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        cmb = new javax.swing.JComboBox<>();
+        cmb = new javax.swing.JComboBox<String>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(254, 254, 254));
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(254, 254, 254));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "AGREGAR DEDUCCIONES", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 0, 0))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "AGREGAr EMPAQUE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 0, 0))); // NOI18N
         jPanel1.setForeground(new java.awt.Color(1, 1, 1));
 
         nom.setBackground(new java.awt.Color(254, 254, 254));
         nom.setForeground(new java.awt.Color(1, 1, 1));
+        nom.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nomKeyTyped(evt);
+            }
+        });
 
         cap.setBackground(new java.awt.Color(254, 254, 254));
         cap.setForeground(new java.awt.Color(1, 1, 1));
+        cap.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                capKeyTyped(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(254, 254, 254));
         jButton1.setForeground(new java.awt.Color(254, 254, 254));
@@ -76,6 +86,11 @@ public class C_ADD_Emp extends javax.swing.JFrame {
 
         idu.setBackground(new java.awt.Color(254, 254, 254));
         idu.setForeground(new java.awt.Color(1, 1, 1));
+        idu.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                iduKeyTyped(evt);
+            }
+        });
 
         btnLimpiar.setBackground(new java.awt.Color(254, 254, 254));
         btnLimpiar.setForeground(new java.awt.Color(254, 254, 254));
@@ -113,7 +128,7 @@ public class C_ADD_Emp extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(1, 1, 1));
         jLabel6.setText("ESTATUS");
 
-        cmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estado", "A", "B" }));
+        cmb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Estado", "A", "B" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -189,6 +204,11 @@ public class C_ADD_Emp extends javax.swing.JFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         int idu = 0;
         float cap = 0;
+        String no = nom.getText();
+        String id= this.idu.getText();
+        String ca= this.cap.getText();
+        int es= cmb.getSelectedIndex();
+        if (!no.isEmpty()&&!id.isEmpty()&&!ca.isEmpty()&&es!=0){
         try{
             idu = Integer.parseInt(this.idu.getText());
             cap = Float.parseFloat(this.cap.getText());
@@ -196,8 +216,10 @@ public class C_ADD_Emp extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         
         }//insert into Empaques values(ERP.EmpID.nextval,'nombre',500,'A',1);
-        erp.SQL("insert into Empaques values(ERP.EmpID.nextval,'"+nom.getText()+"',"+cap+",'"+cmb.getItemAt(cmb.getSelectedIndex()).charAt(0)+"',"+idu+")");
-        
+        erp.SQL("insert into Empaques values(ERP.EMID.nextval,'"+nom.getText()+"',"+cap+",'"+cmb.getItemAt(cmb.getSelectedIndex()).charAt(0)+"',"+idu+")");
+        }else{
+           JOptionPane.showMessageDialog(null,"No se permiten campos vacios o estatus sin asignar","Error" ,JOptionPane.INFORMATION_MESSAGE);
+       }
 //addDeducciones(txfNombre.getText(), txfDesc.getText(), Float.valueOf(txfPorcentaje.getText())); // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -211,6 +233,28 @@ public class C_ADD_Emp extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void nomKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nomKeyTyped
+                char c=evt.getKeyChar();
+        if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')){
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_nomKeyTyped
+
+    private void capKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_capKeyTyped
+                char c=evt.getKeyChar();
+        if((c<'0' || c>'9')&&(c<'.' || c>'.')){
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_capKeyTyped
+
+    private void iduKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_iduKeyTyped
+                    char c=evt.getKeyChar();
+        if((c<'0' || c>'9')){
+            evt.consume();
+        }    
+    // TODO add your handling code here:
+    }//GEN-LAST:event_iduKeyTyped
 
     /**
      * @param args the command line arguments

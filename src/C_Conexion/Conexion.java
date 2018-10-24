@@ -141,7 +141,7 @@ public class Conexion {
     public void Emp_Search(String Nombre,JTable tabla){
          DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
         if(Nombre.isEmpty())
-            Sql = "select * from Empaques";
+            Sql = "select * from Empaques where estatus='A'";
         else if(!Nombre.isEmpty())
             Sql = "select * from Empaques where nombre = '"+Nombre+"'";
         
@@ -216,6 +216,9 @@ public class Conexion {
                 String cat = rs.getString("idcategoria");
                 Object datosRenglon[]={ idPro, Nom, descripcion,ingrediente,banda,apli,uso,estatus,lab,cat};
                 tablaTemp.addRow(datosRenglon);
+            }
+            if (tablaTemp.getRowCount() == 0){
+                JOptionPane.showMessageDialog(null,"El producto no se encuentra en la Base de Datos","Información",JOptionPane.INFORMATION_MESSAGE);
             }
             
             tabla.setModel(tablaTemp);
