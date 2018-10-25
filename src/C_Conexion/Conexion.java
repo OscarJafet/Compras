@@ -500,7 +500,52 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-      
+
+         public void ProductoProveedor_Search(String Nombre,JTable tabla){
+         DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
+        if(Nombre.isEmpty())
+            Sql = "select * from ProductosProveedor where estatus='A'";
+        else if(!Nombre.isEmpty())
+            Sql = "select * from ProductosProveedor where nombre like '"+Nombre+"%'";
+        
+               try {
+            stn=(Statement) con.createStatement();
+            rs=stn.executeQuery(Sql);
+        
+            while(rs.next()){
+                String dias=rs.getString("diasretardo");
+                String precioes = rs.getString("precioestandar");
+                String precioul = rs.getString("precioultimacompra");
+                String cantmin = rs.getString("cantminpedir");
+                String cantmax = rs.getString("cantmaxpedir");
+                String estatus = rs.getString("estatus");
+                Object datosRenglon[]={dias,precioes,precioul,cantmin,cantmax,estatus};
+                tablaTemp.addRow(datosRenglon);
+            }
+//            if (tablaTemp.getRowCount() == 0){
+//                JOptionPane.showMessageDialog(null,"El producto no se encuentra en la Base de Datos","Información",JOptionPane.INFORMATION_MESSAGE);
+//            }
+            Sql = "select Proveedores.nombre from ERP.proveedores inner join ERP.productosproveedor on productosproveedor.idproveedor=erp.proveedores.idproveedor";
+            stn= con.createStatement();
+            rs=stn.executeQuery(Sql);
+            for (int i = 0; rs.next(); i++) {
+                 String nombre=rs.getString("nombre");
+                 tablaTemp.setValueAt(" "+nombre, i, 0);
+            }
+            
+            Sql = "select * from PresentacionesProducto";
+            stn= con.createStatement();
+            rs=stn.executeQuery(Sql);
+            for (int i = 0; rs.next(); i++) {
+                 String id=rs.getString("idpresentacion");
+                 tablaTemp.setValueAt(id, i, 1);
+            }
+            tabla.setModel(tablaTemp);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void setLocationRelativeTo(Conexion erp) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
