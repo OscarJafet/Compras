@@ -514,42 +514,37 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
 
          public void ProductoProveedor_Search(String Nombre,JTable tabla){
          DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
-        if(Nombre.isEmpty())
-            Sql = "select * from ProductosProveedor where estatus='A'";
+         if(Nombre.isEmpty())
+            Sql = "select pro.diasretardo, pro.precioestandar, \n" +
+                    "pro.precioultimacompra,pro.cantminpedir,pro.cantmaxpedir,pro.estatus,pre.nombre \n" +
+                    "as nom ,prove.nombre as nomb from ProductosProveedor pro \n" +
+                    "inner join PresentacionesProducto pre on pro.idpresentacion=pre.idpresentacion \n" +
+                     "inner join Proveedores prove on \n" +
+                        " pro.idproveedor=prove.idproveedor where pro.estatus='A'";
+            
         else if(!Nombre.isEmpty())
-            Sql = "select * from ProductosProveedor where nombre like '"+Nombre+"%'";
+            Sql = "select pro.diasretardo, pro.precioestandar, \n" +
+                    "pro.precioultimacompra,pro.cantminpedir,pro.cantmaxpedir,pro.estatus,pre.nombre \n" +
+                    "as nom ,prove.nombre as nomb from ProductosProveedor pro \n" +
+                    "inner join PresentacionesProducto pre on pro.idpresentacion=pre.idpresentacion \n" +
+                     "inner join Proveedores prove on \n" +
+                        " pro.idproveedor=prove.idproveedor where prove.nombre like '"+Nombre+"%'";
         
                try {
             stn=(Statement) con.createStatement();
             rs=stn.executeQuery(Sql);
         
             while(rs.next()){
+                String pro= rs.getString("nomb");
+                String pre= rs.getString("nom");
                 String dias=rs.getString("diasretardo");
                 String precioes = rs.getString("precioestandar");
                 String precioul = rs.getString("precioultimacompra");
                 String cantmin = rs.getString("cantminpedir");
                 String cantmax = rs.getString("cantmaxpedir");
                 String estatus = rs.getString("estatus");
-                Object datosRenglon[]={dias,precioes,precioul,cantmin,cantmax,estatus};
+                Object datosRenglon[]={pro,pre,dias,precioes,precioul,cantmin,cantmax,estatus};
                 tablaTemp.addRow(datosRenglon);
-            }
-//            if (tablaTemp.getRowCount() == 0){
-//                JOptionPane.showMessageDialog(null,"El producto no se encuentra en la Base de Datos","Información",JOptionPane.INFORMATION_MESSAGE);
-//            }
-            Sql = "select Proveedores.nombre from ERP.proveedores inner join ERP.productosproveedor on productosproveedor.idproveedor=erp.proveedores.idproveedor";
-            stn= con.createStatement();
-            rs=stn.executeQuery(Sql);
-            for (int i = 0; rs.next(); i++) {
-                 String nombre=rs.getString("nombre");
-                 tablaTemp.setValueAt(" "+nombre, i, 0);
-            }
-            
-            Sql = "select * from PresentacionesProducto";
-            stn= con.createStatement();
-            rs=stn.executeQuery(Sql);
-            for (int i = 0; rs.next(); i++) {
-                 String id=rs.getString("idpresentacion");
-                 tablaTemp.setValueAt(id, i, 1);
             }
             tabla.setModel(tablaTemp);
         } catch (SQLException ex) {

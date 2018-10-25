@@ -289,7 +289,7 @@ public void borrarTabla(JTable tab) {
     private void txfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyReleased
         borrarTabla(tblProPro);
         erp.OpenCon("ERP", "erp");
-        erp.Producto_Search(txfBuscar.getText(), tblProPro);
+        erp.ProductoProveedor_Search(txfBuscar.getText(), tblProPro);
     }//GEN-LAST:event_txfBuscarKeyReleased
       public void ProcedimientoProductos(){
            int ID = 0;
