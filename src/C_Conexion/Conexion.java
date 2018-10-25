@@ -466,11 +466,19 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
     }
     public void Proveedores_Search(String Nombre,JTable tabla){
          DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
-        if(Nombre.isEmpty())
-            Sql = "select * from Proveedores where estatus='A'";
+        
+         if(Nombre.isEmpty())
+            Sql = "select p.idproveedor, p.nombre, p.telefono,"
+                    + "p.email,p.direccion,p.colonia,"
+                    + "p.codigopostal,p.estatus, cd.nombre as nom from Proveedores p inner join Ciudad cd "
+                    + "on p.idciudad=cd.idciudad where p.estatus='A'";
             
         else if(!Nombre.isEmpty())
-            Sql = "select * from Proveedores where nombre like '"+Nombre+"%'";
+            Sql = "select p.idproveedor, p.nombre, p.telefono,"
+                    + "p.email,p.direccion,p.colonia,"
+                    + "p.codigopostal,p.estatus, cd.nombre as nom from Proveedores p inner join Ciudad cd "
+                    + "on p.idciudad=cd.idciudad"
+                    + " where p.nombre like '"+Nombre+"%'";
         
                try {
             stn=(Statement) con.createStatement();
@@ -485,16 +493,19 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
                 String col=rs.getString("colonia");
                 String cp=rs.getString("codigopostal");
                 String Stat = rs.getString("estatus");
-                Object datosRenglon[]={idsuc,Nom,email,tel,dir,col,cp,Stat};
+                String ciudad = rs.getString("nom");
+                Object datosRenglon[]={idsuc,Nom,email,tel,dir,col,cp,Stat,ciudad};
                 tablaTemp.addRow(datosRenglon);
             }
-            Sql = "select Ciudad.nombre from ERP.ciudad inner join ERP.proveedores on proveedores.idciudad=erp.ciudad.idciudad";
-            stn= con.createStatement();
-            rs=stn.executeQuery(Sql);
-            for (int i = 0; rs.next(); i++) {
-                 String nombre=rs.getString("nombre");
-                 tablaTemp.setValueAt(" "+nombre, i, 8);
-            }
+//            Sql = "select Ciudad.nombre from ERP.ciudad\n"
+//                    + "inner join ERP.proveedores\n"
+//                    + "on proveedores.idciudad=erp.ciudad.idciudad";
+//            stn= con.createStatement();
+//            rs=stn.executeQuery(Sql);
+//            for (int i = 0; rs.next(); i++) {
+//                 String nombre=rs.getString("nombre");
+//                 tablaTemp.setValueAt(" "+nombre, i, 8);
+//            }
             tabla.setModel(tablaTemp);
         } catch (SQLException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
