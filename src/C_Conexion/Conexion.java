@@ -197,7 +197,7 @@ public class Conexion {
         if(Nombre.isEmpty())
             Sql = "select * from Productos where estatus='A'";
         else if(!Nombre.isEmpty())
-            Sql = "select * from Productos where nombre = '"+Nombre+"'";
+            Sql = "select * from Productos where nombre like '"+Nombre+"%'";
         
                try {
             stn=(Statement) con.createStatement();

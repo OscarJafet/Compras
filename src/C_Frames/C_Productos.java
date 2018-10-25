@@ -58,6 +58,9 @@ public class C_Productos extends javax.swing.JPanel {
         txfBuscar.setBackground(new java.awt.Color(254, 254, 254));
         txfBuscar.setForeground(new java.awt.Color(1, 1, 1));
         txfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txfBuscarKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txfBuscarKeyTyped(evt);
             }
@@ -282,6 +285,12 @@ public void borrarTabla(JTable tab) {
          pro.setVisible(true);
          }
     }//GEN-LAST:event_tblProMouseClicked
+
+    private void txfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyReleased
+        borrarTabla(tblPro);
+        erp.OpenCon("ERP", "erp");
+        erp.Producto_Search(txfBuscar.getText(), tblPro);
+    }//GEN-LAST:event_txfBuscarKeyReleased
       public void ProcedimientoProductos(){
            int ID = 0;
      
