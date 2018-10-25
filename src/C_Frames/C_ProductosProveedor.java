@@ -20,13 +20,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Jose
  */
-public class C_Productos extends javax.swing.JPanel {
+public class C_ProductosProveedor extends javax.swing.JPanel {
 
     /**
      * Creates new form Percepciones1
      */
     Conexion erp;
-    public C_Productos() {
+    public C_ProductosProveedor() {
         initComponents();
         erp = new Conexion();
     }
@@ -41,12 +41,12 @@ public class C_Productos extends javax.swing.JPanel {
     private void initComponents() {
 
         txfBuscar = new javax.swing.JTextField();
-        btnConsultarProducto = new javax.swing.JButton();
+        btnConsultarProPro = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblPro = new javax.swing.JTable();
-        btnAgregarProducto = new javax.swing.JButton();
-        btnEditarProducto = new javax.swing.JButton();
-        btnEliminarProducto = new javax.swing.JButton();
+        tblProPro = new javax.swing.JTable();
+        btnAgregarProPro = new javax.swing.JButton();
+        btnEditarProProPro = new javax.swing.JButton();
+        btnEliminarProPro = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -68,82 +68,82 @@ public class C_Productos extends javax.swing.JPanel {
         add(txfBuscar);
         txfBuscar.setBounds(200, 30, 330, 30);
 
-        btnConsultarProducto.setBackground(new java.awt.Color(254, 254, 254));
-        btnConsultarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon-buscar.png"))); // NOI18N
-        btnConsultarProducto.setBorderPainted(false);
-        btnConsultarProducto.setContentAreaFilled(false);
-        btnConsultarProducto.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultarProPro.setBackground(new java.awt.Color(254, 254, 254));
+        btnConsultarProPro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon-buscar.png"))); // NOI18N
+        btnConsultarProPro.setBorderPainted(false);
+        btnConsultarProPro.setContentAreaFilled(false);
+        btnConsultarProPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarProductoActionPerformed(evt);
+                btnConsultarProProActionPerformed(evt);
             }
         });
-        add(btnConsultarProducto);
-        btnConsultarProducto.setBounds(540, 10, 60, 50);
+        add(btnConsultarProPro);
+        btnConsultarProPro.setBounds(540, 10, 60, 50);
 
-        tblPro.setModel(new javax.swing.table.DefaultTableModel(
+        tblProPro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "IDPRODUCTO", "NOMBRE", "DESCRIPCION", "INGREDIENTEACTIVO", "BANDATOXICOLOGICA", "APLICACION", "USO", "ESTATUS", "IDLABORATORIO", "IDCATEGORIA"
+                "PROVEEDOR", "PRESENTACION", "DIASRETARDO", "PRECIOESTANDAR", "PRECIOULTIMACOMPRA", "CANTMINPEDIR", "CANTMAXPEDIR", "ESTATUS"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tblPro.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tblPro.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblProPro.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblProPro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblProMouseClicked(evt);
+                tblProProMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblPro);
+        jScrollPane1.setViewportView(tblProPro);
 
         add(jScrollPane1);
         jScrollPane1.setBounds(30, 80, 789, 311);
 
-        btnAgregarProducto.setBackground(new java.awt.Color(254, 254, 254));
-        btnAgregarProducto.setForeground(new java.awt.Color(254, 254, 254));
-        btnAgregarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregar.png"))); // NOI18N
-        btnAgregarProducto.setBorderPainted(false);
-        btnAgregarProducto.setContentAreaFilled(false);
-        btnAgregarProducto.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregarProPro.setBackground(new java.awt.Color(254, 254, 254));
+        btnAgregarProPro.setForeground(new java.awt.Color(254, 254, 254));
+        btnAgregarProPro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregar.png"))); // NOI18N
+        btnAgregarProPro.setBorderPainted(false);
+        btnAgregarProPro.setContentAreaFilled(false);
+        btnAgregarProPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarProductoActionPerformed(evt);
+                btnAgregarProProActionPerformed(evt);
             }
         });
-        add(btnAgregarProducto);
-        btnAgregarProducto.setBounds(760, 430, 81, 57);
+        add(btnAgregarProPro);
+        btnAgregarProPro.setBounds(760, 430, 81, 57);
 
-        btnEditarProducto.setBackground(new java.awt.Color(254, 254, 254));
-        btnEditarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon-cambiar.png"))); // NOI18N
-        btnEditarProducto.setBorderPainted(false);
-        btnEditarProducto.setContentAreaFilled(false);
-        btnEditarProducto.addActionListener(new java.awt.event.ActionListener() {
+        btnEditarProProPro.setBackground(new java.awt.Color(254, 254, 254));
+        btnEditarProProPro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon-cambiar.png"))); // NOI18N
+        btnEditarProProPro.setBorderPainted(false);
+        btnEditarProProPro.setContentAreaFilled(false);
+        btnEditarProProPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarProductoActionPerformed(evt);
+                btnEditarProProProActionPerformed(evt);
             }
         });
-        add(btnEditarProducto);
-        btnEditarProducto.setBounds(580, 430, 81, 57);
+        add(btnEditarProProPro);
+        btnEditarProProPro.setBounds(580, 430, 81, 57);
 
-        btnEliminarProducto.setBackground(new java.awt.Color(254, 254, 254));
-        btnEliminarProducto.setForeground(new java.awt.Color(254, 254, 254));
-        btnEliminarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borar1-icon.png"))); // NOI18N
-        btnEliminarProducto.setBorderPainted(false);
-        btnEliminarProducto.setContentAreaFilled(false);
-        btnEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminarProPro.setBackground(new java.awt.Color(254, 254, 254));
+        btnEliminarProPro.setForeground(new java.awt.Color(254, 254, 254));
+        btnEliminarProPro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borar1-icon.png"))); // NOI18N
+        btnEliminarProPro.setBorderPainted(false);
+        btnEliminarProPro.setContentAreaFilled(false);
+        btnEliminarProPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarProductoActionPerformed(evt);
+                btnEliminarProProActionPerformed(evt);
             }
         });
-        add(btnEliminarProducto);
-        btnEliminarProducto.setBounds(690, 420, 52, 67);
+        add(btnEliminarProPro);
+        btnEliminarProPro.setBounds(690, 420, 52, 67);
 
         jLabel1.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(1, 1, 1));
@@ -170,20 +170,20 @@ public class C_Productos extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txfConsultarActionPerformed
 
-    private void btnAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoActionPerformed
-        C_ADD_Productos erp = new C_ADD_Productos();
+    private void btnAgregarProProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProProActionPerformed
+        C_ADD_ProductosProveedor erp = new C_ADD_ProductosProveedor();
         erp.setLocationRelativeTo(erp);
         erp.setVisible(true);
-    }//GEN-LAST:event_btnAgregarProductoActionPerformed
+    }//GEN-LAST:event_btnAgregarProProActionPerformed
 
-    private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
+    private void btnEliminarProProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProProActionPerformed
         int ID = 0;
-        int con=tblPro.getSelectedRow();
+        int con=tblProPro.getSelectedRow();
         if (con>=0){
-            String es= String.valueOf(tblPro.getValueAt(con,7));
+            String es= String.valueOf(tblProPro.getValueAt(con,7));
             if(es.equals("A"))
             {    
-            ID = Integer.parseInt(tblPro.getValueAt(tblPro.getSelectedRow(),0)+"");
+            ID = Integer.parseInt(tblProPro.getValueAt(tblProPro.getSelectedRow(),0)+"");
             if(JOptionPane.showConfirmDialog (null, "Desea eliminar","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
                 ProcedimientoProductos();
             }
@@ -193,7 +193,7 @@ public class C_Productos extends javax.swing.JPanel {
         }else {
             JOptionPane.showMessageDialog(null,"Seleccione un producto","Error" ,JOptionPane.INFORMATION_MESSAGE);
         }       //confirma eliminacion
-    }//GEN-LAST:event_btnEliminarProductoActionPerformed
+    }//GEN-LAST:event_btnEliminarProProActionPerformed
 public void borrarTabla(JTable tab) {
         try {
             DefaultTableModel tabT = (DefaultTableModel) tab.getModel();
@@ -205,22 +205,22 @@ public void borrarTabla(JTable tab) {
         }
     }
     
-    private void btnConsultarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarProductoActionPerformed
-        borrarTabla(tblPro);
+    private void btnConsultarProProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarProProActionPerformed
+        borrarTabla(tblProPro);
         erp.OpenCon("ERP", "erp");
-        erp.Producto_Search(txfBuscar.getText(),tblPro);
-    }//GEN-LAST:event_btnConsultarProductoActionPerformed
+        erp.ProductoProveedor_Search(txfBuscar.getText(),tblProPro);
+    }//GEN-LAST:event_btnConsultarProProActionPerformed
 
-    private void btnEditarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProductoActionPerformed
-        int con=tblPro.getSelectedRow();
+    private void btnEditarProProProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProProProActionPerformed
+        int con=tblProPro.getSelectedRow();
         if (con>=0){
-        String a=(String) tblPro.getValueAt(tblPro.getSelectedRow(),0);
-        String b=(String) tblPro.getValueAt(tblPro.getSelectedRow(),1);
-        String c=(String) tblPro.getValueAt(tblPro.getSelectedRow(),2);
-        String ce=(String) tblPro.getValueAt(tblPro.getSelectedRow(),3);
-        String f=(String) tblPro.getValueAt(tblPro.getSelectedRow(),4);
-        String h=(String) tblPro.getValueAt(tblPro.getSelectedRow(),5);
-        String i=(String) tblPro.getValueAt(tblPro.getSelectedRow(),6);
+        String a=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),0);
+        String b=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),1);
+        String c=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),2);
+        String ce=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),3);
+        String f=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),4);
+        String h=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),5);
+        String i=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),6);
 
         
         
@@ -230,7 +230,7 @@ public void borrarTabla(JTable tab) {
         pro.setVisible(true);
         int ID = 0;
         try{
-            ID = Integer.parseInt(tblPro.getValueAt(tblPro.getSelectedRow(),0)+"");
+            ID = Integer.parseInt(tblProPro.getValueAt(tblProPro.getSelectedRow(),0)+"");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
@@ -238,16 +238,16 @@ public void borrarTabla(JTable tab) {
         }else {
             JOptionPane.showMessageDialog(null,"Seleccione un producto","Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
-    }//GEN-LAST:event_btnEditarProductoActionPerformed
+    }//GEN-LAST:event_btnEditarProProProActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int ID = 0;
-        int con=tblPro.getSelectedRow();
+        int con=tblProPro.getSelectedRow();
         if (con>=0){
-            String es= String.valueOf(tblPro.getValueAt(con,7));
+            String es= String.valueOf(tblProPro.getValueAt(con,7));
             if(es.equals("B"))
             {    
-            ID = Integer.parseInt(tblPro.getValueAt(tblPro.getSelectedRow(),0)+"");
+            ID = Integer.parseInt(tblProPro.getValueAt(tblProPro.getSelectedRow(),0)+"");
             if(JOptionPane.showConfirmDialog (null, "Desea dar de alta","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
                 ProcedimientoProductosAlta();
             }
@@ -266,16 +266,16 @@ public void borrarTabla(JTable tab) {
         }      
     }//GEN-LAST:event_txfBuscarKeyTyped
 
-    private void tblProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProMouseClicked
+    private void tblProProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProProMouseClicked
         String a,b,c,d,e,f,h,i;
         
-        a=(String) tblPro.getValueAt(tblPro.getSelectedRow(),0);
-        b=(String) tblPro.getValueAt(tblPro.getSelectedRow(),1);
-        c=(String) tblPro.getValueAt(tblPro.getSelectedRow(),2);
-        e=(String) tblPro.getValueAt(tblPro.getSelectedRow(),3);
-        f=(String) tblPro.getValueAt(tblPro.getSelectedRow(),4);
-        h=(String) tblPro.getValueAt(tblPro.getSelectedRow(),5);
-        i=(String) tblPro.getValueAt(tblPro.getSelectedRow(),6);
+        a=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),0);
+        b=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),1);
+        c=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),2);
+        e=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),3);
+        f=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),4);
+        h=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),5);
+        i=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),6);
         
                        
          if (evt.getClickCount()==2){
@@ -284,17 +284,17 @@ public void borrarTabla(JTable tab) {
          pro.Datos(a, b, c, e, f, h,i);
          pro.setVisible(true);
          }
-    }//GEN-LAST:event_tblProMouseClicked
+    }//GEN-LAST:event_tblProProMouseClicked
 
     private void txfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyReleased
-        borrarTabla(tblPro);
+        borrarTabla(tblProPro);
         erp.OpenCon("ERP", "erp");
-        erp.Producto_Search(txfBuscar.getText(), tblPro);
+        erp.Producto_Search(txfBuscar.getText(), tblProPro);
     }//GEN-LAST:event_txfBuscarKeyReleased
       public void ProcedimientoProductos(){
            int ID = 0;
      
-           ID = Integer.parseInt(tblPro.getValueAt(tblPro.getSelectedRow(),0)+"");
+           ID = Integer.parseInt(tblProPro.getValueAt(tblProPro.getSelectedRow(),0)+"");
           try {
           CallableStatement cst= con.prepareCall("{call ELPRO (?,?)}");
             cst.setInt(1, ID);
@@ -315,7 +315,7 @@ public void borrarTabla(JTable tab) {
             public void ProcedimientoProductosAlta(){
            int ID = 0;
      
-           ID = Integer.parseInt(tblPro.getValueAt(tblPro.getSelectedRow(),0)+"");
+           ID = Integer.parseInt(tblProPro.getValueAt(tblProPro.getSelectedRow(),0)+"");
           try {
           CallableStatement cst= con.prepareCall("{call ALTAPRO (?,?)}");
             cst.setInt(1, ID);
@@ -334,15 +334,15 @@ public void borrarTabla(JTable tab) {
       }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregarProducto;
-    private javax.swing.JButton btnConsultarProducto;
-    private javax.swing.JButton btnEditarProducto;
-    private javax.swing.JButton btnEliminarProducto;
+    private javax.swing.JButton btnAgregarProPro;
+    private javax.swing.JButton btnConsultarProPro;
+    private javax.swing.JButton btnEditarProProPro;
+    private javax.swing.JButton btnEliminarProPro;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblPro;
+    private javax.swing.JTable tblProPro;
     private javax.swing.JTextField txfBuscar;
     // End of variables declaration//GEN-END:variables
 }
