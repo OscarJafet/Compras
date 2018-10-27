@@ -402,21 +402,21 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
         if (Nombre.isEmpty() && Stat == 'E') {
             Sql = "select PresentacionesProducto.idPresentacion, PresentacionesProducto.precioCompra,\n"
                     + "PresentacionesProducto.precioVenta,PresentacionesProducto.puntoReorden,\n"
-                    + "PresentacionesProducto.idProducto,PresentacionesProducto.idEmpaque,PresentacionesProducto.estatus\n"
+                    + "PresentacionesProducto.idProducto,PresentacionesProducto.idEmpaque,PresentacionesProducto.estatus,PresentacionesProducto.nombre\n"
                     + "from presentacionesproducto\n"
                     + "inner join ERP.Productos\n"
                     + "on PresentacionesProducto.idProducto = Productos.idProducto and Productos.estatus = 'A'";
         } else if (!Nombre.isEmpty() && Stat == 'E') {
             Sql = "select PresentacionesProducto.idPresentacion, PresentacionesProducto.precioCompra,\n"
                     + "PresentacionesProducto.precioVenta,PresentacionesProducto.puntoReorden,\n"
-                    + "PresentacionesProducto.idProducto,PresentacionesProducto.idEmpaque,PresentacionesProducto.estatus\n"
+                    + "PresentacionesProducto.idProducto,PresentacionesProducto.idEmpaque,PresentacionesProducto.estatus,PresentacionesProducto.nombre\n"
                     + "from presentacionesproducto\n"
                     + "inner join ERP.Productos\n"
                     + "on PresentacionesProducto.idProducto = Productos.idProducto and Productos.estatus = 'A' and Productos.nombre = '" + Nombre + "'";
         } else if (Stat == 'A' || Stat == 'B') {
             Sql = "select PresentacionesProducto.idPresentacion, PresentacionesProducto.precioCompra,\n"
                     + "PresentacionesProducto.precioVenta,PresentacionesProducto.puntoReorden,\n"
-                    + "PresentacionesProducto.idProducto,PresentacionesProducto.idEmpaque,PresentacionesProducto.estatus\n"
+                    + "PresentacionesProducto.idProducto,PresentacionesProducto.idEmpaque,PresentacionesProducto.estatus,PresentacionesProducto.nombre\n"
                     + "from presentacionesproducto\n"
                     + "inner join ERP.Productos\n"
                     + "on PresentacionesProducto.idProducto = Productos.idProducto and PresentacionesProducto.estatus = '" + Stat + "'";
@@ -434,7 +434,8 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
                 String idPro = rs.getString("idProducto");
                 String idEmp = rs.getString("idEmpaque");
                 String stat = rs.getString("estatus");
-                Object datosRenglon[]={idPress, preCom, preVent,pReorden,idPro,idEmp,stat};
+                String nom = rs.getString("nombre");
+                Object datosRenglon[]={idPress, preCom, preVent,pReorden,idPro,idEmp,stat,nom};
                 tablaTemp.addRow(datosRenglon);
             }
             Sql = "select Productos.nombre from Productos\n"

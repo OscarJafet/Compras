@@ -124,7 +124,7 @@ public class C_Categorias extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel1.setText("BUSCAR POR NOMBRE DE CIUDAD");
+        jLabel1.setText("BUSCAR POR NOMBRE");
         jLabel1.setToolTipText("");
 
         jButton1.setBackground(new java.awt.Color(254, 254, 254));

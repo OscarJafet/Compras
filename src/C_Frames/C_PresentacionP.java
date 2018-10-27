@@ -59,7 +59,7 @@ public class C_PresentacionP extends javax.swing.JPanel {
         btnAgregarDe = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        cmbSe = new javax.swing.JComboBox<String>();
+        cmbSe = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(254, 254, 254));
         setForeground(new java.awt.Color(254, 254, 254));
@@ -111,11 +111,11 @@ public class C_PresentacionP extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID Presentación", "Precio compra", "Precio venta", "Punto reorden", "ID Producto", "ID Empaque", "Estatus"
+                "ID Presentación", "Precio compra", "Precio venta", "Punto reorden", "ID Producto", "ID Empaque", "Estatus", "Nombre"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -182,7 +182,7 @@ public class C_PresentacionP extends javax.swing.JPanel {
         add(jButton1);
         jButton1.setBounds(38, 468, 97, 73);
 
-        cmbSe.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Estatus", "A", "B" }));
+        cmbSe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estatus", "A", "B" }));
         cmbSe.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cmbSeMouseClicked(evt);
