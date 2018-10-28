@@ -164,7 +164,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         lblreloj.setText("jLabel5");
 
-        C_Pv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Sucursal.png"))); // NOI18N
+        C_Pv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Pr.png"))); // NOI18N
         C_Pv.setToolTipText("Sucursales");
         C_Pv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,7 +172,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        C_PROPOR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Productos.png"))); // NOI18N
+        C_PROPOR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/PrP.png"))); // NOI18N
         C_PROPOR.setToolTipText("Productos");
         C_PROPOR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,7 +180,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        C_PED.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Sucursal.png"))); // NOI18N
+        C_PED.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/C_PED.png"))); // NOI18N
         C_PED.setToolTipText("Sucursales");
         C_PED.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

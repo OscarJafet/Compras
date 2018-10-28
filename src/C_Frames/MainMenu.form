@@ -328,7 +328,7 @@
         <Component class="javax.swing.JButton" name="C_Pv">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/Sucursal.png"/>
+              <Image iconType="3" name="/Imagenes/Pr.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Sucursales"/>
           </Properties>
@@ -339,7 +339,7 @@
         <Component class="javax.swing.JButton" name="C_PROPOR">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/Productos.png"/>
+              <Image iconType="3" name="/Imagenes/PrP.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Productos"/>
           </Properties>
@@ -350,7 +350,7 @@
         <Component class="javax.swing.JButton" name="C_PED">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/Sucursal.png"/>
+              <Image iconType="3" name="/Imagenes/C_PED.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Sucursales"/>
           </Properties>
