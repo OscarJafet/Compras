@@ -130,6 +130,8 @@
                           <Component id="C_Pv" min="-2" pref="60" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="C_PROPOR" min="-2" pref="60" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="C_PED" min="-2" pref="60" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -144,23 +146,28 @@
                       <Group type="102" attributes="0">
                           <Component id="jLabel2" min="-2" pref="225" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="C_Lab" min="-2" pref="60" max="-2" attributes="0"/>
-                              <Component id="C_Cat" min="-2" pref="60" max="-2" attributes="0"/>
-                              <Component id="C_EM" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
-                              <Component id="C_UM" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="C_Lab" min="-2" pref="60" max="-2" attributes="0"/>
+                                      <Component id="C_Cat" min="-2" pref="60" max="-2" attributes="0"/>
+                                      <Component id="C_EM" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                                      <Component id="C_UM" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="C_PD" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                                      <Component id="C_PP" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                                      <Component id="C_ES" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                                      <Component id="C_SC" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="C_Pv" min="-2" pref="60" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="C_PED" alignment="1" min="-2" pref="60" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="C_PD" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
-                              <Component id="C_PP" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
-                              <Component id="C_ES" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
-                              <Component id="C_SC" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="C_Pv" min="-2" pref="60" max="-2" attributes="0"/>
                       </Group>
                       <Component id="C_PROPOR" min="-2" pref="60" max="-2" attributes="0"/>
                   </Group>
@@ -338,6 +345,17 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C_PROPORActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="C_PED">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagenes/Sucursal.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Sucursales"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C_PEDActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

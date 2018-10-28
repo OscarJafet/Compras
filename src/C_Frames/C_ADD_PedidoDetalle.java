@@ -41,10 +41,10 @@ public void llenarCombo1(){
             erp.stn= (Statement) erp.con.createStatement();
             erp.rs= erp.stn.executeQuery("SELECT * FROM ERP.PRESENTACIONESPRODUCTO WHERE ESTATUS = 'A'");
             modelocombo.addElement("Seleccione Presentación");
-            cmbProd.setModel(modelocombo);
+            cmbPed.setModel(modelocombo);
             while (erp.rs.next()){
                 modelocombo.addElement(erp.rs.getObject("idPresentacion")+" "+erp.rs.getObject("nombre"));
-                cmbProd.setModel(modelocombo);
+                cmbPed.setModel(modelocombo);
             }
         
         }catch(SQLException ex){
@@ -59,10 +59,10 @@ public void llenarCombo2(){
             erp.rs= erp.stn.executeQuery("SELECT * FROM ERP.PEDIDOS WHERE ESTATUS = 'A'");
             modelocombo1.addElement("Seleccione Pedido");
             modelocombo1.addElement("Crear Pedido");
-            cmbEmp.setModel(modelocombo1);
+            cmbPres.setModel(modelocombo1);
             while (erp.rs.next()){
                 modelocombo1.addElement(erp.rs.getObject("idPedido")+" "+erp.rs.getObject("nombre"));
-                cmbEmp.setModel(modelocombo1);
+                cmbPres.setModel(modelocombo1);
             }
         
         }catch(SQLException ex){
@@ -85,16 +85,16 @@ public void llenarCombo2(){
         btnAgregar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        PreV = new javax.swing.JTextField();
+        CantRech = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        cmbProd = new javax.swing.JComboBox();
-        cmbEmp = new javax.swing.JComboBox();
+        cmbPed = new javax.swing.JComboBox();
+        cmbPres = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
-        PreC = new javax.swing.JTextField();
+        CantP = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        pReo = new javax.swing.JTextField();
-        PreNom = new javax.swing.JTextField();
+        CantAcp = new javax.swing.JTextField();
+        CantReci = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -138,15 +138,15 @@ public void llenarCombo2(){
 
         jLabel1.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel1.setText("PRECIO VENTA");
+        jLabel1.setText("CANTIDAD RECHAZADA");
 
         jLabel4.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(1, 1, 1));
         jLabel4.setText("ID PRESENTACIÓN");
 
-        PreV.addKeyListener(new java.awt.event.KeyAdapter() {
+        CantRech.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                PreVKeyTyped(evt);
+                CantRechKeyTyped(evt);
             }
         });
 
@@ -154,15 +154,15 @@ public void llenarCombo2(){
         jLabel2.setForeground(new java.awt.Color(1, 1, 1));
         jLabel2.setText("ID PEDIDO");
 
-        cmbProd.addActionListener(new java.awt.event.ActionListener() {
+        cmbPed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbProdActionPerformed(evt);
+                cmbPedActionPerformed(evt);
             }
         });
 
-        cmbEmp.addItemListener(new java.awt.event.ItemListener() {
+        cmbPres.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbEmpItemStateChanged(evt);
+                cmbPresItemStateChanged(evt);
             }
         });
 
@@ -170,9 +170,9 @@ public void llenarCombo2(){
         jLabel3.setForeground(new java.awt.Color(1, 1, 1));
         jLabel3.setText("CANTIDAD PEDIDA");
 
-        PreC.addKeyListener(new java.awt.event.KeyAdapter() {
+        CantP.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                PreCKeyTyped(evt);
+                CantPKeyTyped(evt);
             }
         });
 
@@ -189,17 +189,17 @@ public void llenarCombo2(){
 
         jLabel5.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel5.setText("PUNTO REORDEN");
+        jLabel5.setText("CANTIDAD ACEPTADA");
 
-        pReo.addKeyListener(new java.awt.event.KeyAdapter() {
+        CantAcp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                pReoKeyTyped(evt);
+                CantAcpKeyTyped(evt);
             }
         });
 
-        PreNom.addKeyListener(new java.awt.event.KeyAdapter() {
+        CantReci.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                PreNomKeyTyped(evt);
+                CantReciKeyTyped(evt);
             }
         });
 
@@ -234,19 +234,19 @@ public void llenarCombo2(){
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(cmbProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(cmbPed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                                 .addGap(0, 0, Short.MAX_VALUE)
                                                 .addComponent(jLabel1)
                                                 .addGap(28, 28, 28)))
-                                        .addComponent(PreV, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(CantRech, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(cmbEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cmbPres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel5)
                                         .addGap(28, 28, 28)
-                                        .addComponent(pReo, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(CantAcp, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(305, 305, 305)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -254,8 +254,8 @@ public void llenarCombo2(){
                                     .addComponent(jLabel6))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(PreNom, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(PreC, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(CantReci, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CantP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 5, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -265,29 +265,29 @@ public void llenarCombo2(){
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(PreC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(CantP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(PreNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(CantReci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(pReo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CantAcp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(cmbProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmbPed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(cmbEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cmbPres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PreV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CantRech, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,24 +316,24 @@ public void llenarCombo2(){
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        if(PreNom.getText().length() > 0){
+        if(CantReci.getText().length() > 0){
         int idP = 0;
         int idE = 0;
         float Pre = 0, preCom = 0, preR = 0;
-        StringTokenizer idPr = new StringTokenizer(cmbProd.getItemAt(cmbProd.getSelectedIndex()).toString()," ");
-        StringTokenizer idEmp = new StringTokenizer(cmbEmp.getItemAt(cmbEmp.getSelectedIndex()).toString()," ");
+        StringTokenizer idPr = new StringTokenizer(cmbPed.getItemAt(cmbPed.getSelectedIndex()).toString()," ");
+        StringTokenizer idEmp = new StringTokenizer(cmbPres.getItemAt(cmbPres.getSelectedIndex()).toString()," ");
         try{
            // idP = Integer.parseInt(this.IDProd.getText());
             idP = Integer.parseInt(idPr.nextToken());
             idE = Integer.parseInt(idEmp.nextToken());
-            Pre = Float.parseFloat(PreV.getText());
-            preCom = Float.parseFloat(PreC.getText());
-            preR = Float.parseFloat(pReo.getText());
+            Pre = Float.parseFloat(CantRech.getText());
+            preCom = Float.parseFloat(CantP.getText());
+            preR = Float.parseFloat(CantAcp.getText());
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         
         }//insert into Empaques values(ERP.EmpID.nextval,'nombre',500,'A',1);
-        erp.SQL("call ERP.ADD_PressProd ("+idP+","+idE+","+Pre+","+preCom+","+preR+",'"+PreNom.getText()+"')");
+        erp.SQL("call ERP.ADD_PressProd ("+idP+","+idE+","+Pre+","+preCom+","+preR+",'"+CantReci.getText()+"')");
         if(preCom > Pre)
                 JOptionPane.showMessageDialog(null,"Precio venta es menor al precio de compra\nDebido a eso no se insertara una presentación","Error" ,JOptionPane.INFORMATION_MESSAGE);
             
@@ -345,10 +345,10 @@ public void llenarCombo2(){
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         //this.IDEmp.setText("");
-        this.PreC.setText("");
-        this.PreV.setText("");
-        cmbEmp.setSelectedIndex(0);
-        cmbProd.setSelectedIndex(0);
+        this.CantP.setText("");
+        this.CantRech.setText("");
+        cmbPres.setSelectedIndex(0);
+        cmbPed.setSelectedIndex(0);
        // this.IDProd.setText("");
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
@@ -357,48 +357,48 @@ public void llenarCombo2(){
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void cmbEmpItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbEmpItemStateChanged
+    private void cmbPresItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbPresItemStateChanged
         // TODO add your handling code here:
-        if(cmbEmp.getItemAt(cmbEmp.getSelectedIndex()) == "Crear Empaque"){
+        if(cmbPres.getItemAt(cmbPres.getSelectedIndex()) == "Crear Empaque"){
             C_ADD_Emp erp = new C_ADD_Emp();
             erp.setLocationRelativeTo(erp);
             erp.setVisible(true);
         }
-    }//GEN-LAST:event_cmbEmpItemStateChanged
+    }//GEN-LAST:event_cmbPresItemStateChanged
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        cmbEmp.removeAllItems();
+        cmbPres.removeAllItems();
         llenarCombo2();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void PreCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PreCKeyTyped
+    private void CantPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CantPKeyTyped
         // TODO add your handling code here:
         char c=evt.getKeyChar();
         if((c<'0' || c>'9')&& (c>'.' || c<'.'))
             evt.consume();
-    }//GEN-LAST:event_PreCKeyTyped
+    }//GEN-LAST:event_CantPKeyTyped
 
-    private void PreVKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PreVKeyTyped
+    private void CantRechKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CantRechKeyTyped
         // TODO add your handling code here:
         char c=evt.getKeyChar();
         if((c<'0' || c>'9')&& (c>'.' || c<'.'))
             evt.consume();
-    }//GEN-LAST:event_PreVKeyTyped
+    }//GEN-LAST:event_CantRechKeyTyped
 
-    private void pReoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pReoKeyTyped
+    private void CantAcpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CantAcpKeyTyped
         // TODO add your handling code here:
         char c=evt.getKeyChar();
         if((c<'0' || c>'9')&& (c>'.' || c<'.'))
             evt.consume();
-    }//GEN-LAST:event_pReoKeyTyped
+    }//GEN-LAST:event_CantAcpKeyTyped
 
-    private void PreNomKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PreNomKeyTyped
+    private void CantReciKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CantReciKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_PreNomKeyTyped
+    }//GEN-LAST:event_CantReciKeyTyped
 
-    private void cmbProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProdActionPerformed
+    private void cmbPedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPedActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cmbProdActionPerformed
+    }//GEN-LAST:event_cmbPedActionPerformed
 
     /**
      * @param args the command line arguments
@@ -499,13 +499,14 @@ public void llenarCombo2(){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField PreC;
-    private javax.swing.JTextField PreNom;
-    private javax.swing.JTextField PreV;
+    private javax.swing.JTextField CantAcp;
+    private javax.swing.JTextField CantP;
+    private javax.swing.JTextField CantRech;
+    private javax.swing.JTextField CantReci;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JComboBox cmbEmp;
-    private javax.swing.JComboBox cmbProd;
+    private javax.swing.JComboBox cmbPed;
+    private javax.swing.JComboBox cmbPres;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -515,6 +516,5 @@ public void llenarCombo2(){
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField pReo;
     // End of variables declaration//GEN-END:variables
 }

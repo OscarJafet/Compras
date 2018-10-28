@@ -785,6 +785,7 @@ create table ERP.PresentacionesProducto(
     idEmpaque integer not null, foreign key(idEmpaque)
     references Empaques(idEmpaque)
 );
+alter table ERP.PresentacionesProducto
 
 create table ERP.UnidadMedida(
     idUnidad Integer not null primary key,

@@ -82,7 +82,7 @@
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" attributes="0">
-                                                  <Component id="cmbProd" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="cmbPed" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="32767" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="1" attributes="0">
@@ -91,14 +91,14 @@
                                                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <Component id="PreV" min="-2" pref="144" max="-2" attributes="0"/>
+                                          <Component id="CantRech" min="-2" pref="144" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
-                                          <Component id="cmbEmp" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cmbPres" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                          <Component id="pReo" min="-2" pref="144" max="-2" attributes="0"/>
+                                          <Component id="CantAcp" min="-2" pref="144" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -110,8 +110,8 @@
                                   </Group>
                                   <EmptySpace pref="28" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="PreNom" alignment="1" min="-2" pref="144" max="-2" attributes="0"/>
-                                      <Component id="PreC" alignment="1" min="-2" pref="144" max="-2" attributes="0"/>
+                                      <Component id="CantReci" alignment="1" min="-2" pref="144" max="-2" attributes="0"/>
+                                      <Component id="CantP" alignment="1" min="-2" pref="144" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -128,18 +128,18 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel3" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="PreC" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="CantP" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="PreNom" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="CantReci" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="pReo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="CantAcp" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -147,18 +147,18 @@
                           <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cmbProd" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbPed" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cmbEmp" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbPres" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="PreV" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="CantRech" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="59" max="32767" attributes="0"/>
@@ -236,7 +236,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="1" green="1" red="1" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="PRECIO VENTA"/>
+            <Property name="text" type="java.lang.String" value="CANTIDAD RECHAZADA"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
@@ -250,9 +250,9 @@
             <Property name="text" type="java.lang.String" value="ID PRESENTACI&#xd3;N"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="PreV">
+        <Component class="javax.swing.JTextField" name="CantRech">
           <Events>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="PreVKeyTyped"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="CantRechKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
@@ -266,24 +266,24 @@
             <Property name="text" type="java.lang.String" value="ID PEDIDO"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cmbProd">
+        <Component class="javax.swing.JComboBox" name="cmbPed">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbProdActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbPedActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cmbEmp">
+        <Component class="javax.swing.JComboBox" name="cmbPres">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cmbEmpItemStateChanged"/>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cmbPresItemStateChanged"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
@@ -297,9 +297,9 @@
             <Property name="text" type="java.lang.String" value="CANTIDAD PEDIDA"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="PreC">
+        <Component class="javax.swing.JTextField" name="CantP">
           <Events>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="PreCKeyTyped"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="CantPKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton2">
@@ -328,17 +328,17 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="1" green="1" red="1" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="PUNTO REORDEN"/>
+            <Property name="text" type="java.lang.String" value="CANTIDAD ACEPTADA"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="pReo">
+        <Component class="javax.swing.JTextField" name="CantAcp">
           <Events>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="pReoKeyTyped"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="CantAcpKeyTyped"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="PreNom">
+        <Component class="javax.swing.JTextField" name="CantReci">
           <Events>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="PreNomKeyTyped"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="CantReciKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
