@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -190,6 +192,22 @@ public class Conexion {
         } catch (SQLException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+     public String PedDetPreComp_Search(int id){
+            Sql = "select precioCompra from ERP.PresentacionesProducto where idPresentacion = "+id+"";
+        String idLab ="";
+               try {
+            stn=(Statement) con.createStatement();
+            rs=stn.executeQuery(Sql);
+        
+            while(rs.next()){
+               return idLab=rs.getString("precioCompra");
+            }
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          return idLab;      
     }
     
          public void Producto_Search(String Nombre,JTable tabla){
@@ -421,7 +439,7 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
                     + "inner join ERP.Productos\n"
                     + "on PresentacionesProducto.idProducto = Productos.idProducto and PresentacionesProducto.estatus = '" + Stat + "'";
         }
-        System.out.println(Sql);
+        //System.out.println(Sql);
                try {
             stn= con.createStatement();
             rs=stn.executeQuery(Sql);

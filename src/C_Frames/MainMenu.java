@@ -547,6 +547,13 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void C_PEDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_PEDActionPerformed
         // TODO add your handling code here:
+        C_PedidoDetalle erp = new C_PedidoDetalle();
+        erp.setSize(jFrames.getSize());
+        erp.setLocation(0, 0);
+        jFrames.removeAll();
+        jFrames.add(erp);
+        jFrames.revalidate();
+        jFrames.repaint();
     }//GEN-LAST:event_C_PEDActionPerformed
 
     void setTitulo(int i) {
