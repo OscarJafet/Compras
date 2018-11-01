@@ -65,7 +65,8 @@ public class C_ADD_ProductosProveedor extends javax.swing.JFrame {
             cmbPre.setModel(modelocombo1);
             while (erp.rs.next()){
                 String ID= String.valueOf(erp.rs.getObject("idpresentacion"));
-                modelocombo1.addElement(ID);
+                String nombre= String.valueOf(erp.rs.getObject("nombre"));
+                modelocombo1.addElement(ID+" "+nombre);
                 cmbPre.setModel(modelocombo1);
             }
         
@@ -303,7 +304,7 @@ public class C_ADD_ProductosProveedor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        int idpro = 0;
+        int idpro = 0,idpre=0;
         String d= txfDias.getText();
         String i= txfprecioes.getText();
         String ap=txfcantMax.getText();
@@ -326,10 +327,20 @@ public class C_ADD_ProductosProveedor extends javax.swing.JFrame {
                   idpro = Integer.parseInt(a);
                 
         }
+        StringTokenizer numero1 = new StringTokenizer(cmbProveedor.getSelectedItem().toString()," ");   
+        erp.OpenCon("ERP", "erp");
+        int C1 = 0;
+        while(numero1.hasMoreTokens()){
+                String a = numero1.nextToken();
+              C1++;
+              if (C1 == 1)
+                  idpre = Integer.parseInt(a);
+                
+        }
 
 
             erp.SQL("insert into ProductosProveedor values ("+idpro+","
-                +cmbPre.getSelectedItem()+","    
+                +idpre+","    
                 +Integer.parseInt(txfDias.getText())+","
                 +Integer.parseInt(txfprecioes.getText())+","
                 +Integer.parseInt(txfpreul.getText())+","

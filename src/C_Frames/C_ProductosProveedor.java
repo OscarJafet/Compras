@@ -12,6 +12,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -30,7 +33,7 @@ public class C_ProductosProveedor extends javax.swing.JPanel {
         initComponents();
         erp = new Conexion();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -177,15 +180,40 @@ public class C_ProductosProveedor extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAgregarProProActionPerformed
 
     private void btnEliminarProProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProProActionPerformed
-        int ID = 0;
+        int idproveedor=0,idpresentacion=0;
         int con=tblProPro.getSelectedRow();
         if (con>=0){
             String es= String.valueOf(tblProPro.getValueAt(con,7));
             if(es.equals("A"))
-            {    
-            ID = Integer.parseInt(tblProPro.getValueAt(tblProPro.getSelectedRow(),0)+"");
+            {
+                            try {
+            erp.OpenCon("ERP", "erp");
+            erp.stn= (Statement) erp.con.createStatement();
+            erp.rs= erp.stn.executeQuery("select * from Proveedores where nombre='"+tblProPro.getValueAt(tblProPro.getSelectedRow(),0)+"'");
+            while (erp.rs.next()){
+                String id= String.valueOf(erp.rs.getObject("idproveedor"));
+                idproveedor= Integer.parseInt(id);
+            }
+        
+        }catch(SQLException ex){
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                        try {
+            erp.OpenCon("ERP", "erp");
+            erp.stn= (Statement) erp.con.createStatement();
+            erp.rs= erp.stn.executeQuery("select * from PresentacionesProducto where nombre='"+tblProPro.getValueAt(tblProPro.getSelectedRow(),1)+"'");
+            while (erp.rs.next()){
+                String id= String.valueOf(erp.rs.getObject("idpresentacion"));
+                idpresentacion= Integer.parseInt(id);
+            }
+        
+        }catch(SQLException ex){
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
             if(JOptionPane.showConfirmDialog (null, "Desea eliminar","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
-                ProcedimientoProductos();
+                erp.SQL("update ProductosProveedor set estatus='B' where idproveedor="+idproveedor+" and idpresentacion="+idpresentacion);
+                btnConsultarProPro.doClick();
             }
             }else {
                 JOptionPane.showMessageDialog(null,"Seleccione un producto con estatus A","Error" ,JOptionPane.INFORMATION_MESSAGE);
@@ -224,17 +252,17 @@ public void borrarTabla(JTable tab) {
 
         
         
-        C_MOD_Productos pro =new C_MOD_Productos();
+        C_MOD_ProductosProveedor pro =new C_MOD_ProductosProveedor();
         pro.setLocationRelativeTo(pro);
         pro.Datos(a, b, c, ce, f, h,i);
         pro.setVisible(true);
-        int ID = 0;
+        String nombre = null;
         try{
-            ID = Integer.parseInt(tblProPro.getValueAt(tblProPro.getSelectedRow(),0)+"");
+            nombre = String.valueOf(tblProPro.getValueAt(tblProPro.getSelectedRow(),0)+"");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
-        pro.txfIDProducto.setText(ID+"");
+        pro.txfProveedor.setText(nombre);
         }else {
             JOptionPane.showMessageDialog(null,"Seleccione un producto","Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
@@ -242,14 +270,39 @@ public void borrarTabla(JTable tab) {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int ID = 0;
+        int idproveedor=0,idpresentacion=0;
         int con=tblProPro.getSelectedRow();
         if (con>=0){
             String es= String.valueOf(tblProPro.getValueAt(con,7));
             if(es.equals("B"))
-            {    
-            ID = Integer.parseInt(tblProPro.getValueAt(tblProPro.getSelectedRow(),0)+"");
+            {
+                                        try {
+            erp.OpenCon("ERP", "erp");
+            erp.stn= (Statement) erp.con.createStatement();
+            erp.rs= erp.stn.executeQuery("select * from Proveedores where nombre='"+tblProPro.getValueAt(tblProPro.getSelectedRow(),0)+"'");
+            while (erp.rs.next()){
+                String id= String.valueOf(erp.rs.getObject("idproveedor"));
+                idproveedor= Integer.parseInt(id);
+            }
+        
+        }catch(SQLException ex){
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                        try {
+            erp.OpenCon("ERP", "erp");
+            erp.stn= (Statement) erp.con.createStatement();
+            erp.rs= erp.stn.executeQuery("select * from PresentacionesProducto where nombre='"+tblProPro.getValueAt(tblProPro.getSelectedRow(),1)+"'");
+            while (erp.rs.next()){
+                String id= String.valueOf(erp.rs.getObject("idpresentacion"));
+                idpresentacion= Integer.parseInt(id);
+            }
+        
+        }catch(SQLException ex){
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }    
             if(JOptionPane.showConfirmDialog (null, "Desea dar de alta","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
-                ProcedimientoProductosAlta();
+            erp.SQL("update ProductosProveedor set estatus='A' where idproveedor="+idproveedor+" and idpresentacion="+idpresentacion);
+            btnConsultarProPro.doClick();
             }
             }else {
                 JOptionPane.showMessageDialog(null,"Seleccione un producto con estatus B","Error" ,JOptionPane.INFORMATION_MESSAGE);
@@ -279,7 +332,7 @@ public void borrarTabla(JTable tab) {
         
                        
          if (evt.getClickCount()==2){
-         C_MOD_Productos pro= new C_MOD_Productos();
+         C_MOD_ProductosProveedor pro= new C_MOD_ProductosProveedor();
          pro.setLocationRelativeTo(pro);
          pro.Datos(a, b, c, e, f, h,i);
          pro.setVisible(true);
@@ -291,51 +344,10 @@ public void borrarTabla(JTable tab) {
         erp.OpenCon("ERP", "erp");
         erp.ProductoProveedor_Search(txfBuscar.getText(), tblProPro);
     }//GEN-LAST:event_txfBuscarKeyReleased
-      public void ProcedimientoProductos(){
-           int ID = 0;
-     
-           ID = Integer.parseInt(tblProPro.getValueAt(tblProPro.getSelectedRow(),0)+"");
-          try {
-          CallableStatement cst= con.prepareCall("{call ELPRO (?,?)}");
-            cst.setInt(1, ID);
-            
-            cst.registerOutParameter(2,java.sql.Types.VARCHAR);
-            cst.execute();
-            
-            String msg= cst.getString(2);
-            JOptionPane.showMessageDialog(null,msg,"Accion Realizada" ,JOptionPane.INFORMATION_MESSAGE);
-          }
-          catch (SQLException ex){
-              JOptionPane.showMessageDialog(null,ex.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
-          }
-          
-          
-      }
-      
-            public void ProcedimientoProductosAlta(){
-           int ID = 0;
-     
-           ID = Integer.parseInt(tblProPro.getValueAt(tblProPro.getSelectedRow(),0)+"");
-          try {
-          CallableStatement cst= con.prepareCall("{call ALTAPRO (?,?)}");
-            cst.setInt(1, ID);
-            
-            cst.registerOutParameter(2,java.sql.Types.VARCHAR);
-            cst.execute();
-            
-            String msg= cst.getString(2);
-            JOptionPane.showMessageDialog(null,msg,"Accion Realizada" ,JOptionPane.INFORMATION_MESSAGE);
-          }
-          catch (SQLException ex){
-              JOptionPane.showMessageDialog(null,ex.getMessage(),"Error",JOptionPane.INFORMATION_MESSAGE);
-          }
-          
-          
-      }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProPro;
-    private javax.swing.JButton btnConsultarProPro;
+    public javax.swing.JButton btnConsultarProPro;
     private javax.swing.JButton btnEditarProProPro;
     private javax.swing.JButton btnEliminarProPro;
     private javax.swing.JButton jButton1;
