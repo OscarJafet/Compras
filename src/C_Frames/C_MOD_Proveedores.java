@@ -42,8 +42,8 @@ public class C_MOD_Proveedores extends javax.swing.JFrame {
     private int limite2 = 10;
     
       
-    public void Datos(String idpro, String no, String tel, String ema, String dir, String col, String cod) {
-        txfIdProveedor.setText(idpro);
+    public void Datos( String no, String tel, String ema, String dir, String col, String cod) {
+        
         C_MOD_Proveedor_txfnom.setText(no);
         C_MOD_Proveedor_txftel.setText(tel);
         C_MOD_Proveedor_txfemail.setText(ema);
@@ -310,13 +310,13 @@ public class C_MOD_Proveedores extends javax.swing.JFrame {
 
             erp.OpenCon("ERP", "erp");
             int ID = Integer.parseInt(txfIdProveedor.getText());
-            erp.SQL("update sucursal set nombre ="
+            erp.SQL("update proveedores set nombre ="
                     + "'" + C_MOD_Proveedor_txfnom.getText() + "',"
                     + "telefono ='" + C_MOD_Proveedor_txftel.getText() + "',"
                     + "email='" + C_MOD_Proveedor_txfemail.getText() + "',"
                     + "direccion ='" + C_MOD_Proveedor_txfdir.getText() + "',"
                     + "colonia ='" + C_MOD_Proveedor_txfcol.getText() + "',"
-                    + "codigopostal ='" + C_MOD_Proveedor_txfcodPos.getText() + "',"
+                    + "codigopostal ='" + C_MOD_Proveedor_txfcodPos.getText() + "'"
                     + " where idproveedor ="
                     + ID);
         } else {
@@ -344,7 +344,8 @@ public class C_MOD_Proveedores extends javax.swing.JFrame {
 
     private void C_MOD_Proveedor_txfemailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_MOD_Proveedor_txfemailKeyTyped
         char c=evt.getKeyChar();
-        if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')&&(c<'@'||c>'@')&&
+        if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')&&
+        (c!='@'||C_MOD_Proveedor_txfemail.getText().contains("@"))&&
         (c!='.'||C_MOD_Proveedor_txfemail.getText().contains("."))) evt.consume();
     }//GEN-LAST:event_C_MOD_Proveedor_txfemailKeyTyped
 

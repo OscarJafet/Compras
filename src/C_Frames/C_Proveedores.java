@@ -225,10 +225,10 @@ public void borrarTabla(JTable tab) {
 
     private void btnEditarsucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarsucursalActionPerformed
         
-        String idp=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),0);
+
         String nom=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),1);
-        String tel=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),2);
-        String ema=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),3);
+        String tel=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),3);
+        String ema=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),2);
         String dir=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),4);
         String col=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),5);
         String cod=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),6);
@@ -236,8 +236,9 @@ public void borrarTabla(JTable tab) {
         
         C_MOD_Proveedores pro =new C_MOD_Proveedores();
         pro.setLocationRelativeTo(pro);
-        pro.Datos(idp, nom, tel, ema, dir, col, cod);
+        pro.Datos(nom, tel, ema, dir, col, cod);
         pro.setVisible(true);
+        
         
         int ID = 0;
         try{
