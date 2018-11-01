@@ -225,19 +225,19 @@ public void borrarTabla(JTable tab) {
 
     private void btnEditarsucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarsucursalActionPerformed
         
-        String a=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),0);
-        String b=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),1);
-        String c=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),2);
-        String d=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),3);
-        String ce=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),4);
-        String f=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),5);
-        String h=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),7);
+        String idp=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),0);
+        String nom=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),1);
+        String tel=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),2);
+        String ema=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),3);
+        String dir=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),4);
+        String col=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),5);
+        String cod=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),6);
 
         
-        C_MOD_Sucursales suc =new C_MOD_Sucursales();
-        suc.setLocationRelativeTo(suc);
-        suc.Datos(a, b, c, d, ce, f, h);
-        suc.setVisible(true);
+        C_MOD_Proveedores pro =new C_MOD_Proveedores();
+        pro.setLocationRelativeTo(pro);
+        pro.Datos(idp, nom, tel, ema, dir, col, cod);
+        pro.setVisible(true);
         
         int ID = 0;
         try{
@@ -245,7 +245,7 @@ public void borrarTabla(JTable tab) {
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
-      suc.txfIdSucursal.setText(ID+"");
+      pro.txfIdProveedor.setText(ID+"");
     }//GEN-LAST:event_btnEditarsucursalActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

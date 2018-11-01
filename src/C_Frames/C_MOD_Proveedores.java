@@ -344,7 +344,8 @@ public class C_MOD_Proveedores extends javax.swing.JFrame {
 
     private void C_MOD_Proveedor_txfemailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_MOD_Proveedor_txfemailKeyTyped
         char c=evt.getKeyChar();
-        if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')&&(c<'@'||c>'@')) evt.consume();
+        if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')&&(c<'@'||c>'@')&&
+        (c!='.'||C_MOD_Proveedor_txfemail.getText().contains("."))) evt.consume();
     }//GEN-LAST:event_C_MOD_Proveedor_txfemailKeyTyped
 
     private void C_MOD_Proveedor_txfdirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_MOD_Proveedor_txfdirActionPerformed
