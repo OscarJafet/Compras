@@ -180,7 +180,7 @@ public class C_Proveedores extends javax.swing.JPanel {
     }//GEN-LAST:event_txfConsultarActionPerformed
 
     private void btnAgregarPercepcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPercepcionActionPerformed
-        C_ADD_Sucursales erp = new C_ADD_Sucursales();
+        C_ADD_Proveedores erp = new C_ADD_Proveedores();
         erp.setLocationRelativeTo(erp);
         erp.setVisible(true);
     }//GEN-LAST:event_btnAgregarPercepcionActionPerformed
