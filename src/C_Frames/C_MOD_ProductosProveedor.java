@@ -127,9 +127,21 @@ public class C_MOD_ProductosProveedor extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(1, 1, 1));
         jLabel4.setText("DIAS DE RETARDO");
 
+        txfDias.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfDiasKeyTyped(evt);
+            }
+        });
+
         jLabel8.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(1, 1, 1));
         jLabel8.setText("PRECIO ESTANDAR");
+
+        txfPrecioEs.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfPrecioEsKeyTyped(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(1, 1, 1));
@@ -144,6 +156,18 @@ public class C_MOD_ProductosProveedor extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(1, 1, 1));
         jLabel10.setText("CANTIDAD MINIMA A PEDIR");
+
+        txfCantMin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfCantMinKeyTyped(evt);
+            }
+        });
+
+        txfCantMax.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfCantMaxKeyTyped(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(1, 1, 1));
@@ -287,6 +311,10 @@ public class C_MOD_ProductosProveedor extends javax.swing.JFrame {
  
         if((!d.isEmpty())&&(!i.isEmpty())&&(!ap.isEmpty())&&(!u.isEmpty())&&(!ba.isEmpty()))
         {
+           int min= Integer.parseInt(ap);
+        int max= Integer.parseInt(u);
+            if(max>min)
+            {
        erp.SQL("update ProductosProveedor set diasretardo ="
                 +""+txfDias.getText()+","
                 +"precioestandar ="+txfPrecioEs.getText()+","
@@ -295,6 +323,11 @@ public class C_MOD_ProductosProveedor extends javax.swing.JFrame {
                 +"cantmaxpedir ="+txfCantMax.getText()+""
                 +" where idproveedor ="
                 +idproveedor+" and idpresentacion="+idpresentacion);
+        }
+            
+            else {
+                JOptionPane.showMessageDialog(null,"Valores incongruentes en cantidad maxima con minima ","Error",JOptionPane.INFORMATION_MESSAGE);
+            }
         }
                 else {
             JOptionPane.showMessageDialog(null,"No se permiten campos vacios ","Error" ,JOptionPane.INFORMATION_MESSAGE);
@@ -315,11 +348,37 @@ public class C_MOD_ProductosProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_txfPresentacionKeyTyped
 
     private void txfPrecioUlKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfPrecioUlKeyTyped
-                        char c=evt.getKeyChar();
-        if((c<'0' || c>'9')&&(c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')){
-            evt.consume();
-        } 
+        char c=evt.getKeyChar();
+        if((c<'0' || c>'9')&&(c!='.'||txfPrecioUl.getText().contains(".")))
+            evt.consume(); 
     }//GEN-LAST:event_txfPrecioUlKeyTyped
+
+    private void txfDiasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfDiasKeyTyped
+                char c=evt.getKeyChar();
+        if((c<'0' || c>'9')){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txfDiasKeyTyped
+
+    private void txfPrecioEsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfPrecioEsKeyTyped
+        char c=evt.getKeyChar();
+        if((c<'0' || c>'9')&&(c!='.'||txfPrecioEs.getText().contains(".")))
+            evt.consume();    // TODO add your handling code here:
+    }//GEN-LAST:event_txfPrecioEsKeyTyped
+
+    private void txfCantMinKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfCantMinKeyTyped
+                 char c=evt.getKeyChar();
+        if((c<'0' || c>'9')){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txfCantMinKeyTyped
+
+    private void txfCantMaxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfCantMaxKeyTyped
+                char c=evt.getKeyChar();
+        if((c<'0' || c>'9')){
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_txfCantMaxKeyTyped
 
     /**
      * @param args the command line arguments

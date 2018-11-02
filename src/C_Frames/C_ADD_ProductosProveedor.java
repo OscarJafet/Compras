@@ -217,17 +217,6 @@ public class C_ADD_ProductosProveedor extends javax.swing.JFrame {
                         .addGap(26, 26, 26))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txfcantMin))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txfcantMax, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)))
-                        .addGap(546, 546, 546))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13)
                             .addComponent(jLabel12))
                         .addGap(72, 72, 72)
@@ -244,10 +233,20 @@ public class C_ADD_ProductosProveedor extends javax.swing.JFrame {
                             .addComponent(txfprecioes, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
                             .addComponent(txfDias))
                         .addGap(546, 546, 546))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(18, 18, 18)
-                        .addComponent(txfpreul)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txfcantMax))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txfcantMin))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(18, 18, 18)
+                                .addComponent(txfpreul, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)))
                         .addGap(546, 546, 546))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -276,11 +275,11 @@ public class C_ADD_ProductosProveedor extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(txfcantMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txfcantMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(txfcantMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txfcantMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnLimpiar)
@@ -313,10 +312,14 @@ public class C_ADD_ProductosProveedor extends javax.swing.JFrame {
         int la= cmbProveedor.getSelectedIndex();
         int ca= cmbPre.getSelectedIndex();
         
-        
+
  
         if((!d.isEmpty())&&(!i.isEmpty())&&(!ap.isEmpty())&&(!u.isEmpty())&&(!ba.isEmpty())&&(la!=0)&&(ca!=0))
-        {
+        {   
+        int min= Integer.parseInt(u);
+        int max= Integer.parseInt(ap);
+            if(max>min)
+            {       
         StringTokenizer numero = new StringTokenizer(cmbProveedor.getSelectedItem().toString()," ");   
         erp.OpenCon("ERP", "erp");
         int C = 0;
@@ -327,7 +330,7 @@ public class C_ADD_ProductosProveedor extends javax.swing.JFrame {
                   idpro = Integer.parseInt(a);
                 
         }
-        StringTokenizer numero1 = new StringTokenizer(cmbProveedor.getSelectedItem().toString()," ");   
+        StringTokenizer numero1 = new StringTokenizer(cmbPre.getSelectedItem().toString()," ");   
         erp.OpenCon("ERP", "erp");
         int C1 = 0;
         while(numero1.hasMoreTokens()){
@@ -342,12 +345,16 @@ public class C_ADD_ProductosProveedor extends javax.swing.JFrame {
             erp.SQL("insert into ProductosProveedor values ("+idpro+","
                 +idpre+","    
                 +Integer.parseInt(txfDias.getText())+","
-                +Integer.parseInt(txfprecioes.getText())+","
-                +Integer.parseInt(txfpreul.getText())+","
+                +Double.parseDouble(txfprecioes.getText())+","
+                +Double.parseDouble(txfpreul.getText())+","
                 +Integer.parseInt(txfcantMin.getText())+","
                 +Integer.parseInt(txfcantMax.getText())+","
                 +"'A'"
                 +")");
+        }
+            else {
+                JOptionPane.showMessageDialog(null,"Valores incongruentes en cantidad maxima con minima ","Error",JOptionPane.INFORMATION_MESSAGE);
+            }
         }
         else {
             JOptionPane.showMessageDialog(null,"No se permiten campos vacios o Proveedor y/o Presentacion sin asignar","Error" ,JOptionPane.INFORMATION_MESSAGE);

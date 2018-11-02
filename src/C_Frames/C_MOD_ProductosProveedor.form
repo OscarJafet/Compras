@@ -272,6 +272,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txfDias">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txfDiasKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
@@ -285,6 +288,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txfPrecioEs">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txfPrecioEsKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
           <Properties>
@@ -314,8 +320,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txfCantMin">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txfCantMinKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txfCantMax">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txfCantMaxKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel11">
           <Properties>
