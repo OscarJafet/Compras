@@ -16,6 +16,8 @@ import java.sql.Statement;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 
@@ -56,20 +58,20 @@ public class C_ADD_Proveedores extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        C_ADD_SUCUSALR_txftel = new javax.swing.JTextField();
-        C_ADD_SUCUSALR_txfdir = new javax.swing.JTextField();
-        C_ADD_SUCUSALR_txfcol = new javax.swing.JTextField();
-        C_ADD_SUCUSALR_txfcodPos = new javax.swing.JTextField();
-        C_ADD_SUCUSALR_txfnom = new javax.swing.JTextField();
+        C_ADD_Proveedores_txftel = new javax.swing.JTextField();
+        C_ADD_Proveedores_txfdir = new javax.swing.JTextField();
+        C_ADD_Proveedores_txfcol = new javax.swing.JTextField();
+        C_ADD_Proveedores_txfcodPos = new javax.swing.JTextField();
+        C_ADD_Proveedores_txfnom = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         CB_CUIDAD = new javax.swing.JComboBox();
-        C_ADD_SUCUSALR_txfEMAIL = new javax.swing.JTextField();
+        C_ADD_Proveedores_txfEMAIL = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(254, 254, 254));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(40, 183, 41)), "AGREGAR SUCURSAL", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 0))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(40, 183, 41)), "AGREGAR PROVEEDOR", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 0))); // NOI18N
         jPanel1.setForeground(new java.awt.Color(254, 254, 254));
 
         jLabel1.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
@@ -137,48 +139,48 @@ public class C_ADD_Proveedores extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(1, 1, 1));
         jLabel8.setText("EMAIL");
 
-        C_ADD_SUCUSALR_txftel.setBackground(new java.awt.Color(254, 254, 254));
-        C_ADD_SUCUSALR_txftel.setForeground(new java.awt.Color(1, 1, 1));
-        C_ADD_SUCUSALR_txftel.addKeyListener(new java.awt.event.KeyAdapter() {
+        C_ADD_Proveedores_txftel.setBackground(new java.awt.Color(254, 254, 254));
+        C_ADD_Proveedores_txftel.setForeground(new java.awt.Color(1, 1, 1));
+        C_ADD_Proveedores_txftel.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                C_ADD_SUCUSALR_txftelKeyTyped(evt);
+                C_ADD_Proveedores_txftelKeyTyped(evt);
             }
         });
 
-        C_ADD_SUCUSALR_txfdir.setBackground(new java.awt.Color(254, 254, 254));
-        C_ADD_SUCUSALR_txfdir.setForeground(new java.awt.Color(1, 1, 1));
-        C_ADD_SUCUSALR_txfdir.addActionListener(new java.awt.event.ActionListener() {
+        C_ADD_Proveedores_txfdir.setBackground(new java.awt.Color(254, 254, 254));
+        C_ADD_Proveedores_txfdir.setForeground(new java.awt.Color(1, 1, 1));
+        C_ADD_Proveedores_txfdir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                C_ADD_SUCUSALR_txfdirActionPerformed(evt);
+                C_ADD_Proveedores_txfdirActionPerformed(evt);
             }
         });
-        C_ADD_SUCUSALR_txfdir.addKeyListener(new java.awt.event.KeyAdapter() {
+        C_ADD_Proveedores_txfdir.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                C_ADD_SUCUSALR_txfdirKeyTyped(evt);
-            }
-        });
-
-        C_ADD_SUCUSALR_txfcol.setBackground(new java.awt.Color(254, 254, 254));
-        C_ADD_SUCUSALR_txfcol.setForeground(new java.awt.Color(1, 1, 1));
-        C_ADD_SUCUSALR_txfcol.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                C_ADD_SUCUSALR_txfcolKeyTyped(evt);
+                C_ADD_Proveedores_txfdirKeyTyped(evt);
             }
         });
 
-        C_ADD_SUCUSALR_txfcodPos.setBackground(new java.awt.Color(254, 254, 254));
-        C_ADD_SUCUSALR_txfcodPos.setForeground(new java.awt.Color(1, 1, 1));
-        C_ADD_SUCUSALR_txfcodPos.addKeyListener(new java.awt.event.KeyAdapter() {
+        C_ADD_Proveedores_txfcol.setBackground(new java.awt.Color(254, 254, 254));
+        C_ADD_Proveedores_txfcol.setForeground(new java.awt.Color(1, 1, 1));
+        C_ADD_Proveedores_txfcol.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                C_ADD_SUCUSALR_txfcodPosKeyTyped(evt);
+                C_ADD_Proveedores_txfcolKeyTyped(evt);
             }
         });
 
-        C_ADD_SUCUSALR_txfnom.setBackground(new java.awt.Color(254, 254, 254));
-        C_ADD_SUCUSALR_txfnom.setForeground(new java.awt.Color(1, 1, 1));
-        C_ADD_SUCUSALR_txfnom.addKeyListener(new java.awt.event.KeyAdapter() {
+        C_ADD_Proveedores_txfcodPos.setBackground(new java.awt.Color(254, 254, 254));
+        C_ADD_Proveedores_txfcodPos.setForeground(new java.awt.Color(1, 1, 1));
+        C_ADD_Proveedores_txfcodPos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                C_ADD_SUCUSALR_txfnomKeyTyped(evt);
+                C_ADD_Proveedores_txfcodPosKeyTyped(evt);
+            }
+        });
+
+        C_ADD_Proveedores_txfnom.setBackground(new java.awt.Color(254, 254, 254));
+        C_ADD_Proveedores_txfnom.setForeground(new java.awt.Color(1, 1, 1));
+        C_ADD_Proveedores_txfnom.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                C_ADD_Proveedores_txfnomKeyTyped(evt);
             }
         });
 
@@ -189,11 +191,11 @@ public class C_ADD_Proveedores extends javax.swing.JFrame {
 
         CB_CUIDAD.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        C_ADD_SUCUSALR_txfEMAIL.setBackground(new java.awt.Color(254, 254, 254));
-        C_ADD_SUCUSALR_txfEMAIL.setForeground(new java.awt.Color(1, 1, 1));
-        C_ADD_SUCUSALR_txfEMAIL.addKeyListener(new java.awt.event.KeyAdapter() {
+        C_ADD_Proveedores_txfEMAIL.setBackground(new java.awt.Color(254, 254, 254));
+        C_ADD_Proveedores_txfEMAIL.setForeground(new java.awt.Color(1, 1, 1));
+        C_ADD_Proveedores_txfEMAIL.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                C_ADD_SUCUSALR_txfEMAILKeyTyped(evt);
+                C_ADD_Proveedores_txfEMAILKeyTyped(evt);
             }
         });
 
@@ -216,7 +218,7 @@ public class C_ADD_Proveedores extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(35, 35, 35)
-                                .addComponent(C_ADD_SUCUSALR_txfdir, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(C_ADD_Proveedores_txfdir, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
@@ -224,17 +226,17 @@ public class C_ADD_Proveedores extends javax.swing.JFrame {
                                     .addComponent(jLabel8))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(C_ADD_SUCUSALR_txfnom, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                                    .addComponent(C_ADD_SUCUSALR_txftel)
-                                    .addComponent(C_ADD_SUCUSALR_txfEMAIL)))
+                                    .addComponent(C_ADD_Proveedores_txfnom, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                                    .addComponent(C_ADD_Proveedores_txftel)
+                                    .addComponent(C_ADD_Proveedores_txfEMAIL)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(C_ADD_SUCUSALR_txfcodPos, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(C_ADD_SUCUSALR_txfcol, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(C_ADD_Proveedores_txfcodPos, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(C_ADD_Proveedores_txfcol, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(CB_CUIDAD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(78, 293, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -247,27 +249,27 @@ public class C_ADD_Proveedores extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(C_ADD_SUCUSALR_txfnom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(C_ADD_Proveedores_txfnom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(C_ADD_SUCUSALR_txftel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(C_ADD_Proveedores_txftel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel8)
-                    .addComponent(C_ADD_SUCUSALR_txfEMAIL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(C_ADD_Proveedores_txfEMAIL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(C_ADD_SUCUSALR_txfdir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(C_ADD_Proveedores_txfdir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(C_ADD_SUCUSALR_txfcol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(C_ADD_Proveedores_txfcol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(C_ADD_SUCUSALR_txfcodPos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(C_ADD_Proveedores_txfcodPos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -329,12 +331,12 @@ public class C_ADD_Proveedores extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         String ba,b,c,d,e;
-        ba=C_ADD_SUCUSALR_txfnom.getText();
-        b=C_ADD_SUCUSALR_txftel.getText();
-        c=C_ADD_SUCUSALR_txfdir.getText();
-        d=C_ADD_SUCUSALR_txfcol.getText();
-        String h=C_ADD_SUCUSALR_txfcodPos.getText();
-        e=C_ADD_SUCUSALR_txfEMAIL.getText();
+        ba=C_ADD_Proveedores_txfnom.getText();
+        b=C_ADD_Proveedores_txftel.getText();
+        c=C_ADD_Proveedores_txfdir.getText();
+        d=C_ADD_Proveedores_txfcol.getText();
+        String h=C_ADD_Proveedores_txfcodPos.getText();
+        e=C_ADD_Proveedores_txfEMAIL.getText();
         
         int g=CB_CUIDAD.getSelectedIndex();
         
@@ -354,12 +356,12 @@ public class C_ADD_Proveedores extends javax.swing.JFrame {
         }
         erp.OpenCon("ERP", "erp");
         erp.SQL("insert into PROVEEDORES values (ERP.PROVEE.nextval,"
-                + "'" + C_ADD_SUCUSALR_txfnom.getText() + "',"
-                + "'" + C_ADD_SUCUSALR_txftel.getText() + "',"
-                + "'" + C_ADD_SUCUSALR_txfEMAIL.getText() + "',"
-                + "'" + C_ADD_SUCUSALR_txfdir.getText() + "',"
-                + "'" + C_ADD_SUCUSALR_txfcol.getText() + "',"
-                + "'" + C_ADD_SUCUSALR_txfcodPos.getText() + "',"
+                + "'" + C_ADD_Proveedores_txfnom.getText() + "',"
+                + "'" + C_ADD_Proveedores_txftel.getText() + "',"
+                + "'" + C_ADD_Proveedores_txfEMAIL.getText() + "',"
+                + "'" + C_ADD_Proveedores_txfdir.getText() + "',"
+                + "'" + C_ADD_Proveedores_txfcol.getText() + "',"
+                + "'" + C_ADD_Proveedores_txfcodPos.getText() + "',"
                 + idc+ ","
                 + "'A'"
                 + ")");
@@ -370,55 +372,58 @@ public class C_ADD_Proveedores extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        this.C_ADD_SUCUSALR_txfnom.setText("");
-        this.C_ADD_SUCUSALR_txftel.setText("");
-        this.C_ADD_SUCUSALR_txfdir.setText("");
-        this.C_ADD_SUCUSALR_txfcol.setText("");
-        this.C_ADD_SUCUSALR_txfcodPos.setText("");
-        this.C_ADD_SUCUSALR_txfEMAIL.setText("");
+        this.C_ADD_Proveedores_txfnom.setText("");
+        this.C_ADD_Proveedores_txftel.setText("");
+        this.C_ADD_Proveedores_txfdir.setText("");
+        this.C_ADD_Proveedores_txfcol.setText("");
+        this.C_ADD_Proveedores_txfcodPos.setText("");
+        this.C_ADD_Proveedores_txfEMAIL.setText("");
         this.CB_CUIDAD.setSelectedIndex(0);
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
-    private void C_ADD_SUCUSALR_txfdirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_ADD_SUCUSALR_txfdirActionPerformed
+    private void C_ADD_Proveedores_txfdirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_ADD_Proveedores_txfdirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_C_ADD_SUCUSALR_txfdirActionPerformed
+    }//GEN-LAST:event_C_ADD_Proveedores_txfdirActionPerformed
 
-    private void C_ADD_SUCUSALR_txfnomKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_SUCUSALR_txfnomKeyTyped
+    private void C_ADD_Proveedores_txfnomKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_Proveedores_txfnomKeyTyped
         char c=evt.getKeyChar();
         if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')) evt.consume();
-    }//GEN-LAST:event_C_ADD_SUCUSALR_txfnomKeyTyped
+    }//GEN-LAST:event_C_ADD_Proveedores_txfnomKeyTyped
 
-    private void C_ADD_SUCUSALR_txftelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_SUCUSALR_txftelKeyTyped
+    private void C_ADD_Proveedores_txftelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_Proveedores_txftelKeyTyped
         int c=evt.getKeyChar();
         if((c<'0' || c>'9')&&(c<'-' || c>'-'))evt.consume();
-        if (C_ADD_SUCUSALR_txftel.getText().length() == limite2) {
+        if (C_ADD_Proveedores_txftel.getText().length() == limite2) {
             evt.consume();
         }
-    }//GEN-LAST:event_C_ADD_SUCUSALR_txftelKeyTyped
+    }//GEN-LAST:event_C_ADD_Proveedores_txftelKeyTyped
 
-    private void C_ADD_SUCUSALR_txfdirKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_SUCUSALR_txfdirKeyTyped
+    private void C_ADD_Proveedores_txfdirKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_Proveedores_txfdirKeyTyped
         char c=evt.getKeyChar();
         if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<'0'|| c>'9') &&(c>'#'|| c<'#')&&(c>' '|| c<' ')&&(c<'.'||c>'.')) evt.consume();
 
-    }//GEN-LAST:event_C_ADD_SUCUSALR_txfdirKeyTyped
+    }//GEN-LAST:event_C_ADD_Proveedores_txfdirKeyTyped
 
-    private void C_ADD_SUCUSALR_txfcolKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_SUCUSALR_txfcolKeyTyped
+    private void C_ADD_Proveedores_txfcolKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_Proveedores_txfcolKeyTyped
         char c=evt.getKeyChar();
         if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c>' '|| c<' ')) evt.consume();
-    }//GEN-LAST:event_C_ADD_SUCUSALR_txfcolKeyTyped
+    }//GEN-LAST:event_C_ADD_Proveedores_txfcolKeyTyped
 
-    private void C_ADD_SUCUSALR_txfcodPosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_SUCUSALR_txfcodPosKeyTyped
+    private void C_ADD_Proveedores_txfcodPosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_Proveedores_txfcodPosKeyTyped
         int c=evt.getKeyChar();
         if(c<'0' || c>'9')evt.consume();
-        if (C_ADD_SUCUSALR_txfcodPos.getText().length() == limite) {
+        if (C_ADD_Proveedores_txfcodPos.getText().length() == limite) {
             evt.consume();
         }
-    }//GEN-LAST:event_C_ADD_SUCUSALR_txfcodPosKeyTyped
+    }//GEN-LAST:event_C_ADD_Proveedores_txfcodPosKeyTyped
 
-    private void C_ADD_SUCUSALR_txfEMAILKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_SUCUSALR_txfEMAILKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_C_ADD_SUCUSALR_txfEMAILKeyTyped
-    
+    private void C_ADD_Proveedores_txfEMAILKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_Proveedores_txfEMAILKeyTyped
+        char c=evt.getKeyChar();
+        if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')&&
+        (c!='@'||C_ADD_Proveedores_txfEMAIL.getText().contains("@"))&&
+        (c!='.'||C_ADD_Proveedores_txfEMAIL.getText().contains("."))) evt.consume();
+       
+    }//GEN-LAST:event_C_ADD_Proveedores_txfEMAILKeyTyped
     
     /**
      * @param args the command line arguments
@@ -464,12 +469,12 @@ public class C_ADD_Proveedores extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox CB_CUIDAD;
-    private javax.swing.JTextField C_ADD_SUCUSALR_txfEMAIL;
-    private javax.swing.JTextField C_ADD_SUCUSALR_txfcodPos;
-    private javax.swing.JTextField C_ADD_SUCUSALR_txfcol;
-    private javax.swing.JTextField C_ADD_SUCUSALR_txfdir;
-    private javax.swing.JTextField C_ADD_SUCUSALR_txfnom;
-    private javax.swing.JTextField C_ADD_SUCUSALR_txftel;
+    private javax.swing.JTextField C_ADD_Proveedores_txfEMAIL;
+    private javax.swing.JTextField C_ADD_Proveedores_txfcodPos;
+    private javax.swing.JTextField C_ADD_Proveedores_txfcol;
+    private javax.swing.JTextField C_ADD_Proveedores_txfdir;
+    private javax.swing.JTextField C_ADD_Proveedores_txfnom;
+    private javax.swing.JTextField C_ADD_Proveedores_txftel;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnLimpiar;

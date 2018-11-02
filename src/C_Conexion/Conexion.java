@@ -516,15 +516,6 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
                 Object datosRenglon[]={idsuc,Nom,email,tel,dir,col,cp,Stat,ciudad};
                 tablaTemp.addRow(datosRenglon);
             }
-//            Sql = "select Ciudad.nombre from ERP.ciudad\n"
-//                    + "inner join ERP.proveedores\n"
-//                    + "on proveedores.idciudad=erp.ciudad.idciudad";
-//            stn= con.createStatement();
-//            rs=stn.executeQuery(Sql);
-//            for (int i = 0; rs.next(); i++) {
-//                 String nombre=rs.getString("nombre");
-//                 tablaTemp.setValueAt(" "+nombre, i, 8);
-//            }
             tabla.setModel(tablaTemp);
         } catch (SQLException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
