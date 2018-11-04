@@ -483,6 +483,58 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+      public void Detalles_seacrh(String Nombre, JTable tabla, char Stat) {
+        DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
+        if (Nombre.isEmpty() && Stat == 'E') {
+            Sql = "SELECT * FROM PEDIDODETALLE INNER JOIN ERP.PEDIDOS ON PEDIDOS.ESTATUS = 'A'";
+        } else if (!Nombre.isEmpty() && Stat == 'E') {
+            Sql = "SELECT * FROM PEDIDODETALLE P INNER JOIN PEDIDOS P ON P.ESTATUS = 'A' INNER JOIN PRESENTACIONESPRODUCTO R ON R.NOMBRE = '"+Nombre+"'";
+        } else if (Stat == 'A' || Stat == 'B') {
+            Sql = "SELECT * FROM PEDIDODETALLE INNER JOIN ERP.PEDIDOS ON PEDIDOS.ESTATUS = '"+Stat+"'";
+        }
+        //System.out.println(Sql);
+               try {
+            stn= con.createStatement();
+            rs=stn.executeQuery(Sql);
+        
+            while(rs.next()){
+                String idDt=rs.getString("idPedidoDetalle");
+                String cPd=rs.getString("cantPedida");
+                String pC=rs.getString("precioCompra");
+                String sb = rs.getString("subtotal");
+                String cRe = rs.getString("cantRecibida");
+                String cRh = rs.getString("cantRechazada");
+                String cAp = rs.getString("cantAceptada");
+                String idPed = rs.getString("idPedido");
+                String idPress = rs.getString("idPresentacion");
+                Object datosRenglon[]={idDt, cPd, pC,sb,cRe,cRh,cAp,idPed,idPress};
+                tablaTemp.addRow(datosRenglon);
+            }
+            Sql = "SELECT SUCURSALES.NOMBRE FROM PEDIDOS\n" +
+"INNER JOIN ERP.SUCURSALES\n" +
+"ON PEDIDOS.IDSUCURSAL = SUCURSALES.IDSUCURSAL AND PEDIDOS.ESTATUS = 'A'";
+            stn= con.createStatement();
+            rs=stn.executeQuery(Sql);
+        
+            for (int i = 0; rs.next(); i++) {
+                 String nombre=rs.getString("nombre");
+                 tablaTemp.setValueAt(tablaTemp.getValueAt(i, 7)+" "+nombre, i, 7);
+            }
+            
+            Sql = "SELECT * FROM ERP.PRESENTACIONESPRODUCTO WHERE ESTATUS = 'A'";
+            stn= con.createStatement();
+            rs=stn.executeQuery(Sql);
+        
+            for (int i = 0; rs.next(); i++) {
+                 String nombre=rs.getString("nombre");
+                 tablaTemp.setValueAt(tablaTemp.getValueAt(i, 8)+" "+nombre, i, 8);
+            }
+            
+            tabla.setModel(tablaTemp);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,ex.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
     public void Proveedores_Search(String Nombre,JTable tabla){
          DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
         

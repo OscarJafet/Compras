@@ -261,7 +261,7 @@ public void borrarTabla(JTable tab) {
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         borrarTabla(tablaPress);
         //erp.OpenCon("ERP", "erp");
-        //erp.Presentacion_seacrh(txfConsultar.getText(), tablaPress,cmbSe.getItemAt(cmbSe.getSelectedIndex()).charAt(0));
+        erp.Presentacion_seacrh(txfConsultar.getText(), tablaPress,cmbSe.getItemAt(cmbSe.getSelectedIndex()).charAt(0));
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnEliDeduccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliDeduccionesActionPerformed
