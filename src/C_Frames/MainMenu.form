@@ -132,6 +132,8 @@
                           <Component id="C_PROPOR" min="-2" pref="60" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="C_PED" min="-2" pref="60" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="C_PED1" min="-2" pref="60" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -167,6 +169,7 @@
                                   <Component id="C_Pv" min="-2" pref="60" max="-2" attributes="0"/>
                               </Group>
                               <Component id="C_PED" alignment="1" min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="C_PED1" alignment="1" min="-2" pref="60" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="C_PROPOR" min="-2" pref="60" max="-2" attributes="0"/>
@@ -356,6 +359,17 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C_PEDActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="C_PED1">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagenes/512x512bb.jpg"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Pedidos"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C_PED1ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

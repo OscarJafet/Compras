@@ -608,6 +608,33 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
     /**
      * @return the con
      */
+        
+           public void pedidos_search_claves(JTable tabla, String Sql){
+         DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
+               try {
+            stn=(Statement) con.createStatement();
+            rs=stn.executeQuery(Sql);
+        
+            while(rs.next()){
+                String pro= rs.getString("IDPEDIDO");
+                String pre= rs.getString("fecharesgistro");
+                String dias=rs.getString("FECHARECEPCION");
+                String precioes = rs.getString("TOTALPAGAR");
+                String precioul = rs.getString("CANTIDADPAGADA");
+                String cantmin = rs.getString("ESTATUS");
+                String cantmax = rs.getString("NOMBRE");
+                String estatus = rs.getString("NOM");
+                String estatus1 = rs.getString("NOM1");
+                Object datosRenglon[]={pro,pre,dias,precioes,precioul,cantmin,cantmax,estatus,estatus1};
+                tablaTemp.addRow(datosRenglon);
+            }
+            
+            tabla.setModel(tablaTemp);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+        
   
 }
 

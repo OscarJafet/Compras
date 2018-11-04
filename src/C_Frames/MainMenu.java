@@ -59,6 +59,7 @@ public class MainMenu extends javax.swing.JFrame {
         C_Pv = new javax.swing.JButton();
         C_PROPOR = new javax.swing.JButton();
         C_PED = new javax.swing.JButton();
+        C_PED1 = new javax.swing.JButton();
         jpTitulo = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
@@ -188,6 +189,14 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
+        C_PED1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/512x512bb.jpg"))); // NOI18N
+        C_PED1.setToolTipText("Pedidos");
+        C_PED1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                C_PED1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpLogoLayout = new javax.swing.GroupLayout(jpLogo);
         jpLogo.setLayout(jpLogoLayout);
         jpLogoLayout.setHorizontalGroup(
@@ -240,7 +249,9 @@ public class MainMenu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(C_PROPOR, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(C_PED, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(C_PED, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(C_PED1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jpLogoLayout.setVerticalGroup(
@@ -268,7 +279,8 @@ public class MainMenu extends javax.swing.JFrame {
                                     .addComponent(C_SC, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(C_Pv, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(C_PED, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(C_PED, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(C_PED1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(C_PROPOR, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(lblUsuario)
@@ -556,6 +568,16 @@ public class MainMenu extends javax.swing.JFrame {
         jFrames.repaint();
     }//GEN-LAST:event_C_PEDActionPerformed
 
+    private void C_PED1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_PED1ActionPerformed
+      Pedidos erp = new Pedidos();
+        erp.setSize(jFrames.getSize());
+        erp.setLocation(0, 0);
+        jFrames.removeAll();
+        jFrames.add(erp);
+        jFrames.revalidate();
+        jFrames.repaint();  // TODO add your handling code here:
+    }//GEN-LAST:event_C_PED1ActionPerformed
+
     void setTitulo(int i) {
         lblTitulo.setText(titulos[i]);
     }
@@ -602,6 +624,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton C_Lab;
     private javax.swing.JButton C_PD;
     private javax.swing.JButton C_PED;
+    private javax.swing.JButton C_PED1;
     private javax.swing.JButton C_PP;
     private javax.swing.JButton C_PROPOR;
     private javax.swing.JButton C_Pv;
