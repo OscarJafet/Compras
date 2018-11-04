@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package C_Frames;
 
 import C_Conexion.Conexion;
@@ -258,22 +254,23 @@ public void borrarTabla(JTable tab) {
     }//GEN-LAST:event_txfBuscarKeyTyped
 
     private void tblpROVEEDORESMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblpROVEEDORESMouseClicked
-        String a,b,c,d,e,f,h,i;
         
-        a=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),0);
-        b=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),1);
-        c=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),2);
-        d=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),3);
-        e=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),4);
-        f=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),5);
-        h=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),7);
         
-                       
+        String nom=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),1);
+        String tel=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),3);
+        String ema=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),2);
+        String dir=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),4);
+        String col=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),5);
+        String cod=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),6);
+
+
          if (evt.getClickCount()==2){
-         C_MOD_Sucursales suc= new C_MOD_Sucursales();
-         suc.setLocationRelativeTo(suc);
-         suc.Datos(a, b, c, d, e, f, h);
-         suc.setVisible(true);
+         int id= Integer.parseInt(tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),0)+"");
+        C_MOD_Proveedores pro =new C_MOD_Proveedores();
+        pro.setLocationRelativeTo(pro);
+        pro.Datos(nom, tel, ema, dir, col, cod);
+        pro.setVisible(true);
+        pro.txfIdProveedor.setText(id+"");
          }
          
     }//GEN-LAST:event_tblpROVEEDORESMouseClicked

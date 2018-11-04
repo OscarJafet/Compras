@@ -14,6 +14,8 @@ import java.sql.Statement;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -346,7 +348,8 @@ public class C_MOD_Proveedores extends javax.swing.JFrame {
         char c=evt.getKeyChar();
         if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')&&
         (c!='@'||C_MOD_Proveedor_txfemail.getText().contains("@"))&&
-        (c!='.'||C_MOD_Proveedor_txfemail.getText().contains("."))) evt.consume();
+        (c!='.'||C_MOD_Proveedor_txfemail.getText().contains("."))
+        && (validar(C_MOD_Proveedor_txfemail.getText()))) evt.consume();
     }//GEN-LAST:event_C_MOD_Proveedor_txfemailKeyTyped
 
     private void C_MOD_Proveedor_txfdirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_MOD_Proveedor_txfdirActionPerformed
@@ -370,7 +373,19 @@ public class C_MOD_Proveedores extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_C_MOD_Proveedor_txfcodPosKeyTyped
-
+       public boolean validar(String correo) {
+        Pattern pat = null;
+        Matcher mat = null;
+        
+        pat=Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        mat = pat.matcher(correo);
+        if (mat.find()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     /**
      * @param args the command line arguments
      */

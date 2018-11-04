@@ -365,10 +365,18 @@ public class C_ADD_Proveedores extends javax.swing.JFrame {
                 + idc+ ","
                 + "'A'"
                 + ")");
+        if(JOptionPane.showConfirmDialog (null, "Desea agregar un producto al proveedor","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
+        C_ADD_ProductosProveedor pro =new C_ADD_ProductosProveedor();
+        pro.setLocationRelativeTo(pro);
+        pro.setVisible(true);
+            }
+        
         }
         else {
             JOptionPane.showMessageDialog(null,"No se permiten campos vacios o Cuidad sin asignar","Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
+        
+       
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -421,9 +429,26 @@ public class C_ADD_Proveedores extends javax.swing.JFrame {
         char c=evt.getKeyChar();
         if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')&&
         (c!='@'||C_ADD_Proveedores_txfEMAIL.getText().contains("@"))&&
-        (c!='.'||C_ADD_Proveedores_txfEMAIL.getText().contains("."))) evt.consume();
-       
+        (c!='.'||C_ADD_Proveedores_txfEMAIL.getText().contains(".")) 
+         && (validar(C_ADD_Proveedores_txfEMAIL.getText()))) evt.consume();
+        
+        
     }//GEN-LAST:event_C_ADD_Proveedores_txfEMAILKeyTyped
+    
+       public boolean validar(String correo) {
+        Pattern pat = null;
+        Matcher mat = null;
+        
+        pat=Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        mat = pat.matcher(correo);
+        if (mat.find()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     
     /**
      * @param args the command line arguments
