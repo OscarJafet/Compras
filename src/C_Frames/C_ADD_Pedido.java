@@ -10,10 +10,14 @@ import C_Conexion.Conexion;
 import static C_Conexion.Conexion.con;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -613,7 +617,7 @@ if(cbxproducto.getSelectedIndex()> 0 && cbxsucursal.getSelectedIndex()> 0 && !tx
         !txfdia.getText().isEmpty()&&!txfmes.getText().isEmpty()&&!txfanio.getText().isEmpty()&&
         cbxproveedor.getSelectedIndex()> 0){
 
-        
+    int val=0,val1=0,val2=0;     
         String fech = null;
         int dia= Integer.parseInt(txfdia.getText().toString());
         int mes= Integer.parseInt(txfmes.getText().toString());
@@ -646,12 +650,39 @@ if(cbxproducto.getSelectedIndex()> 0 && cbxsucursal.getSelectedIndex()> 0 && !tx
          fech= String.valueOf(dia)+"/"+String.valueOf(mes)+"/"+String.valueOf(año);}
         else{
         JOptionPane.showMessageDialog(null, "año invalido");
+            val=1;
         }
           
-        }else{JOptionPane.showMessageDialog(null, "dia invalido");}
-      }else{JOptionPane.showMessageDialog(null, "mes invalido");}
+        }else{JOptionPane.showMessageDialog(null, "dia invalido");
+            val1=1;
+        }
+      }else{JOptionPane.showMessageDialog(null, "mes invalido");
+            val2=1;
+        }
       
-    
+    int resultado=0;
+        if((val==0)&&(val1==0)&&(val2==0))
+        {
+         try {
+             
+             SimpleDateFormat forma = new SimpleDateFormat("dd/MM/yyyy");
+             Date fecha1= forma.parse(fech);
+             Date fecha2= forma.parse(fechI);
+             
+             if(fecha1.before(fecha2)){
+                 resultado=1;
+             }else{
+                 if(fecha2.before(fecha1)){
+                     resultado=2;
+                 }else{
+                     resultado=3;
+                 }
+             }
+         } catch (ParseException ex) {
+             Logger.getLogger(C_ADD_Pedido.class.getName()).log(Level.SEVERE, null, ex);
+         }
+        }
+    if(resultado==2){
     String a=String.valueOf(cbxsucursal.getSelectedItem()).toString().replace(" ", "%"),a2 = null,
             b=String.valueOf(cbxproveedor.getSelectedItem()).replace(" ", "%"),b2=null;
     
@@ -706,7 +737,9 @@ if(fech!=null){
             ","+Integer.parseInt(em2)+
             
         ")");}}
-
+    }else {
+        JOptionPane.showMessageDialog(null,"Fecha ingresada es invalida","Advertencia",JOptionPane.INFORMATION_MESSAGE);
+    }    
 }else{
     JOptionPane.showMessageDialog(null, "ingrese todos los campos");
 }
