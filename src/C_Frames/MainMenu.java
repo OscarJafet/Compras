@@ -98,7 +98,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         C_Lab.setBackground(new java.awt.Color(255, 255, 255));
         C_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Lab.png"))); // NOI18N
-        C_Lab.setToolTipText("Laboratorio\n");
+        C_Lab.setToolTipText("LABORATORIOS");
         C_Lab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 C_LabActionPerformed(evt);
@@ -107,7 +107,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         C_Cat.setBackground(new java.awt.Color(255, 255, 255));
         C_Cat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Toxicidad.png"))); // NOI18N
-        C_Cat.setToolTipText("Categorias\n");
+        C_Cat.setToolTipText("CATEGORIAS");
         C_Cat.setBorder(null);
         C_Cat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,7 +116,7 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         C_UM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Unidad.png"))); // NOI18N
-        C_UM.setToolTipText("Unidad Medida");
+        C_UM.setToolTipText("UNIDAD MEDIDA");
         C_UM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 C_UMActionPerformed(evt);
@@ -124,7 +124,7 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         C_EM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Empaques.png"))); // NOI18N
-        C_EM.setToolTipText("Empaque\n");
+        C_EM.setToolTipText("EMPAQUE");
         C_EM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 C_EMActionPerformed(evt);
@@ -132,7 +132,7 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         C_PP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ProductosP.png"))); // NOI18N
-        C_PP.setToolTipText("Presentacion Producto");
+        C_PP.setToolTipText("PRESENTACION PRODUCTO");
         C_PP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 C_PPActionPerformed(evt);
@@ -140,7 +140,7 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         C_PD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Productos.png"))); // NOI18N
-        C_PD.setToolTipText("Productos");
+        C_PD.setToolTipText("PRODUCTOS");
         C_PD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 C_PDActionPerformed(evt);
@@ -148,7 +148,7 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         C_SC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Sucursal.png"))); // NOI18N
-        C_SC.setToolTipText("Sucursales");
+        C_SC.setToolTipText("SUCURSAL");
         C_SC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 C_SCActionPerformed(evt);
@@ -156,7 +156,7 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         C_ES.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ExistenciaS.png"))); // NOI18N
-        C_ES.setToolTipText("Existencias Sucursal\n");
+        C_ES.setToolTipText("EXISTENCIA SUCURSAL");
         C_ES.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 C_ESActionPerformed(evt);
@@ -166,7 +166,7 @@ public class MainMenu extends javax.swing.JFrame {
         lblreloj.setText("jLabel5");
 
         C_Pv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Pr.png"))); // NOI18N
-        C_Pv.setToolTipText("Sucursales");
+        C_Pv.setToolTipText("PROVEEDORES");
         C_Pv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 C_PvActionPerformed(evt);
@@ -174,7 +174,7 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         C_PROPOR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/PrP.png"))); // NOI18N
-        C_PROPOR.setToolTipText("Productos");
+        C_PROPOR.setToolTipText("PRODUCTOS PROVEEDOR");
         C_PROPOR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 C_PROPORActionPerformed(evt);
@@ -182,7 +182,7 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         C_PED.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/C_PED.png"))); // NOI18N
-        C_PED.setToolTipText("Sucursales");
+        C_PED.setToolTipText("DETALLE DEL PEDIDO");
         C_PED.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 C_PEDActionPerformed(evt);
@@ -190,7 +190,7 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         C_PED1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/512x512bb.jpg"))); // NOI18N
-        C_PED1.setToolTipText("Pedidos");
+        C_PED1.setToolTipText("PEDIDOS");
         C_PED1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 C_PED1ActionPerformed(evt);

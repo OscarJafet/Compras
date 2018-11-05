@@ -232,7 +232,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagenes/Lab.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Laboratorio&#xa;"/>
+            <Property name="toolTipText" type="java.lang.String" value="LABORATORIOS"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C_LabActionPerformed"/>
@@ -246,7 +246,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagenes/Toxicidad.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Categorias&#xa;"/>
+            <Property name="toolTipText" type="java.lang.String" value="CATEGORIAS"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
@@ -260,7 +260,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagenes/Unidad.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Unidad Medida"/>
+            <Property name="toolTipText" type="java.lang.String" value="UNIDAD MEDIDA"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C_UMActionPerformed"/>
@@ -271,7 +271,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagenes/Empaques.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Empaque&#xa;"/>
+            <Property name="toolTipText" type="java.lang.String" value="EMPAQUE"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C_EMActionPerformed"/>
@@ -282,7 +282,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagenes/ProductosP.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Presentacion Producto"/>
+            <Property name="toolTipText" type="java.lang.String" value="PRESENTACION PRODUCTO"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C_PPActionPerformed"/>
@@ -293,7 +293,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagenes/Productos.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Productos"/>
+            <Property name="toolTipText" type="java.lang.String" value="PRODUCTOS"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C_PDActionPerformed"/>
@@ -304,7 +304,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagenes/Sucursal.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Sucursales"/>
+            <Property name="toolTipText" type="java.lang.String" value="SUCURSAL"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C_SCActionPerformed"/>
@@ -315,7 +315,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagenes/ExistenciaS.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Existencias Sucursal&#xa;"/>
+            <Property name="toolTipText" type="java.lang.String" value="EXISTENCIA SUCURSAL"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C_ESActionPerformed"/>
@@ -333,7 +333,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagenes/Pr.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Sucursales"/>
+            <Property name="toolTipText" type="java.lang.String" value="PROVEEDORES"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C_PvActionPerformed"/>
@@ -344,7 +344,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagenes/PrP.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Productos"/>
+            <Property name="toolTipText" type="java.lang.String" value="PRODUCTOS PROVEEDOR"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C_PROPORActionPerformed"/>
@@ -355,7 +355,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagenes/C_PED.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Sucursales"/>
+            <Property name="toolTipText" type="java.lang.String" value="DETALLE DEL PEDIDO"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C_PEDActionPerformed"/>
@@ -366,7 +366,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagenes/512x512bb.jpg"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Pedidos"/>
+            <Property name="toolTipText" type="java.lang.String" value="PEDIDOS"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C_PED1ActionPerformed"/>
