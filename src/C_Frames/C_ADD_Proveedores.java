@@ -76,7 +76,7 @@ public class C_ADD_Proveedores extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel1.setText("NOMBRE PROVEEDPOR");
+        jLabel1.setText("NOMBRE PROVEEDOR");
 
         btnAgregar.setBackground(new java.awt.Color(254, 254, 254));
         btnAgregar.setForeground(new java.awt.Color(254, 254, 254));
@@ -303,7 +303,7 @@ public class C_ADD_Proveedores extends javax.swing.JFrame {
             erp.OpenCon("ERP", "erp");
             erp.stn= (Statement) erp.con.createStatement();
             erp.rs= erp.stn.executeQuery("select * from ciudad where estatus='A'");
-            modelocombo.addElement("Seleccione cuidad");
+            modelocombo.addElement("Seleccione ciudad");
             CB_CUIDAD.setModel(modelocombo);
             while (erp.rs.next()){
                  String ID= String.valueOf(erp.rs.getObject("idciudad"));
@@ -355,7 +355,7 @@ public class C_ADD_Proveedores extends javax.swing.JFrame {
 
         }
         erp.OpenCon("ERP", "erp");
-        erp.SQL("insert into PROVEEDORES values (ERP.PROVEE.nextval,"
+        erp.SQL1("insert into PROVEEDORES values (ERP.PROVEE.nextval,"
                 + "'" + C_ADD_Proveedores_txfnom.getText() + "',"
                 + "'" + C_ADD_Proveedores_txftel.getText() + "',"
                 + "'" + C_ADD_Proveedores_txfEMAIL.getText() + "',"
@@ -365,11 +365,7 @@ public class C_ADD_Proveedores extends javax.swing.JFrame {
                 + idc+ ","
                 + "'A'"
                 + ")");
-        if(JOptionPane.showConfirmDialog (null, "Desea agregar un producto al proveedor","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
-        C_ADD_ProductosProveedor pro =new C_ADD_ProductosProveedor();
-        pro.setLocationRelativeTo(pro);
-        pro.setVisible(true);
-            }
+
         
         }
         else {

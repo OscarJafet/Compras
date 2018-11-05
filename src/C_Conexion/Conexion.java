@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package C_Conexion;
+import C_Frames.C_ADD_ProductosProveedor;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -60,6 +61,28 @@ public class Conexion {
               // erp.V = null;
           } catch (SQLException ex) {
               JOptionPane.showMessageDialog(null,ex.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
+              //return false;
+              //Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+          }
+     }
+     
+          public void SQL1(String Sql){
+          try {
+              
+              stn=(Statement) con.createStatement();
+              stn.executeUpdate(Sql);
+              con.commit();
+              stn.close();
+              JOptionPane.showMessageDialog(null," Acción realizada","Informacion", JOptionPane.INFORMATION_MESSAGE);
+              //return true;
+              // erp.V = null;
+              if(JOptionPane.showConfirmDialog (null, "Desea agregar un producto al proveedor","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
+        C_ADD_ProductosProveedor pro =new C_ADD_ProductosProveedor();
+        pro.setLocationRelativeTo(pro);
+        pro.setVisible(true);
+            }
+          } catch (SQLException ex) {
+              JOptionPane.showMessageDialog(null,"Correo no valido","Error" ,JOptionPane.INFORMATION_MESSAGE);
               //return false;
               //Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
           }
@@ -486,10 +509,10 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
       public void Detalles_seacrh(String Nombre, JTable tabla, char Stat) {
         DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
         if (Nombre.isEmpty() && Stat == 'E') {
-            Sql = "SELECT * FROM PEDIDODETALLE INNER JOIN ERP.PEDIDOS ON PEDIDOS.ESTATUS = 'A'";
+            Sql = "SELECT * FROM PEDIDODETALLE INNER JOIN ERP.PEDIDOS ON PEDIDOS.ESTATUS = 'E'";
         } else if (!Nombre.isEmpty() && Stat == 'E') {
-            Sql = "SELECT * FROM PEDIDODETALLE P INNER JOIN PEDIDOS P ON P.ESTATUS = 'A' INNER JOIN PRESENTACIONESPRODUCTO R ON R.NOMBRE = '"+Nombre+"'";
-        } else if (Stat == 'A' || Stat == 'B') {
+            Sql = "SELECT * FROM PEDIDODETALLE P INNER JOIN PEDIDOS P ON P.ESTATUS = 'E' INNER JOIN PRESENTACIONESPRODUCTO R ON R.NOMBRE like '"+Nombre+"'%";
+        } else if (Stat == 'A' || Stat == 'B' || Stat == 'E') {
             Sql = "SELECT * FROM PEDIDODETALLE INNER JOIN ERP.PEDIDOS ON PEDIDOS.ESTATUS = '"+Stat+"'";
         }
         //System.out.println(Sql);
@@ -502,17 +525,17 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
                 String cPd=rs.getString("cantPedida");
                 String pC=rs.getString("precioCompra");
                 String sb = rs.getString("subtotal");
+                String cAp = rs.getString("cantAceptada");
                 String cRe = rs.getString("cantRecibida");
                 String cRh = rs.getString("cantRechazada");
-                String cAp = rs.getString("cantAceptada");
                 String idPed = rs.getString("idPedido");
                 String idPress = rs.getString("idPresentacion");
                 Object datosRenglon[]={idDt, cPd, pC,sb,cRe,cRh,cAp,idPed,idPress};
                 tablaTemp.addRow(datosRenglon);
             }
-            Sql = "SELECT SUCURSALES.NOMBRE FROM PEDIDOS\n" +
-"INNER JOIN ERP.SUCURSALES\n" +
-"ON PEDIDOS.IDSUCURSAL = SUCURSALES.IDSUCURSAL AND PEDIDOS.ESTATUS = 'A'";
+            Sql = "SELECT SUCURSAL.NOMBRE FROM PEDIDOS\n" +
+"INNER JOIN ERP.SUCURSAL\n" +
+"ON PEDIDOS.IDSUCURSAL = SUCURSAL.IDSUCURSAL WHERE PEDIDOS.ESTATUS = 'A' or PEDIDOS.ESTATUS = 'E'";
             stn= con.createStatement();
             rs=stn.executeQuery(Sql);
         
@@ -524,15 +547,15 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
             Sql = "SELECT * FROM ERP.PRESENTACIONESPRODUCTO WHERE ESTATUS = 'A'";
             stn= con.createStatement();
             rs=stn.executeQuery(Sql);
-        
-            for (int i = 0; rs.next(); i++) {
+          for (int i = 0; rs.next(); i++) {
                  String nombre=rs.getString("nombre");
                  tablaTemp.setValueAt(tablaTemp.getValueAt(i, 8)+" "+nombre, i, 8);
             }
+         
             
             tabla.setModel(tablaTemp);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,ex.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
+           // JOptionPane.showMessageDialog(null,ex.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
     }
     public void Proveedores_Search(String Nombre,JTable tabla){

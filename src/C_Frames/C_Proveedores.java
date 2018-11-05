@@ -86,7 +86,7 @@ public class C_Proveedores extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID PROVEEDOR", "NOMBRE", "TELEFONO", "EMAIL", "DIRECCION", "COLONIA", "CODIGOPOSTAL", "ESTATUS", "CUIDAD"
+                "ID PROVEEDOR", "NOMBRE", "TELEFONO", "EMAIL", "DIRECCION", "COLONIA", "CODIGOPOSTAL", "ESTATUS", "CIUDAD"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -188,6 +188,7 @@ public class C_Proveedores extends javax.swing.JPanel {
             ID = Integer.parseInt(tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),0)+"");
             if(JOptionPane.showConfirmDialog (null, "Desea eliminar","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
                 BajaProveedor();
+                btnConsultarSucursal.doClick();
             }
             }else {
                 JOptionPane.showMessageDialog(null,"Seleccione un producto con estatus A","Error" ,JOptionPane.INFORMATION_MESSAGE);
@@ -255,7 +256,7 @@ public void borrarTabla(JTable tab) {
 
     private void tblpROVEEDORESMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblpROVEEDORESMouseClicked
         
-        
+       
         String nom=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),1);
         String tel=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),3);
         String ema=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),2);
@@ -266,11 +267,10 @@ public void borrarTabla(JTable tab) {
 
          if (evt.getClickCount()==2){
          int id= Integer.parseInt(tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),0)+"");
-        C_MOD_Proveedores pro =new C_MOD_Proveedores();
+        C_ADD_ProductosProveedor pro =new C_ADD_ProductosProveedor();
         pro.setLocationRelativeTo(pro);
-        pro.Datos(nom, tel, ema, dir, col, cod);
+        pro.Datos(id,nom);
         pro.setVisible(true);
-        pro.txfIdProveedor.setText(id+"");
          }
          
     }//GEN-LAST:event_tblpROVEEDORESMouseClicked

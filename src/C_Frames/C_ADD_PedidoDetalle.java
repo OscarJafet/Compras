@@ -56,9 +56,9 @@ public void llenarCombo2(){
         try {
             erp.OpenCon("ERP", "erp");
             erp.stn= (Statement) erp.con.createStatement();
-            erp.rs= erp.stn.executeQuery("SELECT PEDIDOS.IDPEDIDO, PEDIDOS.IDSUCURSAL,SUCURSALES.NOMBRE FROM PEDIDOS\n" +
-"INNER JOIN ERP.SUCURSALES\n" +
-"ON PEDIDOS.IDSUCURSAL = SUCURSALES.IDSUCURSAL AND PEDIDOS.ESTATUS = 'A'");
+            erp.rs= erp.stn.executeQuery("SELECT PEDIDOS.IDPEDIDO, PEDIDOS.IDSUCURSAL,SUCURSAL.NOMBRE FROM PEDIDOS\n" +
+"INNER JOIN ERP.SUCURSAL\n" +
+"ON PEDIDOS.IDSUCURSAL = SUCURSAL.IDSUCURSAL AND PEDIDOS.ESTATUS = 'E'");
             modelocombo1.addElement("Seleccione Pedido");
             modelocombo1.addElement("Crear Pedido");
             cmbPres.setModel(modelocombo1);

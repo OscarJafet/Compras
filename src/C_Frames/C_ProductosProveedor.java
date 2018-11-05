@@ -269,47 +269,47 @@ public void borrarTabla(JTable tab) {
     }//GEN-LAST:event_btnEditarProProProActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int ID = 0;
-        int idproveedor=0,idpresentacion=0;
-        int con=tblProPro.getSelectedRow();
-        if (con>=0){
-            String es= String.valueOf(tblProPro.getValueAt(con,7));
-            if(es.equals("B"))
-            {
-                                        try {
-            erp.OpenCon("ERP", "erp");
-            erp.stn= (Statement) erp.con.createStatement();
-            erp.rs= erp.stn.executeQuery("select * from Proveedores where nombre='"+tblProPro.getValueAt(tblProPro.getSelectedRow(),0)+"'");
-            while (erp.rs.next()){
-                String id= String.valueOf(erp.rs.getObject("idproveedor"));
-                idproveedor= Integer.parseInt(id);
-            }
-        
-        }catch(SQLException ex){
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-                        try {
-            erp.OpenCon("ERP", "erp");
-            erp.stn= (Statement) erp.con.createStatement();
-            erp.rs= erp.stn.executeQuery("select * from PresentacionesProducto where nombre='"+tblProPro.getValueAt(tblProPro.getSelectedRow(),1)+"'");
-            while (erp.rs.next()){
-                String id= String.valueOf(erp.rs.getObject("idpresentacion"));
-                idpresentacion= Integer.parseInt(id);
-            }
-        
-        }catch(SQLException ex){
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-        }    
-            if(JOptionPane.showConfirmDialog (null, "Desea dar de alta","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
-            erp.SQL("update ProductosProveedor set estatus='A' where idproveedor="+idproveedor+" and idpresentacion="+idpresentacion);
-            btnConsultarProPro.doClick();
-            }
-            }else {
-                JOptionPane.showMessageDialog(null,"Seleccione un producto con estatus B","Error" ,JOptionPane.INFORMATION_MESSAGE);
-            }
-        }else {
-            JOptionPane.showMessageDialog(null,"Seleccione un producto","Error" ,JOptionPane.INFORMATION_MESSAGE);
-        }
+//        int ID = 0;
+//        int idproveedor=0,idpresentacion=0;
+//        int con=tblProPro.getSelectedRow();
+//        if (con>=0){
+//            String es= String.valueOf(tblProPro.getValueAt(con,7));
+//            if(es.equals("B"))
+//            {
+//                                        try {
+//            erp.OpenCon("ERP", "erp");
+//            erp.stn= (Statement) erp.con.createStatement();
+//            erp.rs= erp.stn.executeQuery("select * from Proveedores where nombre='"+tblProPro.getValueAt(tblProPro.getSelectedRow(),0)+"'");
+//            while (erp.rs.next()){
+//                String id= String.valueOf(erp.rs.getObject("idproveedor"));
+//                idproveedor= Integer.parseInt(id);
+//            }
+//        
+//        }catch(SQLException ex){
+//            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//                        try {
+//            erp.OpenCon("ERP", "erp");
+//            erp.stn= (Statement) erp.con.createStatement();
+//            erp.rs= erp.stn.executeQuery("select * from PresentacionesProducto where nombre='"+tblProPro.getValueAt(tblProPro.getSelectedRow(),1)+"'");
+//            while (erp.rs.next()){
+//                String id= String.valueOf(erp.rs.getObject("idpresentacion"));
+//                idpresentacion= Integer.parseInt(id);
+//            }
+//        
+//        }catch(SQLException ex){
+//            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+//        }    
+//            if(JOptionPane.showConfirmDialog (null, "Desea dar de alta","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
+//            erp.SQL("update ProductosProveedor set estatus='A' where idproveedor="+idproveedor+" and idpresentacion="+idpresentacion);
+//            btnConsultarProPro.doClick();
+//            }
+//            }else {
+//                JOptionPane.showMessageDialog(null,"Seleccione un producto con estatus B","Error" ,JOptionPane.INFORMATION_MESSAGE);
+//            }
+//        }else {
+//            JOptionPane.showMessageDialog(null,"Seleccione un producto","Error" ,JOptionPane.INFORMATION_MESSAGE);
+//        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyTyped

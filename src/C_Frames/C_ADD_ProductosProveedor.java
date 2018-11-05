@@ -75,6 +75,12 @@ public class C_ADD_ProductosProveedor extends javax.swing.JFrame {
         }
         
     }
+        
+        public void Datos (int ID,String Nombre){
+            
+            modelocombo.setSelectedItem(ID+" "+Nombre);
+            cmbProveedor.setModel(modelocombo);
+        }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -198,6 +204,12 @@ public class C_ADD_ProductosProveedor extends javax.swing.JFrame {
         txfcantMin.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txfcantMinKeyTyped(evt);
+            }
+        });
+
+        cmbProveedor.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                cmbProveedorFocusGained(evt);
             }
         });
 
@@ -409,6 +421,10 @@ public class C_ADD_ProductosProveedor extends javax.swing.JFrame {
         }  
     }//GEN-LAST:event_txfcantMinKeyTyped
 
+    private void cmbProveedorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cmbProveedorFocusGained
+//        llenarCombo1();
+    }//GEN-LAST:event_cmbProveedorFocusGained
+
     /**
      * @param args the command line arguments
      */
@@ -449,7 +465,7 @@ public class C_ADD_ProductosProveedor extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JComboBox cmbPre;
-    private javax.swing.JComboBox cmbProveedor;
+    public javax.swing.JComboBox cmbProveedor;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

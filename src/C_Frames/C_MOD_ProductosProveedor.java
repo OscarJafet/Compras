@@ -323,8 +323,8 @@ public class C_MOD_ProductosProveedor extends javax.swing.JFrame {
                 +"cantmaxpedir ="+txfCantMax.getText()+""
                 +" where idproveedor ="
                 +idproveedor+" and idpresentacion="+idpresentacion);
-        }
-            
+            }
+                   
             else {
                 JOptionPane.showMessageDialog(null,"Valores incongruentes en cantidad maxima con minima ","Error",JOptionPane.INFORMATION_MESSAGE);
             }
