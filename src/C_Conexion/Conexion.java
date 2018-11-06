@@ -509,10 +509,10 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
       public void Detalles_seacrh(String Nombre, JTable tabla, char Stat) {
         DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
         if (Nombre.isEmpty() && Stat == 'E') {
-            Sql = "SELECT * FROM PEDIDODETALLE INNER JOIN ERP.PEDIDOS ON PEDIDOS.ESTATUS = 'E'";
+            Sql = "SELECT * FROM PEDIDODETALLE INNER JOIN ERP.PEDIDOS ON PEDIDOS.ESTATUS = 'E' or PEDIDOS.ESTATUS = 'A'";
         } else if (!Nombre.isEmpty() && Stat == 'E') {
-            Sql = "SELECT * FROM PEDIDODETALLE P INNER JOIN PEDIDOS P ON P.ESTATUS = 'E' INNER JOIN PRESENTACIONESPRODUCTO R ON R.NOMBRE like '"+Nombre+"'%";
-        } else if (Stat == 'A' || Stat == 'B' || Stat == 'E') {
+            Sql = "SELECT * FROM PEDIDODETALLE P INNER JOIN PEDIDOS P ON P.ESTATUS = 'E' or P.ESTATUS = 'A' INNER JOIN PRESENTACIONESPRODUCTO R ON R.NOMBRE like '"+Nombre+"%'";
+        } else if (Stat == 'A' || Stat == 'C' || Stat == 'E') {
             Sql = "SELECT * FROM PEDIDODETALLE INNER JOIN ERP.PEDIDOS ON PEDIDOS.ESTATUS = '"+Stat+"'";
         }
         //System.out.println(Sql);
@@ -533,14 +533,15 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
                 Object datosRenglon[]={idDt, cPd, pC,sb,cRe,cRh,cAp,idPed,idPress};
                 tablaTemp.addRow(datosRenglon);
             }
-            Sql = "SELECT SUCURSAL.NOMBRE FROM PEDIDOS\n" +
-"INNER JOIN ERP.SUCURSAL\n" +
-"ON PEDIDOS.IDSUCURSAL = SUCURSAL.IDSUCURSAL WHERE PEDIDOS.ESTATUS = 'A' or PEDIDOS.ESTATUS = 'E'";
+            Sql = "SELECT SUCURSALES.NOMBRE FROM PEDIDOS\n" +
+"INNER JOIN ERP.SUCURSALES\n" +
+"ON PEDIDOS.IDSUCURSAL = SUCURSALES.IDSUCURSAL WHERE PEDIDOS.ESTATUS = 'A' or PEDIDOS.ESTATUS = 'E'";
             stn= con.createStatement();
             rs=stn.executeQuery(Sql);
         
             for (int i = 0; rs.next(); i++) {
                  String nombre=rs.getString("nombre");
+                 System.out.println(nombre+"ped");
                  tablaTemp.setValueAt(tablaTemp.getValueAt(i, 7)+" "+nombre, i, 7);
             }
             
@@ -549,6 +550,7 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
             rs=stn.executeQuery(Sql);
           for (int i = 0; rs.next(); i++) {
                  String nombre=rs.getString("nombre");
+                 System.out.println(nombre+"pres");
                  tablaTemp.setValueAt(tablaTemp.getValueAt(i, 8)+" "+nombre, i, 8);
             }
          
