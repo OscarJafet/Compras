@@ -41,10 +41,10 @@ public void llenarCombo1(){
             erp.stn= (Statement) erp.con.createStatement();
             erp.rs= erp.stn.executeQuery("SELECT * FROM ERP.PRESENTACIONESPRODUCTO WHERE ESTATUS = 'A'");
             modelocombo.addElement("Seleccione Presentación");
-            cmbPed.setModel(modelocombo);
+            cmbPres.setModel(modelocombo);
             while (erp.rs.next()){
                 modelocombo.addElement(erp.rs.getObject("idPresentacion")+" "+erp.rs.getObject("nombre"));
-                cmbPed.setModel(modelocombo);
+                cmbPres.setModel(modelocombo);
             }
         
         }catch(SQLException ex){
@@ -56,16 +56,16 @@ public void llenarCombo2(){
         try {
             erp.OpenCon("ERP", "erp");
             erp.stn= (Statement) erp.con.createStatement();
-            erp.rs= erp.stn.executeQuery("SELECT PEDIDOS.IDPEDIDO, PEDIDOS.IDSUCURSAL,SUCURSAL.NOMBRE FROM PEDIDOS\n" +
-"INNER JOIN ERP.SUCURSAL\n" +
-"ON PEDIDOS.IDSUCURSAL = SUCURSAL.IDSUCURSAL AND PEDIDOS.ESTATUS = 'E'");
+            erp.rs= erp.stn.executeQuery("SELECT PEDIDOS.IDPEDIDO, PEDIDOS.IDSUCURSAL,SUCURSALES.NOMBRE FROM PEDIDOS\n" +
+"INNER JOIN ERP.SUCURSALES\n" +
+"ON PEDIDOS.IDSUCURSAL = SUCURSALES.IDSUCURSAL AND PEDIDOS.ESTATUS = 'E' or PEDIDOS.ESTATUS = 'A'");
             modelocombo1.addElement("Seleccione Pedido");
             modelocombo1.addElement("Crear Pedido");
-            cmbPres.setModel(modelocombo1);
+            cmbPedido.setModel(modelocombo1);
             System.out.println(erp.rs.getRow());
             while (erp.rs.next()){
                 modelocombo1.addElement("id P: "+erp.rs.getObject("idPedido")+" , id S: "+erp.rs.getObject("idSucursal")+", Nom: " +erp.rs.getObject("nombre"));
-                cmbPres.setModel(modelocombo1);
+                cmbPedido.setModel(modelocombo1);
             }
 
         }catch(SQLException ex){
@@ -90,8 +90,8 @@ public void llenarCombo2(){
         jLabel4 = new javax.swing.JLabel();
         CantRech = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        cmbPed = new javax.swing.JComboBox();
         cmbPres = new javax.swing.JComboBox();
+        cmbPedido = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         CantP = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
@@ -157,15 +157,15 @@ public void llenarCombo2(){
         jLabel2.setForeground(new java.awt.Color(1, 1, 1));
         jLabel2.setText("ID PRESENTACIÓN");
 
-        cmbPed.addActionListener(new java.awt.event.ActionListener() {
+        cmbPres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbPedActionPerformed(evt);
+                cmbPresActionPerformed(evt);
             }
         });
 
-        cmbPres.addItemListener(new java.awt.event.ItemListener() {
+        cmbPedido.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbPresItemStateChanged(evt);
+                cmbPedidoItemStateChanged(evt);
             }
         });
 
@@ -242,10 +242,10 @@ public void llenarCombo2(){
                             .addComponent(CantRech, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CantP, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CantReci, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbPed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmbPres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(109, 109, 109)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbPres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -258,8 +258,8 @@ public void llenarCombo2(){
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(cmbPed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbPres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbPres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -306,8 +306,8 @@ public void llenarCombo2(){
         float p = 0,a = 0,re = 0,rh = 0,preComp =0,Subt =0;
         int idP = 0, idPr = 0,idPed = 0,idPres = 0;
      
-        StringTokenizer edg = new StringTokenizer(cmbPres.getItemAt(cmbPres.getSelectedIndex())+"", " ");
-        StringTokenizer epp = new StringTokenizer(cmbPed.getItemAt(cmbPed.getSelectedIndex())+""," ");
+        StringTokenizer edg = new StringTokenizer(cmbPedido.getItemAt(cmbPedido.getSelectedIndex())+"", " ");
+        StringTokenizer epp = new StringTokenizer(cmbPres.getItemAt(cmbPres.getSelectedIndex())+""," ");
             edg.nextToken();
             edg.nextToken();
         try{
@@ -332,8 +332,8 @@ public void llenarCombo2(){
         //this.IDEmp.setText("");
         this.CantP.setText("");
         this.CantRech.setText("");
+        cmbPedido.setSelectedIndex(0);
         cmbPres.setSelectedIndex(0);
-        cmbPed.setSelectedIndex(0);
        // this.IDProd.setText("");
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
@@ -342,19 +342,19 @@ public void llenarCombo2(){
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void cmbPresItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbPresItemStateChanged
+    private void cmbPedidoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbPedidoItemStateChanged
         // TODO add your handling code here:
-        if(cmbPres.getItemAt(cmbPres.getSelectedIndex()) == "Crear Pedido"){
+        if(cmbPedido.getItemAt(cmbPedido.getSelectedIndex()) == "Crear Pedido"){
             //C_ADD_Emp erp = new C_ADD_Emp();
             //erp.setLocationRelativeTo(erp);
             //erp.setVisible(true);
         }else{
             //jLabel4.setText("ID PEDIDO: "+cmbPres.getItemAt(cmbPres.getSelectedIndex()).toString().substring(6, 7));
         }
-    }//GEN-LAST:event_cmbPresItemStateChanged
+    }//GEN-LAST:event_cmbPedidoItemStateChanged
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        cmbPres.removeAllItems();
+        cmbPedido.removeAllItems();
         llenarCombo2();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -399,9 +399,9 @@ public void llenarCombo2(){
             evt.consume();
     }//GEN-LAST:event_CantReciKeyTyped
 
-    private void cmbPedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPedActionPerformed
+    private void cmbPresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPresActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cmbPedActionPerformed
+    }//GEN-LAST:event_cmbPresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -508,7 +508,7 @@ public void llenarCombo2(){
     private javax.swing.JTextField CantReci;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JComboBox cmbPed;
+    private javax.swing.JComboBox cmbPedido;
     private javax.swing.JComboBox cmbPres;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

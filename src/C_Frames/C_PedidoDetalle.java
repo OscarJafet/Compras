@@ -59,7 +59,7 @@ public class C_PedidoDetalle extends javax.swing.JPanel {
         btnAgregarDe = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        cmbSe = new javax.swing.JComboBox<String>();
+        cmbSe = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(254, 254, 254));
         setForeground(new java.awt.Color(254, 254, 254));
@@ -114,11 +114,11 @@ public class C_PedidoDetalle extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID P. Detalle", "Cant. Pedida", "Precio compra", "Subtotal", "Cant. Recibida", "Cant. Rechazada", "Cant. Aceptada", "ID Pedido", "ID Presentación", ""
+                "ID P. Detalle", "Cant. Pedida", "Precio compra", "Subtotal", "Cant. Recibida", "Cant. Rechazada", "Cant. Aceptada", "ID Pedido", "ID Presentación"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -185,7 +185,7 @@ public class C_PedidoDetalle extends javax.swing.JPanel {
         add(jButton1);
         jButton1.setBounds(38, 468, 97, 73);
 
-        cmbSe.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Estatus", "A", "B", "E" }));
+        cmbSe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estatus", "A", "B", "E" }));
         cmbSe.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cmbSeMouseClicked(evt);
@@ -226,8 +226,8 @@ int A = 0;
         erp.CantRech.setText(tablaPedido.getValueAt(tablaPedido.getSelectedRow(),5)+"");
         erp.Acp.setText(tablaPedido.getValueAt(tablaPedido.getSelectedRow(),6)+"");
         int b = 0;
-        for (int i = 0; i < erp.cmbProd.getItemCount(); i++) {
-            StringTokenizer idPr = new StringTokenizer(erp.cmbProd.getItemAt(i).toString()," ");
+        for (int i = 0; i < erp.cmbPed.getItemCount(); i++) {
+            StringTokenizer idPr = new StringTokenizer(erp.cmbPed.getItemAt(i).toString()," ");
              int a = Integer.parseInt((tablaPedido.getValueAt(tablaPedido.getSelectedRow(),7)+""));
             try{
                 b = Integer.parseInt(idPr.nextToken());
@@ -237,13 +237,13 @@ int A = 0;
             System.out.println(a+" "+b);
             if(a==b){
                 System.out.println("entro");
-                erp.cmbProd.setSelectedIndex(i);
+                erp.cmbPed.setSelectedIndex(i);
             }
         }
         int b1;
         System.out.println("dossssssss");
-        for (int i = 0; i < erp.cmbEmp.getItemCount(); i++) {
-            StringTokenizer idE = new StringTokenizer(erp.cmbEmp.getItemAt(i).toString()," ");
+        for (int i = 0; i < erp.cmbPres.getItemCount(); i++) {
+            StringTokenizer idE = new StringTokenizer(erp.cmbPres.getItemAt(i).toString()," ");
             int a = Integer.parseInt((tablaPedido.getValueAt(tablaPedido.getSelectedRow(),8)+""));
             try{
                 b1 = Integer.parseInt(idE.nextToken());
@@ -253,7 +253,7 @@ int A = 0;
             System.out.println(a+" "+b1);
             if(a==b1){
                 System.out.println("entro");
-                erp.cmbEmp.setSelectedIndex(i);
+                erp.cmbPres.setSelectedIndex(i);
             }
         }
         }
@@ -361,7 +361,7 @@ public void borrarTabla(JTable tab) {
         borrarTabla(tablaPedido);
         try{
         erp.OpenCon("ERP", "erp");
-        erp.Detalles_seacrh(txfConsultar.getText(), tablaPedido, cmbSe.getItemAt(cmbSe.getSelectedIndex()).charAt(0) );
+      erp.Detalles_seacrh(txfConsultar.getText(), tablaPedido, cmbSe.getItemAt(cmbSe.getSelectedIndex()).charAt(0) );
         }
         catch(Exception e){
         

@@ -539,18 +539,18 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
             stn= con.createStatement();
             rs=stn.executeQuery(Sql);
         
-            for (int i = 0; rs.next(); i++) {
+            for (int i = 0; this.rs.next(); i++) {
                  String nombre=rs.getString("nombre");
                  System.out.println(nombre+"ped");
                  tablaTemp.setValueAt(tablaTemp.getValueAt(i, 7)+" "+nombre, i, 7);
             }
             //comentario
-            Sql = "SELECT * FROM ERP.PRESENTACIONESPRODUCTO WHERE ESTATUS = 'A'";
+            Sql = "SELECT P.NOMBRE FROM PRESENTACIONESPRODUCTO P inner join PEDIDODETALLE D on P.idPresentacion = D.idpresentacion where P.estatus ='A' or P.estatus = 'E' or P.estatus = 'C'";
             stn= con.createStatement();
             rs=stn.executeQuery(Sql);
           for (int i = 0; rs.next(); i++) {
-                 String nombre=rs.getString("nombre");
-                 System.out.println(nombre+"pres");
+                 String nombre=rs.getString("NOMBRE");
+                 //System.out.println(nombre+"pres");
                  tablaTemp.setValueAt(tablaTemp.getValueAt(i, 8)+" "+nombre, i, 8);
             }
          

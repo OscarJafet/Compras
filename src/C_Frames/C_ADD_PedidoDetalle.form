@@ -90,11 +90,11 @@
                               <Component id="CantRech" min="-2" pref="144" max="-2" attributes="0"/>
                               <Component id="CantP" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
                               <Component id="CantReci" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
-                              <Component id="cmbPed" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbPres" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="cmbPres" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbPedido" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -112,8 +112,8 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cmbPed" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cmbPres" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbPedido" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -240,16 +240,6 @@
             <Property name="text" type="java.lang.String" value="ID PRESENTACI&#xd3;N"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cmbPed">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="0"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbPedActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JComboBox" name="cmbPres">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
@@ -257,7 +247,17 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cmbPresItemStateChanged"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbPresActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cmbPedido">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cmbPedidoItemStateChanged"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">

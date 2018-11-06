@@ -110,8 +110,8 @@
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="cmbProd" pref="125" max="32767" attributes="0"/>
-                              <Component id="cmbEmp" max="32767" attributes="0"/>
+                              <Component id="cmbPed" pref="125" max="32767" attributes="0"/>
+                              <Component id="cmbPres" max="32767" attributes="0"/>
                               <Component id="Acp" alignment="1" pref="125" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
@@ -128,7 +128,7 @@
                       <Component id="lblIdDeduccion" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="Id" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cmbProd" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbPed" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -145,7 +145,7 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="cmbEmp" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbPres" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
@@ -338,7 +338,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cmbProd">
+        <Component class="javax.swing.JComboBox" name="cmbPed">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
@@ -359,14 +359,14 @@
             <Property name="text" type="java.lang.String" value="ID PEDIDO"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cmbEmp">
+        <Component class="javax.swing.JComboBox" name="cmbPres">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cmbEmpItemStateChanged"/>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cmbPresItemStateChanged"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
