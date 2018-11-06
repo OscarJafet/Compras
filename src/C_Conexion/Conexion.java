@@ -544,7 +544,7 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
                  System.out.println(nombre+"ped");
                  tablaTemp.setValueAt(tablaTemp.getValueAt(i, 7)+" "+nombre, i, 7);
             }
-            
+            //comentario
             Sql = "SELECT * FROM ERP.PRESENTACIONESPRODUCTO WHERE ESTATUS = 'A'";
             stn= con.createStatement();
             rs=stn.executeQuery(Sql);
