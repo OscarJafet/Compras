@@ -232,6 +232,10 @@ public void borrarTabla(JTable tab) {
        
         }
     }
+public void Consulta(){
+    borrarTabla(tblProPro);
+    btnConsultarProPro.doClick();
+}
     
     private void btnConsultarProProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarProProActionPerformed
         borrarTabla(tblProPro);
@@ -354,7 +358,7 @@ public void borrarTabla(JTable tab) {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblProPro;
+    public javax.swing.JTable tblProPro;
     private javax.swing.JTextField txfBuscar;
     // End of variables declaration//GEN-END:variables
 }

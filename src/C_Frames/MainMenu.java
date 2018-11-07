@@ -551,6 +551,7 @@ public class MainMenu extends javax.swing.JFrame {
         C_ProductosProveedor erp = new C_ProductosProveedor();
         erp.setSize(jFrames.getSize());
         erp.setLocation(0, 0);
+        erp.btnConsultarProPro.doClick();
         jFrames.removeAll();
         jFrames.add(erp);
         jFrames.revalidate();

@@ -332,12 +332,12 @@ public class C_MOD_ProductosProveedor extends javax.swing.JFrame {
                 else {
             JOptionPane.showMessageDialog(null,"No se permiten campos vacios ","Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
+                    C_ProductosProveedor pro= new C_ProductosProveedor();
+            pro.Consulta();
     }//GEN-LAST:event_btnAgrefarEstadosActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        C_ProductosProveedor pro= new C_ProductosProveedor();
-        pro.btnConsultarProPro.doClick();
-        this.dispose();
+            this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txfPresentacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfPresentacionKeyTyped
