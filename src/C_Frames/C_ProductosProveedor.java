@@ -227,9 +227,10 @@ public void borrarTabla(JTable tab) {
             DefaultTableModel tabT = (DefaultTableModel) tab.getModel();
             for (int i = tabT.getRowCount() - 1; i > -1; i--) {
                 tabT.removeRow(i);
+                tabT.removeTableModelListener(tab);
             }
         } catch (Exception e) {
-       
+            System.out.println(e);
         }
     }
     
@@ -354,7 +355,7 @@ public void borrarTabla(JTable tab) {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblProPro;
+    public javax.swing.JTable tblProPro;
     private javax.swing.JTextField txfBuscar;
     // End of variables declaration//GEN-END:variables
 }

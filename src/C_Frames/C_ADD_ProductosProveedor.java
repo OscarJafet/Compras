@@ -28,12 +28,14 @@ public class C_ADD_ProductosProveedor extends javax.swing.JFrame {
     Conexion erp;
     DefaultComboBoxModel modelocombo = new DefaultComboBoxModel();
     DefaultComboBoxModel modelocombo1 = new DefaultComboBoxModel();
+    DefaultComboBoxModel modelocombo2 = new DefaultComboBoxModel();
            
     public C_ADD_ProductosProveedor() {
         initComponents();
         erp = new Conexion();
         llenarCombo1();
-        llenarCombo2();
+        llenarCombo3();
+        this.cmbPre.setEnabled(false);
     }
     
     public void llenarCombo1(){
@@ -57,17 +59,54 @@ public class C_ADD_ProductosProveedor extends javax.swing.JFrame {
     }
     
         public void llenarCombo2(){
-        try {
+        StringTokenizer numero = new StringTokenizer(cmbProducto.getSelectedItem().toString()," ");
+        cmbPre.removeAllItems();
+//        erp.OpenCon("ERP", "erp");
+        int C = 0,idpro=0;
+        while(numero.hasMoreTokens()){
+                String a = numero.nextToken();
+              C++;
+              if (C == 1)
+                  idpro = Integer.parseInt(a);
+                
+        }
+            try {
             erp.OpenCon("ERP", "erp");
             erp.stn= (Statement) erp.con.createStatement();
-            erp.rs= erp.stn.executeQuery("select * from PresentacionesProducto where estatus='A'");
+            erp.rs= erp.stn.executeQuery("select pre.idpresentacion, pre.nombre,em.nombre\n" +
+                                            "as nom from ProductosProveedor pro\n" +
+                                        "inner join PresentacionesProducto pre on pro.idpresentacion=pre.idpresentacion\n" +
+                                        "inner join Empaques em on\n" +
+                                            "pre.idempaque= em.idempaque  where pre.estatus='A' and pre.idproducto= "+ idpro);
             modelocombo1.addElement("Seleccione Presentacion");
             cmbPre.setModel(modelocombo1);
             while (erp.rs.next()){
                 String ID= String.valueOf(erp.rs.getObject("idpresentacion"));
                 String nombre= String.valueOf(erp.rs.getObject("nombre"));
-                modelocombo1.addElement(ID+" "+nombre);
+                String nom= String.valueOf(erp.rs.getObject("nom"));
+                modelocombo1.addElement(ID+" "+nom+" "+nombre);
                 cmbPre.setModel(modelocombo1);
+            }
+        
+        }catch(SQLException ex){
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+        
+        
+        public void llenarCombo3(){
+        try {
+            erp.OpenCon("ERP", "erp");
+            erp.stn= (Statement) erp.con.createStatement();
+            erp.rs= erp.stn.executeQuery("select * from Productos where estatus='A'");
+            modelocombo2.addElement("Seleccione Productos");
+            cmbProducto.setModel(modelocombo2);
+            while (erp.rs.next()){
+                String ID= String.valueOf(erp.rs.getObject("idproducto"));
+                String nombre= String.valueOf(erp.rs.getObject("nombre"));
+                modelocombo2.addElement(ID+" "+nombre);
+                cmbProducto.setModel(modelocombo2);
             }
         
         }catch(SQLException ex){
@@ -108,6 +147,8 @@ public class C_ADD_ProductosProveedor extends javax.swing.JFrame {
         txfcantMin = new javax.swing.JTextField();
         cmbProveedor = new javax.swing.JComboBox();
         cmbPre = new javax.swing.JComboBox();
+        jLabel14 = new javax.swing.JLabel();
+        cmbProducto = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -213,6 +254,16 @@ public class C_ADD_ProductosProveedor extends javax.swing.JFrame {
             }
         });
 
+        jLabel14.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel14.setText("PRODUCTO");
+
+        cmbProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbProductoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -234,8 +285,13 @@ public class C_ADD_ProductosProveedor extends javax.swing.JFrame {
                         .addGap(72, 72, 72)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cmbPre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(cmbProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(99, 99, 99)
+                                .addComponent(jLabel14)
+                                .addGap(18, 18, 18)
+                                .addComponent(cmbProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(391, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
@@ -267,7 +323,9 @@ public class C_ADD_ProductosProveedor extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(cmbProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14)
+                    .addComponent(cmbProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
@@ -330,7 +388,7 @@ public class C_ADD_ProductosProveedor extends javax.swing.JFrame {
         {   
         int min= Integer.parseInt(u);
         int max= Integer.parseInt(ap);
-            if(max>min)
+            if(max>=min)
             {       
         StringTokenizer numero = new StringTokenizer(cmbProveedor.getSelectedItem().toString()," ");   
         erp.OpenCon("ERP", "erp");
@@ -374,8 +432,11 @@ public class C_ADD_ProductosProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-
-        this.dispose();
+            C_ProductosProveedor pro= new C_ProductosProveedor();
+            pro.borrarTabla(pro.tblProPro);
+            pro.repaint();
+            this.dispose();
+//            pro.btnConsultarProPro.doClick();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -425,6 +486,13 @@ public class C_ADD_ProductosProveedor extends javax.swing.JFrame {
 //        llenarCombo1();
     }//GEN-LAST:event_cmbProveedorFocusGained
 
+    private void cmbProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProductoActionPerformed
+        if(cmbProducto.getSelectedIndex()>=0){
+            llenarCombo2();
+            cmbPre.setEnabled(true);
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbProductoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -465,11 +533,13 @@ public class C_ADD_ProductosProveedor extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JComboBox cmbPre;
+    private javax.swing.JComboBox cmbProducto;
     public javax.swing.JComboBox cmbProveedor;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
