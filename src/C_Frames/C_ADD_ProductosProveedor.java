@@ -73,13 +73,18 @@ public class C_ADD_ProductosProveedor extends javax.swing.JFrame {
             try {
             erp.OpenCon("ERP", "erp");
             erp.stn= (Statement) erp.con.createStatement();
-            erp.rs= erp.stn.executeQuery("select * from PresentacionesProducto where estatus='A' and idproducto= "+ idpro);
+            erp.rs= erp.stn.executeQuery("select pre.idpresentacion, pre.nombre,em.nombre\n" +
+                                            "as nom from ProductosProveedor pro\n" +
+                                        "inner join PresentacionesProducto pre on pro.idpresentacion=pre.idpresentacion\n" +
+                                        "inner join Empaques em on\n" +
+                                            "pre.idempaque= em.idempaque  where pre.estatus='A' and pre.idproducto= "+ idpro);
             modelocombo1.addElement("Seleccione Presentacion");
             cmbPre.setModel(modelocombo1);
             while (erp.rs.next()){
                 String ID= String.valueOf(erp.rs.getObject("idpresentacion"));
                 String nombre= String.valueOf(erp.rs.getObject("nombre"));
-                modelocombo1.addElement(ID+" "+nombre);
+                String nom= String.valueOf(erp.rs.getObject("nom"));
+                modelocombo1.addElement(ID+" "+nom+" "+nombre);
                 cmbPre.setModel(modelocombo1);
             }
         
@@ -383,7 +388,7 @@ public class C_ADD_ProductosProveedor extends javax.swing.JFrame {
         {   
         int min= Integer.parseInt(u);
         int max= Integer.parseInt(ap);
-            if(max>min)
+            if(max>=min)
             {       
         StringTokenizer numero = new StringTokenizer(cmbProveedor.getSelectedItem().toString()," ");   
         erp.OpenCon("ERP", "erp");

@@ -28,6 +28,7 @@ public class C_MOD_ProductosProveedor extends javax.swing.JFrame {
      * Creates new form EditarEstados
      */
     Conexion erp;
+    C_ProductosProveedor pro= new C_ProductosProveedor();
      DefaultComboBoxModel modelocombo = new DefaultComboBoxModel();
     DefaultComboBoxModel modelocombo1 = new DefaultComboBoxModel();
     
@@ -313,7 +314,7 @@ public class C_MOD_ProductosProveedor extends javax.swing.JFrame {
         {
            int min= Integer.parseInt(ap);
         int max= Integer.parseInt(u);
-            if(max>min)
+            if(max>=min)
             {
        erp.SQL("update ProductosProveedor set diasretardo ="
                 +""+txfDias.getText()+","
@@ -322,7 +323,7 @@ public class C_MOD_ProductosProveedor extends javax.swing.JFrame {
                 +"cantminpedir ="+txfCantMin.getText()+","
                 +"cantmaxpedir ="+txfCantMax.getText()+""
                 +" where idproveedor ="
-                +idproveedor+" and idpresentacion="+idpresentacion);
+                +idproveedor+" and idpresentacion="+idpresentacion);    
             }
                    
             else {
@@ -331,12 +332,25 @@ public class C_MOD_ProductosProveedor extends javax.swing.JFrame {
         }
                 else {
             JOptionPane.showMessageDialog(null,"No se permiten campos vacios ","Error" ,JOptionPane.INFORMATION_MESSAGE);
+        }     
+//                pro.borrarTabla(pro.tblProPro);
+    
+        try {
+            erp.OpenCon("ERP","erp");
+            erp.ProductoProveedor_Search(" ", pro.tblProPro);
+            pro.repaint();
+        }catch(Exception e){
+            Logger.getLogger(C_MOD_ProductosProveedor.class.getName()).log(Level.SEVERE, null, e);
         }
-                    C_ProductosProveedor pro= new C_ProductosProveedor();
-            pro.Consulta();
+//            pro.borrarTabla(pro.tblProPro);
+//            erp.OpenCon("ERP", "erp");
+//            erp.ProductoProveedor_Search(" ",pro.tblProPro);
+//            pro.tblProPro.setVisible(false);
+   
     }//GEN-LAST:event_btnAgrefarEstadosActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+            pro.setFocusable(true);
             this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
