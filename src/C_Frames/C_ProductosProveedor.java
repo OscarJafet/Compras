@@ -227,15 +227,12 @@ public void borrarTabla(JTable tab) {
             DefaultTableModel tabT = (DefaultTableModel) tab.getModel();
             for (int i = tabT.getRowCount() - 1; i > -1; i--) {
                 tabT.removeRow(i);
+                tabT.removeTableModelListener(tab);
             }
         } catch (Exception e) {
-       
+            System.out.println(e);
         }
     }
-public void Consulta(){
-    borrarTabla(tblProPro);
-    btnConsultarProPro.doClick();
-}
     
     private void btnConsultarProProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarProProActionPerformed
         borrarTabla(tblProPro);
