@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package C_Frames;
 
 import C_Conexion.Conexion;
@@ -32,11 +28,12 @@ public class C_ADD_Proveedores extends javax.swing.JFrame {
      */
     Conexion erp;
     DefaultComboBoxModel modelocombo = new DefaultComboBoxModel();
-    
+    DefaultComboBoxModel modelocombo1 = new DefaultComboBoxModel();
     public C_ADD_Proveedores() {
         initComponents();
         erp = new Conexion();
-        llenarCombo1();
+        llenarCombo();
+        this.CB_CUIDAD.setEnabled(false);
     }
     C_Categorias cd;
     /**
@@ -66,6 +63,8 @@ public class C_ADD_Proveedores extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         CB_CUIDAD = new javax.swing.JComboBox();
         C_ADD_Proveedores_txfEMAIL = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        CB_ESTADO = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -199,6 +198,18 @@ public class C_ADD_Proveedores extends javax.swing.JFrame {
             }
         });
 
+        jLabel11.setBackground(new java.awt.Color(254, 254, 254));
+        jLabel11.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel11.setText("ESTADO");
+
+        CB_ESTADO.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        CB_ESTADO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CB_ESTADOActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -236,11 +247,17 @@ public class C_ADD_Proveedores extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(C_ADD_Proveedores_txfcodPos, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(C_ADD_Proveedores_txfcol, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CB_CUIDAD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(C_ADD_Proveedores_txfcol, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(78, 293, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel11)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(151, 151, 151)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(CB_CUIDAD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CB_ESTADO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -272,9 +289,13 @@ public class C_ADD_Proveedores extends javax.swing.JFrame {
                     .addComponent(C_ADD_Proveedores_txfcodPos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(CB_ESTADO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(CB_CUIDAD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnLimpiar, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnAgregar, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -297,12 +318,44 @@ public class C_ADD_Proveedores extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 //for( e = name(first),r = name(last), p= name(other_last);e<r<p;e+=r,r+= p,p++ ){
 //}
-    
-     public void llenarCombo1(){
+        
+     public void llenarCombo(){
         try {
             erp.OpenCon("ERP", "erp");
             erp.stn= (Statement) erp.con.createStatement();
-            erp.rs= erp.stn.executeQuery("select * from ciudad where estatus='A'");
+            erp.rs= erp.stn.executeQuery("select * from estados where estatus='A'");
+            modelocombo1.addElement("Seleccione Estado");
+            CB_ESTADO.setModel(modelocombo1);
+            while (erp.rs.next()){
+                 String ID= String.valueOf(erp.rs.getObject("idestado"));
+                String nombre= String.valueOf(erp.rs.getObject("nombre"));
+                modelocombo1.addElement(ID+" "+nombre);
+                CB_ESTADO.setModel(modelocombo1);
+            }
+        
+        }catch(SQLException ex){
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+     public void llenarCombo1(){
+     int idc = 0;
+        StringTokenizer numero = new StringTokenizer(CB_ESTADO.getSelectedItem().toString(), " ");
+        int C = 0;
+        CB_CUIDAD.removeAllItems();
+        while (numero.hasMoreTokens()) {
+            String a = numero.nextToken();
+            C++;
+            if (C == 1) {
+                idc = Integer.parseInt(a);
+            }
+
+        }
+         try {
+            erp.OpenCon("ERP", "erp");
+            erp.stn= (Statement) erp.con.createStatement();
+            erp.rs= erp.stn.executeQuery("select * from ciudad where estatus='A' and idestado="+idc);
             modelocombo.addElement("Seleccione ciudad");
             CB_CUIDAD.setModel(modelocombo);
             while (erp.rs.next()){
@@ -430,6 +483,14 @@ public class C_ADD_Proveedores extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_C_ADD_Proveedores_txfEMAILKeyTyped
+
+    private void CB_ESTADOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_ESTADOActionPerformed
+
+        if(CB_ESTADO.getSelectedIndex()>=0){
+        llenarCombo1();
+        CB_CUIDAD.setEnabled(true);
+        }
+    }//GEN-LAST:event_CB_ESTADOActionPerformed
     
        public boolean validar(String correo) {
         Pattern pat = null;
@@ -490,6 +551,7 @@ public class C_ADD_Proveedores extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox CB_CUIDAD;
+    private javax.swing.JComboBox CB_ESTADO;
     private javax.swing.JTextField C_ADD_Proveedores_txfEMAIL;
     private javax.swing.JTextField C_ADD_Proveedores_txfcodPos;
     private javax.swing.JTextField C_ADD_Proveedores_txfcol;
@@ -500,6 +562,7 @@ public class C_ADD_Proveedores extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

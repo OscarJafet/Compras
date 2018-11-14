@@ -25,6 +25,7 @@ public class C_Proveedores extends javax.swing.JPanel {
     public C_Proveedores() {
         initComponents();
         erp = new Conexion();
+       
     }
 
     /**
@@ -86,11 +87,11 @@ public class C_Proveedores extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID PROVEEDOR", "NOMBRE", "TELEFONO", "EMAIL", "DIRECCION", "COLONIA", "CODIGOPOSTAL", "ESTATUS", "CIUDAD"
+                "ID PROVEEDOR", "NOMBRE", "TELEFONO", "EMAIL", "DIRECCION", "COLONIA", "CODIGOPOSTAL", "ESTATUS", "ID CIUDAD", "CIUDAD"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -217,6 +218,7 @@ public void borrarTabla(JTable tab) {
 
     private void btnEditarsucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarsucursalActionPerformed
         int con=tblpROVEEDORES.getSelectedRow();
+        int idcuidad=0;
         if (con>=0){
        
         String nom=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),1);
@@ -225,17 +227,20 @@ public void borrarTabla(JTable tab) {
         String dir=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),4);
         String col=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),5);
         String cod=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),6);
+        idcuidad=Integer.parseInt(tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),8)+"");
+        String cuidad=(String) tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),9);
 
         
         C_MOD_Proveedores pro =new C_MOD_Proveedores();
         pro.setLocationRelativeTo(pro);
-        pro.Datos(nom, tel, ema, dir, col, cod);
+        pro.Datos(idcuidad,cuidad,nom, tel, ema, dir, col, cod);
         pro.setVisible(true);
         
         
         int ID = 0;
         try{
             ID = Integer.parseInt(tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),0)+"");
+            
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }

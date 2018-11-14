@@ -566,13 +566,13 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
          if(Nombre.isEmpty())
             Sql = "select p.idproveedor, p.nombre, p.telefono,"
                     + "p.email,p.direccion,p.colonia,"
-                    + "p.codigopostal,p.estatus, cd.nombre as nom from Proveedores p inner join Ciudad cd "
+                    + "p.codigopostal,p.estatus,p.idciudad, cd.nombre as nom from Proveedores p inner join Ciudad cd "
                     + "on p.idciudad=cd.idciudad where p.estatus='A'";
             
         else if(!Nombre.isEmpty())
             Sql = "select p.idproveedor, p.nombre, p.telefono,"
                     + "p.email,p.direccion,p.colonia,"
-                    + "p.codigopostal,p.estatus, cd.nombre as nom from Proveedores p inner join Ciudad cd "
+                    + "p.codigopostal,p.estatus p.idciudad, cd.nombre as nom from Proveedores p inner join Ciudad cd "
                     + "on p.idciudad=cd.idciudad"
                     + " where p.nombre like '"+Nombre+"%'";
         
@@ -589,8 +589,9 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
                 String col=rs.getString("colonia");
                 String cp=rs.getString("codigopostal");
                 String Stat = rs.getString("estatus");
+                String idcuidad=rs.getString("idciudad");
                 String ciudad = rs.getString("nom");
-                Object datosRenglon[]={idsuc,Nom,email,tel,dir,col,cp,Stat,ciudad};
+                Object datosRenglon[]={idsuc,Nom,email,tel,dir,col,cp,Stat,idcuidad,ciudad};
                 tablaTemp.addRow(datosRenglon);
             }
             tabla.setModel(tablaTemp);

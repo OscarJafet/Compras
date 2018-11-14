@@ -81,7 +81,7 @@
         <Component class="javax.swing.JTable" name="tblpROVEEDORES">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="9" rowCount="0">
+              <Table columnCount="10" rowCount="0">
                 <Column editable="false" title="ID PROVEEDOR" type="java.lang.Object"/>
                 <Column editable="false" title="NOMBRE" type="java.lang.Object"/>
                 <Column editable="false" title="TELEFONO" type="java.lang.Object"/>
@@ -90,6 +90,7 @@
                 <Column editable="false" title="COLONIA" type="java.lang.Object"/>
                 <Column editable="false" title="CODIGOPOSTAL" type="java.lang.Object"/>
                 <Column editable="false" title="ESTATUS" type="java.lang.Object"/>
+                <Column editable="false" title="ID CIUDAD" type="java.lang.Object"/>
                 <Column editable="false" title="CIUDAD" type="java.lang.Object"/>
               </Table>
             </Property>
