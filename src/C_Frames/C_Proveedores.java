@@ -233,6 +233,7 @@ public void borrarTabla(JTable tab) {
         
         C_MOD_Proveedores pro =new C_MOD_Proveedores();
         pro.setLocationRelativeTo(pro);
+       
         pro.Datos(idcuidad,cuidad,nom, tel, ema, dir, col, cod);
         pro.setVisible(true);
         
@@ -245,6 +246,7 @@ public void borrarTabla(JTable tab) {
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
       pro.txfIdProveedor.setText(ID+"");
+   
       }else {
             JOptionPane.showMessageDialog(null,"Seleccione un renglon","Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
@@ -307,7 +309,7 @@ public void borrarTabla(JTable tab) {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblpROVEEDORES;
+    public javax.swing.JTable tblpROVEEDORES;
     private javax.swing.JTextField txfBuscar;
     // End of variables declaration//GEN-END:variables
 }

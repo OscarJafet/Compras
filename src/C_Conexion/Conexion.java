@@ -271,10 +271,18 @@ public class Conexion {
          public void Sucursales_Search(String Nombre,JTable tabla){
          DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
         if(Nombre.isEmpty())
-            Sql = "select * from sucursal where estatus='A'";
+            Sql = "select s.idsucursal, s.nombre, s.telefono,"
+                    + "s.direccion,s.colonia,"
+                    + "p.codigopostal, s.presupuesto, p.estatus, p.idciudad, cd.nombre as nom from Sucursal s inner join Ciudad cd "
+                    + "on p.idciudad=cd.idciudad where p.estatus='A'";
+            
+            
         else if(!Nombre.isEmpty())
-            Sql = "select * from sucursal where nombre = '"+Nombre+"'";
-        
+            Sql = "select s.idsucursal, s.nombre, s.telefono,"
+                    + "s.direccion,s.colonia,"
+                    + "p.codigopostal, s.presupuesto, p.estatus, p.idciudad, cd.nombre as nom from Sucursal s inner join Ciudad cd "
+                    + "on p.idciudad=cd.idciudad where p.estatus='A'";
+                    
                try {
             stn=(Statement) con.createStatement();
             rs=stn.executeQuery(Sql);
@@ -289,7 +297,8 @@ public class Conexion {
                 String pre=rs.getString("presupuesto");
                 String Stat = rs.getString("estatus");
                 String ciu=rs.getString("idciudad");
-                Object datosRenglon[]={idsuc,Nom,tel,dir,col,cp,pre,Stat,ciu};
+                String nombre=rs.getString("nombre");
+                Object datosRenglon[]={idsuc,Nom,tel,dir,col,cp,pre,Stat,ciu, nombre};
                 tablaTemp.addRow(datosRenglon);
             }
             

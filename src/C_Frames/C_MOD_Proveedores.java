@@ -35,8 +35,8 @@ public class C_MOD_Proveedores extends javax.swing.JFrame {
     public C_MOD_Proveedores() {
         initComponents();
         erp = new Conexion();
-        llenarCombo();
         llenarCombo1();
+        llenarCombo();
         this.txfIdProveedor.setEditable(false);
 
     }
@@ -130,6 +130,8 @@ public class C_MOD_Proveedores extends javax.swing.JFrame {
         }
         
     }
+     
+     
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -459,7 +461,7 @@ public class C_MOD_Proveedores extends javax.swing.JFrame {
                     + "direccion ='" + C_MOD_Proveedor_txfdir.getText() + "',"
                     + "colonia ='" + C_MOD_Proveedor_txfcol.getText() + "',"
                     + "codigopostal ='" + C_MOD_Proveedor_txfcodPos.getText() + "',"
-                    + "idcuidad="+ idc
+                    + "idciudad="+ idc
                     + "where idproveedor ="
                     + ID);
         } else {
@@ -516,9 +518,9 @@ public class C_MOD_Proveedores extends javax.swing.JFrame {
     }//GEN-LAST:event_C_MOD_Proveedor_txfcodPosKeyTyped
 
     private void CB_ESTADOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_ESTADOActionPerformed
-   
-        if(CB_CUIDAD.getSelectedIndex()>=0){
-          llenarCombo2();
+     
+        if(CB_CUIDAD.getSelectedIndex()>=0){         
+            llenarCombo2();
           CB_CUIDAD.setEnabled(true);
            }
     }//GEN-LAST:event_CB_ESTADOActionPerformed
@@ -583,7 +585,7 @@ public class C_MOD_Proveedores extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox CB_CUIDAD;
-    private javax.swing.JComboBox CB_ESTADO;
+    public javax.swing.JComboBox CB_ESTADO;
     private javax.swing.JTextField C_MOD_Proveedor_txfcodPos;
     private javax.swing.JTextField C_MOD_Proveedor_txfcol;
     private javax.swing.JTextField C_MOD_Proveedor_txfdir;
