@@ -234,7 +234,8 @@ public class Conexion {
     }
     
          public void Producto_Search(String Nombre,JTable tabla){
-        if(Nombre.isEmpty())
+         DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
+         if(Nombre.isEmpty())
             Sql = "select pro.idproducto, pro.nombre,\n" +
             "pro.descripcion,pro.ingredienteactivo,pro.bandatoxicologica,pro.aplicacion,pro.uso,pro.estatus,la.nombre\n" +
                 "as nom ,ca.nombre as nomb from Productos pro\n" +
