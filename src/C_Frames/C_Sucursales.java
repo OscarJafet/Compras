@@ -280,7 +280,7 @@ public void borrarTabla(JTable tab) {
 
     private void tblsucursalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblsucursalMouseClicked
         String a,b,c,d,e,f,h,i;
-        
+        int x=0;
         a=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),0);
         b=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),1);
         c=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),2);
@@ -289,11 +289,11 @@ public void borrarTabla(JTable tab) {
         f=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),5);
         h=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),7);
         
-                       
+           
          if (evt.getClickCount()==2){
          C_MOD_Sucursales suc= new C_MOD_Sucursales();
          suc.setLocationRelativeTo(suc);
-         suc.Datos(a, b, c, d, e, f, h);
+         suc.Datos(x, e, h, e, h, c, d);
          suc.setVisible(true);
          }
          
