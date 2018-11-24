@@ -30,11 +30,13 @@ public class C_ADD_Sucursales extends javax.swing.JFrame {
      */
     Conexion erp;
     DefaultComboBoxModel modelocombo = new DefaultComboBoxModel();
-    
+    DefaultComboBoxModel modelocombo1 = new DefaultComboBoxModel();
     public C_ADD_Sucursales() {
         initComponents();
         erp = new Conexion();
-        llenarCombo1();
+       
+        llenarCombo();
+        
     }
     C_Categorias cd;
     /**
@@ -65,7 +67,7 @@ public class C_ADD_Sucursales extends javax.swing.JFrame {
         C_ADD_SUCUSALR_txfnom = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         CB_CUIDAD = new javax.swing.JComboBox();
-        cmbEstatus = new javax.swing.JComboBox<String>();
+        CB_ESTADO = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -142,7 +144,7 @@ public class C_ADD_Sucursales extends javax.swing.JFrame {
         jLabel8.setBackground(new java.awt.Color(254, 254, 254));
         jLabel8.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel8.setText("ESTATUS");
+        jLabel8.setText("ESTADO");
 
         C_ADD_SUCUSALR_txftel.setBackground(new java.awt.Color(254, 254, 254));
         C_ADD_SUCUSALR_txftel.setForeground(new java.awt.Color(1, 1, 1));
@@ -204,8 +206,12 @@ public class C_ADD_Sucursales extends javax.swing.JFrame {
 
         CB_CUIDAD.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        cmbEstatus.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        cmbEstatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Estado", "A", "B" }));
+        CB_ESTADO.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        CB_ESTADO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CB_ESTADOActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -246,10 +252,10 @@ public class C_ADD_Sucursales extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(C_ADD_SUCUSALR_txfcol, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmbEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(C_ADD_SUCUSALR_txfPres, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(C_ADD_SUCUSALR_txfcodPos, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CB_CUIDAD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(CB_CUIDAD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CB_ESTADO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap(251, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -292,8 +298,8 @@ public class C_ADD_Sucursales extends javax.swing.JFrame {
                     .addComponent(jLabel7))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
+                    .addComponent(jLabel8)
+                    .addComponent(CB_ESTADO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -321,13 +327,44 @@ public class C_ADD_Sucursales extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 //for( e = name(first),r = name(last), p= name(other_last);e<r<p;e+=r,r+= p,p++ ){
 //}
-    
-     public void llenarCombo1(){
+         public void llenarCombo(){
         try {
             erp.OpenCon("ERP", "erp");
             erp.stn= (Statement) erp.con.createStatement();
-            erp.rs= erp.stn.executeQuery("select * from ciudad where estatus='A'");
-            modelocombo.addElement("Seleccione cuidad");
+            erp.rs= erp.stn.executeQuery("select * from estados where estatus='A'");
+            modelocombo1.addElement("Seleccione Estado");
+            CB_ESTADO.setModel(modelocombo1);
+            while (erp.rs.next()){
+                 String ID= String.valueOf(erp.rs.getObject("idestado"));
+                String nombre= String.valueOf(erp.rs.getObject("nombre"));
+                modelocombo1.addElement(ID+" "+nombre);
+                CB_ESTADO.setModel(modelocombo1);
+            }
+        
+        }catch(SQLException ex){
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+     public void llenarCombo1(){
+     int idc = 0;
+        StringTokenizer numero = new StringTokenizer(CB_ESTADO.getSelectedItem().toString(), " ");
+        int C = 0;
+        CB_CUIDAD.removeAllItems();
+        while (numero.hasMoreTokens()) {
+            String a = numero.nextToken();
+            C++;
+            if (C == 1) {
+                idc = Integer.parseInt(a);
+            }
+
+        }
+         try {
+            erp.OpenCon("ERP", "erp");
+            erp.stn= (Statement) erp.con.createStatement();
+            erp.rs= erp.stn.executeQuery("select * from ciudad where estatus='A' and idestado="+idc);
+            modelocombo.addElement("Seleccione ciudad");
             CB_CUIDAD.setModel(modelocombo);
             while (erp.rs.next()){
                  String ID= String.valueOf(erp.rs.getObject("idciudad"));
@@ -341,6 +378,8 @@ public class C_ADD_Sucursales extends javax.swing.JFrame {
         }
         
     }
+
+    
       private JTextField jTextFieldName = new JTextField();
 
       private int limite = 5, limite2=10;
@@ -361,12 +400,12 @@ public class C_ADD_Sucursales extends javax.swing.JFrame {
         d=C_ADD_SUCUSALR_txfcol.getText();
         String h=C_ADD_SUCUSALR_txfcodPos.getText();
         e=C_ADD_SUCUSALR_txfPres.getText();
-        int f=cmbEstatus.getSelectedIndex();
+        
         int g=CB_CUIDAD.getSelectedIndex();
         
         
         int idc = 0;
-        if((!ba.isEmpty())&&(!b.isEmpty())&&(!c.isEmpty())&&(!d.isEmpty())&&(!e.isEmpty())&&(!h.isEmpty())&&(f!=0)&&(g!=0)){
+        if((!ba.isEmpty())&&(!b.isEmpty())&&(!c.isEmpty())&&(!d.isEmpty())&&(!e.isEmpty())&&(!h.isEmpty())&&(g!=0)){
         StringTokenizer numero = new StringTokenizer(CB_CUIDAD.getSelectedItem().toString(), " ");
         erp.OpenCon("ERP", "erp");
         int C = 0;
@@ -386,7 +425,7 @@ public class C_ADD_Sucursales extends javax.swing.JFrame {
                 + "'" + C_ADD_SUCUSALR_txfcol.getText() + "',"
                 + "'" + C_ADD_SUCUSALR_txfcodPos.getText() + "',"
                 + Float.parseFloat(C_ADD_SUCUSALR_txfPres.getText()) + ","
-                + "'" + cmbEstatus.getItemAt(cmbEstatus.getSelectedIndex()).charAt(0) + "',"
+                + "'" + "A" + "',"
                 + idc
                 + ")");
         }
@@ -402,7 +441,7 @@ public class C_ADD_Sucursales extends javax.swing.JFrame {
         this.C_ADD_SUCUSALR_txfcol.setText("");
         this.C_ADD_SUCUSALR_txfcodPos.setText("");
         this.C_ADD_SUCUSALR_txfPres.setText("");
-        this.cmbEstatus.setSelectedIndex(0);
+       
         this.CB_CUIDAD.setSelectedIndex(0);
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
@@ -446,6 +485,14 @@ public class C_ADD_Sucursales extends javax.swing.JFrame {
         int c=evt.getKeyChar();
         if((c<'0' || c>'9')&&(c<'.'||c>'.'))evt.consume();
     }//GEN-LAST:event_C_ADD_SUCUSALR_txfPresKeyTyped
+
+    private void CB_ESTADOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_ESTADOActionPerformed
+
+        if(CB_ESTADO.getSelectedIndex()>=0){
+        llenarCombo1();
+        CB_CUIDAD.setEnabled(true);
+        }
+    }//GEN-LAST:event_CB_ESTADOActionPerformed
     
     
     /**
@@ -488,6 +535,7 @@ public class C_ADD_Sucursales extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox CB_CUIDAD;
+    private javax.swing.JComboBox CB_ESTADO;
     private javax.swing.JTextField C_ADD_SUCUSALR_txfPres;
     private javax.swing.JTextField C_ADD_SUCUSALR_txfcodPos;
     private javax.swing.JTextField C_ADD_SUCUSALR_txfcol;
@@ -497,7 +545,6 @@ public class C_ADD_Sucursales extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JComboBox<String> cmbEstatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -47,12 +47,12 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
             erp.stn= (Statement) erp.con.createStatement();
             erp.rs= erp.stn.executeQuery("select * from ciudad");
             modelocombo.addElement("Seleccione cuidad");
-            CB_Cuidad.setModel(modelocombo);
+            CB_CUIDAD.setModel(modelocombo);
             while (erp.rs.next()){
                  String ID= String.valueOf(erp.rs.getObject("idciudad"));
                 String nombre= String.valueOf(erp.rs.getObject("nombre"));
                 modelocombo.addElement(ID+" "+nombre);
-                CB_Cuidad.setModel(modelocombo);
+                CB_CUIDAD.setModel(modelocombo);
             }
         
         }catch(SQLException ex){
@@ -60,18 +60,15 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
         }
         
     }
-      
-         public void Datos(String a, String b,String c,String d, String e,String f, String h){
-           txfIdSucursal.setText(a);
-           txfNombre.setText(b);
-           C_ADD_SUCUSALR_txftel.setText(c);
-           C_ADD_SUCUSALR_txfdir.setText(d);
-           C_ADD_SUCUSALR_txfcol.setText(e);
-           C_ADD_SUCUSALR_txfcodPos.setText(f);
-           C_ADD_SUCUSALR_txfPres.setText(h);
-           
-           
-          
+          public void Datos(int id, String Nombre, String no, String tel,String dir, String col, String cod) {
+        
+        modelocombo.setSelectedItem(id+" "+Nombre);
+        CB_CUIDAD.setModel(modelocombo);
+        txfNombre.setText(no);
+        C_ADD_SUCUSALR_txftel.setText(tel);
+        C_ADD_SUCUSALR_txfdir.setText(dir);
+        C_ADD_SUCUSALR_txfcol.setText(col);
+        C_ADD_SUCUSALR_txfcodPos.setText(cod);
     }
     
     /**
@@ -90,7 +87,7 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txfNombre = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        CB_Cuidad = new javax.swing.JComboBox();
+        CB_CUIDAD = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         C_ADD_SUCUSALR_txftel = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -248,7 +245,7 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
                                 .addComponent(C_ADD_SUCUSALR_txfPres, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(C_ADD_SUCUSALR_txfcol, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(C_ADD_SUCUSALR_txfcodPos, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(CB_Cuidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(CB_CUIDAD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -301,7 +298,7 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(CB_Cuidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CB_CUIDAD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -333,12 +330,12 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
         d=C_ADD_SUCUSALR_txfcol.getText();
         String h=C_ADD_SUCUSALR_txfcodPos.getText();
         e=C_ADD_SUCUSALR_txfPres.getText();
-        int g=CB_Cuidad.getSelectedIndex();
+        int g=CB_CUIDAD.getSelectedIndex();
         
         
         int idc = 0;
         if((!ba.isEmpty())&&(!b.isEmpty())&&(!c.isEmpty())&&(!d.isEmpty())&&(!h.isEmpty())&&(!e.isEmpty())&&(g!=0)){
-        StringTokenizer numero = new StringTokenizer(CB_Cuidad.getSelectedItem().toString(), " ");
+        StringTokenizer numero = new StringTokenizer(CB_CUIDAD.getSelectedItem().toString(), " ");
         erp.OpenCon("ERP", "erp");
         int C = 0;
         while (numero.hasMoreTokens()) {
@@ -455,7 +452,7 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox CB_Cuidad;
+    private javax.swing.JComboBox CB_CUIDAD;
     private javax.swing.JTextField C_ADD_SUCUSALR_txfPres;
     private javax.swing.JTextField C_ADD_SUCUSALR_txfcodPos;
     private javax.swing.JTextField C_ADD_SUCUSALR_txfcol;

@@ -273,15 +273,15 @@ public class Conexion {
         if(Nombre.isEmpty())
             Sql = "select s.idsucursal, s.nombre, s.telefono,"
                     + "s.direccion,s.colonia,"
-                    + "p.codigopostal, s.presupuesto, p.estatus, p.idciudad, cd.nombre as nom from Sucursal s inner join Ciudad cd "
-                    + "on p.idciudad=cd.idciudad where p.estatus='A'";
+                    + "s.codigopostal, s.presupuesto, s.estatus, s.idciudad, cd.nombre as nom from Sucursal s inner join Ciudad cd "
+                    + "on s.idciudad=cd.idciudad where s.estatus='A'";
             
             
         else if(!Nombre.isEmpty())
             Sql = "select s.idsucursal, s.nombre, s.telefono,"
                     + "s.direccion,s.colonia,"
-                    + "p.codigopostal, s.presupuesto, p.estatus, p.idciudad, cd.nombre as nom from Sucursal s inner join Ciudad cd "
-                    + "on p.idciudad=cd.idciudad where p.estatus='A'";
+                    + "s.codigopostal, s.presupuesto, s.estatus, s.idciudad, cd.nombre as nom from Sucursal s inner join Ciudad cd "
+                    + "on s.idciudad=cd.idciudad where s.estatus='A'";
                     
                try {
             stn=(Statement) con.createStatement();
@@ -297,7 +297,7 @@ public class Conexion {
                 String pre=rs.getString("presupuesto");
                 String Stat = rs.getString("estatus");
                 String ciu=rs.getString("idciudad");
-                String nombre=rs.getString("nombre");
+                String nombre=rs.getString("nom");
                 Object datosRenglon[]={idsuc,Nom,tel,dir,col,cp,pre,Stat,ciu, nombre};
                 tablaTemp.addRow(datosRenglon);
             }

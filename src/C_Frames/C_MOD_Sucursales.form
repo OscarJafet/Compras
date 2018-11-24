@@ -81,7 +81,7 @@
                                   <Component id="C_ADD_SUCUSALR_txfPres" min="-2" pref="75" max="-2" attributes="0"/>
                                   <Component id="C_ADD_SUCUSALR_txfcol" min="-2" pref="149" max="-2" attributes="0"/>
                                   <Component id="C_ADD_SUCUSALR_txfcodPos" min="-2" pref="75" max="-2" attributes="0"/>
-                                  <Component id="CB_Cuidad" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="CB_CUIDAD" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -152,7 +152,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="CB_Cuidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="CB_CUIDAD" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -250,7 +250,7 @@
             <Property name="text" type="java.lang.String" value="NOMBRE CIUDAD"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="CB_Cuidad">
+        <Component class="javax.swing.JComboBox" name="CB_CUIDAD">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>

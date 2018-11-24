@@ -87,11 +87,11 @@ public class C_Sucursales extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID SUCURSAL", "NOMBRE", "TELEFONO", "DIRECCION", "COLONIA", "CODIGOPOSTAL", "PRESUPUESTO", "ESTATUS", "CIUDAD"
+                "ID SUCURSAL", "NOMBRE", "TELEFONO", "DIRECCION", "COLONIA", "CODIGOPOSTAL", "PRESUPUESTO", "ESTATUS", "ID CIUDAD", "CIUDAD"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -223,18 +223,18 @@ public void borrarTabla(JTable tab) {
     private void btnEditarsucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarsucursalActionPerformed
         int con=tblsucursal.getSelectedRow();
         if (con>=0){
-        String a=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),0);
-        String b=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),1);
-        String c=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),2);
-        String d=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),3);
-        String ce=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),4);
-        String f=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),5);
+        String a=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),1);
+        String b=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),2);
+        String c=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),3);
+        String d=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),4);
+        String ce=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),5);
+        String f=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),6);
         String h=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),7);
 
         
         C_MOD_Sucursales suc =new C_MOD_Sucursales();
         suc.setLocationRelativeTo(suc);
-        suc.Datos(a, b, c, d, ce, f, h);
+        suc.Datos(con, ce, h, ce, d, ce, ce);
         suc.setVisible(true);
         
         int ID = 0;
