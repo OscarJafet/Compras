@@ -33,10 +33,58 @@ public class C_MOD_Productos extends javax.swing.JFrame {
         initComponents();
         erp = new Conexion();
         this.txfIDProducto.setEditable(false);
+        llenarCombo();
         llenarCombo1();
-        llenarCombo2();
     }
-    public void llenarCombo1(){
+        String laboratorio,categoria,banda;
+    public void Datos(String a, String b,String c, String e,String f, String h, String i, String j,String k){
+           txfIDProducto.setText(a);
+           txfNombre.setText(b);
+           txfDescripcion.setText(c);
+           txfIngrediente.setText(e);
+           banda=f;
+           txfAplicacion.setText(h);
+           txfUso.setText(i);
+           laboratorio= j;
+           categoria=k;
+    }
+    
+        public void llenarCombo(){
+        try {
+            erp.OpenCon("ERP", "erp");
+            erp.stn= (Statement) erp.con.createStatement();
+            erp.rs= erp.stn.executeQuery("select * from Laboratorios where nombre='"+laboratorio+"'");
+            while (erp.rs.next()){
+                String ID= String.valueOf(erp.rs.getObject("idlaboratorio"));
+                String nombre= String.valueOf(erp.rs.getObject("nombre"));
+                modelocombo.addElement(ID+" "+nombre);
+                cmbLab.setModel(modelocombo);
+            }
+        
+        }catch(SQLException ex){
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+        public void llenarCombo1(){
+        try {
+            erp.OpenCon("ERP", "erp");
+            erp.stn= (Statement) erp.con.createStatement();
+            erp.rs= erp.stn.executeQuery("select * from categorias where nombre='"+categoria+"'");
+            while (erp.rs.next()){
+                String ID= String.valueOf(erp.rs.getObject("idcategoria"));
+                String nombre= String.valueOf(erp.rs.getObject("nombre"));
+                modelocombo.addElement(ID+" "+nombre);
+                cmbLab.setModel(modelocombo);
+            }
+        
+        }catch(SQLException ex){
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+        
+    public void llenarCombo2(){
         try {
             erp.OpenCon("ERP", "erp");
             erp.stn= (Statement) erp.con.createStatement();
@@ -56,7 +104,7 @@ public class C_MOD_Productos extends javax.swing.JFrame {
         
     }
     
-        public void llenarCombo2(){
+        public void llenarCombo3(){
         try {
             erp.OpenCon("ERP", "erp");
             erp.stn= (Statement) erp.con.createStatement();
@@ -75,15 +123,18 @@ public class C_MOD_Productos extends javax.swing.JFrame {
         }
         
     }
-           public void Datos(String a, String b,String c, String e,String f, String h, String i){
-           txfIDProducto.setText(a);
-           txfNombre.setText(b);
-           txfDescripcion.setText(c);
-           txfIngrediente.setText(e);
-           txfBanda.setText(f);
-           txfAplicacion.setText(h);
-           txfUso.setText(i);
+        public void llenarCombo4(){
+            modelocombo.removeAllElements();
+            modelocombo1.addElement("SELECCIONE UNA BANDA TOXICOLOGICA");
+            modelocombo1.addElement("EXTREMADAMENTE TOXICO");
+            modelocombo1.addElement("ALTAMENTE TOXICO");
+            modelocombo1.addElement("MEDIANAMENTE TOXICO");
+            modelocombo1.addElement("LIGERAMENTE TOXICO");
+            
+            cmbBanda.setModel(modelocombo1);
+        
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -105,7 +156,6 @@ public class C_MOD_Productos extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txfIngrediente = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        txfBanda = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         txfAplicacion = new javax.swing.JTextField();
         txfUso = new javax.swing.JTextField();
@@ -114,6 +164,7 @@ public class C_MOD_Productos extends javax.swing.JFrame {
         cmbLab = new javax.swing.JComboBox();
         cmbCat = new javax.swing.JComboBox();
         jLabel13 = new javax.swing.JLabel();
+        cmbBanda = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(254, 254, 254));
@@ -175,12 +226,6 @@ public class C_MOD_Productos extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(1, 1, 1));
         jLabel9.setText("BANDA TOXICOLOGICA");
 
-        txfBanda.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txfBandaKeyTyped(evt);
-            }
-        });
-
         jLabel10.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(1, 1, 1));
         jLabel10.setText("APLICACION");
@@ -193,9 +238,28 @@ public class C_MOD_Productos extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(1, 1, 1));
         jLabel12.setText("LABORATORIO");
 
+        cmbLab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbLabActionPerformed(evt);
+            }
+        });
+
+        cmbCat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbCatActionPerformed(evt);
+            }
+        });
+
         jLabel13.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(1, 1, 1));
         jLabel13.setText("CATEGORIA");
+
+        cmbBanda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONE UNA BANDA TOXICOLOGICA", "EXTREMADAMENTE TOXICO", "ALTAMENTE TOXICO", "MEDIANAMENTE TOXICO", "LIGERAMENTE TOXICO" }));
+        cmbBanda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbBandaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -216,39 +280,44 @@ public class C_MOD_Productos extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addGap(18, 18, 18)
-                                .addComponent(txfIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txfIngrediente))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9)
                                     .addComponent(jLabel10))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txfAplicacion)
-                                    .addComponent(txfUso)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(cmbLab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txfBanda, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(cmbCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 64, Short.MAX_VALUE)))))
+                                            .addComponent(txfAplicacion)
+                                            .addComponent(txfUso)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(cmbLab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(cmbCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(0, 254, Short.MAX_VALUE))))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(8, 8, 8)
+                                        .addComponent(cmbBanda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
                         .addGap(179, 179, 179))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1))
-                                .addGap(84, 84, 84)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txfIDProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(56, 56, 56)
-                                .addComponent(txfDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4)
                             .addComponent(jLabel12)
                             .addComponent(jLabel13))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(50, 50, 50)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txfIDProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txfDescripcion)
+                                    .addComponent(txfNombre))
+                                .addGap(179, 179, 179))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,7 +343,7 @@ public class C_MOD_Productos extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(txfBanda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmbBanda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
@@ -321,13 +390,13 @@ public class C_MOD_Productos extends javax.swing.JFrame {
         String i= txfIngrediente.getText();
         String ap=txfAplicacion.getText();
         String u=txfUso.getText();
-        String ba=txfBanda.getText();
+        int ba=cmbBanda.getSelectedIndex();
         int la= cmbLab.getSelectedIndex();
         int ca= cmbCat.getSelectedIndex();
         
         
  
-        if((!n.isEmpty())&&(!d.isEmpty())&&(!i.isEmpty())&&(!ap.isEmpty())&&(!u.isEmpty())&&(!ba.isEmpty())&&(la!=0)&&(ca!=0))
+        if((!n.isEmpty())&&(!d.isEmpty())&&(!i.isEmpty())&&(!ap.isEmpty())&&(!u.isEmpty())&&(ba!=0)&&(la!=0)&&(ca!=0))
         {
         StringTokenizer numero = new StringTokenizer(cmbLab.getSelectedItem().toString()," ");
         erp.OpenCon("ERP", "erp");
@@ -355,7 +424,7 @@ public class C_MOD_Productos extends javax.swing.JFrame {
                 +"'"+txfNombre.getText()+"',"
                 +"descripcion ='"+txfDescripcion.getText()+"',"
                 +"ingredienteactivo ='"+txfIngrediente.getText()+"',"
-                +"bandatoxicologica ='"+txfBanda.getText()+"',"
+                +"bandatoxicologica ='"+cmbBanda.getSelectedItem()+"',"
                 +"aplicacion ='"+txfAplicacion.getText()+"',"
                 +"uso ='"+txfUso.getText()+"',"
                 +"idlaboratorio ="+idl+","
@@ -379,12 +448,20 @@ public class C_MOD_Productos extends javax.swing.JFrame {
         }  
     }//GEN-LAST:event_txfNombreKeyTyped
 
-    private void txfBandaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBandaKeyTyped
-                        char c=evt.getKeyChar();
-        if((c<'0' || c>'9')&&(c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')){
-            evt.consume();
-        } 
-    }//GEN-LAST:event_txfBandaKeyTyped
+    private void cmbLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLabActionPerformed
+
+        llenarCombo2();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbLabActionPerformed
+
+    private void cmbCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCatActionPerformed
+        llenarCombo3();
+    }//GEN-LAST:event_cmbCatActionPerformed
+
+    private void cmbBandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbBandaActionPerformed
+        llenarCombo4();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbBandaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -424,6 +501,7 @@ public class C_MOD_Productos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnAgrefarEstados;
+    private javax.swing.JComboBox cmbBanda;
     private javax.swing.JComboBox cmbCat;
     private javax.swing.JComboBox cmbLab;
     public javax.swing.JButton jButton1;
@@ -438,7 +516,6 @@ public class C_MOD_Productos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txfAplicacion;
-    private javax.swing.JTextField txfBanda;
     private javax.swing.JTextField txfDescripcion;
     public javax.swing.JTextField txfIDProducto;
     private javax.swing.JTextField txfIngrediente;

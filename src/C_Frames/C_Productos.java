@@ -221,12 +221,14 @@ public void borrarTabla(JTable tab) {
         String f=(String) tblPro.getValueAt(tblPro.getSelectedRow(),4);
         String h=(String) tblPro.getValueAt(tblPro.getSelectedRow(),5);
         String i=(String) tblPro.getValueAt(tblPro.getSelectedRow(),6);
+        String j=(String) tblPro.getValueAt(tblPro.getSelectedRow(),8);
+        String k=(String) tblPro.getValueAt(tblPro.getSelectedRow(),9);
 
         
         
         C_MOD_Productos pro =new C_MOD_Productos();
         pro.setLocationRelativeTo(pro);
-        pro.Datos(a, b, c, ce, f, h,i);
+        pro.Datos(a, b, c, ce, f, h,i,j,k);
         pro.setVisible(true);
         int ID = 0;
         try{
@@ -276,12 +278,13 @@ public void borrarTabla(JTable tab) {
         f=(String) tblPro.getValueAt(tblPro.getSelectedRow(),4);
         h=(String) tblPro.getValueAt(tblPro.getSelectedRow(),5);
         i=(String) tblPro.getValueAt(tblPro.getSelectedRow(),6);
-        
+        String j=(String) tblPro.getValueAt(tblPro.getSelectedRow(),8);
+        String k=(String) tblPro.getValueAt(tblPro.getSelectedRow(),9);        
                        
          if (evt.getClickCount()==2){
          C_MOD_Productos pro= new C_MOD_Productos();
          pro.setLocationRelativeTo(pro);
-         pro.Datos(a, b, c, e, f, h,i);
+         pro.Datos(a, b, c, e, f, h,i,j,k);
          pro.setVisible(true);
          }
     }//GEN-LAST:event_tblProMouseClicked
@@ -335,7 +338,7 @@ public void borrarTabla(JTable tab) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProducto;
-    private javax.swing.JButton btnConsultarProducto;
+    public javax.swing.JButton btnConsultarProducto;
     private javax.swing.JButton btnEditarProducto;
     private javax.swing.JButton btnEliminarProducto;
     private javax.swing.JButton jButton1;

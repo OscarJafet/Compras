@@ -235,11 +235,20 @@ public class Conexion {
     
          public void Producto_Search(String Nombre,JTable tabla){
          DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
-        if(Nombre.isEmpty())
-            Sql = "select * from Productos where estatus='A'";
+         if(Nombre.isEmpty())
+            Sql = "select pro.idproducto, pro.nombre,\n" +
+            "pro.descripcion,pro.ingredienteactivo,pro.bandatoxicologica,pro.aplicacion,pro.uso,pro.estatus,la.nombre\n" +
+                "as nom ,ca.nombre as nomb from Productos pro\n" +
+                "inner join laboratorios la on pro.idlaboratorio=la.idlaboratorio\n" +
+                "inner join categorias ca on\n" +
+                "pro.idcategoria=ca.idcategoria where pro.estatus='A'";
         else if(!Nombre.isEmpty())
-            Sql = "select * from Productos where nombre like '"+Nombre+"%'";
-        
+            Sql = "select pro.idproducto, pro.nombre,\n" +
+            "pro.descripcion,pro.ingredienteactivo,pro.bandatoxicologica,pro.aplicacion,pro.uso,pro.estatus,la.nombre\n" +
+                "as nom ,ca.nombre as nomb from Productos pro\n" +
+                "inner join laboratorios la on pro.idlaboratorio=la.idlaboratorio\n" +
+                "inner join categorias ca on\n" +
+                "pro.idcategoria=ca.idcategoria where pro.nombre like '"+Nombre+"%'";
                try {
             stn=(Statement) con.createStatement();
             rs=stn.executeQuery(Sql);
