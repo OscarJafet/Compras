@@ -349,7 +349,7 @@ public void borrarTabla(JTable tab) {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblsucursal;
-    private javax.swing.JTextField txfBuscar;
+    public javax.swing.JTable tblsucursal;
+    public javax.swing.JTextField txfBuscar;
     // End of variables declaration//GEN-END:variables
 }

@@ -25,6 +25,8 @@ public class C_Proveedores extends javax.swing.JPanel {
     public C_Proveedores() {
         initComponents();
         erp = new Conexion();
+        erp.OpenCon("ERP", "erp");
+        erp.Proveedores_Search(txfBuscar.getText(),tblpROVEEDORES);
        
     }
 

@@ -359,6 +359,8 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
                 +"idciudad ="+idc
                 +" where idsucursal ="
                 +ID);  
+        
+        
         }
         else {
             JOptionPane.showMessageDialog(null,"No se permiten campos vacios o Cuidad sin asignar","Error" ,JOptionPane.INFORMATION_MESSAGE);

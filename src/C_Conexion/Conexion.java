@@ -447,6 +447,26 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
         }
      
      }
+      public String consultaEdo(int Edo){
+       
+        String cadenaSQL="Select idEstado from Ciudad where idCiudad = "+Edo;
+           String X = "";
+        try {
+            stn=(java.sql.Statement) con.createStatement();
+            rs=stn.executeQuery(cadenaSQL);
+        
+            while(rs.next()){
+                
+                  X=rs.getString("IDESTADO");
+                     
+            }
+            return  X; 
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            return X;
+        }
+     
+     }
       public void Presentacion_seacrh(String Nombre, JTable tabla, char Stat) {
         DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
         if (Nombre.isEmpty() && Stat == 'E') {

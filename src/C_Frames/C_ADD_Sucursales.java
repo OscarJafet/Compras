@@ -33,8 +33,7 @@ public class C_ADD_Sucursales extends javax.swing.JFrame {
     DefaultComboBoxModel modelocombo1 = new DefaultComboBoxModel();
     public C_ADD_Sucursales() {
         initComponents();
-        erp = new Conexion();
-       
+        erp = new Conexion();    
         llenarCombo();
         
     }
