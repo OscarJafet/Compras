@@ -38,7 +38,7 @@ public class C_MOD_Proveedores extends javax.swing.JFrame {
         llenarCombo1();
         llenarCombo();
         this.txfIdProveedor.setEditable(false);
-
+        
     }
 
     private JTextField jTextFieldName = new JTextField();
@@ -57,6 +57,15 @@ public class C_MOD_Proveedores extends javax.swing.JFrame {
         C_MOD_Proveedor_txfdir.setText(dir);
         C_MOD_Proveedor_txfcol.setText(col);
         C_MOD_Proveedor_txfcodPos.setText(cod);
+        int a = Integer.parseInt(erp.consultaEdo(id));
+     
+            for (int i = 1; i < 10; i++) {
+                StringTokenizer erp = new StringTokenizer(CB_ESTADO.getItemAt(i).toString()," ");
+                int b = Integer.parseInt(erp.nextToken());
+            if(b ==  a){
+                CB_ESTADO.setSelectedIndex(i);
+            }
+        }
     }
     public void llenarCombo(){
         try {
@@ -471,6 +480,10 @@ public class C_MOD_Proveedores extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgrefarEstadosActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+C_Proveedores p= new C_Proveedores();
+        p.borrarTabla(p.tblpROVEEDORES);
+        erp.Proveedores_Search("",p.tblpROVEEDORES);
+        
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -519,10 +532,6 @@ public class C_MOD_Proveedores extends javax.swing.JFrame {
 
     private void CB_ESTADOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_ESTADOActionPerformed
      
-        if(CB_CUIDAD.getSelectedIndex()>=0){         
-            llenarCombo2();
-          CB_CUIDAD.setEnabled(true);
-           }
     }//GEN-LAST:event_CB_ESTADOActionPerformed
 
     private void CB_CUIDADActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_CUIDADActionPerformed
