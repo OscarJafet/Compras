@@ -85,7 +85,7 @@ public class C_Productos extends javax.swing.JPanel {
 
             },
             new String [] {
-                "IDPRODUCTO", "NOMBRE", "DESCRIPCION", "INGREDIENTEACTIVO", "BANDATOXICOLOGICA", "APLICACION", "USO", "ESTATUS", "IDLABORATORIO", "IDCATEGORIA"
+                "IDPRODUCTO", "NOMBRE", "DESCRIPCION", "INGREDIENTEACTIVO", "BANDATOXICOLOGICA", "APLICACION", "USO", "ESTATUS", "LABORATORIO", "CATEGORIA"
             }
         ) {
             boolean[] canEdit = new boolean [] {
