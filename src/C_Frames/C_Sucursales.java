@@ -103,6 +103,9 @@ public class C_Sucursales extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblsucursalMouseClicked(evt);
             }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tblsucursalMouseReleased(evt);
+            }
         });
         jScrollPane1.setViewportView(tblsucursal);
 
@@ -298,6 +301,9 @@ public void borrarTabla(JTable tab) {
          }
          
     }//GEN-LAST:event_tblsucursalMouseClicked
+
+    private void tblsucursalMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblsucursalMouseReleased
+    }//GEN-LAST:event_tblsucursalMouseReleased
       public void ProcedimientoSucursal(){
            int ID = 0;
      
