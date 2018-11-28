@@ -82,13 +82,13 @@ public class Conexion {
         pro.setVisible(true);
             }
           } catch (SQLException ex) {
-              JOptionPane.showMessageDialog(null,"Correo no valido","Error" ,JOptionPane.INFORMATION_MESSAGE);
+              //JOptionPane.showMessageDialog(null,"Correo no valido","Error" ,JOptionPane.INFORMATION_MESSAGE);
               //return false;
-              //Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+              Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
           }
      }
      public boolean Log_in(String Usr, String Psw){
-       Sql = "select estatus from ERP.Usuarios where nombre ='"+Usr+"' and contraseña = '"+Psw+"'";
+       Sql = "select estatus from ERP.Usuarios where nombre ='"+Usr+"' and CONTRASEÑA = '"+Psw+"'";
            
         try {
           
