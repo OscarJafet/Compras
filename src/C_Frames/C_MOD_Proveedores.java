@@ -509,7 +509,7 @@ C_Proveedores p= new C_Proveedores();
     }//GEN-LAST:event_C_MOD_Proveedor_txfemailKeyTyped
 
     private void C_MOD_Proveedor_txfdirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_MOD_Proveedor_txfdirActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_C_MOD_Proveedor_txfdirActionPerformed
 
     private void C_MOD_Proveedor_txfdirKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_MOD_Proveedor_txfdirKeyTyped

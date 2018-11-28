@@ -508,7 +508,7 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
 
     private void C_ADD_SUCUSALR_txfPresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_ADD_SUCUSALR_txfPresKeyTyped
         int c=evt.getKeyChar();
-        if((c<'0' || c>'9')&&(c<'.'||c>'.'))evt.consume();
+        if((c<'0' || c>'9')&&(c<'.'||c>'.')&& c!='.'||C_ADD_SUCUSALR_txfPres.getText().contains("."))evt.consume();
     }//GEN-LAST:event_C_ADD_SUCUSALR_txfPresKeyTyped
 
     private void CB_ESTADOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_ESTADOActionPerformed
