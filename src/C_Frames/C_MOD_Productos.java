@@ -6,6 +6,7 @@
 package C_Frames;
 
 import C_Conexion.Conexion;
+import static C_Conexion.Conexion.con;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,62 +30,34 @@ public class C_MOD_Productos extends javax.swing.JFrame {
     Conexion erp;
      DefaultComboBoxModel modelocombo = new DefaultComboBoxModel();
     DefaultComboBoxModel modelocombo1 = new DefaultComboBoxModel();
+    DefaultComboBoxModel modelocombo2 = new DefaultComboBoxModel();
     public C_MOD_Productos() {
         initComponents();
         erp = new Conexion();
         this.txfIDProducto.setEditable(false);
         llenarCombo();
         llenarCombo1();
+        llenarCombo2();
     }
-        String laboratorio,categoria,banda;
     public void Datos(String a, String b,String c, String e,String f, String h, String i, String j,String k){
            txfIDProducto.setText(a);
            txfNombre.setText(b);
            txfDescripcion.setText(c);
            txfIngrediente.setText(e);
-           banda=f;
+           modelocombo2.setSelectedItem(f);
            txfAplicacion.setText(h);
            txfUso.setText(i);
-           laboratorio= j;
-           categoria=k;
-    }
-    
-        public void llenarCombo(){
-        try {
-            erp.OpenCon("ERP", "erp");
-            erp.stn= (Statement) erp.con.createStatement();
-            erp.rs= erp.stn.executeQuery("select * from Laboratorios where nombre='"+laboratorio+"'");
-            while (erp.rs.next()){
-                String ID= String.valueOf(erp.rs.getObject("idlaboratorio"));
-                String nombre= String.valueOf(erp.rs.getObject("nombre"));
-                modelocombo.addElement(ID+" "+nombre);
-                cmbLab.setModel(modelocombo);
-            }
+           
+           String id= String.valueOf(erp.consultaLab(j));
+           
+           modelocombo.setSelectedItem(id+" "+j);
+           
+           String id1= String.valueOf(erp.consultaCat(k));
+           
+           modelocombo1.setSelectedItem(id1+" "+k);
+    }    
         
-        }catch(SQLException ex){
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }
-        public void llenarCombo1(){
-        try {
-            erp.OpenCon("ERP", "erp");
-            erp.stn= (Statement) erp.con.createStatement();
-            erp.rs= erp.stn.executeQuery("select * from categorias where nombre='"+categoria+"'");
-            while (erp.rs.next()){
-                String ID= String.valueOf(erp.rs.getObject("idcategoria"));
-                String nombre= String.valueOf(erp.rs.getObject("nombre"));
-                modelocombo.addElement(ID+" "+nombre);
-                cmbLab.setModel(modelocombo);
-            }
-        
-        }catch(SQLException ex){
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }
-        
-    public void llenarCombo2(){
+    public void llenarCombo(){
         try {
             erp.OpenCon("ERP", "erp");
             erp.stn= (Statement) erp.con.createStatement();
@@ -104,7 +77,7 @@ public class C_MOD_Productos extends javax.swing.JFrame {
         
     }
     
-        public void llenarCombo3(){
+        public void llenarCombo1(){
         try {
             erp.OpenCon("ERP", "erp");
             erp.stn= (Statement) erp.con.createStatement();
@@ -123,15 +96,15 @@ public class C_MOD_Productos extends javax.swing.JFrame {
         }
         
     }
-        public void llenarCombo4(){
-            modelocombo.removeAllElements();
-            modelocombo1.addElement("SELECCIONE UNA BANDA TOXICOLOGICA");
-            modelocombo1.addElement("EXTREMADAMENTE TOXICO");
-            modelocombo1.addElement("ALTAMENTE TOXICO");
-            modelocombo1.addElement("MEDIANAMENTE TOXICO");
-            modelocombo1.addElement("LIGERAMENTE TOXICO");
+        public void llenarCombo2(){
+            modelocombo2.removeAllElements();
+            modelocombo2.addElement("SELECCIONE UNA BANDA TOXICOLOGICA");
+            modelocombo2.addElement("EXTREMADAMENTE TOXICO");
+            modelocombo2.addElement("ALTAMENTE TOXICO");
+            modelocombo2.addElement("MEDIANAMENTE TOXICO");
+            modelocombo2.addElement("LIGERAMENTE TOXICO");
             
-            cmbBanda.setModel(modelocombo1);
+            cmbBanda.setModel(modelocombo2);
         
     }
 
@@ -449,17 +422,16 @@ public class C_MOD_Productos extends javax.swing.JFrame {
     }//GEN-LAST:event_txfNombreKeyTyped
 
     private void cmbLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLabActionPerformed
-
-        llenarCombo2();
+            
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbLabActionPerformed
 
     private void cmbCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCatActionPerformed
-        llenarCombo3();
+
     }//GEN-LAST:event_cmbCatActionPerformed
 
     private void cmbBandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbBandaActionPerformed
-        llenarCombo4();
+
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbBandaActionPerformed
 
