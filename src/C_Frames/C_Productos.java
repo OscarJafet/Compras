@@ -101,6 +101,9 @@ public class C_Productos extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblProMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tblProMouseEntered(evt);
+            }
         });
         jScrollPane1.setViewportView(tblPro);
 
@@ -294,6 +297,10 @@ public void borrarTabla(JTable tab) {
         erp.OpenCon("ERP", "erp");
         erp.Producto_Search(txfBuscar.getText(), tblPro);
     }//GEN-LAST:event_txfBuscarKeyReleased
+
+    private void tblProMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProMouseEntered
+        btnConsultarProducto.doClick();
+    }//GEN-LAST:event_tblProMouseEntered
       public void ProcedimientoProductos(){
            int ID = 0;
      

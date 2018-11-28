@@ -476,6 +476,48 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
         }
      
      }
+      public String consultaLab(String nombre){
+       
+        String cadenaSQL="Select idlaboratorio from laboratorios where nombre = '"+nombre+"'";
+           String X = "";
+        try {
+            stn=(java.sql.Statement) con.createStatement();
+            rs=stn.executeQuery(cadenaSQL);
+        
+            while(rs.next()){
+                
+                  X=rs.getString("idlaboratorio");
+                     
+            }
+            return  X; 
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            return X;
+        }
+     
+     
+     }
+      public String consultaCat(String nombre){
+       
+        String cadenaSQL="Select idcategoria from categorias where nombre = '"+nombre+"'";
+           String X = "";
+        try {
+            stn=(java.sql.Statement) con.createStatement();
+            rs=stn.executeQuery(cadenaSQL);
+        
+            while(rs.next()){
+                
+                  X=rs.getString("idcategoria");
+                     
+            }
+            return  X; 
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            return X;
+        }
+     
+     
+     }
       public void Presentacion_seacrh(String Nombre, JTable tabla, char Stat) {
         DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
         if (Nombre.isEmpty() && Stat == 'E') {

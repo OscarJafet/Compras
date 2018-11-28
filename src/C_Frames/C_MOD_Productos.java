@@ -6,6 +6,7 @@
 package C_Frames;
 
 import C_Conexion.Conexion;
+import static C_Conexion.Conexion.con;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -38,7 +39,6 @@ public class C_MOD_Productos extends javax.swing.JFrame {
         llenarCombo1();
         llenarCombo2();
     }
-    
     public void Datos(String a, String b,String c, String e,String f, String h, String i, String j,String k){
            txfIDProducto.setText(a);
            txfNombre.setText(b);
@@ -47,8 +47,14 @@ public class C_MOD_Productos extends javax.swing.JFrame {
            modelocombo2.setSelectedItem(f);
            txfAplicacion.setText(h);
            txfUso.setText(i);
-           modelocombo.setSelectedItem(j);
-           modelocombo1.setSelectedItem(k);
+           
+           String id= String.valueOf(erp.consultaLab(j));
+           
+           modelocombo.setSelectedItem(id+" "+j);
+           
+           String id1= String.valueOf(erp.consultaCat(k));
+           
+           modelocombo1.setSelectedItem(id1+" "+k);
     }    
         
     public void llenarCombo(){
