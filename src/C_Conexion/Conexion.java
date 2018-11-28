@@ -592,20 +592,20 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
         //System.out.println(Sql);
         if (Nombre.isEmpty() && Stat == 'E') {
             System.out.println("E...");
-            Sql = "SELECT * FROM PEDIDODETALLE INNER JOIN ERP.PEDIDOS ON PEDIDOS.ESTATUS = 'E' or PEDIDOS.ESTATUS = 'A'";
+            Sql = "SELECT * FROM ERP.PEDIDODETALLE INNER JOIN ERP.PEDIDOS ON PEDIDOS.ESTATUS = 'E' or PEDIDOS.ESTATUS = 'A'";
         } else if (!Nombre.isEmpty() && Stat == 'E') {
             System.out.println("E....2");
             Sql = "SELECT * FROM PEDIDODETALLE P INNER JOIN PEDIDOS P ON P.ESTATUS = 'E' or P.ESTATUS = 'A' INNER JOIN PRESENTACIONESPRODUCTO R ON R.NOMBRE like '"+Nombre+"%'";
         } else if (Stat == 'A' || Stat == 'B' || Stat == 'E') {
             System.out.println("A...");
             Sql = "SELECT P.idPedidoDetalle, p.cantPedida,p.precioCompra,p.subTotal,p.cantRecibida,p.CantRechazada,p.cantAceptada,p.idPedido,p.idPresentacion\n" +
-"FROM PEDIDODETALLE P INNER JOIN ERP.PEDIDOS ON PEDIDOS.ESTATUS = '"+Stat+"'";
+"FROM ERP.PEDIDODETALLE P INNER JOIN ERP.PEDIDOS ON PEDIDOS.ESTATUS = '"+Stat+"'";
         }
       try {
-          System.out.println(Sql);
             stn=(Statement) con.createStatement();
               stn.executeUpdate(Sql);
         
+          //System.out.println(Sql);
             while(rs.next()){
                 String idDt=rs.getString("idPedidoDetalle");
                 String cPd=rs.getString("cantPedida");
@@ -625,9 +625,9 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
             stn= con.createStatement();
             rs=stn.executeQuery(Sql);
         
-            for (int i = 0; this.rs.next(); i++) {
+            for (int i = 0; rs.next(); i++) {
                  String nombre=rs.getString("nombre");
-                 System.out.println(nombre+"ped");
+                 //System.out.println(nombre+"ped");
                  tablaTemp.setValueAt(tablaTemp.getValueAt(i, 7)+" "+nombre, i, 7);
             }
             //comentario
