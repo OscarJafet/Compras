@@ -588,17 +588,23 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
     }
       public void Detalles_seacrh(String Nombre, JTable tabla, char Stat) {
         DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
+        
+        //System.out.println(Sql);
         if (Nombre.isEmpty() && Stat == 'E') {
+            System.out.println("E...");
             Sql = "SELECT * FROM PEDIDODETALLE INNER JOIN ERP.PEDIDOS ON PEDIDOS.ESTATUS = 'E' or PEDIDOS.ESTATUS = 'A'";
         } else if (!Nombre.isEmpty() && Stat == 'E') {
+            System.out.println("E....2");
             Sql = "SELECT * FROM PEDIDODETALLE P INNER JOIN PEDIDOS P ON P.ESTATUS = 'E' or P.ESTATUS = 'A' INNER JOIN PRESENTACIONESPRODUCTO R ON R.NOMBRE like '"+Nombre+"%'";
-        } else if (Stat == 'A' || Stat == 'C' || Stat == 'E') {
-            Sql = "SELECT * FROM PEDIDODETALLE INNER JOIN ERP.PEDIDOS ON PEDIDOS.ESTATUS = '"+Stat+"'";
+        } else if (Stat == 'A' || Stat == 'B' || Stat == 'E') {
+            System.out.println("A...");
+            Sql = "SELECT P.idPedidoDetalle, p.cantPedida,p.precioCompra,p.subTotal,p.cantRecibida,p.CantRechazada,p.cantAceptada,p.idPedido,p.idPresentacion\n" +
+"FROM PEDIDODETALLE P INNER JOIN ERP.PEDIDOS ON PEDIDOS.ESTATUS = '"+Stat+"'";
         }
-        //System.out.println(Sql);
-               try {
-            stn= con.createStatement();
-            rs=stn.executeQuery(Sql);
+      try {
+          System.out.println(Sql);
+            stn=(Statement) con.createStatement();
+              stn.executeUpdate(Sql);
         
             while(rs.next()){
                 String idDt=rs.getString("idPedidoDetalle");
@@ -637,7 +643,7 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
             
             tabla.setModel(tablaTemp);
         } catch (SQLException ex) {
-           // JOptionPane.showMessageDialog(null,ex.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
+          JOptionPane.showMessageDialog(null,ex.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
     }
     public void Proveedores_Search(String Nombre,JTable tabla){
