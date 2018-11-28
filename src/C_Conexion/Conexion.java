@@ -262,8 +262,8 @@ public class Conexion {
                 String apli = rs.getString("aplicacion");
                 String uso = rs.getString("uso");
                 String estatus = rs.getString("estatus");
-                String lab = rs.getString("idlaboratorio");
-                String cat = rs.getString("idcategoria");
+                String lab = rs.getString("nom");
+                String cat = rs.getString("nomb");
                 Object datosRenglon[]={ idPro, Nom, descripcion,ingrediente,banda,apli,uso,estatus,lab,cat};
                 tablaTemp.addRow(datosRenglon);
             }
@@ -290,7 +290,7 @@ public class Conexion {
             Sql = "select s.idsucursal, s.nombre, s.telefono,"
                     + "s.direccion,s.colonia,"
                     + "s.codigopostal, s.presupuesto, s.estatus, s.idciudad, cd.nombre as nom from Sucursal s inner join Ciudad cd "
-                    + "on s.idciudad=cd.idciudad where s.estatus='A'";
+                    + "on s.idciudad=cd.idciudad where s.nombre like '"+Nombre+"%'";
                     
                try {
             stn=(Statement) con.createStatement();
@@ -454,6 +454,68 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
         } catch (SQLException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
+     
+     }
+      public String consultaEdo(int Edo){
+       
+        String cadenaSQL="Select idEstado from Ciudad where idCiudad = "+Edo;
+           String X = "";
+        try {
+            stn=(java.sql.Statement) con.createStatement();
+            rs=stn.executeQuery(cadenaSQL);
+        
+            while(rs.next()){
+                
+                  X=rs.getString("IDESTADO");
+                     
+            }
+            return  X; 
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            return X;
+        }
+     
+     }
+      public String consultaLab(String nombre){
+       
+        String cadenaSQL="Select idlaboratorio from laboratorios where nombre = '"+nombre+"'";
+           String X = "";
+        try {
+            stn=(java.sql.Statement) con.createStatement();
+            rs=stn.executeQuery(cadenaSQL);
+        
+            while(rs.next()){
+                
+                  X=rs.getString("idlaboratorio");
+                     
+            }
+            return  X; 
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            return X;
+        }
+     
+     
+     }
+      public String consultaCat(String nombre){
+       
+        String cadenaSQL="Select idcategoria from categorias where nombre = '"+nombre+"'";
+           String X = "";
+        try {
+            stn=(java.sql.Statement) con.createStatement();
+            rs=stn.executeQuery(cadenaSQL);
+        
+            while(rs.next()){
+                
+                  X=rs.getString("idcategoria");
+                     
+            }
+            return  X; 
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            return X;
+        }
+     
      
      }
       public void Presentacion_seacrh(String Nombre, JTable tabla, char Stat) {

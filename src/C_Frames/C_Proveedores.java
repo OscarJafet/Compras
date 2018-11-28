@@ -25,6 +25,8 @@ public class C_Proveedores extends javax.swing.JPanel {
     public C_Proveedores() {
         initComponents();
         erp = new Conexion();
+        erp.OpenCon("ERP", "erp");
+        erp.Proveedores_Search(txfBuscar.getText(),tblpROVEEDORES);
        
     }
 
@@ -103,6 +105,9 @@ public class C_Proveedores extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblpROVEEDORESMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tblpROVEEDORESMouseEntered(evt);
+            }
         });
         jScrollPane1.setViewportView(tblpROVEEDORES);
 
@@ -178,7 +183,7 @@ public class C_Proveedores extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAgregarPercepcionActionPerformed
 
     private void btnEliminarPercepcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPercepcionActionPerformed
-        int ID = 0;
+     int ID = 0;
         int con=tblpROVEEDORES.getSelectedRow();
         
         if (con>=0){
@@ -188,11 +193,10 @@ public class C_Proveedores extends javax.swing.JPanel {
             {
             ID = Integer.parseInt(tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),0)+"");
             if(JOptionPane.showConfirmDialog (null, "Desea eliminar","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
-                BajaProveedor();
-                btnConsultarSucursal.doClick();
+                ProcedimientoProveedores();
             }
             }else {
-                JOptionPane.showMessageDialog(null,"Seleccione un producto con estatus A","Error" ,JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Seleccione una proveedor con estatus A","Error" ,JOptionPane.INFORMATION_MESSAGE);
             }
         }else {
             JOptionPane.showMessageDialog(null,"Seleccione un renglon","Error" ,JOptionPane.INFORMATION_MESSAGE);
@@ -289,13 +293,33 @@ public void borrarTabla(JTable tab) {
 
 
     }//GEN-LAST:event_txfBuscarKeyReleased
-      public void BajaProveedor(){
-           int ID = 0;
-           ID = Integer.parseInt(tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(),0)+"");
-           erp.SQL("update proveedores set estatus='"
-                   +"B'"
-                   + " where idproveedor ="
-                   + ID);
+
+    private void tblpROVEEDORESMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblpROVEEDORESMouseEntered
+        borrarTabla(tblpROVEEDORES);
+        erp.OpenCon("ERP", "erp");
+        erp.Proveedores_Search(txfBuscar.getText(), tblpROVEEDORES);
+
+
+    }//GEN-LAST:event_tblpROVEEDORESMouseEntered
+   
+    public void ProcedimientoProveedores() {
+        int ID = 0;
+
+        ID = Integer.parseInt(tblpROVEEDORES.getValueAt(tblpROVEEDORES.getSelectedRow(), 0) + "");
+        try {
+            CallableStatement cst = con.prepareCall("{call BajaProveedor(?,?)}");
+            cst.setInt(1, ID);
+
+            cst.registerOutParameter(2, java.sql.Types.VARCHAR);
+            cst.execute();
+
+            String msg = cst.getString(2);
+            JOptionPane.showMessageDialog(null, msg, "Informacion", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Seleccione un renglon", ex.getMessage(), JOptionPane.INFORMATION_MESSAGE);
+        }
+
+          
       }
       
 
