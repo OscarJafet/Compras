@@ -69,7 +69,7 @@ public class C_ProductosProveedor extends javax.swing.JPanel {
             }
         });
         add(txfBuscar);
-        txfBuscar.setBounds(200, 30, 330, 30);
+        txfBuscar.setBounds(240, 30, 330, 30);
 
         btnConsultarProPro.setBackground(new java.awt.Color(254, 254, 254));
         btnConsultarProPro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon-buscar.png"))); // NOI18N
@@ -81,18 +81,18 @@ public class C_ProductosProveedor extends javax.swing.JPanel {
             }
         });
         add(btnConsultarProPro);
-        btnConsultarProPro.setBounds(540, 10, 60, 50);
+        btnConsultarProPro.setBounds(570, 20, 60, 50);
 
         tblProPro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "PROVEEDOR", "PRESENTACION", "DIASRETARDO", "PRECIOESTANDAR", "PRECIOULTIMACOMPRA", "CANTMINPEDIR", "CANTMAXPEDIR", "ESTATUS"
+                "PROVEEDOR", "PRODUCTO", "PRESENTACION", "DIASRETARDO", "PRECIOESTANDAR", "PRECIOULTIMACOMPRA", "CANTMINPEDIR", "CANTMAXPEDIR", "ESTATUS"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, true, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -103,6 +103,9 @@ public class C_ProductosProveedor extends javax.swing.JPanel {
         tblProPro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblProProMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tblProProMouseEntered(evt);
             }
         });
         jScrollPane1.setViewportView(tblProPro);
@@ -150,9 +153,9 @@ public class C_ProductosProveedor extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel1.setText("BUSCAR POR NOMBRE");
+        jLabel1.setText("BUSCAR POR NOMBRE DEL PROVEEDOR");
         add(jLabel1);
-        jLabel1.setBounds(40, 30, 129, 16);
+        jLabel1.setBounds(9, 30, 230, 20);
 
         jButton1.setBackground(new java.awt.Color(254, 254, 254));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/refresh_icon.png"))); // NOI18N
@@ -244,18 +247,19 @@ public void borrarTabla(JTable tab) {
         int con=tblProPro.getSelectedRow();
         if (con>=0){
         String a=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),0);
-        String b=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),1);
-        String c=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),2);
-        String ce=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),3);
+        String d=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),1);
+        String b=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),2);
+        String c=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),3);
+        String ce=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),4);
         String f=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),4);
-        String h=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),5);
-        String i=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),6);
+        String h=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),6);
+        String i=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),7);
 
         
         
         C_MOD_ProductosProveedor pro =new C_MOD_ProductosProveedor();
         pro.setLocationRelativeTo(pro);
-        pro.Datos(a, b, c, ce, f, h,i);
+        pro.Datos(a, b, c, ce, f, h,i,d);
         pro.setVisible(true);
         String nombre = null;
         try{
@@ -321,21 +325,20 @@ public void borrarTabla(JTable tab) {
     }//GEN-LAST:event_txfBuscarKeyTyped
 
     private void tblProProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProProMouseClicked
-        String a,b,c,d,e,f,h,i;
-        
-        a=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),0);
-        b=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),1);
-        c=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),2);
-        e=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),3);
-        f=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),4);
-        h=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),5);
-        i=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),6);
+        String a=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),0);
+        String d=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),1);
+        String b=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),2);
+        String c=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),3);
+        String ce=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),4);
+        String f=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),4);
+        String h=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),6);
+        String i=(String) tblProPro.getValueAt(tblProPro.getSelectedRow(),7);
         
                        
          if (evt.getClickCount()==2){
          C_MOD_ProductosProveedor pro= new C_MOD_ProductosProveedor();
          pro.setLocationRelativeTo(pro);
-         pro.Datos(a, b, c, e, f, h,i);
+         pro.Datos(a, b, c, ce, f, h,i,d);
          pro.setVisible(true);
          }
     }//GEN-LAST:event_tblProProMouseClicked
@@ -345,6 +348,13 @@ public void borrarTabla(JTable tab) {
         erp.OpenCon("ERP", "erp");
         erp.ProductoProveedor_Search(txfBuscar.getText(), tblProPro);
     }//GEN-LAST:event_txfBuscarKeyReleased
+
+    private void tblProProMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProProMouseEntered
+        borrarTabla(tblProPro);
+        erp.OpenCon("ERP", "erp");
+        erp.ProductoProveedor_Search(txfBuscar.getText(), tblProPro);
+// TODO add your handling code here:
+    }//GEN-LAST:event_tblProProMouseEntered
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProPro;

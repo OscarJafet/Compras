@@ -683,20 +683,22 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
          public void ProductoProveedor_Search(String Nombre,JTable tabla){
          DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
          if(Nombre.isEmpty())
-            Sql = "select pro.diasretardo, pro.precioestandar, \n" +
-                    "pro.precioultimacompra,pro.cantminpedir,pro.cantmaxpedir,pro.estatus,pre.nombre \n" +
-                    "as nom ,prove.nombre as nomb from ProductosProveedor pro \n" +
-                    "inner join PresentacionesProducto pre on pro.idpresentacion=pre.idpresentacion \n" +
-                     "inner join Proveedores prove on \n" +
-                        " pro.idproveedor=prove.idproveedor where pro.estatus='A'";
+            Sql = "select pro.diasretardo, pro.precioestandar,\n" +
+                    "pro.precioultimacompra,pro.cantminpedir,pro.cantmaxpedir,pro.estatus,pre.nombre\n" +
+                    "as nom ,prove.nombre as nomb,producto.nombre as nombre from ProductosProveedor pro\n" +
+                    "inner join PresentacionesProducto pre on pro.idpresentacion=pre.idpresentacion\n" +
+                    "inner join Productos producto on pre.idproducto=producto.idproducto\n" +
+                    "inner join Proveedores prove on \n" +
+                     "pro.idproveedor=prove.idproveedor where pro.estatus='A'";
             
         else if(!Nombre.isEmpty())
-            Sql = "select pro.diasretardo, pro.precioestandar, \n" +
-                    "pro.precioultimacompra,pro.cantminpedir,pro.cantmaxpedir,pro.estatus,pre.nombre \n" +
-                    "as nom ,prove.nombre as nomb from ProductosProveedor pro \n" +
-                    "inner join PresentacionesProducto pre on pro.idpresentacion=pre.idpresentacion \n" +
-                     "inner join Proveedores prove on \n" +
-                        " pro.idproveedor=prove.idproveedor where prove.nombre like '"+Nombre+"%'";
+            Sql = "select pro.diasretardo, pro.precioestandar,\n" +
+                    "pro.precioultimacompra,pro.cantminpedir,pro.cantmaxpedir,pro.estatus,pre.nombre\n" +
+                    "as nom ,prove.nombre as nomb,producto.nombre as nombre from ProductosProveedor pro\n" +
+                    "inner join PresentacionesProducto pre on pro.idpresentacion=pre.idpresentacion\n" +
+                    "inner join Productos producto on pre.idproducto=producto.idproducto\n" +
+                    "inner join Proveedores prove on \n" +
+                    "pro.idproveedor=prove.idproveedor where prove.nombre like '"+Nombre+"%'";
         
                try {
             stn=(Statement) con.createStatement();
@@ -704,6 +706,7 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
         
             while(rs.next()){
                 String pro= rs.getString("nomb");
+                String producto= rs.getString("nombre");
                 String pre= rs.getString("nom");
                 String dias=rs.getString("diasretardo");
                 String precioes = rs.getString("precioestandar");
@@ -711,7 +714,38 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
                 String cantmin = rs.getString("cantminpedir");
                 String cantmax = rs.getString("cantmaxpedir");
                 String estatus = rs.getString("estatus");
-                Object datosRenglon[]={pro,pre,dias,precioes,precioul,cantmin,cantmax,estatus};
+                Object datosRenglon[]={pro,producto,pre,dias,precioes,precioul,cantmin,cantmax,estatus};
+                tablaTemp.addRow(datosRenglon);
+            }
+            tabla.setModel(tablaTemp);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+         public void CuentasProveedor_Search(String Nombre,JTable tabla){
+         DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
+         if(Nombre.isEmpty())
+            Sql = "select cu.idcuentaproveedor, cu.nocuenta,cu.estatus,\n" +
+                    "cu.banco,pro.nombre as nom  from CuentasProveedor cu\n" +
+                    "inner join Proveedores pro on pro.idproveedor=cu.idproveedor\n" +
+                    "where cu.estatus='A';";
+            
+        else if(!Nombre.isEmpty())
+            Sql = "select cu.idcuentaproveedor, cu.nocuenta,cu.estatus,\n" +
+                    "cu.banco,pro.nombre as nom  from CuentasProveedor cu\n" +
+                    "inner join Proveedores pro on pro.idproveedor=cu.idproveedor where pro.nombre like '"+Nombre+"%'";
+        
+               try {
+            stn=(Statement) con.createStatement();
+            rs=stn.executeQuery(Sql);
+        
+            while(rs.next()){
+                String id= rs.getString("idcuenta");
+                String nombre= rs.getString("nom");
+                String nocuenta= rs.getString("nocuenta");
+                String banco=rs.getString("banco");
+                String estatus = rs.getString("estatus");
+                Object datosRenglon[]={id,nombre,nocuenta,banco,estatus};
                 tablaTemp.addRow(datosRenglon);
             }
             tabla.setModel(tablaTemp);
