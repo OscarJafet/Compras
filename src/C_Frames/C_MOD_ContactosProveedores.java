@@ -46,14 +46,14 @@ public class C_MOD_ContactosProveedores extends javax.swing.JFrame {
     
      
               
-    public void Datos(int id, String Nombre, String no, String tel, String ema, String dir, String col, String cod) {
+    public void Datos(int id, String Nombre, String no, String tel, String ema) {
         
         modelocombo.setSelectedItem(id+" "+Nombre);
         CB_CUIDAD.setModel(modelocombo);
         C_MOD_Proveedor_txfnom.setText(no);
         C_MOD_Proveedor_txftel.setText(tel);
         C_MOD_Proveedor_txfemail.setText(ema);
-        int a = Integer.parseInt(erp.consultaEdo(id));
+        
      
     }
      public void llenarCombo1(){
@@ -107,7 +107,7 @@ public class C_MOD_ContactosProveedores extends javax.swing.JFrame {
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(254, 254, 254));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "EDITAR PROVEEDOR", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 0))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "EDITAR CONTACTOSPROVEEDOR", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 0))); // NOI18N
 
         jLabel1.setBackground(new java.awt.Color(254, 254, 254));
         jLabel1.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
