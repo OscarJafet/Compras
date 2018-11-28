@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package C_Frames;
 
 import C_Conexion.Conexion;
@@ -20,17 +16,18 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Jose
  */
-public class C_Sucursales extends javax.swing.JPanel {
+public class C_ContactosProveedores extends javax.swing.JPanel {
 
     /**
      * Creates new form Percepciones1
      */
     Conexion erp;
-    public C_Sucursales() {
+    public C_ContactosProveedores() {
         initComponents();
         erp = new Conexion();
         erp.OpenCon("ERP", "erp");
-        erp.Sucursales_Search(txfBuscar.getText(),tblsucursal);
+        erp.ContactosProveedores_Search(txfBuscar.getText(),tblContactosProveedor);
+       
     }
 
     /**
@@ -45,7 +42,7 @@ public class C_Sucursales extends javax.swing.JPanel {
         txfBuscar = new javax.swing.JTextField();
         btnConsultarSucursal = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblsucursal = new javax.swing.JTable();
+        tblContactosProveedor = new javax.swing.JTable();
         btnAgregarPercepcion = new javax.swing.JButton();
         btnEditarsucursal = new javax.swing.JButton();
         btnEliminarPercepcion = new javax.swing.JButton();
@@ -87,35 +84,32 @@ public class C_Sucursales extends javax.swing.JPanel {
         add(btnConsultarSucursal);
         btnConsultarSucursal.setBounds(540, 10, 60, 50);
 
-        tblsucursal.setModel(new javax.swing.table.DefaultTableModel(
+        tblContactosProveedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID SUCURSAL", "NOMBRE", "TELEFONO", "DIRECCION", "COLONIA", "CODIGOPOSTAL", "PRESUPUESTO", "ESTATUS", "ID CIUDAD", "CIUDAD"
+                "ID CONTACTOPROVEEDOR", "NOMBRE", "TELEFONO", "EMAIL", "ESTATUS", "ID PROVEEDOR", "PROVEEDOR"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tblsucursal.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tblsucursal.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblContactosProveedor.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblContactosProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblsucursalMouseClicked(evt);
+                tblContactosProveedorMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                tblsucursalMouseEntered(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                tblsucursalMouseReleased(evt);
+                tblContactosProveedorMouseEntered(evt);
             }
         });
-        jScrollPane1.setViewportView(tblsucursal);
+        jScrollPane1.setViewportView(tblContactosProveedor);
 
         add(jScrollPane1);
         jScrollPane1.setBounds(30, 80, 789, 311);
@@ -172,11 +166,6 @@ public class C_Sucursales extends javax.swing.JPanel {
         jButton1.setToolTipText("Activar");
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
         add(jButton1);
         jButton1.setBounds(10, 440, 68, 60);
         add(jLabel2);
@@ -184,30 +173,33 @@ public class C_Sucursales extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txfConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfConsultarActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txfConsultarActionPerformed
 
     private void btnAgregarPercepcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPercepcionActionPerformed
-        C_ADD_Sucursales erp = new C_ADD_Sucursales();
+        C_ADD_ContactosProveedor erp = new C_ADD_ContactosProveedor();
         erp.setLocationRelativeTo(erp);
         erp.setVisible(true);
     }//GEN-LAST:event_btnAgregarPercepcionActionPerformed
 
     private void btnEliminarPercepcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPercepcionActionPerformed
-        int ID = 0;
-        int con=tblsucursal.getSelectedRow();
+     int ID = 0;
+        int con=tblContactosProveedor.getSelectedRow();
         
         if (con>=0){
             
-            String es= String.valueOf(tblsucursal.getValueAt(con,7));
+            String es= String.valueOf(tblContactosProveedor.getValueAt(con,7));
             if(es.equals("A"))
             {
-            ID = Integer.parseInt(tblsucursal.getValueAt(tblsucursal.getSelectedRow(),0)+"");
+            ID = Integer.parseInt(tblContactosProveedor.getValueAt(tblContactosProveedor.getSelectedRow(),0)+"");
             if(JOptionPane.showConfirmDialog (null, "Desea eliminar","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
-                ProcedimientoSucursal();
+                erp.OpenCon("ERP", "erp");
+                erp.SQLlupita2("update CONTACTOSproveedores set ESTATUS='B'"
+                    + "where idproveedor ="
+                    + ID);
             }
             }else {
-                JOptionPane.showMessageDialog(null,"Seleccione una sucursal con estatus A","Error" ,JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Seleccione una contacto proveedor con estatus A","Error" ,JOptionPane.INFORMATION_MESSAGE);
             }
         }else {
             JOptionPane.showMessageDialog(null,"Seleccione un renglon","Error" ,JOptionPane.INFORMATION_MESSAGE);
@@ -225,62 +217,43 @@ public void borrarTabla(JTable tab) {
     }
     
     private void btnConsultarSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarSucursalActionPerformed
-        borrarTabla(tblsucursal);
+        borrarTabla(tblContactosProveedor);
         erp.OpenCon("ERP", "erp");
-        erp.Sucursales_Search(txfBuscar.getText(),tblsucursal);
+        erp.Proveedores_Search(txfBuscar.getText(),tblContactosProveedor);
         
     }//GEN-LAST:event_btnConsultarSucursalActionPerformed
 
     private void btnEditarsucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarsucursalActionPerformed
-        int con=tblsucursal.getSelectedRow();
-         int idc;
+        int con=tblContactosProveedor.getSelectedRow();
+        int idcuidad=0;
         if (con>=0){
-        String nom=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),1);
-        String tel=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),2);
-        String dir=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),3);
-        String col=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),4);
-        String cod=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),5);
-        String pre=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),6);
-        idc=Integer.parseInt(tblsucursal.getValueAt(tblsucursal.getSelectedRow(),8)+"");
-        String nomc=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),9);
+       
+        String nom=(String) tblContactosProveedor.getValueAt(tblContactosProveedor.getSelectedRow(),1);
+        String tel=(String) tblContactosProveedor.getValueAt(tblContactosProveedor.getSelectedRow(),2);
+        String ema=(String) tblContactosProveedor.getValueAt(tblContactosProveedor.getSelectedRow(),3);
+        idcuidad=Integer.parseInt(tblContactosProveedor.getValueAt(tblContactosProveedor.getSelectedRow(),5)+"");
+        String cuidad=(String) tblContactosProveedor.getValueAt(tblContactosProveedor.getSelectedRow(),6);
 
         
-        C_MOD_Sucursales suc =new C_MOD_Sucursales();
-        suc.setLocationRelativeTo(suc);
-        suc.Datos(idc, nomc, nom, tel, dir, col, cod, pre);
-        suc.setVisible(true);
+        C_MOD_ContactosProveedores cpro =new C_MOD_ContactosProveedores();
+        cpro.setLocationRelativeTo(cpro);
+        cpro.Datos(idcuidad,cuidad,nom, tel, ema);
+        cpro.setVisible(true);
+        
         
         int ID = 0;
         try{
-            ID = Integer.parseInt(tblsucursal.getValueAt(tblsucursal.getSelectedRow(),0)+"");
+            ID = Integer.parseInt(tblContactosProveedor.getValueAt(tblContactosProveedor.getSelectedRow(),0)+"");
+            
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
-      suc.txfIdSucursal.setText(ID+"");
+      cpro.txfIdProveedor.setText(ID+"");
+   
       }else {
             JOptionPane.showMessageDialog(null,"Seleccione un renglon","Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnEditarsucursalActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int ID = 0;
-        int con=tblsucursal.getSelectedRow();
-        
-        if (con>=0){
-            String es= String.valueOf(tblsucursal.getValueAt(con,7));
-            if(es.equals("B"))
-            {
-            ID = Integer.parseInt(tblsucursal.getValueAt(tblsucursal.getSelectedRow(),0)+"");
-            if(JOptionPane.showConfirmDialog (null, "Desea dar de Alta","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
-                ProcedimientoSucursalAlta();
-            }
-            }else{
-                JOptionPane.showMessageDialog(null,"Seleccione una ciudad con estatus B","Error" ,JOptionPane.INFORMATION_MESSAGE);
-            }
-        }else {
-            JOptionPane.showMessageDialog(null,"Seleccione un renglon","Error" ,JOptionPane.INFORMATION_MESSAGE);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txfBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfBuscarActionPerformed
         // TODO add your handling code here:
@@ -291,88 +264,44 @@ public void borrarTabla(JTable tab) {
         if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')&&(c<' '||c>' '))  evt.consume();
     }//GEN-LAST:event_txfBuscarKeyTyped
 
-    private void tblsucursalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblsucursalMouseClicked
+    private void tblContactosProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblContactosProveedorMouseClicked
         
-        int ID;
-        int idc;
-        String nom=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),1);
-        String tel=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),2);
-        String dir=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),3);
-        String col=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),4);
-        String cod=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),5);
-        String pre=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),6);
-        idc=Integer.parseInt(tblsucursal.getValueAt(tblsucursal.getSelectedRow(),8)+"");
-        String nomc=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),9);
+        int idprovee;
+        String nom=(String) tblContactosProveedor.getValueAt(tblContactosProveedor.getSelectedRow(),1);
+        String tel=(String) tblContactosProveedor.getValueAt(tblContactosProveedor.getSelectedRow(),2);
+        String ema=(String) tblContactosProveedor.getValueAt(tblContactosProveedor.getSelectedRow(),3);
+        idprovee=Integer.parseInt(tblContactosProveedor.getValueAt(tblContactosProveedor.getSelectedRow(),5)+"");
+        String provee=(String) tblContactosProveedor.getValueAt(tblContactosProveedor.getSelectedRow(),6);
 
-           
+
          if (evt.getClickCount()==2){
-         C_MOD_Sucursales suc= new C_MOD_Sucursales();
-         suc.setLocationRelativeTo(suc);
-         ID = Integer.parseInt(tblsucursal.getValueAt(tblsucursal.getSelectedRow(),0)+"");
-         suc.txfIdSucursal.setText(ID+"");
-         suc.Datos(idc, nomc, nom, tel, dir, col, cod, pre);
-         suc.setVisible(true);
+         int id= Integer.parseInt(tblContactosProveedor.getValueAt(tblContactosProveedor.getSelectedRow(),0)+"");
+         C_MOD_ContactosProveedores cpro =new C_MOD_ContactosProveedores();
+         cpro.setLocationRelativeTo(cpro);
+         cpro.Datos(id, provee, nom, tel, ema);
+         cpro.setVisible(true);
          }
          
-    }//GEN-LAST:event_tblsucursalMouseClicked
-
-    private void tblsucursalMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblsucursalMouseReleased
-
-    }//GEN-LAST:event_tblsucursalMouseReleased
+    }//GEN-LAST:event_tblContactosProveedorMouseClicked
 
     private void txfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyReleased
-        borrarTabla(tblsucursal);
+        borrarTabla(tblContactosProveedor);
         erp.OpenCon("ERP", "erp");
-        erp.Sucursales_Search(txfBuscar.getText(),tblsucursal);
+        erp.ContactosProveedores_Search(txfBuscar.getText(), tblContactosProveedor);
+
 
     }//GEN-LAST:event_txfBuscarKeyReleased
 
-    private void tblsucursalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblsucursalMouseEntered
-        borrarTabla(tblsucursal);
+    private void tblContactosProveedorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblContactosProveedorMouseEntered
+        borrarTabla(tblContactosProveedor);
         erp.OpenCon("ERP", "erp");
-        erp.Sucursales_Search(txfBuscar.getText(),tblsucursal);
-    }//GEN-LAST:event_tblsucursalMouseEntered
-      public void ProcedimientoSucursal(){
-           int ID = 0;
-     
-           ID = Integer.parseInt(tblsucursal.getValueAt(tblsucursal.getSelectedRow(),0)+"");
-          try {
-          CallableStatement cst= con.prepareCall("{call BajasSucursal(?,?)}");
-            cst.setInt(1, ID);
-            
-            cst.registerOutParameter(2,java.sql.Types.VARCHAR);
-            cst.execute();
-            
-            String msg= cst.getString(2);
-            JOptionPane.showMessageDialog(null,msg,"Informacion" ,JOptionPane.INFORMATION_MESSAGE);
-          }
-          catch (SQLException ex){
-              JOptionPane.showMessageDialog(null,"Seleccione un renglon",ex.getMessage() ,JOptionPane.INFORMATION_MESSAGE);
-          }
-          
-          
-      }
+        erp.ContactosProveedores_Search(txfBuscar.getText(), tblContactosProveedor);
+
+
+    }//GEN-LAST:event_tblContactosProveedorMouseEntered
+
       
-            public void ProcedimientoSucursalAlta(){
-           int ID = 0;
-     
-           ID = Integer.parseInt(tblsucursal.getValueAt(tblsucursal.getSelectedRow(),0)+"");
-          try {
-          CallableStatement cst= con.prepareCall("{call AltaSucursal(?,?)}");
-            cst.setInt(1, ID);
-            
-            cst.registerOutParameter(2,java.sql.Types.VARCHAR);
-            cst.execute();
-            
-            String msg= cst.getString(2);
-            JOptionPane.showMessageDialog(null,msg,"Informacion" ,JOptionPane.INFORMATION_MESSAGE);
-          }
-          catch (SQLException ex){
-              JOptionPane.showMessageDialog(null,"Seleccione un renglon",ex.getMessage() ,JOptionPane.INFORMATION_MESSAGE);
-          }
-          
-          
-      }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarPercepcion;
@@ -383,7 +312,7 @@ public void borrarTabla(JTable tab) {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable tblsucursal;
-    public javax.swing.JTextField txfBuscar;
+    public javax.swing.JTable tblContactosProveedor;
+    private javax.swing.JTextField txfBuscar;
     // End of variables declaration//GEN-END:variables
 }

@@ -66,29 +66,43 @@ public class Conexion {
           }
      }
      
-          public void SQL1(String Sql){
-          try {
-              
-              stn=(Statement) con.createStatement();
-              stn.executeUpdate(Sql);
-              con.commit();
-              stn.close();
-              JOptionPane.showMessageDialog(null," Acción realizada","Informacion", JOptionPane.INFORMATION_MESSAGE);
-              //return true;
-              // erp.V = null;
-              if(JOptionPane.showConfirmDialog (null, "Desea agregar un producto al proveedor","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
-        C_ADD_ProductosProveedor pro =new C_ADD_ProductosProveedor();
-        pro.setLocationRelativeTo(pro);
-        pro.setVisible(true);
+          public void SQLLupita(String Sql) {
+        try {
+
+            stn = (Statement) con.createStatement();
+            stn.executeUpdate(Sql);
+            con.commit();
+            stn.close();
+            JOptionPane.showMessageDialog(null, " Acción realizada", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+
+            if (JOptionPane.showConfirmDialog(null, "Desea agregar un producto al proveedor", "Informacion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                C_ADD_ProductosProveedor pro = new C_ADD_ProductosProveedor();
+                pro.setLocationRelativeTo(pro);
+                pro.setVisible(true);
             }
-          } catch (SQLException ex) {
-              JOptionPane.showMessageDialog(null,"Correo no valido","Error" ,JOptionPane.INFORMATION_MESSAGE);
-              //return false;
-              //Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-          }
-     }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Correo no valido", "Error", JOptionPane.INFORMATION_MESSAGE);
+            //Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void SQLlupita2(String Sql) {
+        try {
+
+            stn = (Statement) con.createStatement();
+            stn.executeUpdate(Sql);
+            con.commit();
+            stn.close();
+            JOptionPane.showMessageDialog(null, " Acción realizada", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Correo no valido", "Error", JOptionPane.INFORMATION_MESSAGE);
+            
+           // Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
      public boolean Log_in(String Usr, String Psw){
-       Sql = "select estatus from ERP.Usuarios where nombre ='"+Usr+"' and contraseña = '"+Psw+"'";
+       Sql = "select estatus from ERP.Usuarios where nombre ='"+Usr+"' and CONTRASEÑA = '"+Psw+"'";
            
         try {
           
@@ -290,7 +304,7 @@ public class Conexion {
             Sql = "select s.idsucursal, s.nombre, s.telefono,"
                     + "s.direccion,s.colonia,"
                     + "s.codigopostal, s.presupuesto, s.estatus, s.idciudad, cd.nombre as nom from Sucursal s inner join Ciudad cd "
-                    + "on s.idciudad=cd.idciudad where s.estatus='A'";
+                    + "on s.idciudad=cd.idciudad where s.nombre like '"+Nombre+"%'";
                     
                try {
             stn=(Statement) con.createStatement();
@@ -588,18 +602,24 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
     }
       public void Detalles_seacrh(String Nombre, JTable tabla, char Stat) {
         DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
-        if (Nombre.isEmpty() && Stat == 'E') {
-            Sql = "SELECT * FROM PEDIDODETALLE INNER JOIN ERP.PEDIDOS ON PEDIDOS.ESTATUS = 'E' or PEDIDOS.ESTATUS = 'A'";
-        } else if (!Nombre.isEmpty() && Stat == 'E') {
-            Sql = "SELECT * FROM PEDIDODETALLE P INNER JOIN PEDIDOS P ON P.ESTATUS = 'E' or P.ESTATUS = 'A' INNER JOIN PRESENTACIONESPRODUCTO R ON R.NOMBRE like '"+Nombre+"%'";
-        } else if (Stat == 'A' || Stat == 'C' || Stat == 'E') {
-            Sql = "SELECT * FROM PEDIDODETALLE INNER JOIN ERP.PEDIDOS ON PEDIDOS.ESTATUS = '"+Stat+"'";
-        }
-        //System.out.println(Sql);
-               try {
-            stn= con.createStatement();
-            rs=stn.executeQuery(Sql);
         
+        //System.out.println(Sql);
+        if (Nombre.isEmpty() && Stat == 'E') {
+            System.out.println("E...");
+            Sql = "SELECT * FROM ERP.PEDIDODETALLE INNER JOIN ERP.PEDIDOS ON PEDIDOS.ESTATUS = 'E' or PEDIDOS.ESTATUS = 'A'";
+        } else if (!Nombre.isEmpty() && Stat == 'E') {
+            System.out.println("E....2");
+            Sql = "SELECT * FROM PEDIDODETALLE P INNER JOIN PEDIDOS P ON P.ESTATUS = 'E' or P.ESTATUS = 'A' INNER JOIN PRESENTACIONESPRODUCTO R ON R.NOMBRE like '"+Nombre+"%'";
+        } else if (Stat == 'A' || Stat == 'B' || Stat == 'E') {
+            System.out.println("A...");
+            Sql = "SELECT P.idPedidoDetalle, p.cantPedida,p.precioCompra,p.subTotal,p.cantRecibida,p.CantRechazada,p.cantAceptada,p.idPedido,p.idPresentacion\n" +
+"FROM ERP.PEDIDODETALLE P INNER JOIN ERP.PEDIDOS ON PEDIDOS.ESTATUS = '"+Stat+"'";
+        }
+      try {
+            stn=(Statement) con.createStatement();
+              stn.executeUpdate(Sql);
+        
+          //System.out.println(Sql);
             while(rs.next()){
                 String idDt=rs.getString("idPedidoDetalle");
                 String cPd=rs.getString("cantPedida");
@@ -619,9 +639,9 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
             stn= con.createStatement();
             rs=stn.executeQuery(Sql);
         
-            for (int i = 0; this.rs.next(); i++) {
+            for (int i = 0; rs.next(); i++) {
                  String nombre=rs.getString("nombre");
-                 System.out.println(nombre+"ped");
+                 //System.out.println(nombre+"ped");
                  tablaTemp.setValueAt(tablaTemp.getValueAt(i, 7)+" "+nombre, i, 7);
             }
             //comentario
@@ -637,7 +657,7 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
             
             tabla.setModel(tablaTemp);
         } catch (SQLException ex) {
-           // JOptionPane.showMessageDialog(null,ex.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
+          JOptionPane.showMessageDialog(null,ex.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
     }
     public void Proveedores_Search(String Nombre,JTable tabla){
@@ -821,6 +841,40 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
                 tablaTemp.addRow(datosRenglon);
             }
             
+            tabla.setModel(tablaTemp);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void ContactosProveedores_Search(String Nombre,JTable tabla){
+         DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
+        
+         if(Nombre.isEmpty())
+            Sql = "select cpro.idcontacto, cpro.nombre, cpro.telefono, cpro.email, cpro.estatus, cpro.idproveedor, pro.nombre" 
+                     +"as nom from contactosproveedor cpro" 
+                     +"inner join proveedores pro" 
+                     +"on cpro.idproveedor=pro.idproveedor where cpro.estatus='A'";
+        else if(!Nombre.isEmpty())
+            Sql = "select cpro.idcontacto, cpro.nombre, cpro.telefono, cpro.email, cpro.estatus, cpro.idproveedor, pro.nombre" 
+                     +"as nom from contactosproveedor cpro" 
+                     +"inner join proveedores pro" 
+                     +"on cpro.idproveedor=pro.idproveedor where cpro.nombre like '="+Nombre+"%'";
+        
+               try {
+            stn=(Statement) con.createStatement();
+            rs=stn.executeQuery(Sql);
+        
+            while(rs.next()){
+                String idsuc=rs.getString("idProveedor");
+                String Nom=rs.getString("nombre");
+                String tel=rs.getString("telefono");
+                String email=rs.getString("email");
+                String idprovee=rs.getString("idproveedores");
+                String ciudad = rs.getString("nom");
+                Object datosRenglon[]={idsuc,Nom,tel,email,idprovee,ciudad};
+                tablaTemp.addRow(datosRenglon);
+            }
             tabla.setModel(tablaTemp);
         } catch (SQLException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);

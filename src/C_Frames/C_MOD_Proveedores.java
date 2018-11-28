@@ -463,7 +463,7 @@ public class C_MOD_Proveedores extends javax.swing.JFrame {
 
             erp.OpenCon("ERP", "erp");
             int ID = Integer.parseInt(txfIdProveedor.getText());
-            erp.SQL1("update proveedores set nombre ="
+            erp.SQLLupita("update proveedores set nombre ="
                     + "'" + C_MOD_Proveedor_txfnom.getText() + "',"
                     + "telefono ='" + C_MOD_Proveedor_txftel.getText() + "',"
                     + "email='" + C_MOD_Proveedor_txfemail.getText() + "',"
@@ -509,7 +509,7 @@ C_Proveedores p= new C_Proveedores();
     }//GEN-LAST:event_C_MOD_Proveedor_txfemailKeyTyped
 
     private void C_MOD_Proveedor_txfdirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_MOD_Proveedor_txfdirActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_C_MOD_Proveedor_txfdirActionPerformed
 
     private void C_MOD_Proveedor_txfdirKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_MOD_Proveedor_txfdirKeyTyped
