@@ -29,6 +29,8 @@ public class C_Sucursales extends javax.swing.JPanel {
     public C_Sucursales() {
         initComponents();
         erp = new Conexion();
+        erp.OpenCon("ERP", "erp");
+        erp.Sucursales_Search(txfBuscar.getText(),tblsucursal);
     }
 
     /**

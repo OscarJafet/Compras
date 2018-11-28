@@ -66,27 +66,41 @@ public class Conexion {
           }
      }
      
-          public void SQL1(String Sql){
-          try {
-              
-              stn=(Statement) con.createStatement();
-              stn.executeUpdate(Sql);
-              con.commit();
-              stn.close();
-              JOptionPane.showMessageDialog(null," Acción realizada","Informacion", JOptionPane.INFORMATION_MESSAGE);
-              //return true;
-              // erp.V = null;
-              if(JOptionPane.showConfirmDialog (null, "Desea agregar un producto al proveedor","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
-        C_ADD_ProductosProveedor pro =new C_ADD_ProductosProveedor();
-        pro.setLocationRelativeTo(pro);
-        pro.setVisible(true);
+          public void SQLLupita(String Sql) {
+        try {
+
+            stn = (Statement) con.createStatement();
+            stn.executeUpdate(Sql);
+            con.commit();
+            stn.close();
+            JOptionPane.showMessageDialog(null, " Acción realizada", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+
+            if (JOptionPane.showConfirmDialog(null, "Desea agregar un producto al proveedor", "Informacion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                C_ADD_ProductosProveedor pro = new C_ADD_ProductosProveedor();
+                pro.setLocationRelativeTo(pro);
+                pro.setVisible(true);
             }
-          } catch (SQLException ex) {
-              //JOptionPane.showMessageDialog(null,"Correo no valido","Error" ,JOptionPane.INFORMATION_MESSAGE);
-              //return false;
-              Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-          }
-     }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Correo no valido", "Error", JOptionPane.INFORMATION_MESSAGE);
+            //Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void SQLlupita2(String Sql) {
+        try {
+
+            stn = (Statement) con.createStatement();
+            stn.executeUpdate(Sql);
+            con.commit();
+            stn.close();
+            JOptionPane.showMessageDialog(null, " Acción realizada", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Correo no valido", "Error", JOptionPane.INFORMATION_MESSAGE);
+            
+           // Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
      public boolean Log_in(String Usr, String Psw){
        Sql = "select estatus from ERP.Usuarios where nombre ='"+Usr+"' and CONTRASEÑA = '"+Psw+"'";
            

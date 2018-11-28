@@ -463,7 +463,7 @@ public class C_MOD_Proveedores extends javax.swing.JFrame {
 
             erp.OpenCon("ERP", "erp");
             int ID = Integer.parseInt(txfIdProveedor.getText());
-            erp.SQL1("update proveedores set nombre ="
+            erp.SQLLupita("update proveedores set nombre ="
                     + "'" + C_MOD_Proveedor_txfnom.getText() + "',"
                     + "telefono ='" + C_MOD_Proveedor_txftel.getText() + "',"
                     + "email='" + C_MOD_Proveedor_txfemail.getText() + "',"
