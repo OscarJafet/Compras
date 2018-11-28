@@ -273,14 +273,15 @@ public void borrarTabla(JTable tab) {
     private void btnEliDeduccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliDeduccionesActionPerformed
        int ID = 0;
         try{
-            ID = Integer.parseInt(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(),0)+"");
+             StringTokenizer b = new StringTokenizer(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 7)+""," ");
+      ID = Integer.parseInt(b.nextToken());
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
         //confirma eliminacion
             if(JOptionPane.showConfirmDialog(null, "¿Desea darlo de baja?","Informacion",
         JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                erp.SQL("update PresentacionesProducto set estatus = 'B' where idPresentacion = "+ID);
+                erp.SQL("Update Pedidos set Estatus = 'B' where idPedido = "+ID);
               }else{
                 JOptionPane.showMessageDialog(null,"NO Eliminado","Infromación" ,JOptionPane.INFORMATION_MESSAGE);
             }
