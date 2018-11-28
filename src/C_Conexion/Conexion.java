@@ -290,7 +290,7 @@ public class Conexion {
             Sql = "select s.idsucursal, s.nombre, s.telefono,"
                     + "s.direccion,s.colonia,"
                     + "s.codigopostal, s.presupuesto, s.estatus, s.idciudad, cd.nombre as nom from Sucursal s inner join Ciudad cd "
-                    + "on s.idciudad=cd.idciudad where s.estatus='A'";
+                    + "on s.idciudad=cd.idciudad where s.nombre like '"+Nombre+"%'";
                     
                try {
             stn=(Statement) con.createStatement();

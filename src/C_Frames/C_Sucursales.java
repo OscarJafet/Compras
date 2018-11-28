@@ -63,6 +63,9 @@ public class C_Sucursales extends javax.swing.JPanel {
             }
         });
         txfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txfBuscarKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txfBuscarKeyTyped(evt);
             }
@@ -102,6 +105,9 @@ public class C_Sucursales extends javax.swing.JPanel {
         tblsucursal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblsucursalMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tblsucursalMouseEntered(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 tblsucursalMouseReleased(evt);
@@ -225,19 +231,21 @@ public void borrarTabla(JTable tab) {
 
     private void btnEditarsucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarsucursalActionPerformed
         int con=tblsucursal.getSelectedRow();
+         int idc;
         if (con>=0){
-        String a=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),1);
-        String b=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),2);
-        String c=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),3);
-        String d=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),4);
-        String ce=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),5);
-        String f=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),6);
-        String h=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),7);
+        String nom=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),1);
+        String tel=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),2);
+        String dir=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),3);
+        String col=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),4);
+        String cod=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),5);
+        String pre=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),6);
+        idc=Integer.parseInt(tblsucursal.getValueAt(tblsucursal.getSelectedRow(),8)+"");
+        String nomc=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),9);
 
         
         C_MOD_Sucursales suc =new C_MOD_Sucursales();
         suc.setLocationRelativeTo(suc);
-        suc.Datos(con, ce, h, ce, d, ce, ce);
+        suc.Datos(idc, nomc, nom, tel, dir, col, cod, pre);
         suc.setVisible(true);
         
         int ID = 0;
@@ -282,28 +290,46 @@ public void borrarTabla(JTable tab) {
     }//GEN-LAST:event_txfBuscarKeyTyped
 
     private void tblsucursalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblsucursalMouseClicked
-        String a,b,c,d,e,f,h,i;
-        int x=0;
-        a=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),0);
-        b=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),1);
-        c=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),2);
-        d=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),3);
-        e=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),4);
-        f=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),5);
-        h=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),7);
         
+        int ID;
+        int idc;
+        String nom=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),1);
+        String tel=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),2);
+        String dir=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),3);
+        String col=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),4);
+        String cod=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),5);
+        String pre=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),6);
+        idc=Integer.parseInt(tblsucursal.getValueAt(tblsucursal.getSelectedRow(),8)+"");
+        String nomc=(String) tblsucursal.getValueAt(tblsucursal.getSelectedRow(),9);
+
            
          if (evt.getClickCount()==2){
          C_MOD_Sucursales suc= new C_MOD_Sucursales();
          suc.setLocationRelativeTo(suc);
-         suc.Datos(x, e, h, e, h, c, d);
+         ID = Integer.parseInt(tblsucursal.getValueAt(tblsucursal.getSelectedRow(),0)+"");
+         suc.txfIdSucursal.setText(ID+"");
+         suc.Datos(idc, nomc, nom, tel, dir, col, cod, pre);
          suc.setVisible(true);
          }
          
     }//GEN-LAST:event_tblsucursalMouseClicked
 
     private void tblsucursalMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblsucursalMouseReleased
+
     }//GEN-LAST:event_tblsucursalMouseReleased
+
+    private void txfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyReleased
+        borrarTabla(tblsucursal);
+        erp.OpenCon("ERP", "erp");
+        erp.Sucursales_Search(txfBuscar.getText(),tblsucursal);
+
+    }//GEN-LAST:event_txfBuscarKeyReleased
+
+    private void tblsucursalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblsucursalMouseEntered
+        borrarTabla(tblsucursal);
+        erp.OpenCon("ERP", "erp");
+        erp.Sucursales_Search(txfBuscar.getText(),tblsucursal);
+    }//GEN-LAST:event_tblsucursalMouseEntered
       public void ProcedimientoSucursal(){
            int ID = 0;
      
