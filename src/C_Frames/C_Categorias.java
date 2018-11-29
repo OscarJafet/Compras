@@ -66,6 +66,14 @@ public class C_Categorias extends javax.swing.JPanel {
 
         C_Categorias_txfBuscar.setBackground(new java.awt.Color(254, 254, 254));
         C_Categorias_txfBuscar.setForeground(new java.awt.Color(1, 1, 1));
+        C_Categorias_txfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                C_Categorias_txfBuscarKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                C_Categorias_txfBuscarKeyTyped(evt);
+            }
+        });
 
         C_Categorias_tblDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -87,6 +95,9 @@ public class C_Categorias extends javax.swing.JPanel {
         C_Categorias_tblDatos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 C_Categorias_tblDatosMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                C_Categorias_tblDatosMouseEntered(evt);
             }
         });
         jScrollPane1.setViewportView(C_Categorias_tblDatos);
@@ -242,13 +253,8 @@ public void borrarTabla(JTable tab) {
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
-        if((C_Categorias_tblDatos.getValueAt(C_Categorias_tblDatos.getSelectedRow(), 2)+"") == "A")
-            edg.C_MOD_Categorias_cmb.setSelectedIndex(0);
-        else
-            edg.C_MOD_Categorias_cmb.setSelectedIndex(1);
-        
-        edg.C_MOD_Categorias_txfCiudad.setText(C_Categorias_tblDatos.getValueAt(C_Categorias_tblDatos.getSelectedRow(), 1)+"");
-        edg.txfIdCiu.setText(ID+"");
+        ID= (Integer) C_Categorias_tblDatos.getValueAt(C_Categorias_tblDatos.getSelectedRow(), 1);
+        edg.txfID.setText(ID+"");
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -273,6 +279,23 @@ public void borrarTabla(JTable tab) {
         if(evt.getClickCount()==2)
         btnActualizar.doClick();
     }//GEN-LAST:event_C_Categorias_tblDatosMouseClicked
+
+    private void C_Categorias_txfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_Categorias_txfBuscarKeyTyped
+        char c=evt.getKeyChar();
+        if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')){
+            evt.consume();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_C_Categorias_txfBuscarKeyTyped
+
+    private void C_Categorias_txfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_Categorias_txfBuscarKeyReleased
+        btnBuscar.doClick();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_C_Categorias_txfBuscarKeyReleased
+
+    private void C_Categorias_tblDatosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C_Categorias_tblDatosMouseEntered
+        btnBuscar.doClick();
+    }//GEN-LAST:event_C_Categorias_tblDatosMouseEntered
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

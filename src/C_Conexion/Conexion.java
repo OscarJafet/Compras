@@ -134,7 +134,7 @@ public class Conexion {
         if(Nombre.isEmpty())
             Sql = "select * from Categorias";
         else if(!Nombre.isEmpty())
-            Sql = "select * from Categorias where nombre = '"+Nombre+"'";
+            Sql = "select * from Categorias where nombre like '"+Nombre+"%'";
                try {
             stn=(Statement) con.createStatement();
             rs=stn.executeQuery(Sql);
