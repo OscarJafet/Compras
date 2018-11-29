@@ -159,7 +159,7 @@ public class C_ADD_Unidad extends javax.swing.JFrame {
         String s= txfSiglas.getText();
         erp.OpenCon("ERP", "erp");
         if (!n.isEmpty()&&!s.isEmpty()){
-        erp.SQL("insert into UnidadMedida values (ERP.UniID.nextval,'"+txfNombrePerce.getText()+"', '"+txfSiglas.getText()+"')");
+        erp.SQL("insert into UnidadMedida values (ERP.UniID.nextval,'"+txfNombrePerce.getText()+"', '"+txfSiglas.getText()+"','A')");
         }else{
            JOptionPane.showMessageDialog(null,"No se permiten campos vacios","Error" ,JOptionPane.INFORMATION_MESSAGE);
        }
