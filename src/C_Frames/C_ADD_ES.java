@@ -268,7 +268,7 @@ erp.SQL("insert into EXISTENCIASUCURSAL values ("+
         Integer.parseInt(a2)+","+
         Integer.parseInt(b2)+","+
         Integer.parseInt(txfcantidad.getText().toString())+
-        ")");
+        ",'A')");
 }else{
     JOptionPane.showMessageDialog(null, "Selecione un producto, una sucursal e ingrese una cantidad");
 }

@@ -440,6 +440,7 @@ public class MainMenu extends javax.swing.JFrame {
         C_Categorias erp = new C_Categorias();
         erp.setSize(jFrames.getSize());
         erp.setLocation(0, 0);
+        erp.btnBuscar.doClick();
         jFrames.removeAll();
         jFrames.add(erp);
         jFrames.revalidate();
@@ -473,6 +474,7 @@ public class MainMenu extends javax.swing.JFrame {
         C_Unidad erp = new C_Unidad();
         erp.setSize(jFrames.getSize());
         erp.setLocation(0, 0);
+        erp.btnConsultarPercepcion.doClick();
         jFrames.removeAll();
         jFrames.add(erp);
         jFrames.revalidate();
@@ -504,6 +506,7 @@ public class MainMenu extends javax.swing.JFrame {
        C_ExistenciaSucursal erp = new C_ExistenciaSucursal();
         erp.setSize(jFrames.getSize());
         erp.setLocation(0, 0);
+        erp.btnBuscar.doClick();
         jFrames.removeAll();
         jFrames.add(erp);
         jFrames.revalidate();

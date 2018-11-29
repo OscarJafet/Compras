@@ -132,9 +132,9 @@ public class Conexion {
      public void Categorias_Search(String Nombre, JTable tabla){
          DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
         if(Nombre.isEmpty())
-            Sql = "select * from Categorias";
+            Sql = "select * from Categorias where estatus ='A'";
         else if(!Nombre.isEmpty())
-            Sql = "select * from Categorias where nombre = '"+Nombre+"'";
+            Sql = "select * from Categorias where nombre like '"+Nombre+"%'";
                try {
             stn=(Statement) con.createStatement();
             rs=stn.executeQuery(Sql);
@@ -215,7 +215,7 @@ public class Conexion {
         if(Nombre.isEmpty())
             Sql = "select * from UnidadMedida where estatus='A'";
         else if(!Nombre.isEmpty())
-            Sql = "select * from UnidadMedida where nombre = '"+Nombre+"'";
+            Sql = "select * from UnidadMedida where nombre like '"+Nombre+"%'";
         
                try {
             stn=(Statement) con.createStatement();
@@ -359,7 +359,8 @@ public void ExistenciaSucursal_search(JTable tabla,String Sql){
                 String Stat2 = rs.getString("CANTIDAD");
                 String Stat = rs.getString("NOM");
                  String Stat3 = rs.getString("NO");
-                Object datosRenglon[]={idLab1,idLab2, idLab, Nom, Ori,Stat2,Stat,Stat3};
+                 String Stat4 = rs.getString("estatus");
+                Object datosRenglon[]={idLab1,idLab2, idLab, Nom, Ori,Stat2,Stat,Stat3,Stat4};
                 tablaTemp.addRow(datosRenglon);
             }
             
@@ -388,7 +389,8 @@ public void ExistenciaSucursal_search_nombre(JTable tabla, String Sql){
                 String Stat2 = rs.getString("CANTIDAD");
                 String Stat = rs.getString("NOM");
                  String Stat3 = rs.getString("NO");
-                Object datosRenglon[]={idLab1,idLab2, idLab, Nom, Ori,Stat2,Stat,Stat3};
+                 String Stat4 = rs.getString("estatus");
+                Object datosRenglon[]={idLab1,idLab2, idLab, Nom, Ori,Stat2,Stat,Stat3,Stat4};
                 tablaTemp.addRow(datosRenglon);
             }
             
