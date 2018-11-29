@@ -117,6 +117,9 @@ public class Empaques extends javax.swing.JPanel {
         tablaEmp.setToolTipText("");
         tablaEmp.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tablaEmp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaEmpMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 tablaEmpMouseEntered(evt);
             }
@@ -283,6 +286,23 @@ public void borrarTabla(JTable tab) {
         erp.Emp_Search(txfConsultar.getText(), tablaEmp);
 
     }//GEN-LAST:event_tablaEmpMouseEntered
+
+    private void tablaEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaEmpMouseClicked
+        String nom=(String) tablaEmp.getValueAt(tablaEmp.getSelectedRow(),1);
+        String cap=(String) tablaEmp.getValueAt(tablaEmp.getSelectedRow(),2);
+        int idu, ID;
+        idu=Integer.parseInt(tablaEmp.getValueAt(tablaEmp.getSelectedRow(),4)+"");
+        String nomu=(String) tablaEmp.getValueAt(tablaEmp.getSelectedRow(),5);
+        
+        C_MOD_Emp erp = new C_MOD_Emp();
+        ID = Integer.parseInt(tablaEmp.getValueAt(tablaEmp.getSelectedRow(),0)+"");
+        erp.Id.setText(ID+"");
+        erp.datos(idu, nomu, nom, cap);
+        erp.setLocationRelativeTo(erp);
+        erp.setVisible(true);
+
+
+    }//GEN-LAST:event_tablaEmpMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
