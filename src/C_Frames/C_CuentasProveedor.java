@@ -183,39 +183,15 @@ public class C_CuentasProveedor extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAgregarCuentasActionPerformed
 
     private void btnEliminarCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCuentasActionPerformed
-        int idproveedor=0,idpresentacion=0;
+        int idcuenta=0;
         int con=tblCuentas.getSelectedRow();
         if (con>=0){
             String es= String.valueOf(tblCuentas.getValueAt(con,7));
             if(es.equals("A"))
             {
-                            try {
-            erp.OpenCon("ERP", "erp");
-            erp.stn= (Statement) erp.con.createStatement();
-            erp.rs= erp.stn.executeQuery("select * from Proveedores where nombre='"+tblCuentas.getValueAt(tblCuentas.getSelectedRow(),0)+"'");
-            while (erp.rs.next()){
-                String id= String.valueOf(erp.rs.getObject("idproveedor"));
-                idproveedor= Integer.parseInt(id);
-            }
-        
-        }catch(SQLException ex){
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-                        try {
-            erp.OpenCon("ERP", "erp");
-            erp.stn= (Statement) erp.con.createStatement();
-            erp.rs= erp.stn.executeQuery("select * from PresentacionesProducto where nombre='"+tblCuentas.getValueAt(tblCuentas.getSelectedRow(),1)+"'");
-            while (erp.rs.next()){
-                String id= String.valueOf(erp.rs.getObject("idpresentacion"));
-                idpresentacion= Integer.parseInt(id);
-            }
-        
-        }catch(SQLException ex){
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+                idcuenta=(Integer)tblCuentas.getValueAt(tblCuentas.getSelectedRow(),0);
             if(JOptionPane.showConfirmDialog (null, "Desea eliminar","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
-                erp.SQL("update ProductosProveedor set estatus='B' where idproveedor="+idproveedor+" and idpresentacion="+idpresentacion);
+                erp.SQL("update CuentasProveedor set estatus='B' where idcuentasproveedor="+idcuenta);
                 btnConsultarCuentasProveedor.doClick();
             }
             }else {
@@ -247,27 +223,14 @@ public void borrarTabla(JTable tab) {
         int con=tblCuentas.getSelectedRow();
         if (con>=0){
         String a=(String) tblCuentas.getValueAt(tblCuentas.getSelectedRow(),0);
-        String d=(String) tblCuentas.getValueAt(tblCuentas.getSelectedRow(),1);
-        String b=(String) tblCuentas.getValueAt(tblCuentas.getSelectedRow(),2);
-        String c=(String) tblCuentas.getValueAt(tblCuentas.getSelectedRow(),3);
-        String ce=(String) tblCuentas.getValueAt(tblCuentas.getSelectedRow(),4);
-        String f=(String) tblCuentas.getValueAt(tblCuentas.getSelectedRow(),4);
-        String h=(String) tblCuentas.getValueAt(tblCuentas.getSelectedRow(),6);
-        String i=(String) tblCuentas.getValueAt(tblCuentas.getSelectedRow(),7);
-
-        
-        
-        C_MOD_ProductosProveedor pro =new C_MOD_ProductosProveedor();
-        pro.setLocationRelativeTo(pro);
-        pro.Datos(a, b, c, ce, f, h,i,d);
-        pro.setVisible(true);
-        String nombre = null;
-        try{
-            nombre = String.valueOf(tblCuentas.getValueAt(tblCuentas.getSelectedRow(),0)+"");
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
-        }
-        pro.txfProveedor.setText(nombre);
+        String b=(String) tblCuentas.getValueAt(tblCuentas.getSelectedRow(),1);
+        String c=(String) tblCuentas.getValueAt(tblCuentas.getSelectedRow(),2);
+        String d=(String) tblCuentas.getValueAt(tblCuentas.getSelectedRow(),3);
+       
+        C_MOD_CuentasProveedor cue=new C_MOD_CuentasProveedor();
+        cue.setLocationRelativeTo(cue);
+        cue.Datos(a,b, c, d);
+        cue.setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null,"Seleccione un producto","Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
@@ -286,20 +249,14 @@ public void borrarTabla(JTable tab) {
 
     private void tblCuentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCuentasMouseClicked
         String a=(String) tblCuentas.getValueAt(tblCuentas.getSelectedRow(),0);
-        String d=(String) tblCuentas.getValueAt(tblCuentas.getSelectedRow(),1);
-        String b=(String) tblCuentas.getValueAt(tblCuentas.getSelectedRow(),2);
-        String c=(String) tblCuentas.getValueAt(tblCuentas.getSelectedRow(),3);
-        String ce=(String) tblCuentas.getValueAt(tblCuentas.getSelectedRow(),4);
-        String f=(String) tblCuentas.getValueAt(tblCuentas.getSelectedRow(),4);
-        String h=(String) tblCuentas.getValueAt(tblCuentas.getSelectedRow(),6);
-        String i=(String) tblCuentas.getValueAt(tblCuentas.getSelectedRow(),7);
-        
-                       
+        String b=(String) tblCuentas.getValueAt(tblCuentas.getSelectedRow(),1);
+        String c=(String) tblCuentas.getValueAt(tblCuentas.getSelectedRow(),2);
+        String d=(String) tblCuentas.getValueAt(tblCuentas.getSelectedRow(),3);          
          if (evt.getClickCount()==2){
-         C_MOD_ProductosProveedor pro= new C_MOD_ProductosProveedor();
-         pro.setLocationRelativeTo(pro);
-         pro.Datos(a, b, c, ce, f, h,i,d);
-         pro.setVisible(true);
+        C_MOD_CuentasProveedor cue=new C_MOD_CuentasProveedor();
+        cue.setLocationRelativeTo(cue);
+        cue.Datos(a,b, c, d);
+        cue.setVisible(true);
          }
     }//GEN-LAST:event_tblCuentasMouseClicked
 

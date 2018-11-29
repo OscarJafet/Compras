@@ -532,6 +532,27 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
      
      
      }
+      public String consultaPro(String nombre){
+       
+        String cadenaSQL="Select idproveedor from Proveedores where nombre = '"+nombre+"'";
+           String X = "";
+        try {
+            stn=(java.sql.Statement) con.createStatement();
+            rs=stn.executeQuery(cadenaSQL);
+        
+            while(rs.next()){
+                
+                  X=rs.getString("idproveedor");
+                     
+            }
+            return  X; 
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            return X;
+        }
+     
+     
+     }
       public void Presentacion_seacrh(String Nombre, JTable tabla, char Stat) {
         DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
         if (Nombre.isEmpty() && Stat == 'E') {
@@ -760,7 +781,7 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
             rs=stn.executeQuery(Sql);
         
             while(rs.next()){
-                String id= rs.getString("idcuenta");
+                String id= rs.getString("idcuentaproveedor");
                 String nombre= rs.getString("nom");
                 String nocuenta= rs.getString("nocuenta");
                 String banco=rs.getString("banco");
