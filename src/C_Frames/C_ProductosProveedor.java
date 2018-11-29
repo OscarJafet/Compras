@@ -223,7 +223,8 @@ public class C_ProductosProveedor extends javax.swing.JPanel {
             }
         }else {
             JOptionPane.showMessageDialog(null,"Seleccione un producto","Error" ,JOptionPane.INFORMATION_MESSAGE);
-        }       //confirma eliminacion
+        }
+        btnConsultarProPro.doClick();//confirma eliminacion
     }//GEN-LAST:event_btnEliminarProProActionPerformed
 public void borrarTabla(JTable tab) {
         try {

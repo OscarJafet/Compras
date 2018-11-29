@@ -40,9 +40,9 @@ public class C_MOD_Categorias extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         C_MOD_Categorias_txfCiudad = new javax.swing.JTextField();
-        txfID = new javax.swing.JTextField();
         btnAgrefarEstados = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        txfID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(254, 254, 254));
@@ -69,9 +69,6 @@ public class C_MOD_Categorias extends javax.swing.JFrame {
             }
         });
 
-        txfID.setBackground(new java.awt.Color(253, 239, 239));
-        txfID.setForeground(new java.awt.Color(1, 1, 1));
-
         btnAgrefarEstados.setBackground(new java.awt.Color(254, 254, 254));
         btnAgrefarEstados.setForeground(new java.awt.Color(254, 254, 254));
         btnAgrefarEstados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/refresh_icon.png"))); // NOI18N
@@ -95,6 +92,9 @@ public class C_MOD_Categorias extends javax.swing.JFrame {
             }
         });
 
+        txfID.setBackground(new java.awt.Color(253, 239, 239));
+        txfID.setToolTipText("");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -103,7 +103,7 @@ public class C_MOD_Categorias extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 283, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnAgrefarEstados, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -112,16 +112,16 @@ public class C_MOD_Categorias extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txfID, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(C_MOD_Categorias_txfCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 187, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(C_MOD_Categorias_txfCiudad, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+                            .addComponent(txfID))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+                .addContainerGap(15, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txfID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -132,9 +132,7 @@ public class C_MOD_Categorias extends javax.swing.JFrame {
                 .addGap(48, 48, 48)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(btnAgrefarEstados, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnAgrefarEstados, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -163,9 +161,10 @@ public class C_MOD_Categorias extends javax.swing.JFrame {
         String n= C_MOD_Categorias_txfCiudad.getText();
         if(!n.isEmpty()){
             int i = Integer.parseInt(txfID.getText());
-            erp.SQL("update Categorias set nombre = '"+C_MOD_Categorias_txfCiudad.getText()+"'"+"' where idCategoria = "+i);
+            erp.SQL("update Categorias set "
+                    + "nombre = '"+C_MOD_Categorias_txfCiudad.getText()+"'"+" where idCategoria = "+i);
         }else{
-            JOptionPane.showMessageDialog(null,"No se permiten campos vacios o estatus sin asignar","Error" ,JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"No se permiten campos vacios","Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnAgrefarEstadosActionPerformed
 
@@ -215,11 +214,11 @@ public class C_MOD_Categorias extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextField C_MOD_Categorias_txfCiudad;
-    private javax.swing.JButton btnAgrefarEstados;
-    private javax.swing.JButton jButton1;
+    public javax.swing.JButton btnAgrefarEstados;
+    public javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txfID;
+    public javax.swing.JTextField txfID;
     // End of variables declaration//GEN-END:variables
 }

@@ -49,12 +49,10 @@ public class C_MOD_Unidad extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         nom = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         sg = new javax.swing.JTextField();
         btnEditarPerce = new javax.swing.JButton();
         Id = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        cmb = new javax.swing.JComboBox<String>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -93,10 +91,6 @@ public class C_MOD_Unidad extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(1, 1, 1));
         jLabel3.setText("SIGLAS");
 
-        jLabel4.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel4.setText("ESTATUS");
-
         sg.setBackground(new java.awt.Color(254, 254, 254));
         sg.setForeground(new java.awt.Color(1, 1, 1));
         sg.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -116,13 +110,6 @@ public class C_MOD_Unidad extends javax.swing.JFrame {
 
         Id.setBackground(new java.awt.Color(253, 239, 239));
         Id.setForeground(new java.awt.Color(1, 1, 1));
-
-        cmb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Estado", "A", "B" }));
-        cmb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -148,15 +135,10 @@ public class C_MOD_Unidad extends javax.swing.JFrame {
                                 .addComponent(sg, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(nom, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(81, 81, 81)
+                        .addComponent(btnLimpiarPerce)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnLimpiarPerce)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnEditarPerce, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(cmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(btnEditarPerce, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -171,15 +153,14 @@ public class C_MOD_Unidad extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(nom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(cmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addGap(74, 74, 74)
+                    .addComponent(nom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnEditarPerce, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLimpiarPerce, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnLimpiarPerce, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addGap(136, 136, 136))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -192,27 +173,22 @@ public class C_MOD_Unidad extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbActionPerformed
-
     private void btnEditarPerceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarPerceActionPerformed
        erp.OpenCon("ERP", "erp");
         String n=nom .getText();
         String s= sg.getText();
-        int es= cmb.getSelectedIndex();
         erp.OpenCon("ERP", "erp");
-        if (!n.isEmpty()&&!s.isEmpty()&& es!=0){
+        if (!n.isEmpty()&&!s.isEmpty()){
        int ID =Integer.parseInt(Id.getText());
-       erp.SQL("update UnidadMedida set nombre = '"+nom.getText()+"', siglas = '"+sg.getText()+"',estatus = '"+cmb.getItemAt(cmb.getSelectedIndex()).charAt(0)+"' where idUnidad = "+ID);
+       erp.SQL("update UnidadMedida set nombre = '"+nom.getText()+"', siglas = '"+sg.getText()+"'"+" where idUnidad = "+ID);
         }else{
-           JOptionPane.showMessageDialog(null,"No se permiten campos vacios o estatus sin asignar","Error" ,JOptionPane.INFORMATION_MESSAGE);
+           JOptionPane.showMessageDialog(null,"No se permiten campos vacios ","Error" ,JOptionPane.INFORMATION_MESSAGE);
        }
     }//GEN-LAST:event_btnEditarPerceActionPerformed
 
@@ -228,10 +204,10 @@ public class C_MOD_Unidad extends javax.swing.JFrame {
     }//GEN-LAST:event_nomKeyTyped
 
     private void sgKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sgKeyTyped
-                char c=evt.getKeyChar();
-        if((c<'a' || c>'z')&&(c<'A' || c>'Z')){
+              char c=evt.getKeyChar();
+        if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c!='.'||sg.getText().contains("."))){
             evt.consume();
-        }        // TODO add your handling code here:
+        }    // TODO add your handling code here:
     }//GEN-LAST:event_sgKeyTyped
 
     /**
@@ -274,11 +250,9 @@ public class C_MOD_Unidad extends javax.swing.JFrame {
     public javax.swing.JTextField Id;
     private javax.swing.JButton btnEditarPerce;
     private javax.swing.JButton btnLimpiarPerce;
-    private javax.swing.JComboBox<String> cmb;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JTextField nom;

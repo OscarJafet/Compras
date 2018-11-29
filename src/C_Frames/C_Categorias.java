@@ -223,27 +223,33 @@ public void borrarTabla(JTable tab) {
         C_ADD_Categorias aCiu = new C_ADD_Categorias();
         aCiu.setLocationRelativeTo(aCiu);
         aCiu.setVisible(true);
+        
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         int ID = 0;
-        try{
+        int con=C_Categorias_tblDatos.getSelectedRow();
+        if (con>=0){
+            String es= String.valueOf(C_Categorias_tblDatos.getValueAt(con,2));
+            if(es.equals("A"))
+            {    
             ID = Integer.parseInt(C_Categorias_tblDatos.getValueAt(C_Categorias_tblDatos.getSelectedRow(),0)+"");
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
-        }
-        //confirma eliminacion
-         if(JOptionPane.showConfirmDialog(null, "¿Desea darlo de alta?","Informacion",
-        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            if(JOptionPane.showConfirmDialog (null, "Desea eliminar","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
                 erp.SQL("update Categorias set estatus = 'B' where idCategoria = "+ID);
-              }else{
-                JOptionPane.showMessageDialog(null,"NO Eliminado","Infromación" ,JOptionPane.INFORMATION_MESSAGE);
             }
+            }else {
+                JOptionPane.showMessageDialog(null,"Seleccione un producto con estatus A","Error" ,JOptionPane.INFORMATION_MESSAGE);
+            }
+        }else {
+            JOptionPane.showMessageDialog(null,"Seleccione una categoria","Error" ,JOptionPane.INFORMATION_MESSAGE);
+        } 
               btnBuscar.doClick();  //
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        int con=C_Categorias_tblDatos.getSelectedRow();
+        if(con>=0){
         C_MOD_Categorias edg = new C_MOD_Categorias();
         edg.setLocationRelativeTo(edg);
         edg.setVisible(true);
@@ -253,8 +259,12 @@ public void borrarTabla(JTable tab) {
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
-        ID= (Integer) C_Categorias_tblDatos.getValueAt(C_Categorias_tblDatos.getSelectedRow(), 1);
+        String nombre= String.valueOf(C_Categorias_tblDatos.getValueAt(C_Categorias_tblDatos.getSelectedRow(),1)+"");
+        edg.C_MOD_Categorias_txfCiudad.setText(nombre);
         edg.txfID.setText(ID+"");
+        }else {
+            JOptionPane.showMessageDialog(null,"Seleccione una categoria","Error" ,JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

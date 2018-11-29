@@ -70,6 +70,14 @@ public class C_ExistenciaSucursal extends javax.swing.JPanel {
 
         C_Categorias_txfBuscar.setBackground(new java.awt.Color(254, 254, 254));
         C_Categorias_txfBuscar.setForeground(new java.awt.Color(1, 1, 1));
+        C_Categorias_txfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                C_Categorias_txfBuscarKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                C_Categorias_txfBuscarKeyTyped(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(254, 254, 254));
         jButton1.setForeground(new java.awt.Color(254, 254, 254));
@@ -86,11 +94,11 @@ public class C_ExistenciaSucursal extends javax.swing.JPanel {
 
             },
             new String [] {
-                "IDP", "IDS", "Nombre", "Precio de venta", "Reorden", "Cantidad", "Producto", "Empaque"
+                "IDP", "IDS", "Nombre", "Precio de venta", "Reorden", "Cantidad", "Producto", "Empaque", "Estatus"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -208,17 +216,17 @@ public void borrarTabla(JTable tab) {
       erp.OpenCon("ERP", "erp");
       String a=C_Categorias_txfBuscar.getText();
       if(a.isEmpty()){
-           Sql = "select es.idpresentacion,es.idsucursal,sc.NOMBRE, pp.PRECIOVENTA, pp.PUNTOREORDEN,es.cantidad, pt.NOMBRE as NOM,em.NOMBRE as NO from EXISTENCIASUCURSAL es inner join SUCURSAL sc \n" +
+           Sql = "select es.idpresentacion,es.idsucursal,sc.NOMBRE, pp.PRECIOVENTA, pp.PUNTOREORDEN,es.cantidad,es.estatus, pt.NOMBRE as NOM,em.NOMBRE as NO from EXISTENCIASUCURSAL es inner join SUCURSAL sc \n" +
 "                    on sc.IDSUCURSAL=es.IDSUCURSAL inner join\n" +
 "                     PRESENTACIONESPRODUCTO pp on pp.IDPRESENTACION=es.IDPRESENTACION inner \n" +
-"                    join PRODUCTOS pt on pt.idproducto=pp.idproducto inner join empaques em on em.idempaque=pp.idempaque";
+"                    join PRODUCTOS pt on pt.idproducto=pp.idproducto inner join empaques em on em.idempaque=pp.idempaque where es.estatus='A'";
         
       erp.ExistenciaSucursal_search(C_ExistenciaSucursal_tabla,Sql);}else{
           
-            Sql = "select es.IDSUCURSAL,es.IDPRESENTACION,sc.NOMBRE, pp.PRECIOVENTA, pp.PUNTOREORDEN,es.cantidad, pt.NOMBRE as NOM,em.NOMBRE as NO from EXISTENCIASUCURSAL es inner join SUCURSAL sc "
+            Sql = "select es.IDSUCURSAL,es.IDPRESENTACION,sc.NOMBRE, pp.PRECIOVENTA, pp.PUNTOREORDEN,es.cantidad,es.estatus, pt.NOMBRE as NOM,em.NOMBRE as NO from EXISTENCIASUCURSAL es inner join SUCURSAL sc "
                     + "on sc.IDSUCURSAL=es.IDSUCURSAL inner join"
                     + " PRESENTACIONESPRODUCTO pp on pp.IDPRESENTACION=es.IDPRESENTACION inner "
-                    + "join PRODUCTOS pt on pt.idproducto=pp.idproducto inner join empaques em on em.idempaque=pp.idempaque where sc.nombre = '"+a.toString()+"'";
+                    + "join PRODUCTOS pt on pt.idproducto=pp.idproducto inner join empaques em on em.idempaque=pp.idempaque where sc.nombre like '"+a.toString()+"%'";
         
       erp.ExistenciaSucursal_search_nombre(C_ExistenciaSucursal_tabla,Sql);
       }
@@ -298,6 +306,17 @@ public void borrarTabla(JTable tab) {
           C_ExistenciaSucursal_tabla.setVisible(true);
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void C_Categorias_txfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_Categorias_txfBuscarKeyReleased
+        btnBuscar.doClick();        // TODO add your handling code here:
+    }//GEN-LAST:event_C_Categorias_txfBuscarKeyReleased
+
+    private void C_Categorias_txfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_Categorias_txfBuscarKeyTyped
+                char c=evt.getKeyChar();
+        if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')){
+            evt.consume();
+        }          // TODO add your handling code here:
+    }//GEN-LAST:event_C_Categorias_txfBuscarKeyTyped
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

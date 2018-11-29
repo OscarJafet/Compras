@@ -59,8 +59,16 @@ public class C_Unidad extends javax.swing.JPanel {
                 txfBuscarActionPerformed(evt);
             }
         });
+        txfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txfBuscarKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfBuscarKeyTyped(evt);
+            }
+        });
         add(txfBuscar);
-        txfBuscar.setBounds(200, 30, 330, 20);
+        txfBuscar.setBounds(190, 30, 330, 30);
 
         btnConsultarPercepcion.setBackground(new java.awt.Color(254, 254, 254));
         btnConsultarPercepcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon-buscar.png"))); // NOI18N
@@ -81,11 +89,22 @@ public class C_Unidad extends javax.swing.JPanel {
             new String [] {
                 "ID UNIDAD", "NOMBRE", "SIGLAS", "ESTATUS"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblUM.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblUM.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblUMMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tblUMMouseEntered(evt);
             }
         });
         jScrollPane1.setViewportView(tblUM);
@@ -135,7 +154,7 @@ public class C_Unidad extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(1, 1, 1));
         jLabel1.setText("BUSCAR POR NOMBRE");
         add(jLabel1);
-        jLabel1.setBounds(40, 30, 129, 16);
+        jLabel1.setBounds(40, 40, 129, 16);
 
         jButton1.setBackground(new java.awt.Color(254, 254, 254));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/refresh_icon.png"))); // NOI18N
@@ -171,14 +190,15 @@ public class C_Unidad extends javax.swing.JPanel {
             if (es.equals("A")) {
                 ID = Integer.parseInt(tblUM.getValueAt(tblUM.getSelectedRow(), 0) + "");
                 if (JOptionPane.showConfirmDialog(null, "Desea Eliminar", "Informacion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                    erp.SQL("update UnidadMedida set estatus='B' where idUnidadMedida =" + ID);
+                    erp.SQL("update unidadmedida set estatus='B' where idunidad =" + ID);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Seleccione un producto con estatus A", "Error", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Seleccione una unidad con estatus A", "Error", JOptionPane.INFORMATION_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Seleccione un renglon", "Error", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Seleccione una unidad", "Error", JOptionPane.INFORMATION_MESSAGE);
         }
+        btnConsultarPercepcion.doClick();
     }//GEN-LAST:event_btnEliminarPercepcionActionPerformed
 public void borrarTabla(JTable tab) {
         try {
@@ -215,7 +235,7 @@ public void borrarTabla(JTable tab) {
         }
         erp.Id.setText(ID+"");
         } else {
-            JOptionPane.showMessageDialog(null, "Seleccione un renglon", "Error", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Seleccione una unidad", "Error", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnEditarPercecionActionPerformed
 
@@ -231,10 +251,10 @@ public void borrarTabla(JTable tab) {
                     erp.SQL("update UnidadMedida set estatus='A' where idUnidadMedida =" + ID);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Seleccione un producto con estatus B", "Error", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Seleccione una unidad con estatus B", "Error", JOptionPane.INFORMATION_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Seleccione un renglon", "Error", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Seleccione una unidad", "Error", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -261,10 +281,28 @@ public void borrarTabla(JTable tab) {
 
     }//GEN-LAST:event_tblUMMouseClicked
 
+    private void txfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyReleased
+        btnConsultarPercepcion.doClick();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txfBuscarKeyReleased
+
+    private void txfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyTyped
+                char c=evt.getKeyChar();
+        if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')){
+            evt.consume();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txfBuscarKeyTyped
+
+    private void tblUMMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUMMouseEntered
+        btnConsultarPercepcion.doClick();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblUMMouseEntered
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarPercepcion;
-    private javax.swing.JButton btnConsultarPercepcion;
+    public javax.swing.JButton btnConsultarPercepcion;
     private javax.swing.JButton btnEditarPercecion;
     private javax.swing.JButton btnEliminarPercepcion;
     private javax.swing.JButton jButton1;
