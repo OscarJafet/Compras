@@ -34,6 +34,8 @@ public class Empaques extends javax.swing.JPanel {
     public Empaques() {
         initComponents();
         erp = new Conexion();
+             erp.OpenCon("ERP", "erp");
+        erp.Emp_Search(txfConsultar.getText(), tablaEmp);
     }
     
 
@@ -62,8 +64,13 @@ public class Empaques extends javax.swing.JPanel {
 
         txfConsultar.setBackground(new java.awt.Color(254, 254, 254));
         txfConsultar.setForeground(new java.awt.Color(1, 1, 1));
+        txfConsultar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txfConsultarKeyReleased(evt);
+            }
+        });
         add(txfConsultar);
-        txfConsultar.setBounds(180, 30, 386, 20);
+        txfConsultar.setBounds(180, 30, 386, 30);
 
         btnEditarDeducciones.setBackground(new java.awt.Color(254, 254, 254));
         btnEditarDeducciones.setForeground(new java.awt.Color(254, 254, 254));
@@ -96,11 +103,11 @@ public class Empaques extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID empaque", "Nombre", "Capacidad", "Estatus", "ID unidad"
+                "ID EMPAQUE", "NOMBRE", "CAPACIDAD", "ESTATUS", "ID UNIDAD", "NOMBRE"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -109,6 +116,11 @@ public class Empaques extends javax.swing.JPanel {
         });
         tablaEmp.setToolTipText("");
         tablaEmp.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tablaEmp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tablaEmpMouseEntered(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaEmp);
 
         add(jScrollPane1);
@@ -163,10 +175,22 @@ public class Empaques extends javax.swing.JPanel {
         jButton1.setBounds(38, 468, 97, 73);
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
     private void btnEditarDeduccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarDeduccionesActionPerformed
-
+        int con=tablaEmp.getSelectedRow();
+        
+        if (con>=0){
+        
+        String nom=(String) tablaEmp.getValueAt(tablaEmp.getSelectedRow(),1);
+        String cap=(String) tablaEmp.getValueAt(tablaEmp.getSelectedRow(),2);
+        int idu;
+        idu=Integer.parseInt(tablaEmp.getValueAt(tablaEmp.getSelectedRow(),4)+"");
+        String nomu=(String) tablaEmp.getValueAt(tablaEmp.getSelectedRow(),5);
+        
         C_MOD_Emp erp = new C_MOD_Emp();
-         erp.setLocationRelativeTo(erp);
+        erp.datos(idu, nomu, nom, cap);
+        erp.setLocationRelativeTo(erp);
         erp.setVisible(true);
         int ID = 0;
         try{
@@ -175,7 +199,10 @@ public class Empaques extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
         erp.Id.setText(ID+"");
-    
+        }else {
+            JOptionPane.showMessageDialog(null,"Seleccione un renglon","Error" ,JOptionPane.INFORMATION_MESSAGE);
+        }
+        
     }//GEN-LAST:event_btnEditarDeduccionesActionPerformed
 public void borrarTabla(JTable tab) {
         try {
@@ -214,7 +241,7 @@ public void borrarTabla(JTable tab) {
     }//GEN-LAST:event_btnEliDeduccionesActionPerformed
 
     private void btnAgregarDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDeActionPerformed
-// TODO add your handling code here:
+
         C_ADD_Emp erp = new C_ADD_Emp();
         erp.setLocationRelativeTo(erp);
         erp.setVisible(true);
@@ -243,6 +270,19 @@ public void borrarTabla(JTable tab) {
             JOptionPane.showMessageDialog(null,"Seleccione un renglon","Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txfConsultarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfConsultarKeyReleased
+        borrarTabla(tablaEmp);
+        erp.OpenCon("ERP", "erp");
+        erp.Emp_Search(txfConsultar.getText(), tablaEmp);
+    }//GEN-LAST:event_txfConsultarKeyReleased
+
+    private void tablaEmpMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaEmpMouseEntered
+        borrarTabla(tablaEmp);
+        erp.OpenCon("ERP", "erp");
+        erp.Emp_Search(txfConsultar.getText(), tablaEmp);
+
+    }//GEN-LAST:event_tablaEmpMouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

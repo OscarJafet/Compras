@@ -195,7 +195,7 @@ public class C_MOD_Laboratorios extends javax.swing.JFrame {
                + "where idLaboratorio = "+ID);
               }
        else{
-           JOptionPane.showMessageDialog(null,"No se permiten campos vacios o estatus sin asignar","Error" ,JOptionPane.INFORMATION_MESSAGE);
+           JOptionPane.showMessageDialog(null,"No se permiten campos vacios","Error" ,JOptionPane.INFORMATION_MESSAGE);
        }
     }//GEN-LAST:event_btnAgrefarEstadosActionPerformed
 

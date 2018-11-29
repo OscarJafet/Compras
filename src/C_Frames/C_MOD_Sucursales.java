@@ -28,7 +28,7 @@ public class C_MOD_Sucursales extends javax.swing.JFrame {
      * Creates new form EditarEstados
      */
     Conexion erp;
-     DefaultComboBoxModel modelocombo = new DefaultComboBoxModel();
+    DefaultComboBoxModel modelocombo = new DefaultComboBoxModel();
     DefaultComboBoxModel modelocombo1 = new DefaultComboBoxModel();
     
     public C_MOD_Sucursales() {
