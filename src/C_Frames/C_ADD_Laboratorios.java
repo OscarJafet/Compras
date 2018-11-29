@@ -40,13 +40,11 @@ public class C_ADD_Laboratorios extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         txfNombre = new javax.swing.JTextField();
         txfOrigen = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         btnAgrefarEstados = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        cmb = new javax.swing.JComboBox<String>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -61,10 +59,6 @@ public class C_ADD_Laboratorios extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(1, 1, 1));
         jLabel3.setText("ORIGEN");
-
-        jLabel4.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel4.setText("ESTATUS");
 
         txfNombre.setBackground(new java.awt.Color(254, 254, 254));
         txfNombre.setForeground(new java.awt.Color(1, 1, 1));
@@ -115,8 +109,6 @@ public class C_ADD_Laboratorios extends javax.swing.JFrame {
             }
         });
 
-        cmb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Estado", "A", "B" }));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -129,23 +121,19 @@ public class C_ADD_Laboratorios extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(41, 41, 41)
-                                .addComponent(txfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
+                                .addComponent(txfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txfOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txfOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(299, 299, 299)
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAgrefarEstados)
-                        .addGap(18, 18, 18))))
+                        .addGap(22, 22, 22))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,16 +146,12 @@ public class C_ADD_Laboratorios extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(txfOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(cmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
-                    .addComponent(btnAgrefarEstados))
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgrefarEstados, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -187,13 +171,16 @@ public class C_ADD_Laboratorios extends javax.swing.JFrame {
     private void btnAgrefarEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgrefarEstadosActionPerformed
        String n= txfNombre.getText();
        String o= txfOrigen.getText();
-       String E=String.valueOf(cmb.getSelectedItem());
-       char C= Character.valueOf(E.charAt(0));
-       int es=cmb.getSelectedIndex();
-       E="insert into Laboratorios values (LabID.nextval,'"+n+"','"+o+"','"+C+"')";
+        
        erp.OpenCon("ERP", "erp");
-       if (!n.isEmpty()&&!o.isEmpty()&& es!=0){
-        erp.SQL(E);
+       if (!n.isEmpty()&&!o.isEmpty()){
+           
+       erp.OpenCon("ERP", "erp");
+       erp.SQL("insert into Laboratorios values (ERP.LabID.nextval,"
+               +"'"+ txfNombre.getText() + "',"
+               +"'"+ txfOrigen.getText() + "',"
+               +"'A'"
+               + ")");
        }
        else{
            JOptionPane.showMessageDialog(null,"No se permiten campos vacios o estatus sin asignar","Error" ,JOptionPane.INFORMATION_MESSAGE);
@@ -201,8 +188,8 @@ public class C_ADD_Laboratorios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgrefarEstadosActionPerformed
 
     private void txfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfNombreKeyTyped
-                char c=evt.getKeyChar();
-        if((c<'0' || c>'9')&&(c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')){
+        char c=evt.getKeyChar();
+        if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')){
             evt.consume();
         }
     }//GEN-LAST:event_txfNombreKeyTyped
@@ -266,11 +253,9 @@ public class C_ADD_Laboratorios extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgrefarEstados;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JComboBox<String> cmb;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txfNombre;
     private javax.swing.JTextField txfOrigen;

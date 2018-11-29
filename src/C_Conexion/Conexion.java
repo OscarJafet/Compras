@@ -157,7 +157,7 @@ public class Conexion {
         if(Nombre.isEmpty())
             Sql = "select * from Laboratorios where estatus='A'";
         else if(!Nombre.isEmpty())
-            Sql = "select * from Laboratorios where nombre = '"+Nombre+"'";
+            Sql = "select * from Laboratorios where nombre like '"+Nombre+"%'";
         try {
             stn=(Statement) con.createStatement();
             rs=stn.executeQuery(Sql);
