@@ -9,6 +9,12 @@ import C_Conexion.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,10 +27,12 @@ public class C_MOD_Emp extends javax.swing.JFrame {
      * Creates new form EditarDeducciones
      */
     Conexion erp;
+    DefaultComboBoxModel modelocombo = new DefaultComboBoxModel();
     public C_MOD_Emp() {
         initComponents();
         this.Id.setEditable(false);
         erp = new Conexion();
+        llenarCombo();
     }
 
     /**
@@ -40,13 +48,13 @@ public class C_MOD_Emp extends javax.swing.JFrame {
         lblIdDeduccion = new javax.swing.JLabel();
         lblIdDeduccion1 = new javax.swing.JLabel();
         lblIdDeduccion2 = new javax.swing.JLabel();
-        lblIdDeduccion3 = new javax.swing.JLabel();
         Id = new javax.swing.JTextField();
         nom = new javax.swing.JTextField();
         cap = new javax.swing.JTextField();
         btnEliminarDed = new javax.swing.JButton();
         btnAgregarDed = new javax.swing.JButton();
-        cmb = new javax.swing.JComboBox<String>();
+        jLabel9 = new javax.swing.JLabel();
+        CB_UN = new javax.swing.JComboBox();
 
         setBackground(new java.awt.Color(254, 254, 254));
         setUndecorated(true);
@@ -66,10 +74,6 @@ public class C_MOD_Emp extends javax.swing.JFrame {
         lblIdDeduccion2.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         lblIdDeduccion2.setForeground(new java.awt.Color(1, 1, 1));
         lblIdDeduccion2.setText("CAPACIDAD");
-
-        lblIdDeduccion3.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
-        lblIdDeduccion3.setForeground(new java.awt.Color(1, 1, 1));
-        lblIdDeduccion3.setText("ESTATUS");
 
         Id.setEditable(false);
         Id.setBackground(new java.awt.Color(254, 254, 254));
@@ -118,10 +122,15 @@ public class C_MOD_Emp extends javax.swing.JFrame {
             }
         });
 
-        cmb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Estado", "A", "B" }));
-        cmb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbActionPerformed(evt);
+        jLabel9.setBackground(new java.awt.Color(254, 254, 254));
+        jLabel9.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel9.setText("UNIDAD DE MEDIDA");
+
+        CB_UN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        CB_UN.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                CB_UNFocusGained(evt);
             }
         });
 
@@ -137,24 +146,29 @@ public class C_MOD_Emp extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(51, 51, 51)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblIdDeduccion1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(nom, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblIdDeduccion)
-                        .addGap(45, 45, 45)
-                        .addComponent(Id, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblIdDeduccion2)
-                            .addComponent(lblIdDeduccion3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cap, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(194, Short.MAX_VALUE))
+                            .addComponent(lblIdDeduccion1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblIdDeduccion)
+                        .addGap(91, 91, 91))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Id, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(nom, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                                .addComponent(cap)))
+                        .addContainerGap(194, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(CB_UN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,11 +185,11 @@ public class C_MOD_Emp extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblIdDeduccion2)
                     .addComponent(cap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblIdDeduccion3)
-                    .addComponent(cmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                    .addComponent(jLabel9)
+                    .addComponent(CB_UN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addComponent(btnEliminarDed))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -190,40 +204,84 @@ public class C_MOD_Emp extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void datos(int idu, String  nomu, String nome, String capp){
+     
+     modelocombo.setSelectedItem(idu + " " +nomu);
+     CB_UN.setModel(modelocombo);
+     nom.setText(nome);
+     cap.setText(capp);
+    
+    }
+      public void llenarCombo(){
+        try {
+            erp.OpenCon("ERP", "erp");
+            erp.stn= (Statement) erp.con.createStatement();
+            erp.rs= erp.stn.executeQuery("select * from UnidadMedida where estatus='A'");
+            modelocombo.addElement("Seleccione UnidadMedida");
+            CB_UN.setModel(modelocombo);
+            while (erp.rs.next()){
+                 String ID= String.valueOf(erp.rs.getObject("idunidad"));
+                String nombre= String.valueOf(erp.rs.getObject("nombre"));
+                modelocombo.addElement(ID+" "+nombre);
+                CB_UN.setModel(modelocombo);
+            }
+        
+        }catch(SQLException ex){
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    
+    
+    
     private void btnAgregarDedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDedActionPerformed
- //ing code here:
+        String ba, b;
+        ba=nom.getText();
+        b=cap.getText();
+        int g=CB_UN.getSelectedIndex();
+        
+        
+        int idc = 0;
+        if((!ba.isEmpty())&&(!b.isEmpty())&&(g!=0)){
+        StringTokenizer numero = new StringTokenizer(CB_UN.getSelectedItem().toString(), " ");
         erp.OpenCon("ERP", "erp");
-        String no = nom.getText();
-        String ca= this.cap.getText();
-        int es= cmb.getSelectedIndex();
-        if (!no.isEmpty()&&!ca.isEmpty()&&es!=0){
-       int ID =Integer.parseInt(Id.getText());
-        float cap = 0;
-        try{
-            cap = Float.parseFloat(this.cap.getText());
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
+        int C = 0;
+        while (numero.hasMoreTokens()) {
+            String a = numero.nextToken();
+            C++;
+            if (C == 1) {
+                idc = Integer.parseInt(a);
+            }
+
+        }
+  
+        erp.OpenCon("ERP", "erp");
+        int ID= Integer.parseInt(Id.getText());        
+        erp.SQL("update empaques set nombre ="
+                +"'"+nom.getText()+"',"
+                +"capacidad ='"+Float.parseFloat(cap.getText())+"',"
+                +"idunidad ="+idc
+                +" where idempaque ="
+                +ID);  
+        
         
         }
-       erp.SQL("update Empaques set nombre = '"+nom.getText()+"',capacidad = "+cap+", estatus = '"+cmb.getItemAt(cmb.getSelectedIndex()).charAt(0)+"' where idEmpaque = "+ID);
-       }else{
-           JOptionPane.showMessageDialog(null,"No se permiten campos vacios o estatus sin asignar","Error" ,JOptionPane.INFORMATION_MESSAGE);
-       }
+        else {
+            JOptionPane.showMessageDialog(null,"No se permiten campos vacios o Emaque sin asignar","Error" ,JOptionPane.INFORMATION_MESSAGE);
+        }
+        
     }//GEN-LAST:event_btnAgregarDedActionPerformed
 
     private void btnEliminarDedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDedActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnEliminarDedActionPerformed
-
-    private void cmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbActionPerformed
 
     private void IdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IdKeyTyped
                 char c=evt.getKeyChar();
@@ -245,6 +303,11 @@ public class C_MOD_Emp extends javax.swing.JFrame {
             evt.consume();
         }        // TODO add your handling code here:
     }//GEN-LAST:event_capKeyTyped
+
+    private void CB_UNFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CB_UNFocusGained
+      
+        llenarCombo();
+    }//GEN-LAST:event_CB_UNFocusGained
 
     /**
      * @param args the command line arguments
@@ -283,16 +346,16 @@ public class C_MOD_Emp extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox CB_UN;
     public javax.swing.JTextField Id;
     public javax.swing.JButton btnAgregarDed;
     public javax.swing.JButton btnEliminarDed;
     public javax.swing.JTextField cap;
-    private javax.swing.JComboBox<String> cmb;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblIdDeduccion;
     private javax.swing.JLabel lblIdDeduccion1;
     private javax.swing.JLabel lblIdDeduccion2;
-    private javax.swing.JLabel lblIdDeduccion3;
     public javax.swing.JTextField nom;
     // End of variables declaration//GEN-END:variables
 }

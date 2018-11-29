@@ -146,12 +146,16 @@ public class C_ADD_Laboratorios extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(txfOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgrefarEstados, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(54, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1)
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnAgrefarEstados)
+                        .addGap(19, 19, 19))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -183,7 +187,7 @@ public class C_ADD_Laboratorios extends javax.swing.JFrame {
                + ")");
        }
        else{
-           JOptionPane.showMessageDialog(null,"No se permiten campos vacios o estatus sin asignar","Error" ,JOptionPane.INFORMATION_MESSAGE);
+           JOptionPane.showMessageDialog(null,"No se permiten campos vacios","Error" ,JOptionPane.INFORMATION_MESSAGE);
        }
     }//GEN-LAST:event_btnAgrefarEstadosActionPerformed
 

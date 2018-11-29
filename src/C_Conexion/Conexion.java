@@ -180,9 +180,13 @@ public class Conexion {
     public void Emp_Search(String Nombre,JTable tabla){
          DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
         if(Nombre.isEmpty())
-            Sql = "select * from Empaques where estatus='A'";
+            Sql = "select em.idEmpaque, em.nombre, em.capacidad,"
+                    + "em.estatus, em.idunidad, um.nombre as nom from Empaques em inner join UnidadMedida um "
+                    + "on em.idunidad=um.idunidad where em.estatus='A'";
         else if(!Nombre.isEmpty())
-            Sql = "select * from Empaques where nombre = '"+Nombre+"'";
+            Sql = "select em.idEmpaque, em.nombre, em.capacidad,"
+                    + "em.estatus, em.idunidad, um.nombre as nom from Empaques em inner join UnidadMedida um "
+                    + "on em.idunidad=um.idunidad where em.nombre like '"+Nombre+"%'";
         
                try {
             stn=(Statement) con.createStatement();
@@ -194,7 +198,8 @@ public class Conexion {
                 String Ori=rs.getString("capacidad");
                 String Stat = rs.getString("estatus");
                 String IDPK = rs.getString("idUnidad");
-                Object datosRenglon[]={ idLab, Nom, Ori,Stat,IDPK};
+                String unidad= rs.getString("nom");
+                Object datosRenglon[]={ idLab, Nom, Ori,Stat,IDPK, unidad};
                 tablaTemp.addRow(datosRenglon);
             }
             

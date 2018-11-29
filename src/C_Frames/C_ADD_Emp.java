@@ -9,6 +9,12 @@ import C_Conexion.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,10 +26,33 @@ public class C_ADD_Emp extends javax.swing.JFrame {
     /**
      * Creates new form AgregarDeducciones2
      */
+    DefaultComboBoxModel modelocombo = new DefaultComboBoxModel();
     Conexion erp;
     public C_ADD_Emp() {
         initComponents();
         erp = new Conexion();
+        llenarCombo();
+        
+        
+    }
+             public void llenarCombo(){
+        try {
+            erp.OpenCon("ERP", "erp");
+            erp.stn= (Statement) erp.con.createStatement();
+            erp.rs= erp.stn.executeQuery("select * from UnidadMedida where estatus='A'");
+            modelocombo.addElement("Seleccione UnidadMedida");
+            CB_UN.setModel(modelocombo);
+            while (erp.rs.next()){
+                 String ID= String.valueOf(erp.rs.getObject("idunidad"));
+                String nombre= String.valueOf(erp.rs.getObject("nombre"));
+                modelocombo.addElement(ID+" "+nombre);
+                CB_UN.setModel(modelocombo);
+            }
+        
+        }catch(SQLException ex){
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
 
@@ -40,21 +69,19 @@ public class C_ADD_Emp extends javax.swing.JFrame {
         nom = new javax.swing.JTextField();
         cap = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        idu = new javax.swing.JTextField();
         btnLimpiar = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        cmb = new javax.swing.JComboBox<String>();
+        CB_UN = new javax.swing.JComboBox();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(254, 254, 254));
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(254, 254, 254));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "AGREGAr EMPAQUE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 0, 0))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "AGREGAR EMPAQUE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 0, 0))); // NOI18N
         jPanel1.setForeground(new java.awt.Color(1, 1, 1));
 
         nom.setBackground(new java.awt.Color(254, 254, 254));
@@ -81,14 +108,6 @@ public class C_ADD_Emp extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
-            }
-        });
-
-        idu.setBackground(new java.awt.Color(254, 254, 254));
-        idu.setForeground(new java.awt.Color(1, 1, 1));
-        idu.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                iduKeyTyped(evt);
             }
         });
 
@@ -120,15 +139,12 @@ public class C_ADD_Emp extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(1, 1, 1));
         jLabel4.setText("CAPACIDAD");
 
-        jLabel5.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel5.setText("ID UNIDAD");
+        CB_UN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        jLabel6.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel6.setText("ESTATUS");
-
-        cmb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Estado", "A", "B" }));
+        jLabel9.setBackground(new java.awt.Color(254, 254, 254));
+        jLabel9.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel9.setText("UNIDAD DE MEDIDA");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -145,39 +161,36 @@ public class C_ADD_Emp extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(jLabel6))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(idu, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cap, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nom, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(232, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(49, 49, 49)
+                        .addComponent(CB_UN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(47, 47, 47)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(cap, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nom, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(203, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(nom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(31, 31, 31)
+                .addGap(43, 43, 43)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(nom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(cap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(idu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(cmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                    .addComponent(jLabel9)
+                    .addComponent(CB_UN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnAgregar)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -202,32 +215,42 @@ public class C_ADD_Emp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        int idu = 0;
-        float cap = 0;
-        String no = nom.getText();
-        String id= this.idu.getText();
-        String ca= this.cap.getText();
-        int es= cmb.getSelectedIndex();
-        if (!no.isEmpty()&&!id.isEmpty()&&!ca.isEmpty()&&es!=0){
-        try{
-            idu = Integer.parseInt(this.idu.getText());
-            cap = Float.parseFloat(this.cap.getText());
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
+
+            String ba=nom.getText();
+            String b=cap.getText();
+            int g=CB_UN.getSelectedIndex();
         
-        }//insert into Empaques values(ERP.EmpID.nextval,'nombre',500,'A',1);
-        erp.SQL("insert into Empaques values(ERP.EMID.nextval,'"+nom.getText()+"',"+cap+",'"+cmb.getItemAt(cmb.getSelectedIndex()).charAt(0)+"',"+idu+")");
-        }else{
-           JOptionPane.showMessageDialog(null,"No se permiten campos vacios o estatus sin asignar","Error" ,JOptionPane.INFORMATION_MESSAGE);
-       }
-//addDeducciones(txfNombre.getText(), txfDesc.getText(), Float.valueOf(txfPorcentaje.getText())); // TODO add your handling code here:
+        
+        int idc = 0;
+        if((!ba.isEmpty())&&(!b.isEmpty()) && (g!=0)){
+        StringTokenizer numero = new StringTokenizer(CB_UN.getSelectedItem().toString(), " ");
+        erp.OpenCon("ERP", "erp");
+        int C = 0;
+        while (numero.hasMoreTokens()) {
+            String a = numero.nextToken();
+            C++;
+            if (C == 1) {
+                idc = Integer.parseInt(a);
+            }
+
+        }
+        erp.OpenCon("ERP", "erp");
+        erp.SQL("insert into empaques values (ERP.emid.nextval,"
+                + "'" + nom.getText() + "',"
+                + "'" + cap.getText() + "',"
+                + "'" + "A" + "',"
+                + idc
+                + ")");
+        }
+        else {
+            JOptionPane.showMessageDialog(null,"No se permiten campos vacios o Unidad Medida sin asignar","Error" ,JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         this.cap.setText("");
         this.nom.setText("");
-        this.idu.setText("");
-        this.cmb.setSelectedIndex(0);
+        this.CB_UN.setSelectedIndex(0);
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -247,14 +270,6 @@ public class C_ADD_Emp extends javax.swing.JFrame {
             evt.consume();
         }        // TODO add your handling code here:
     }//GEN-LAST:event_capKeyTyped
-
-    private void iduKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_iduKeyTyped
-                    char c=evt.getKeyChar();
-        if((c<'0' || c>'9')){
-            evt.consume();
-        }    
-    // TODO add your handling code here:
-    }//GEN-LAST:event_iduKeyTyped
 
     /**
      * @param args the command line arguments
@@ -295,16 +310,14 @@ public class C_ADD_Emp extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox CB_UN;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JTextField cap;
-    private javax.swing.JComboBox<String> cmb;
-    private javax.swing.JTextField idu;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nom;
     // End of variables declaration//GEN-END:variables
