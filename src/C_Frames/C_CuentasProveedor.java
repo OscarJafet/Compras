@@ -191,7 +191,7 @@ public class C_CuentasProveedor extends javax.swing.JPanel {
             {
                 idcuenta=(String)tblCuentas.getValueAt(tblCuentas.getSelectedRow(),0);
             if(JOptionPane.showConfirmDialog (null, "Desea eliminar","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
-                erp.SQL("update CuentasProveedor set estatus='B' where idcuentaproveedor="+idcuenta);
+                Procedimiento();
                 btnConsultarCuentasProveedor.doClick();
             }
             }else {
@@ -275,7 +275,26 @@ public void borrarTabla(JTable tab) {
         tblCuentas.removeAll();
         erp.CuentasProveedor_Search(txfBuscar.getText(),tblCuentas);
     }//GEN-LAST:event_tblCuentasMouseEntered
-
+          public void Procedimiento(){
+           int ID = 0;
+     
+           ID = Integer.parseInt(tblCuentas.getValueAt(tblCuentas.getSelectedRow(),0)+"");
+          try {
+          CallableStatement cst= con.prepareCall("{call ELIMINACUENTA (?,?)}");
+            cst.setInt(1, ID);
+            
+            cst.registerOutParameter(2,java.sql.Types.VARCHAR);
+            cst.execute();
+            
+            String msg= cst.getString(2);
+            JOptionPane.showMessageDialog(null,msg,"Accion Realizada" ,JOptionPane.INFORMATION_MESSAGE);
+          }
+          catch (SQLException ex){
+              JOptionPane.showMessageDialog(null,ex.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
+          }
+          
+          
+      }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarCuentas;
     public javax.swing.JButton btnConsultarCuentasProveedor;

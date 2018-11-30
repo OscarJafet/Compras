@@ -58,25 +58,22 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
+                          <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="txfCuenta" min="-2" pref="64" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txfNoCuenta" min="-2" pref="126" max="-2" attributes="0"/>
-                                      <Component id="cmbProveedor" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txfBanco" min="-2" pref="126" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="txfCuenta" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="txfNoCuenta" pref="126" max="32767" attributes="0"/>
+                              <Component id="cmbProveedor" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbBanco" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="191" max="32767" attributes="0"/>
                       </Group>
@@ -99,7 +96,7 @@
                           <Component id="btnAgrefarEstados" min="-2" pref="62" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <EmptySpace pref="20" max="32767" attributes="0"/>
+                          <EmptySpace pref="19" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txfCuenta" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -117,9 +114,9 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txfBanco" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbBanco" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="18" max="32767" attributes="0"/>
+                          <EmptySpace pref="19" max="32767" attributes="0"/>
                           <Component id="jButton1" min="-2" pref="62" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -223,11 +220,6 @@
             <Property name="text" type="java.lang.String" value="BANCO"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txfBanco">
-          <Events>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txfBancoKeyTyped"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabel13">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -251,6 +243,25 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cmbBanco">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="11">
+                <StringItem index="0" value="Seleccione Banco"/>
+                <StringItem index="1" value="BBVA Bancomer"/>
+                <StringItem index="2" value="Santander"/>
+                <StringItem index="3" value="CitiBanamex"/>
+                <StringItem index="4" value="Banorte"/>
+                <StringItem index="5" value="HSBC"/>
+                <StringItem index="6" value="Scotiabank"/>
+                <StringItem index="7" value="Inbursa"/>
+                <StringItem index="8" value="Interacciones"/>
+                <StringItem index="9" value="Banco del Baj&#xed;o"/>
+                <StringItem index="10" value="Afirme"/>
+              </StringArray>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

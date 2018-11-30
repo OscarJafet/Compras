@@ -30,16 +30,18 @@ public class C_MOD_CuentasProveedor extends javax.swing.JFrame {
     Conexion erp;
     C_ProductosProveedor pro= new C_ProductosProveedor();
      DefaultComboBoxModel modelocombo = new DefaultComboBoxModel();
+     DefaultComboBoxModel modelocombo1 = new DefaultComboBoxModel();
     
     public C_MOD_CuentasProveedor() {
         initComponents();
         erp = new Conexion();
         txfCuenta.setEditable(false);
         llenarCombo();
+        llenarCombo1();
     }
            public void Datos(String a, String b,String c,String d){
            txfNoCuenta.setText(c);
-           txfBanco.setText(d);
+           modelocombo1.setSelectedItem(d);
            txfCuenta.setText(a);
           String id= String.valueOf(erp.consultaPro(b));
            
@@ -63,6 +65,24 @@ public class C_MOD_CuentasProveedor extends javax.swing.JFrame {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        
+    }
+        public void llenarCombo1(){
+            modelocombo1.removeAllElements();
+            modelocombo1.addElement("Seleccione banco");
+            modelocombo1.addElement("BBVA Bancomer");
+            modelocombo1.addElement("Santander");
+            modelocombo1.addElement("CitiBanamex");
+            modelocombo1.addElement("Banorte");
+            modelocombo1.addElement("HSBC");
+            modelocombo1.addElement("Scotiabank");
+            modelocombo1.addElement("Inbursa");
+            modelocombo1.addElement("Interacciones");
+            modelocombo1.addElement("Banco del Bajio");
+            modelocombo1.addElement("Afirme");
+            
+            cmbBanco.setModel(modelocombo1);
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -82,9 +102,9 @@ public class C_MOD_CuentasProveedor extends javax.swing.JFrame {
         txfNoCuenta = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        txfBanco = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         txfCuenta = new javax.swing.JTextField();
+        cmbBanco = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(254, 254, 254));
@@ -140,18 +160,14 @@ public class C_MOD_CuentasProveedor extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(1, 1, 1));
         jLabel8.setText("BANCO");
 
-        txfBanco.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txfBancoKeyTyped(evt);
-            }
-        });
-
         jLabel13.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(1, 1, 1));
         jLabel13.setText("ID CUENTA PROVEEDOR");
 
         txfCuenta.setBackground(new java.awt.Color(253, 239, 239));
         txfCuenta.setForeground(new java.awt.Color(1, 1, 1));
+
+        cmbBanco.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione Banco", "BBVA Bancomer", "Santander", "CitiBanamex", "Banorte", "HSBC", "Scotiabank", "Inbursa", "Interacciones", "Banco del Bajío", "Afirme" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -160,21 +176,20 @@ public class C_MOD_CuentasProveedor extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txfCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel8))
+                        .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel8))
-                                .addGap(28, 28, 28)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txfNoCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmbProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txfBanco, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txfCuenta)))
+                            .addComponent(txfNoCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                            .addComponent(cmbProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbBanco, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 191, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -190,7 +205,7 @@ public class C_MOD_CuentasProveedor extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAgrefarEstados, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(20, Short.MAX_VALUE)
+                        .addContainerGap(19, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13)
                             .addComponent(txfCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -205,8 +220,8 @@ public class C_MOD_CuentasProveedor extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(txfBanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                            .addComponent(cmbBanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -227,11 +242,11 @@ public class C_MOD_CuentasProveedor extends javax.swing.JFrame {
 
     private void btnAgrefarEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgrefarEstadosActionPerformed
         int idpro=0;
-        String d= txfBanco.getText();
+        int d= cmbBanco.getSelectedIndex();
         String i= txfNoCuenta.getText();
         int pro= cmbProveedor.getSelectedIndex();
  
-        if((!d.isEmpty())&&(!i.isEmpty())&&(pro!=0)&&(txfNoCuenta.getText().length()==limite))
+        if((d!=0)&&(!i.isEmpty())&&(pro!=0)&&(txfNoCuenta.getText().length()==limite))
         {
                     StringTokenizer numero = new StringTokenizer(cmbProveedor.getSelectedItem().toString()," ");   
         erp.OpenCon("ERP", "erp");
@@ -246,7 +261,7 @@ public class C_MOD_CuentasProveedor extends javax.swing.JFrame {
        erp.SQL("update CuentasProveedor set idproveedor="
                 +""+idpro+","
                 +"nocuenta ='"+txfNoCuenta.getText()+"',"
-                +"banco ='"+txfBanco.getText()+"'"
+                +"banco ='"+cmbBanco.getSelectedItem()+"'"
                 +" where idcuentaproveedor ="
                 +Integer.parseInt(txfCuenta.getText()));    
         }
@@ -270,13 +285,6 @@ public class C_MOD_CuentasProveedor extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txfNoCuentaKeyTyped
-
-    private void txfBancoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBancoKeyTyped
-        char c=evt.getKeyChar();
-        if((c<'0' || c>'9')&&(c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')){
-            evt.consume();
-        }
-    }//GEN-LAST:event_txfBancoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -316,6 +324,7 @@ public class C_MOD_CuentasProveedor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnAgrefarEstados;
+    private javax.swing.JComboBox cmbBanco;
     public javax.swing.JComboBox cmbProveedor;
     public javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel12;
@@ -323,7 +332,6 @@ public class C_MOD_CuentasProveedor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txfBanco;
     public javax.swing.JTextField txfCuenta;
     private javax.swing.JTextField txfNoCuenta;
     // End of variables declaration//GEN-END:variables

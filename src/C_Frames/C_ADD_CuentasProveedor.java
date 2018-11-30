@@ -80,8 +80,8 @@ public class C_ADD_CuentasProveedor extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         txfNoCuenta = new javax.swing.JTextField();
-        txfBanco = new javax.swing.JTextField();
         cmbProveedor = new javax.swing.JComboBox();
+        cmbBanco = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -141,17 +141,13 @@ public class C_ADD_CuentasProveedor extends javax.swing.JFrame {
             }
         });
 
-        txfBanco.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txfBancoKeyTyped(evt);
-            }
-        });
-
         cmbProveedor.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 cmbProveedorFocusGained(evt);
             }
         });
+
+        cmbBanco.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione Banco", "BBVA Bancomer", "Santander", "CitiBanamex", "Banorte", "HSBC", "Scotiabank", "Inbursa", "Interacciones", "Banco del Bajío", "Afirme" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -169,7 +165,7 @@ public class C_ADD_CuentasProveedor extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cmbProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txfNoCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                            .addComponent(txfBanco))
+                            .addComponent(cmbBanco, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -188,18 +184,19 @@ public class C_ADD_CuentasProveedor extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnAgregar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(cmbProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txfNoCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(txfBanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel12)
+                                    .addComponent(cmbProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(txfNoCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel8))
+                            .addComponent(cmbBanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnLimpiar))))
@@ -223,10 +220,10 @@ public class C_ADD_CuentasProveedor extends javax.swing.JFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         int idpro = 0;
         String d= txfNoCuenta.getText();
-        String i= txfBanco.getText();
+        int i= cmbBanco.getSelectedIndex();
         int la= cmbProveedor.getSelectedIndex();
         
-        if((!d.isEmpty())&&(!i.isEmpty())&&(la!=0)&&(txfNoCuenta.getText().length()==limite))
+        if((!d.isEmpty())&&(i!=0)&&(la!=0)&&(txfNoCuenta.getText().length()==limite))
         {         
         StringTokenizer numero = new StringTokenizer(cmbProveedor.getSelectedItem().toString()," ");   
         erp.OpenCon("ERP", "erp");
@@ -243,7 +240,7 @@ public class C_ADD_CuentasProveedor extends javax.swing.JFrame {
             erp.SQL("insert into CuentasProveedor values (ERP.CUENTAID.nextval"+","
                 +idpro+","    
                 +txfNoCuenta.getText()+",'"
-                +txfBanco.getText()+"',"
+                +cmbBanco.getSelectedItem()+"',"
                 +"'A'"
                 +")");
         }
@@ -262,7 +259,7 @@ public class C_ADD_CuentasProveedor extends javax.swing.JFrame {
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         this.txfNoCuenta.setText("");
-        this.txfBanco.setText("");
+        this.cmbBanco.setSelectedIndex(0);
         this.cmbProveedor.setSelectedIndex(0);
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
@@ -273,13 +270,6 @@ public class C_ADD_CuentasProveedor extends javax.swing.JFrame {
             evt.consume();
         }  
     }//GEN-LAST:event_txfNoCuentaKeyTyped
-
-    private void txfBancoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBancoKeyTyped
-        char c=evt.getKeyChar();
-        if((c<'0' || c>'9')&&(c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')){
-            evt.consume();
-        }
-    }//GEN-LAST:event_txfBancoKeyTyped
 
     private void cmbProveedorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cmbProveedorFocusGained
 //        llenarCombo1();
@@ -324,12 +314,12 @@ public class C_ADD_CuentasProveedor extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnLimpiar;
+    private javax.swing.JComboBox cmbBanco;
     public javax.swing.JComboBox cmbProveedor;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txfBanco;
     private javax.swing.JTextField txfNoCuenta;
     // End of variables declaration//GEN-END:variables
 }
