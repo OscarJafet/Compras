@@ -25,12 +25,15 @@ public class C_MOD_Detalles extends javax.swing.JFrame {
      * Creates new form EditarDeducciones
      */
     Conexion erp;
+    C_PedidoDetalle edg;
     public C_MOD_Detalles() {
         initComponents();
         this.Id.setEditable(false);
         erp = new Conexion();
+        edg = new C_PedidoDetalle();
         llenarCombo1();
         llenarCombo2();
+        
     }
      DefaultComboBoxModel modelocombo = new DefaultComboBoxModel();
     DefaultComboBoxModel modelocombo1 = new DefaultComboBoxModel();
@@ -47,6 +50,7 @@ public void llenarCombo1(){
                 modelocombo.addElement(erp.rs.getObject("idPedido")+" "+erp.rs.getObject("nombre"));
                 cmbPed.setModel(modelocombo);
             }
+           
         
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null,ex.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);

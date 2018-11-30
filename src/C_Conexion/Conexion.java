@@ -588,25 +588,21 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
     }
       public void Detalles_seacrh(String Nombre, JTable tabla, char Stat) {
         DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
-        
-        //System.out.println(Sql);
         if (Nombre.isEmpty() && Stat == 'E') {
-            System.out.println("E...");
             Sql = "SELECT * FROM ERP.PEDIDODETALLE INNER JOIN ERP.PEDIDOS ON PEDIDOS.ESTATUS = 'E' or PEDIDOS.ESTATUS = 'A'";
         } else if (!Nombre.isEmpty() && Stat == 'E') {
-            System.out.println("E....2");
             Sql = "SELECT * FROM PEDIDODETALLE P INNER JOIN PEDIDOS P ON P.ESTATUS = 'E' or P.ESTATUS = 'A' INNER JOIN PRESENTACIONESPRODUCTO R ON R.NOMBRE like '"+Nombre+"%'";
         } else if (Stat == 'A' || Stat == 'B' || Stat == 'E') {
-            System.out.println("A...");
             Sql = "SELECT P.idPedidoDetalle, p.cantPedida,p.precioCompra,p.subTotal,p.cantRecibida,p.CantRechazada,p.cantAceptada,p.idPedido,p.idPresentacion\n" +
 "FROM ERP.PEDIDODETALLE P INNER JOIN ERP.PEDIDOS ON PEDIDOS.ESTATUS = '"+Stat+"'";
         }
       try {
             stn=(Statement) con.createStatement();
-              stn.executeUpdate(Sql);
-        
+            rs=stn.executeQuery(Sql);
           //System.out.println(Sql);
+          
             while(rs.next()){
+                
                 String idDt=rs.getString("idPedidoDetalle");
                 String cPd=rs.getString("cantPedida");
                 String pC=rs.getString("precioCompra");
