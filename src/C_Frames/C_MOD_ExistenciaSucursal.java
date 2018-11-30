@@ -32,17 +32,18 @@ public class C_MOD_ExistenciaSucursal extends javax.swing.JFrame {
     String Producto;
     public C_MOD_ExistenciaSucursal() {
         initComponents();
-        erp = new Conexion();
-          String Sql = "select es.IDSUCURSAL,es.IDPRESENTACION,sc.NOMBRE, pp.PRECIOVENTA, pp.PUNTOREORDEN,es.cantidad, pt.NOMBRE as NOM,em.NOMBRE as NO from "
-                  + "EXISTENCIASUCURSAL es inner join SUCURSAL sc "
-                    + "on sc.IDSUCURSAL=es.IDSUCURSAL inner join"
-                    + " PRESENTACIONESPRODUCTO pp on pp.IDPRESENTACION=es.IDPRESENTACION inner "
-                    + "join PRODUCTOS pt on pt.idproducto=pp.idproducto inner join empaques em on em.idempaque=pp.idempaque";
-          erp.OpenCon("ERP","erp");
-          erp.ExistenciaSucursal_search_claves(C_ExistenciaSucursal_tabla, Sql);
-          
+        erp = new Conexion(); 
+        this.txfSucursal.setEditable(false);
+        this.txfPresentacion.setEditable(false);
     }
-
+        int idpresentacion=0,idsucursal=0;
+        public void Datos(String idp,String nomp,String ids,String noms,String can){
+            txfSucursal.setText(noms);
+            txfPresentacion.setText(nomp);
+            txfCantidad.setText(can);
+            idpresentacion=Integer.parseInt(idp);
+            idsucursal=Integer.parseInt(ids);
+        }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,13 +54,14 @@ public class C_MOD_ExistenciaSucursal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        txfCantidadNueva = new javax.swing.JTextField();
         btnAgrefarEstados = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        C_ExistenciaSucursal_tabla = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txfSucursal = new javax.swing.JTextField();
+        txfPresentacion = new javax.swing.JTextField();
+        txfCantidad = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(254, 254, 254));
@@ -67,24 +69,6 @@ public class C_MOD_ExistenciaSucursal extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(254, 254, 254));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(206, 255, 0)), "MODIFICAR", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 0))); // NOI18N
-
-        jLabel2.setBackground(new java.awt.Color(1, 1, 1));
-        jLabel2.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel2.setText("Cantidad Nueva");
-
-        txfCantidadNueva.setBackground(new java.awt.Color(253, 239, 239));
-        txfCantidadNueva.setForeground(new java.awt.Color(1, 1, 1));
-        txfCantidadNueva.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txfCantidadNuevaActionPerformed(evt);
-            }
-        });
-        txfCantidadNueva.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txfCantidadNuevaKeyTyped(evt);
-            }
-        });
 
         btnAgrefarEstados.setBackground(new java.awt.Color(254, 254, 254));
         btnAgrefarEstados.setForeground(new java.awt.Color(254, 254, 254));
@@ -109,75 +93,75 @@ public class C_MOD_ExistenciaSucursal extends javax.swing.JFrame {
             }
         });
 
-        C_ExistenciaSucursal_tabla.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "IDSucursal", "IDPresentacion", "Nombre", "Precio de venta", "Reorden", "Cantidad", "Producto", "Empaque"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        C_ExistenciaSucursal_tabla.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(C_ExistenciaSucursal_tabla);
-
-        jLabel3.setBackground(new java.awt.Color(1, 1, 1));
         jLabel3.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel3.setText("Seleciona una sucursal");
+        jLabel3.setText("Sucursal ");
+
+        jLabel4.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel4.setText("Presentacion");
+
+        jLabel5.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel5.setText("Cantidad");
+
+        txfSucursal.setBackground(new java.awt.Color(253, 229, 239));
+
+        txfPresentacion.setBackground(new java.awt.Color(253, 229, 239));
+
+        txfCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfCantidadKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
-                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAgrefarEstados, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txfCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txfCantidadNueva, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(121, 121, 121)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnAgrefarEstados, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(283, 283, 283))))))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txfSucursal)
+                            .addComponent(txfPresentacion, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))))
+                .addGap(0, 200, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnAgrefarEstados, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txfCantidadNueva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))))
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txfSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txfPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txfCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnAgrefarEstados, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -188,103 +172,42 @@ public class C_MOD_ExistenciaSucursal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgrefarEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgrefarEstadosActionPerformed
-       erp.OpenCon("ERP", "erp");
-       
-    
-        
-        if(C_ExistenciaSucursal_tabla.getSelectedRow() > -1 && !txfCantidadNueva.getText().isEmpty()){
-             int i = Integer.parseInt(txfCantidadNueva.getText().toString());
-             if(i <= Integer.parseInt(C_ExistenciaSucursal_tabla.getValueAt(C_ExistenciaSucursal_tabla.getSelectedRow(), 4).toString())){
-                 JOptionPane.showMessageDialog(null, "Producto escaso en sucursal: "+ C_ExistenciaSucursal_tabla.getValueAt(C_ExistenciaSucursal_tabla.getSelectedRow(), 2).toString());}
-             
-erp.SQL("update EXISTENCIASUCURSAL set CANTIDAD = "+i+" where  IDSUCURSAL = "+
-        Integer.parseInt(C_ExistenciaSucursal_tabla.getValueAt(C_ExistenciaSucursal_tabla.getSelectedRow(), 0).toString())+" and IDPRESENTACION = "+
-        Integer.parseInt(C_ExistenciaSucursal_tabla.getValueAt(C_ExistenciaSucursal_tabla.getSelectedRow(), 1).toString()));
-            
-}else{
-    JOptionPane.showMessageDialog(null, "SELECIONE EN TABLA UN PRODUCTO E INGRESE UNA CANTIDAD");
-}
-        
-        
-        
-        borrarTabla(C_ExistenciaSucursal_tabla);
-      String Sql = "select es.IDSUCURSAL,es.IDPRESENTACION,sc.NOMBRE, pp.PRECIOVENTA, pp.PUNTOREORDEN,es.cantidad, pt.NOMBRE as NOM,em.NOMBRE as NO from "
-                  + "EXISTENCIASUCURSAL es inner join SUCURSAL sc "
-                    + "on sc.IDSUCURSAL=es.IDSUCURSAL inner join"
-                    + " PRESENTACIONESPRODUCTO pp on pp.IDPRESENTACION=es.IDPRESENTACION inner "
-                    + "join PRODUCTOS pt on pt.idproducto=pp.idproducto inner join empaques em on em.idempaque=pp.idempaque";
-          erp.OpenCon("ERP","erp");
-          erp.ExistenciaSucursal_search_claves(C_ExistenciaSucursal_tabla, Sql);   
-          
-          C_ExistenciaSucursal_tabla.setVisible(false);
-          C_ExistenciaSucursal_tabla.setVisible(true);
-        
-    }//GEN-LAST:event_btnAgrefarEstadosActionPerformed
-public void borrarTabla(JTable tab) {
-        try {
-            DefaultTableModel tabT = (DefaultTableModel) tab.getModel();
-            for (int i = tabT.getRowCount() - 1; i > -1; i--) {
-                tabT.removeRow(i);
-            }
-        } catch (Exception e) {
-       
+
+        String d= txfPresentacion.getText();
+        String i= txfSucursal.getText();
+        String ap=txfCantidad.getText();
+        if((!d.isEmpty())&&(!i.isEmpty())&&(!ap.isEmpty()))
+        {
+ 
+       erp.SQL("update ExistenciaSucursal set idpresentacion="
+                +""+idpresentacion+","
+                +"idsucursal ="+idsucursal+","
+                +"cantidad ="+txfCantidad.getText()+""
+                +" where idpresentacion ="
+                +idpresentacion+" and idsucursal="+idsucursal);    
         }
-    }
+                else {
+            JOptionPane.showMessageDialog(null,"No se permiten campos vacios ","Error" ,JOptionPane.INFORMATION_MESSAGE);
+        }  
+    }//GEN-LAST:event_btnAgrefarEstadosActionPerformed
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void txfCantidadNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfCantidadNuevaActionPerformed
+    private void txfCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfCantidadKeyTyped
+               char c=evt.getKeyChar();
+        if((c<'0' || c>'9'))
+            evt.consume(); 
         // TODO add your handling code here:
-    }//GEN-LAST:event_txfCantidadNuevaActionPerformed
-    DefaultComboBoxModel modelocombo = new DefaultComboBoxModel();
-    DefaultComboBoxModel modelocombo1 = new DefaultComboBoxModel();
-//    public void llenarCombo(){
-//        try {
-//            erp.OpenCon("ERP", "erp");
-//            erp.stn= (Statement) erp.con.createStatement();
-//            
-//            erp.rs= erp.stn.executeQuery("select es.IDSUCURSAL,es.IDPRESENTACION,sc.NOMBRE, pp.PRECIOVENTA, "
-//                    + "pp.PUNTOREORDEN,es.cantidad,pt.NOMBRE as NOM,em.NOMBRE as NO from  EXISTENCIASUCURSAL es inner join SUCURSAL"
-//                    + " sc on sc.IDSUCURSAL=es.IDSUCURSAL inner join PRESENTACIONESPRODUCTO pp on pp.IDPRESENTACION=es.IDPRESENTACION inner join "
-//                    + "PRODUCTOS pt on pt.idproducto=pp.idproducto inner join empaques em on em.idempaque=pp.idempaque");
-//            
-//            modelocombo.addElement("Selecione una Sucursal");
-//            
-//            cbxpro1.setModel(modelocombo);
-//            while (erp.rs.next()){
-//                String IDPRESENTACION=String.valueOf( erp.rs.getObject("IDSUCURSAL"));
-//                String Nombre=(String) erp.rs.getObject("NOMBRE");
-//
-//                modelocombo.addElement(IDPRESENTACION +" "+ Nombre);
-//                cbxpro1.setModel(modelocombo);
-//            }
-//        
-//        }catch(SQLException ex){
-//            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        
-//    }
-    private void txfCantidadNuevaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfCantidadNuevaKeyTyped
-char caracter = evt.getKeyChar();
-
-      // Verificar si la tecla pulsada no es un digito
-      if(((caracter < '0') ||
-         (caracter > '9')) &&
-         (caracter != '\b' /*corresponde a BACK_SPACE*/))
-      {
-         evt.consume(); 
-        JOptionPane.showMessageDialog(null, "Solo numeros");  
-// ignorar el evento de teclado
-      }        // TODO add your handling code here:
-    }//GEN-LAST:event_txfCantidadNuevaKeyTyped
+    }//GEN-LAST:event_txfCantidadKeyTyped
 
     /**
      * @param args the command line arguments
@@ -324,13 +247,14 @@ char caracter = evt.getKeyChar();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTable C_ExistenciaSucursal_tabla;
     public javax.swing.JButton btnAgrefarEstados;
     public javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTextField txfCantidadNueva;
+    private javax.swing.JTextField txfCantidad;
+    public javax.swing.JTextField txfPresentacion;
+    public javax.swing.JTextField txfSucursal;
     // End of variables declaration//GEN-END:variables
 }

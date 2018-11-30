@@ -285,11 +285,7 @@ public class Conexion {
                 String cat = rs.getString("nomb");
                 Object datosRenglon[]={ idPro, Nom, descripcion,ingrediente,banda,apli,uso,estatus,lab,cat};
                 tablaTemp.addRow(datosRenglon);
-            }
-            if (tablaTemp.getRowCount() == 0){
-                JOptionPane.showMessageDialog(null,"El producto no se encuentra en la Base de Datos","Información",JOptionPane.INFORMATION_MESSAGE);
-            }
-            
+            }     
             tabla.setModel(tablaTemp);
         } catch (SQLException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
@@ -355,12 +351,12 @@ public void ExistenciaSucursal_search(JTable tabla,String Sql){
                 String idLab=rs.getString("NOMBRE");
                 String Nom=rs.getString("PRECIOVENTA");
                 String Ori=rs.getString("PUNTOREORDEN");
-                
+                String nombre=rs.getString("nomb");
                 String Stat2 = rs.getString("CANTIDAD");
                 String Stat = rs.getString("NOM");
                  String Stat3 = rs.getString("NO");
                  String Stat4 = rs.getString("estatus");
-                Object datosRenglon[]={idLab1,idLab2, idLab, Nom, Ori,Stat2,Stat,Stat3,Stat4};
+                Object datosRenglon[]={idLab1,nombre,idLab2, idLab, Nom, Ori,Stat2,Stat,Stat3,Stat4};
                 tablaTemp.addRow(datosRenglon);
             }
             
@@ -385,12 +381,12 @@ public void ExistenciaSucursal_search_nombre(JTable tabla, String Sql){
                 String idLab=rs.getString("NOMBRE");
                 String Nom=rs.getString("PRECIOVENTA");
                 String Ori=rs.getString("PUNTOREORDEN");
-                
+                String nombre=rs.getString("nomb");
                 String Stat2 = rs.getString("CANTIDAD");
                 String Stat = rs.getString("NOM");
                  String Stat3 = rs.getString("NO");
                  String Stat4 = rs.getString("estatus");
-                Object datosRenglon[]={idLab1,idLab2, idLab, Nom, Ori,Stat2,Stat,Stat3,Stat4};
+                Object datosRenglon[]={idLab1,nombre,idLab2, idLab, Nom, Ori,Stat2,Stat,Stat3,Stat4};
                 tablaTemp.addRow(datosRenglon);
             }
             
@@ -630,25 +626,21 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
     }
       public void Detalles_seacrh(String Nombre, JTable tabla, char Stat) {
         DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
-        
-        //System.out.println(Sql);
         if (Nombre.isEmpty() && Stat == 'E') {
-            System.out.println("E...");
             Sql = "SELECT * FROM ERP.PEDIDODETALLE INNER JOIN ERP.PEDIDOS ON PEDIDOS.ESTATUS = 'E' or PEDIDOS.ESTATUS = 'A'";
         } else if (!Nombre.isEmpty() && Stat == 'E') {
-            System.out.println("E....2");
             Sql = "SELECT * FROM PEDIDODETALLE P INNER JOIN PEDIDOS P ON P.ESTATUS = 'E' or P.ESTATUS = 'A' INNER JOIN PRESENTACIONESPRODUCTO R ON R.NOMBRE like '"+Nombre+"%'";
         } else if (Stat == 'A' || Stat == 'B' || Stat == 'E') {
-            System.out.println("A...");
             Sql = "SELECT P.idPedidoDetalle, p.cantPedida,p.precioCompra,p.subTotal,p.cantRecibida,p.CantRechazada,p.cantAceptada,p.idPedido,p.idPresentacion\n" +
 "FROM ERP.PEDIDODETALLE P INNER JOIN ERP.PEDIDOS ON PEDIDOS.ESTATUS = '"+Stat+"'";
         }
       try {
             stn=(Statement) con.createStatement();
-              stn.executeUpdate(Sql);
-        
+            rs=stn.executeQuery(Sql);
           //System.out.println(Sql);
+          
             while(rs.next()){
+                
                 String idDt=rs.getString("idPedidoDetalle");
                 String cPd=rs.getString("cantPedida");
                 String pC=rs.getString("precioCompra");
@@ -776,7 +768,7 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
             Sql = "select cu.idcuentaproveedor, cu.nocuenta,cu.estatus,\n" +
                     "cu.banco,pro.nombre as nom  from CuentasProveedor cu\n" +
                     "inner join Proveedores pro on pro.idproveedor=cu.idproveedor\n" +
-                    "where cu.estatus='A';";
+                    "where cu.estatus='A'";
             
         else if(!Nombre.isEmpty())
             Sql = "select cu.idcuentaproveedor, cu.nocuenta,cu.estatus,\n" +

@@ -96,6 +96,11 @@ llenarCombo();
 
         txfcantidad.setBackground(new java.awt.Color(254, 254, 254));
         txfcantidad.setForeground(new java.awt.Color(1, 1, 1));
+        txfcantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txfcantidadActionPerformed(evt);
+            }
+        });
         txfcantidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txfcantidadKeyTyped(evt);
@@ -277,18 +282,9 @@ erp.SQL("insert into EXISTENCIASUCURSAL values ("+
     }//GEN-LAST:event_btnAgregarPerceActionPerformed
 
     private void txfcantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfcantidadKeyTyped
- char caracter = evt.getKeyChar();
-
-      // Verificar si la tecla pulsada no es un digito
-      if(((caracter < '0') ||
-         (caracter > '9')) &&
-         (caracter != '\b' /*corresponde a BACK_SPACE*/))
-      {
-         evt.consume(); 
-        JOptionPane.showMessageDialog(null, "Solo numeros");  
-// ignorar el evento de teclado
-      }
-          // TODO add your handling code here:
+        char c=evt.getKeyChar();
+        if((c<'0' || c>'9')&&(c!='.'||txfcantidad.getText().contains(".")))
+            evt.consume(); 
     }//GEN-LAST:event_txfcantidadKeyTyped
 
     private void cbxproActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxproActionPerformed
@@ -298,6 +294,10 @@ erp.SQL("insert into EXISTENCIASUCURSAL values ("+
     private void cbxpro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxpro1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxpro1ActionPerformed
+
+    private void txfcantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfcantidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txfcantidadActionPerformed
 
     /**
      * @param args the command line arguments

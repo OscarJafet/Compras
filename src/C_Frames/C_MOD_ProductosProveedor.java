@@ -333,7 +333,7 @@ public class C_MOD_ProductosProveedor extends javax.swing.JFrame {
         int max= Integer.parseInt(u);
             if(max>=min)
             {
-       erp.SQL("update ProductosProveedor set diasretardo ="
+                erp.SQL("update ProductosProveedor set diasretardo ="
                 +""+txfDias.getText()+","
                 +"precioestandar ="+txfPrecioEs.getText()+","
                 +"precioultimacompra ="+txfPrecioUl.getText()+","
@@ -350,20 +350,6 @@ public class C_MOD_ProductosProveedor extends javax.swing.JFrame {
                 else {
             JOptionPane.showMessageDialog(null,"No se permiten campos vacios ","Error" ,JOptionPane.INFORMATION_MESSAGE);
         }     
-//                pro.borrarTabla(pro.tblProPro);
-    
-        try {
-            erp.OpenCon("ERP","erp");
-            erp.ProductoProveedor_Search(" ", pro.tblProPro);
-            pro.repaint();
-        }catch(Exception e){
-            Logger.getLogger(C_MOD_ProductosProveedor.class.getName()).log(Level.SEVERE, null, e);
-        }
-//            pro.borrarTabla(pro.tblProPro);
-//            erp.OpenCon("ERP", "erp");
-//            erp.ProductoProveedor_Search(" ",pro.tblProPro);
-//            pro.tblProPro.setVisible(false);
-   
     }//GEN-LAST:event_btnAgrefarEstadosActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

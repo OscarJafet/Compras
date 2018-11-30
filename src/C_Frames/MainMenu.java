@@ -60,6 +60,10 @@ public class MainMenu extends javax.swing.JFrame {
         C_PROPOR = new javax.swing.JButton();
         C_PED = new javax.swing.JButton();
         C_PED1 = new javax.swing.JButton();
+        C_Lab1 = new javax.swing.JButton();
+        C_Lab2 = new javax.swing.JButton();
+        C_Lab3 = new javax.swing.JButton();
+        C_Lab4 = new javax.swing.JButton();
         jpTitulo = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
@@ -197,6 +201,42 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
+        C_Lab1.setBackground(new java.awt.Color(255, 255, 255));
+        C_Lab1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ImagP.png"))); // NOI18N
+        C_Lab1.setToolTipText("IMAGENES");
+        C_Lab1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                C_Lab1ActionPerformed(evt);
+            }
+        });
+
+        C_Lab2.setBackground(new java.awt.Color(255, 255, 255));
+        C_Lab2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Contact.png"))); // NOI18N
+        C_Lab2.setToolTipText("CONTACTOS");
+        C_Lab2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                C_Lab2ActionPerformed(evt);
+            }
+        });
+
+        C_Lab3.setBackground(new java.awt.Color(255, 255, 255));
+        C_Lab3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Cuentas.png"))); // NOI18N
+        C_Lab3.setToolTipText("CUENTAS");
+        C_Lab3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                C_Lab3ActionPerformed(evt);
+            }
+        });
+
+        C_Lab4.setBackground(new java.awt.Color(255, 255, 255));
+        C_Lab4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Pagos.png"))); // NOI18N
+        C_Lab4.setToolTipText("PAGOS");
+        C_Lab4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                C_Lab4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpLogoLayout = new javax.swing.GroupLayout(jpLogo);
         jpLogo.setLayout(jpLogoLayout);
         jpLogoLayout.setHorizontalGroup(
@@ -234,9 +274,6 @@ public class MainMenu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(C_EM, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpLogoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblUsuario))
-                    .addGroup(jpLogoLayout.createSequentialGroup()
                         .addGap(98, 98, 98)
                         .addGroup(jpLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -251,7 +288,19 @@ public class MainMenu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(C_PED, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(C_PED1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(C_PED1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpLogoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jpLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblUsuario)
+                            .addGroup(jpLogoLayout.createSequentialGroup()
+                                .addComponent(C_Lab1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(C_Lab2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(C_Lab3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(C_Lab4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jpLogoLayout.setVerticalGroup(
@@ -282,14 +331,22 @@ public class MainMenu extends javax.swing.JFrame {
                             .addComponent(C_PED, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(C_PED1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(C_PROPOR, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblUsuario)
-                .addGap(30, 30, 30)
-                .addGroup(jpLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblreloj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
-                .addGap(12, 12, 12)
-                .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpLogoLayout.createSequentialGroup()
+                        .addGroup(jpLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(C_Lab1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(C_Lab3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(C_Lab4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addGroup(jpLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblreloj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel4))
+                    .addComponent(C_Lab2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jpTitulo.setBackground(new java.awt.Color(254, 254, 254));
@@ -414,7 +471,7 @@ public class MainMenu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
+            .addComponent(jpLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jpTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -583,6 +640,37 @@ public class MainMenu extends javax.swing.JFrame {
         jFrames.repaint();  // TODO add your handling code here:
     }//GEN-LAST:event_C_PED1ActionPerformed
 
+    private void C_Lab1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_Lab1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_C_Lab1ActionPerformed
+
+    private void C_Lab2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_Lab2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_C_Lab2ActionPerformed
+
+    private void C_Lab3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_Lab3ActionPerformed
+        C_CuentasProveedor erp= new C_CuentasProveedor();
+        erp.setSize(jFrames.getSize());
+        erp.setLocation(0, 0);
+        jFrames.removeAll();
+        erp.btnConsultarCuentasProveedor.doClick();
+        jFrames.add(erp);
+        jFrames.revalidate();
+        jFrames.repaint(); 
+        // TODO add your handling code here:
+    }//GEN-LAST:event_C_Lab3ActionPerformed
+
+    private void C_Lab4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_Lab4ActionPerformed
+        // TODO add your handling code here:
+        C_Pagos erp = new C_Pagos();
+        erp.setSize(jFrames.getSize());
+        erp.setLocation(0, 0);
+        jFrames.removeAll();
+        jFrames.add(erp);
+        jFrames.revalidate();
+        jFrames.repaint();
+    }//GEN-LAST:event_C_Lab4ActionPerformed
+
     void setTitulo(int i) {
         lblTitulo.setText(titulos[i]);
     }
@@ -627,6 +715,10 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton C_EM;
     private javax.swing.JButton C_ES;
     private javax.swing.JButton C_Lab;
+    private javax.swing.JButton C_Lab1;
+    private javax.swing.JButton C_Lab2;
+    private javax.swing.JButton C_Lab3;
+    private javax.swing.JButton C_Lab4;
     private javax.swing.JButton C_PD;
     private javax.swing.JButton C_PED;
     private javax.swing.JButton C_PED1;
