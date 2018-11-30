@@ -58,7 +58,6 @@ public class C_PedidoDetalle extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaPedidoDet = new javax.swing.JTable();
         btnConsultar = new javax.swing.JButton();
-        btnAgregarDe = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         cmbSe = new javax.swing.JComboBox<>();
@@ -96,7 +95,7 @@ public class C_PedidoDetalle extends javax.swing.JPanel {
             }
         });
         add(btnEditarDeducciones);
-        btnEditarDeducciones.setBounds(444, 484, 81, 57);
+        btnEditarDeducciones.setBounds(670, 480, 81, 57);
 
         btnEliDeducciones.setBackground(new java.awt.Color(254, 254, 254));
         btnEliDeducciones.setForeground(new java.awt.Color(254, 254, 254));
@@ -109,7 +108,7 @@ public class C_PedidoDetalle extends javax.swing.JPanel {
             }
         });
         add(btnEliDeducciones);
-        btnEliDeducciones.setBounds(572, 468, 79, 73);
+        btnEliDeducciones.setBounds(750, 460, 79, 73);
 
         tablaPedidoDet.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -152,22 +151,6 @@ public class C_PedidoDetalle extends javax.swing.JPanel {
         add(btnConsultar);
         btnConsultar.setBounds(720, 10, 75, 57);
 
-        btnAgregarDe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregar.png"))); // NOI18N
-        btnAgregarDe.setBorderPainted(false);
-        btnAgregarDe.setContentAreaFilled(false);
-        btnAgregarDe.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAgregarDeMouseClicked(evt);
-            }
-        });
-        btnAgregarDe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarDeActionPerformed(evt);
-            }
-        });
-        add(btnAgregarDe);
-        btnAgregarDe.setBounds(697, 484, 81, 57);
-
         jLabel1.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(1, 1, 1));
         jLabel1.setText("BUSCAR POR NOMBRE");
@@ -187,7 +170,7 @@ public class C_PedidoDetalle extends javax.swing.JPanel {
         add(jButton1);
         jButton1.setBounds(38, 468, 97, 73);
 
-        cmbSe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estatus", "A", "B", "E" }));
+        cmbSe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estatus", "A Pagado", "C Cancelado", "E En Espera" }));
         cmbSe.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cmbSeMouseClicked(evt);
@@ -289,17 +272,6 @@ public void borrarTabla(JTable tab) {
             
     }//GEN-LAST:event_btnEliDeduccionesActionPerformed
 
-    private void btnAgregarDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDeActionPerformed
-// TODO add your handling code here:
-        C_ADD_PedidoDetalle erp = new C_ADD_PedidoDetalle();
-        erp.setLocationRelativeTo(erp);
-        erp.setVisible(true);
-    }//GEN-LAST:event_btnAgregarDeActionPerformed
-
-    private void btnAgregarDeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarDeMouseClicked
-              // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregarDeMouseClicked
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        //System.out.println(tablaPress.getValueAt(tablaPress.getSelectedRow(), 6));
       //
@@ -350,7 +322,6 @@ public void borrarTabla(JTable tab) {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregarDe;
     public javax.swing.JButton btnConsultar;
     public javax.swing.JButton btnEditarDeducciones;
     public javax.swing.JButton btnEliDeducciones;

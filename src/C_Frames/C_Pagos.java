@@ -222,7 +222,9 @@ public void borrarTabla(JTable tab) {
 
     private void btnAgregarDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDeActionPerformed
 // TODO add your handling code here:
-       
+       C_ADD_Pagos erp = new C_ADD_Pagos();
+        erp.setLocationRelativeTo(erp);
+        erp.setVisible(true);
     }//GEN-LAST:event_btnAgregarDeActionPerformed
 
     private void btnAgregarDeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarDeMouseClicked
