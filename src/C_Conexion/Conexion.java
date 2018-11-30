@@ -128,7 +128,23 @@ public class Conexion {
             return false;
      }
              
-     
+     public void Update_Ped_Det_Total(int idPed){
+         float Total = 0;
+        Sql = "select subtotal from pedidodetalle where idpedido ="+idPed;
+        try {
+            stn=(Statement) con.createStatement();
+            rs=stn.executeQuery(Sql);
+        
+            while(rs.next()){
+                String sub=rs.getString("SUBTOTAL");
+                Total += Float.parseFloat(sub);
+            }
+            SQL("Update Pedidos set totalPagar = "+Total+" where idpedido = "+idPed);
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,ex.getMessage(),"Error Categorias" ,JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
      public void Categorias_Search(String Nombre, JTable tabla){
          DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
         if(Nombre.isEmpty())

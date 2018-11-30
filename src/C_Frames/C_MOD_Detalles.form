@@ -86,12 +86,12 @@
                                       <Component id="lblIdDeduccion3" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="Sub" min="-2" pref="78" max="-2" attributes="0"/>
+                                  <Component id="SubTotal" min="-2" pref="78" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="lblIdDeduccion" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                                  <Component id="Id" min="-2" pref="78" max="-2" attributes="0"/>
+                                  <Component id="IdDet" min="-2" pref="78" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="lblIdDeduccion1" min="-2" max="-2" attributes="0"/>
@@ -112,7 +112,7 @@
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="cmbPed" pref="125" max="32767" attributes="0"/>
                               <Component id="cmbPres" max="32767" attributes="0"/>
-                              <Component id="Acp" alignment="1" pref="125" max="32767" attributes="0"/>
+                              <Component id="CantAcep" alignment="1" pref="125" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
                       </Group>
@@ -127,7 +127,7 @@
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="lblIdDeduccion" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Id" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="IdDet" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cmbPed" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -157,14 +157,14 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="Sub" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="SubTotal" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lblIdDeduccion3" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="Acp" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="CantAcep" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lblIdDeduccion6" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -233,7 +233,7 @@
             <Property name="text" type="java.lang.String" value="SUBTOTAL"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="Id">
+        <Component class="javax.swing.JTextField" name="IdDet">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -321,7 +321,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JTextField" name="Sub">
+        <Component class="javax.swing.JTextField" name="SubTotal">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -332,7 +332,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="SubKeyTyped"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="SubTotalKeyTyped"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -438,7 +438,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JTextField" name="Acp">
+        <Component class="javax.swing.JTextField" name="CantAcep">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="fe" green="fe" red="fe" type="rgb"/>
@@ -448,8 +448,8 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AcpActionPerformed"/>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="AcpKeyTyped"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CantAcepActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="CantAcepKeyTyped"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

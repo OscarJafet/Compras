@@ -28,7 +28,12 @@ public class C_MOD_Detalles extends javax.swing.JFrame {
     C_PedidoDetalle edg;
     public C_MOD_Detalles() {
         initComponents();
-        this.Id.setEditable(false);
+        this.IdDet.setEditable(false);
+        this.IdDet.setEnabled(false);
+        this.cmbPed.setEnabled(false);
+        this.cmbPres.setEnabled(false);
+        this.preCom.setEnabled(false);
+        
         erp = new Conexion();
         edg = new C_PedidoDetalle();
         llenarCombo1();
@@ -88,12 +93,12 @@ public void llenarCombo2(){
         lblIdDeduccion1 = new javax.swing.JLabel();
         lblIdDeduccion2 = new javax.swing.JLabel();
         lblIdDeduccion3 = new javax.swing.JLabel();
-        Id = new javax.swing.JTextField();
+        IdDet = new javax.swing.JTextField();
         preCom = new javax.swing.JTextField();
         CantP = new javax.swing.JTextField();
         btnEliminarDed = new javax.swing.JButton();
         btnAgregarDed = new javax.swing.JButton();
-        Sub = new javax.swing.JTextField();
+        SubTotal = new javax.swing.JTextField();
         cmbPed = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         cmbPres = new javax.swing.JComboBox();
@@ -102,7 +107,7 @@ public void llenarCombo2(){
         CantRec = new javax.swing.JTextField();
         lblIdDeduccion5 = new javax.swing.JLabel();
         CantRech = new javax.swing.JTextField();
-        Acp = new javax.swing.JTextField();
+        CantAcep = new javax.swing.JTextField();
         lblIdDeduccion6 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(254, 254, 254));
@@ -128,9 +133,9 @@ public void llenarCombo2(){
         lblIdDeduccion3.setForeground(new java.awt.Color(1, 1, 1));
         lblIdDeduccion3.setText("SUBTOTAL");
 
-        Id.setEditable(false);
-        Id.setBackground(new java.awt.Color(254, 254, 254));
-        Id.setForeground(new java.awt.Color(1, 1, 1));
+        IdDet.setEditable(false);
+        IdDet.setBackground(new java.awt.Color(254, 254, 254));
+        IdDet.setForeground(new java.awt.Color(1, 1, 1));
 
         preCom.setBackground(new java.awt.Color(254, 254, 254));
         preCom.setForeground(new java.awt.Color(1, 1, 1));
@@ -170,12 +175,12 @@ public void llenarCombo2(){
             }
         });
 
-        Sub.setEditable(false);
-        Sub.setBackground(new java.awt.Color(254, 254, 254));
-        Sub.setForeground(new java.awt.Color(1, 1, 1));
-        Sub.addKeyListener(new java.awt.event.KeyAdapter() {
+        SubTotal.setEditable(false);
+        SubTotal.setBackground(new java.awt.Color(254, 254, 254));
+        SubTotal.setForeground(new java.awt.Color(1, 1, 1));
+        SubTotal.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                SubKeyTyped(evt);
+                SubTotalKeyTyped(evt);
             }
         });
 
@@ -222,16 +227,16 @@ public void llenarCombo2(){
             }
         });
 
-        Acp.setBackground(new java.awt.Color(254, 254, 254));
-        Acp.setForeground(new java.awt.Color(1, 1, 1));
-        Acp.addActionListener(new java.awt.event.ActionListener() {
+        CantAcep.setBackground(new java.awt.Color(254, 254, 254));
+        CantAcep.setForeground(new java.awt.Color(1, 1, 1));
+        CantAcep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AcpActionPerformed(evt);
+                CantAcepActionPerformed(evt);
             }
         });
-        Acp.addKeyListener(new java.awt.event.KeyAdapter() {
+        CantAcep.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                AcpKeyTyped(evt);
+                CantAcepKeyTyped(evt);
             }
         });
 
@@ -268,11 +273,11 @@ public void llenarCombo2(){
                                     .addComponent(lblIdDeduccion2)
                                     .addComponent(lblIdDeduccion3))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Sub, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(SubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblIdDeduccion)
                                 .addGap(45, 45, 45)
-                                .addComponent(Id, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(IdDet, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblIdDeduccion1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -288,7 +293,7 @@ public void llenarCombo2(){
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cmbPed, 0, 125, Short.MAX_VALUE)
                             .addComponent(cmbPres, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Acp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
+                            .addComponent(CantAcep, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
                         .addGap(92, 92, 92))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -298,7 +303,7 @@ public void llenarCombo2(){
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblIdDeduccion)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(IdDet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cmbPed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,12 +325,12 @@ public void llenarCombo2(){
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Sub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblIdDeduccion3)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Acp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CantAcep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblIdDeduccion6))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -359,26 +364,36 @@ public void llenarCombo2(){
  //ing code here:
  
         erp.OpenCon("ERP", "erp");
-       int ID =Integer.parseInt(Id.getText()),idEmp = 0,idPro = 0;
-        float Ped = 0,Com = 0,Re = 0, rec = 0, reci = 0, acp = 0;
+       int ID =Integer.parseInt(IdDet.getText()),idEmp = 0,idPedi = 0;
+        float CPed = 0,Com = 0,sub = 0, rec = 0, reci = 0, acp = 0;
         StringTokenizer idPedido = new StringTokenizer(cmbPed.getItemAt(cmbPed.getSelectedIndex()).toString()," ");
         StringTokenizer idPress = new StringTokenizer(cmbPres.getItemAt(cmbPres.getSelectedIndex()).toString()," ");
         try{
-            Ped = Float.parseFloat(this.CantP.getText());
+            CPed = Float.parseFloat(this.CantP.getText());
             Com = Float.parseFloat(preCom.getText());
-            Re = Float.parseFloat(Sub.getText());
-            idEmp = Integer.parseInt(idPress.nextToken());
-            idPro = Integer.parseInt(idPedido.nextToken());
+            sub = Float.parseFloat(SubTotal.getText());
+            idPedi = Integer.parseInt(idPedido.nextToken());
             rec = Float.parseFloat(CantRech.getText());
             reci = Float.parseFloat(CantRec.getText());
-            acp = Float.parseFloat(Acp.getText());
+            acp = Float.parseFloat(CantAcep.getText());
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         
         }
-        if(Ped > Com)
-       erp.SQL("update PedidoDetalle set precioCompra = "+Com+",cantPedida = "+Ped+", cantRecibida = "+Re+", idPresentacion = "+idEmp+", idPedido = "+idPro+",cantRechazada = "+rec+", cantAceptada = "+reci+" where idPedidoDetalle = "+ID+"");
-    
+        if(reci > 0 && (reci == (acp+rec))){
+            sub = acp*Com;
+            if(JOptionPane.showConfirmDialog(null, "¿Deseá guardar las modificaciones?\nsub total = "+sub,"Informacion",
+        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                erp.SQL("Update PedidoDetalle set  subtotal = "+sub+", cantrecibida = "+reci+",cantrechazada = "+rec+", cantaceptada = "+acp+" where idpedidodetalle = "+ID);
+                erp.Update_Ped_Det_Total(idPedi);
+              }else{
+                JOptionPane.showMessageDialog(null,"No Modificado","Infromación" ,JOptionPane.INFORMATION_MESSAGE);
+            }
+            
+        }else{
+            JOptionPane.showMessageDialog(null,"Por favor revise si sus datos son correctos","Datos no congruentes", JOptionPane.INFORMATION_MESSAGE);
+        }
+       
     }//GEN-LAST:event_btnAgregarDedActionPerformed
 
     private void btnEliminarDedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDedActionPerformed
@@ -414,12 +429,12 @@ public void llenarCombo2(){
             evt.consume();
     }//GEN-LAST:event_CantPKeyTyped
 
-    private void SubKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SubKeyTyped
+    private void SubTotalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SubTotalKeyTyped
         // TODO add your handling code here:
         char c=evt.getKeyChar();
         if((c<'0' || c>'9')&& (c>'.' || c<'.'))
             evt.consume();
-    }//GEN-LAST:event_SubKeyTyped
+    }//GEN-LAST:event_SubTotalKeyTyped
 
     private void CantRecKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CantRecKeyTyped
         // TODO add your handling code here:
@@ -446,20 +461,20 @@ public void llenarCombo2(){
         // TODO add your handling code here:
     }//GEN-LAST:event_CantRechActionPerformed
 
-    private void AcpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcpActionPerformed
+    private void CantAcepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CantAcepActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_AcpActionPerformed
+    }//GEN-LAST:event_CantAcepActionPerformed
 
-    private void AcpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AcpKeyTyped
+    private void CantAcepKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CantAcepKeyTyped
         // TODO add your handling code here:
         //Acp
                           char c=evt.getKeyChar();
-        if(Acp.getText().contains(".")){
+        if(CantAcep.getText().contains(".")){
             if(c<'0'||c>'9')
                 evt.consume();
         }else if((c<'0' || c>'9')&& (c>'.' || c<'.'))
             evt.consume();
-    }//GEN-LAST:event_AcpKeyTyped
+    }//GEN-LAST:event_CantAcepKeyTyped
 
     /**
      * @param args the command line arguments
@@ -512,12 +527,12 @@ public void llenarCombo2(){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTextField Acp;
+    public javax.swing.JTextField CantAcep;
     public javax.swing.JTextField CantP;
     public javax.swing.JTextField CantRec;
     public javax.swing.JTextField CantRech;
-    public javax.swing.JTextField Id;
-    public javax.swing.JTextField Sub;
+    public javax.swing.JTextField IdDet;
+    public javax.swing.JTextField SubTotal;
     public javax.swing.JButton btnAgregarDed;
     public javax.swing.JButton btnEliminarDed;
     public javax.swing.JComboBox cmbPed;
