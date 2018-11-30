@@ -202,8 +202,8 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         C_Lab1.setBackground(new java.awt.Color(255, 255, 255));
-        C_Lab1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Lab.png"))); // NOI18N
-        C_Lab1.setToolTipText("LABORATORIOS");
+        C_Lab1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ImagP.png"))); // NOI18N
+        C_Lab1.setToolTipText("IMAGENES");
         C_Lab1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 C_Lab1ActionPerformed(evt);
@@ -211,8 +211,8 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         C_Lab2.setBackground(new java.awt.Color(255, 255, 255));
-        C_Lab2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Lab.png"))); // NOI18N
-        C_Lab2.setToolTipText("LABORATORIOS");
+        C_Lab2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Contact.png"))); // NOI18N
+        C_Lab2.setToolTipText("CONTACTOS");
         C_Lab2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 C_Lab2ActionPerformed(evt);
@@ -220,8 +220,8 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         C_Lab3.setBackground(new java.awt.Color(255, 255, 255));
-        C_Lab3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Lab.png"))); // NOI18N
-        C_Lab3.setToolTipText("LABORATORIOS");
+        C_Lab3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Cuentas.png"))); // NOI18N
+        C_Lab3.setToolTipText("CUENTAS");
         C_Lab3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 C_Lab3ActionPerformed(evt);
@@ -229,8 +229,8 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         C_Lab4.setBackground(new java.awt.Color(255, 255, 255));
-        C_Lab4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Lab.png"))); // NOI18N
-        C_Lab4.setToolTipText("LABORATORIOS");
+        C_Lab4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Pagos.png"))); // NOI18N
+        C_Lab4.setToolTipText("PAGOS");
         C_Lab4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 C_Lab4ActionPerformed(evt);

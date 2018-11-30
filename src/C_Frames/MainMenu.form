@@ -400,9 +400,9 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/Lab.png"/>
+              <Image iconType="3" name="/Imagenes/ImagP.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="LABORATORIOS"/>
+            <Property name="toolTipText" type="java.lang.String" value="IMAGENES"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C_Lab1ActionPerformed"/>
@@ -414,9 +414,9 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/Lab.png"/>
+              <Image iconType="3" name="/Imagenes/Contact.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="LABORATORIOS"/>
+            <Property name="toolTipText" type="java.lang.String" value="CONTACTOS"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C_Lab2ActionPerformed"/>
@@ -428,9 +428,9 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/Lab.png"/>
+              <Image iconType="3" name="/Imagenes/Cuentas.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="LABORATORIOS"/>
+            <Property name="toolTipText" type="java.lang.String" value="CUENTAS"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C_Lab3ActionPerformed"/>
@@ -442,9 +442,9 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/Lab.png"/>
+              <Image iconType="3" name="/Imagenes/Pagos.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="LABORATORIOS"/>
+            <Property name="toolTipText" type="java.lang.String" value="PAGOS"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C_Lab4ActionPerformed"/>
