@@ -26,6 +26,8 @@ public class C_Laboratorios extends javax.swing.JPanel {
     public C_Laboratorios() {
         initComponents();
         erp = new Conexion();
+        erp.OpenCon("ERP", "erp");
+        erp.Lab_Search(C_Laboratorios_txfLab.getText(), tblLab);
     }
  
     
@@ -61,6 +63,11 @@ public class C_Laboratorios extends javax.swing.JPanel {
                 C_Laboratorios_txfLabActionPerformed(evt);
             }
         });
+        C_Laboratorios_txfLab.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                C_Laboratorios_txfLabKeyReleased(evt);
+            }
+        });
 
         btnConsEstados.setBackground(new java.awt.Color(254, 254, 254));
         btnConsEstados.setForeground(new java.awt.Color(254, 254, 254));
@@ -94,6 +101,9 @@ public class C_Laboratorios extends javax.swing.JPanel {
         tblLab.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblLabMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tblLabMouseEntered(evt);
             }
         });
         jScrollPane1.setViewportView(tblLab);
@@ -188,7 +198,7 @@ public class C_Laboratorios extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(C_Laboratorios_txfLab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(C_Laboratorios_txfLab, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))))
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -250,13 +260,13 @@ public void borrarTabla(JTable tab) {
         int con=tblLab.getSelectedRow();
         
         if (con>=0){
-        String a=(String) tblLab.getValueAt(tblLab.getSelectedRow(),0);
-        String b=(String) tblLab.getValueAt(tblLab.getSelectedRow(),1);
-        String c=(String) tblLab.getValueAt(tblLab.getSelectedRow(),2);
+        String a=(String) tblLab.getValueAt(tblLab.getSelectedRow(),1);
+        String b=(String) tblLab.getValueAt(tblLab.getSelectedRow(),2);
+        
         
         C_MOD_Laboratorios lab=new C_MOD_Laboratorios();
         lab.setLocationRelativeTo(lab);
-        lab.Datos(a, b, c);
+        lab.Datos(a, b);
         lab.setVisible(true);
         int ID = 0;
         try{
@@ -296,20 +306,35 @@ public void borrarTabla(JTable tab) {
     }//GEN-LAST:event_C_Laboratorios_txfLabActionPerformed
 
     private void tblLabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLabMouseClicked
-        String a=(String) tblLab.getValueAt(tblLab.getSelectedRow(),0);
-        String b=(String) tblLab.getValueAt(tblLab.getSelectedRow(),1);
-        String c=(String) tblLab.getValueAt(tblLab.getSelectedRow(),2);
+        String a=(String) tblLab.getValueAt(tblLab.getSelectedRow(),1);
+        String b=(String) tblLab.getValueAt(tblLab.getSelectedRow(),2); 
         
-                       
          if (evt.getClickCount()==2){
+         int ID;
+         ID= Integer.parseInt(tblLab.getValueAt(tblLab.getSelectedRow(),0)+"");
+         
          C_MOD_Laboratorios lab= new C_MOD_Laboratorios();
          lab.setLocationRelativeTo(lab);
-         lab.Datos(a, b, c);
+         lab.txfIdLab.setText(ID+"");
+         lab.Datos(a, b);
          lab.setVisible(true);
          }
 
         
     }//GEN-LAST:event_tblLabMouseClicked
+
+    private void tblLabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLabMouseEntered
+       borrarTabla(tblLab);
+       erp.OpenCon("ERP", "erp");
+       erp.Lab_Search(C_Laboratorios_txfLab.getText(), tblLab);
+ 
+    }//GEN-LAST:event_tblLabMouseEntered
+
+    private void C_Laboratorios_txfLabKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_Laboratorios_txfLabKeyReleased
+      borrarTabla(tblLab);
+      erp.OpenCon("ERP", "erp");
+      erp.Lab_Search(C_Laboratorios_txfLab.getText(), tblLab);
+    }//GEN-LAST:event_C_Laboratorios_txfLabKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

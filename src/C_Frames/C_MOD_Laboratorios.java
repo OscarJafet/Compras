@@ -28,10 +28,10 @@ public class C_MOD_Laboratorios extends javax.swing.JFrame {
     }
     
     
-         public void Datos(String a, String b,String c){
-           txfIdLab.setText(a);
-           txfNom.setText(b);
-           txfOrigen.setText(c);
+         public void Datos(String a, String b){
+           
+           txfNom.setText(a);
+           txfOrigen.setText(b);
            
     }
 
@@ -48,13 +48,11 @@ public class C_MOD_Laboratorios extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         txfNom = new javax.swing.JTextField();
         txfOrigen = new javax.swing.JTextField();
         btnAgrefarEstados = new javax.swing.JButton();
         txfIdLab = new javax.swing.JTextField();
-        cmb = new javax.swing.JComboBox<String>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(254, 254, 254));
@@ -77,11 +75,6 @@ public class C_MOD_Laboratorios extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(1, 1, 1));
         jLabel3.setText("ORIGEN");
-
-        jLabel4.setBackground(new java.awt.Color(254, 254, 254));
-        jLabel4.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel4.setText("ESTATUS");
 
         jButton1.setBackground(new java.awt.Color(254, 254, 254));
         jButton1.setForeground(new java.awt.Color(254, 254, 254));
@@ -125,13 +118,6 @@ public class C_MOD_Laboratorios extends javax.swing.JFrame {
         txfIdLab.setBackground(new java.awt.Color(253, 239, 239));
         txfIdLab.setForeground(new java.awt.Color(1, 1, 1));
 
-        cmb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Estado", "A", "B" }));
-        cmb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -148,13 +134,9 @@ public class C_MOD_Laboratorios extends javax.swing.JFrame {
                             .addComponent(txfNom, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txfIdLab, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(22, 22, 22)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmb, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txfOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel3)
+                        .addGap(32, 32, 32)
+                        .addComponent(txfOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 140, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -178,18 +160,10 @@ public class C_MOD_Laboratorios extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txfOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(cmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(btnAgrefarEstados, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnAgrefarEstados, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -211,13 +185,17 @@ public class C_MOD_Laboratorios extends javax.swing.JFrame {
        erp.OpenCon("ERP", "erp");
        String n= txfNom.getText();
        String o= txfOrigen.getText();
-       int es= cmb.getSelectedIndex();
-       if (!n.isEmpty()&&!o.isEmpty()&& es!=0){
+      
+       if (!n.isEmpty()&&!o.isEmpty()){
+       erp.OpenCon("ERP", "erp");
        int ID = Integer.parseInt(txfIdLab.getText()+"");
-       erp.SQL("update Laboratorios set nombre = '"+txfNom.getText()+"', estatus = '"+cmb.getItemAt(cmb.getSelectedIndex()).charAt(0)+"',origen = '"+txfOrigen.getText()+"' where idLaboratorio = "+ID);
+       erp.SQL("update Laboratorios set "
+               + "nombre = '"+txfNom.getText()+"',"
+               + "origen = '"+txfOrigen.getText()+"'"
+               + "where idLaboratorio = "+ID);
               }
        else{
-           JOptionPane.showMessageDialog(null,"No se permiten campos vacios o estatus sin asignar","Error" ,JOptionPane.INFORMATION_MESSAGE);
+           JOptionPane.showMessageDialog(null,"No se permiten campos vacios","Error" ,JOptionPane.INFORMATION_MESSAGE);
        }
     }//GEN-LAST:event_btnAgrefarEstadosActionPerformed
 
@@ -231,10 +209,6 @@ public class C_MOD_Laboratorios extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void cmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbActionPerformed
 
     private void txfOrigenKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfOrigenKeyTyped
                 char c=evt.getKeyChar();
@@ -281,12 +255,10 @@ public class C_MOD_Laboratorios extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnAgrefarEstados;
-    private javax.swing.JComboBox<String> cmb;
     public javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JTextField txfIdLab;
     public javax.swing.JTextField txfNom;

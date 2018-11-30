@@ -38,12 +38,10 @@ public class C_ADD_Unidad extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         txfNombrePerce = new javax.swing.JTextField();
         txfSiglas = new javax.swing.JTextField();
         btnLimpiarPerce = new javax.swing.JButton();
         btnAgregarPerce = new javax.swing.JButton();
-        cmb = new javax.swing.JComboBox<String>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(254, 254, 254));
@@ -59,10 +57,6 @@ public class C_ADD_Unidad extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(1, 1, 1));
         jLabel3.setText("SIGLAS");
-
-        jLabel4.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel4.setText("ESTATUS");
 
         txfNombrePerce.setBackground(new java.awt.Color(254, 254, 254));
         txfNombrePerce.setForeground(new java.awt.Color(1, 1, 1));
@@ -101,8 +95,6 @@ public class C_ADD_Unidad extends javax.swing.JFrame {
             }
         });
 
-        cmb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Estado", "A", "B" }));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -112,18 +104,12 @@ public class C_ADD_Unidad extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(cmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addGap(22, 22, 22)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txfSiglas, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txfNombrePerce, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txfSiglas, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txfNombrePerce, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 243, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -143,15 +129,11 @@ public class C_ADD_Unidad extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txfSiglas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(cmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnAgregarPerce)
                     .addComponent(btnLimpiarPerce, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -175,12 +157,11 @@ public class C_ADD_Unidad extends javax.swing.JFrame {
     private void btnAgregarPerceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPerceActionPerformed
         String n= txfNombrePerce.getText();
         String s= txfSiglas.getText();
-        int es= cmb.getSelectedIndex();
         erp.OpenCon("ERP", "erp");
-        if (!n.isEmpty()&&!s.isEmpty()&& es!=0){
-        erp.SQL("insert into UnidadMedida values (ERP.UniID.nextval,'"+txfNombrePerce.getText()+"', '"+txfSiglas.getText()+"', '"+cmb.getItemAt(cmb.getSelectedIndex()).charAt(0)+"')");
+        if (!n.isEmpty()&&!s.isEmpty()){
+        erp.SQL("insert into UnidadMedida values (ERP.UniID.nextval,'"+txfNombrePerce.getText()+"', '"+txfSiglas.getText()+"','A')");
         }else{
-           JOptionPane.showMessageDialog(null,"No se permiten campos vacios o estatus sin asignar","Error" ,JOptionPane.INFORMATION_MESSAGE);
+           JOptionPane.showMessageDialog(null,"No se permiten campos vacios","Error" ,JOptionPane.INFORMATION_MESSAGE);
        }
     }//GEN-LAST:event_btnAgregarPerceActionPerformed
 
@@ -193,7 +174,7 @@ public class C_ADD_Unidad extends javax.swing.JFrame {
 
     private void txfSiglasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfSiglasKeyTyped
                 char c=evt.getKeyChar();
-        if((c<'a' || c>'z')&&(c<'A' || c>'Z')){
+        if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c!='.'||txfSiglas.getText().contains("."))){
             evt.consume();
         }        // TODO add your handling code here:
     }//GEN-LAST:event_txfSiglasKeyTyped
@@ -239,10 +220,8 @@ public class C_ADD_Unidad extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarPerce;
     private javax.swing.JButton btnLimpiarPerce;
-    private javax.swing.JComboBox<String> cmb;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txfNombrePerce;
     private javax.swing.JTextField txfSiglas;

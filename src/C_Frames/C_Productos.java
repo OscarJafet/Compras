@@ -195,7 +195,8 @@ public class C_Productos extends javax.swing.JPanel {
             }
         }else {
             JOptionPane.showMessageDialog(null,"Seleccione un producto","Error" ,JOptionPane.INFORMATION_MESSAGE);
-        }       //confirma eliminacion
+        }
+        btnConsultarProducto.doClick();//confirma eliminacion
     }//GEN-LAST:event_btnEliminarProductoActionPerformed
 public void borrarTabla(JTable tab) {
         try {

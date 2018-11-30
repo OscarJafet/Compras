@@ -37,12 +37,14 @@ public class C_MOD_ProductosProveedor extends javax.swing.JFrame {
         erp = new Conexion();
         this.txfProveedor.setEditable(false);
         this.txfPresentacion.setEditable(false);
+        this.txfProducto.setEditable(false);
 
     }
-           public void Datos(String a, String b,String c, String e,String f, String h, String i){
+           public void Datos(String a, String b,String c, String e,String f, String h, String i,String d){
            txfProveedor.setText(a);
            txfPresentacion.setText(b);
            txfDias.setText(c);
+           txfProducto.setText(d);
            txfPrecioEs.setText(e);
            txfPrecioUl.setText(f);
            txfCantMin.setText(h);
@@ -74,6 +76,8 @@ public class C_MOD_ProductosProveedor extends javax.swing.JFrame {
         txfCantMin = new javax.swing.JTextField();
         txfCantMax = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txfProducto = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(254, 254, 254));
@@ -174,6 +178,14 @@ public class C_MOD_ProductosProveedor extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(1, 1, 1));
         jLabel11.setText("CANTIDAD MAXIMA A PEDIR");
 
+        jLabel3.setBackground(new java.awt.Color(254, 254, 254));
+        jLabel3.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel3.setText("PROVEEDOR");
+
+        txfProducto.setBackground(new java.awt.Color(253, 239, 239));
+        txfProducto.setForeground(new java.awt.Color(1, 1, 1));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -190,35 +202,38 @@ public class C_MOD_ProductosProveedor extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel3))
                         .addGap(66, 66, 66)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txfPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txfProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel9)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel8))
-                                        .addGap(12, 12, 12))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel10)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txfDias, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
-                                    .addComponent(txfPrecioUl)
-                                    .addComponent(txfPrecioEs)
-                                    .addComponent(txfCantMin)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txfCantMax, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(212, Short.MAX_VALUE))))
+                                .addComponent(txfProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txfProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel9)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel8))
+                                    .addGap(12, 12, 12))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel10)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txfDias, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                                .addComponent(txfPrecioUl)
+                                .addComponent(txfPrecioEs)
+                                .addComponent(txfCantMin)))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel11)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txfCantMax, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,7 +241,9 @@ public class C_MOD_ProductosProveedor extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txfProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txfProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(txfProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -316,7 +333,7 @@ public class C_MOD_ProductosProveedor extends javax.swing.JFrame {
         int max= Integer.parseInt(u);
             if(max>=min)
             {
-       erp.SQL("update ProductosProveedor set diasretardo ="
+                erp.SQL("update ProductosProveedor set diasretardo ="
                 +""+txfDias.getText()+","
                 +"precioestandar ="+txfPrecioEs.getText()+","
                 +"precioultimacompra ="+txfPrecioUl.getText()+","
@@ -333,20 +350,6 @@ public class C_MOD_ProductosProveedor extends javax.swing.JFrame {
                 else {
             JOptionPane.showMessageDialog(null,"No se permiten campos vacios ","Error" ,JOptionPane.INFORMATION_MESSAGE);
         }     
-//                pro.borrarTabla(pro.tblProPro);
-    
-        try {
-            erp.OpenCon("ERP","erp");
-            erp.ProductoProveedor_Search(" ", pro.tblProPro);
-            pro.repaint();
-        }catch(Exception e){
-            Logger.getLogger(C_MOD_ProductosProveedor.class.getName()).log(Level.SEVERE, null, e);
-        }
-//            pro.borrarTabla(pro.tblProPro);
-//            erp.OpenCon("ERP", "erp");
-//            erp.ProductoProveedor_Search(" ",pro.tblProPro);
-//            pro.tblProPro.setVisible(false);
-   
     }//GEN-LAST:event_btnAgrefarEstadosActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -437,6 +440,7 @@ public class C_MOD_ProductosProveedor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -447,6 +451,7 @@ public class C_MOD_ProductosProveedor extends javax.swing.JFrame {
     private javax.swing.JTextField txfPrecioEs;
     private javax.swing.JTextField txfPrecioUl;
     private javax.swing.JTextField txfPresentacion;
+    public javax.swing.JTextField txfProducto;
     public javax.swing.JTextField txfProveedor;
     // End of variables declaration//GEN-END:variables
 }

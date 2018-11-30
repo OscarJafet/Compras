@@ -70,6 +70,14 @@ public class C_ExistenciaSucursal extends javax.swing.JPanel {
 
         C_Categorias_txfBuscar.setBackground(new java.awt.Color(254, 254, 254));
         C_Categorias_txfBuscar.setForeground(new java.awt.Color(1, 1, 1));
+        C_Categorias_txfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                C_Categorias_txfBuscarKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                C_Categorias_txfBuscarKeyTyped(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(254, 254, 254));
         jButton1.setForeground(new java.awt.Color(254, 254, 254));
@@ -86,11 +94,11 @@ public class C_ExistenciaSucursal extends javax.swing.JPanel {
 
             },
             new String [] {
-                "IDP", "IDS", "Nombre", "Precio de venta", "Reorden", "Cantidad", "Producto", "Empaque"
+                "IDP", "Nombre Presentacion", "IDS", "Nombre Sucursal", "Precio de venta", "Reorden", "Cantidad", "Producto", "Empaque", "Estatus"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -98,6 +106,14 @@ public class C_ExistenciaSucursal extends javax.swing.JPanel {
             }
         });
         C_ExistenciaSucursal_tabla.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        C_ExistenciaSucursal_tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                C_ExistenciaSucursal_tablaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                C_ExistenciaSucursal_tablaMouseEntered(evt);
+            }
+        });
         jScrollPane1.setViewportView(C_ExistenciaSucursal_tabla);
 
         btnNuevo.setBackground(new java.awt.Color(254, 254, 254));
@@ -208,17 +224,17 @@ public void borrarTabla(JTable tab) {
       erp.OpenCon("ERP", "erp");
       String a=C_Categorias_txfBuscar.getText();
       if(a.isEmpty()){
-           Sql = "select es.idpresentacion,es.idsucursal,sc.NOMBRE, pp.PRECIOVENTA, pp.PUNTOREORDEN,es.cantidad, pt.NOMBRE as NOM,em.NOMBRE as NO from EXISTENCIASUCURSAL es inner join SUCURSAL sc \n" +
+           Sql = "select es.idpresentacion,es.idsucursal,sc.NOMBRE, pp.PRECIOVENTA,pp.nombre as nomb, pp.PUNTOREORDEN,es.cantidad,es.estatus, pt.NOMBRE as NOM,em.NOMBRE as NO from EXISTENCIASUCURSAL es inner join SUCURSAL sc \n" +
 "                    on sc.IDSUCURSAL=es.IDSUCURSAL inner join\n" +
 "                     PRESENTACIONESPRODUCTO pp on pp.IDPRESENTACION=es.IDPRESENTACION inner \n" +
-"                    join PRODUCTOS pt on pt.idproducto=pp.idproducto inner join empaques em on em.idempaque=pp.idempaque";
+"                    join PRODUCTOS pt on pt.idproducto=pp.idproducto inner join empaques em on em.idempaque=pp.idempaque where es.estatus='A'";
         
       erp.ExistenciaSucursal_search(C_ExistenciaSucursal_tabla,Sql);}else{
           
-            Sql = "select es.IDSUCURSAL,es.IDPRESENTACION,sc.NOMBRE, pp.PRECIOVENTA, pp.PUNTOREORDEN,es.cantidad, pt.NOMBRE as NOM,em.NOMBRE as NO from EXISTENCIASUCURSAL es inner join SUCURSAL sc "
+            Sql = "select es.IDSUCURSAL,es.IDPRESENTACION,sc.NOMBRE, pp.PRECIOVENTA,pp.nombre as nomb, pp.PUNTOREORDEN,es.cantidad,es.estatus, pt.NOMBRE as NOM,em.NOMBRE as NO from EXISTENCIASUCURSAL es inner join SUCURSAL sc "
                     + "on sc.IDSUCURSAL=es.IDSUCURSAL inner join"
                     + " PRESENTACIONESPRODUCTO pp on pp.IDPRESENTACION=es.IDPRESENTACION inner "
-                    + "join PRODUCTOS pt on pt.idproducto=pp.idproducto inner join empaques em on em.idempaque=pp.idempaque where sc.nombre = '"+a.toString()+"'";
+                    + "join PRODUCTOS pt on pt.idproducto=pp.idproducto inner join empaques em on em.idempaque=pp.idempaque where sc.nombre like '"+a.toString()+"%'";
         
       erp.ExistenciaSucursal_search_nombre(C_ExistenciaSucursal_tabla,Sql);
       }
@@ -237,67 +253,102 @@ public void borrarTabla(JTable tab) {
    if(C_ExistenciaSucursal_tabla.getSelectedRow()>-1){
   
    idp=Integer.parseInt(C_ExistenciaSucursal_tabla.getValueAt(C_ExistenciaSucursal_tabla.getSelectedRow(), 0).toString() );
-                  ids=  Integer.parseInt(C_ExistenciaSucursal_tabla.getValueAt(C_ExistenciaSucursal_tabla.getSelectedRow(), 1).toString());
+                  ids=  Integer.parseInt(C_ExistenciaSucursal_tabla.getValueAt(C_ExistenciaSucursal_tabla.getSelectedRow(), 2).toString());
                    
        
         //confirma eliminacion
         int dialogButton = JOptionPane.YES_NO_OPTION;
             JOptionPane.showConfirmDialog (null, "Desea eliminar","Informacion", dialogButton);
             if(dialogButton == JOptionPane.YES_OPTION) {
-                erp.SQL("delete existenciasucursal where idpresentacion="+idp+" and idsucursal="
+                erp.SQL("update existenciasucursal set estatus='B' where idpresentacion="+idp+" and idsucursal="
                         + ids);
             if(dialogButton == JOptionPane.NO_OPTION) {
                   remove(dialogButton);
                 }
-              }}else{ JOptionPane.showMessageDialog(null, "Selecione un renglon");}
-       borrarTabla(C_ExistenciaSucursal_tabla);
-      String Sql = "select es.IDSUCURSAL,es.IDPRESENTACION,sc.NOMBRE, pp.PRECIOVENTA, pp.PUNTOREORDEN,es.cantidad, pt.NOMBRE as NOM,em.NOMBRE as NO from "
-                  + "EXISTENCIASUCURSAL es inner join SUCURSAL sc "
-                    + "on sc.IDSUCURSAL=es.IDSUCURSAL inner join"
-                    + " PRESENTACIONESPRODUCTO pp on pp.IDPRESENTACION=es.IDPRESENTACION inner "
-                    + "join PRODUCTOS pt on pt.idproducto=pp.idproducto inner join empaques em on em.idempaque=pp.idempaque";
-          erp.OpenCon("ERP","erp");
-          erp.ExistenciaSucursal_search_claves(C_ExistenciaSucursal_tabla, Sql);   
-          
-          C_ExistenciaSucursal_tabla.setVisible(false);
-          C_ExistenciaSucursal_tabla.setVisible(true);
+              }}else{ JOptionPane.showMessageDialog(null, "Seleccione una existencia");}
+              btnBuscar.doClick();
+//       borrarTabla(C_ExistenciaSucursal_tabla);
+//      String Sql = "select es.IDSUCURSAL,es.IDPRESENTACION,sc.NOMBRE, pp.PRECIOVENTA, pp.PUNTOREORDEN,es.cantidad, pt.NOMBRE as NOM,em.NOMBRE as NO from "
+//                  + "EXISTENCIASUCURSAL es inner join SUCURSAL sc "
+//                    + "on sc.IDSUCURSAL=es.IDSUCURSAL inner join"
+//                    + " PRESENTACIONESPRODUCTO pp on pp.IDPRESENTACION=es.IDPRESENTACION inner "
+//                    + "join PRODUCTOS pt on pt.idproducto=pp.idproducto inner join empaques em on em.idempaque=pp.idempaque";
+//          erp.OpenCon("ERP","erp");
+//          erp.ExistenciaSucursal_search_claves(C_ExistenciaSucursal_tabla, Sql);   
+//          
+//          C_ExistenciaSucursal_tabla.setVisible(false);
+//          C_ExistenciaSucursal_tabla.setVisible(true);
         
                 //
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-       C_MOD_ExistenciaSucursal edg = new C_MOD_ExistenciaSucursal();
+                int con=C_ExistenciaSucursal_tabla.getSelectedRow();
+        if (con>=0){
+        String a=(String) C_ExistenciaSucursal_tabla.getValueAt(C_ExistenciaSucursal_tabla.getSelectedRow(),0);
+        String b=(String) C_ExistenciaSucursal_tabla.getValueAt(C_ExistenciaSucursal_tabla.getSelectedRow(),1);
+        String c=(String) C_ExistenciaSucursal_tabla.getValueAt(C_ExistenciaSucursal_tabla.getSelectedRow(),2);
+        String ce=(String)C_ExistenciaSucursal_tabla.getValueAt(C_ExistenciaSucursal_tabla.getSelectedRow(),3);
+        String f=(String) C_ExistenciaSucursal_tabla.getValueAt(C_ExistenciaSucursal_tabla.getSelectedRow(),6);
+
         
-         if(C_ExistenciaSucursal_tabla.getSelectedRow() > -1){
-           int a= C_ExistenciaSucursal_tabla.getSelectedRow();
-           
-    String b =   (String) C_ExistenciaSucursal_tabla.getValueAt(C_ExistenciaSucursal_tabla.getSelectedRow(), 0).toString();
         
-           edg.r=a;
-           edg.setLocationRelativeTo(edg);
-         edg.setVisible(true);
-        }else{
-             edg.r=-1;
-         edg.setLocationRelativeTo(edg);
-        edg.setVisible(true);
-         }
-        borrarTabla(C_ExistenciaSucursal_tabla);
+        C_MOD_ExistenciaSucursal pro =new C_MOD_ExistenciaSucursal();
+        pro.setLocationRelativeTo(pro);
+        pro.Datos(a, b, c, ce, f);
+        pro.setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null,"Seleccione una existencia","Error" ,JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-           borrarTabla(C_ExistenciaSucursal_tabla);
-      String Sql = "select es.IDSUCURSAL,es.IDPRESENTACION,sc.NOMBRE, pp.PRECIOVENTA, pp.PUNTOREORDEN,es.cantidad, pt.NOMBRE as NOM,em.NOMBRE as NO from "
-                  + "EXISTENCIASUCURSAL es inner join SUCURSAL sc "
-                    + "on sc.IDSUCURSAL=es.IDSUCURSAL inner join"
-                    + " PRESENTACIONESPRODUCTO pp on pp.IDPRESENTACION=es.IDPRESENTACION inner "
-                    + "join PRODUCTOS pt on pt.idproducto=pp.idproducto inner join empaques em on em.idempaque=pp.idempaque";
-          erp.OpenCon("ERP","erp");
-          erp.ExistenciaSucursal_search_claves(C_ExistenciaSucursal_tabla, Sql);   
-          
-          C_ExistenciaSucursal_tabla.setVisible(false);
-          C_ExistenciaSucursal_tabla.setVisible(true);
+//           borrarTabla(C_ExistenciaSucursal_tabla);
+//      String Sql = "select es.IDSUCURSAL,es.IDPRESENTACION,sc.NOMBRE, pp.PRECIOVENTA, pp.PUNTOREORDEN,es.cantidad, pt.NOMBRE as NOM,em.NOMBRE as NO from "
+//                  + "EXISTENCIASUCURSAL es inner join SUCURSAL sc "
+//                    + "on sc.IDSUCURSAL=es.IDSUCURSAL inner join"
+//                    + " PRESENTACIONESPRODUCTO pp on pp.IDPRESENTACION=es.IDPRESENTACION inner "
+//                    + "join PRODUCTOS pt on pt.idproducto=pp.idproducto inner join empaques em on em.idempaque=pp.idempaque";
+//          erp.OpenCon("ERP","erp");
+//          erp.ExistenciaSucursal_search_claves(C_ExistenciaSucursal_tabla, Sql);   
+//          
+//          C_ExistenciaSucursal_tabla.setVisible(false);
+//          C_ExistenciaSucursal_tabla.setVisible(true);
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void C_Categorias_txfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_Categorias_txfBuscarKeyReleased
+        btnBuscar.doClick();        // TODO add your handling code here:
+    }//GEN-LAST:event_C_Categorias_txfBuscarKeyReleased
+
+    private void C_Categorias_txfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_Categorias_txfBuscarKeyTyped
+                char c=evt.getKeyChar();
+        if((c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')){
+            evt.consume();
+        }          // TODO add your handling code here:
+    }//GEN-LAST:event_C_Categorias_txfBuscarKeyTyped
+
+    private void C_ExistenciaSucursal_tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C_ExistenciaSucursal_tablaMouseClicked
+                String a=(String) C_ExistenciaSucursal_tabla.getValueAt(C_ExistenciaSucursal_tabla.getSelectedRow(),0);
+        String b=(String) C_ExistenciaSucursal_tabla.getValueAt(C_ExistenciaSucursal_tabla.getSelectedRow(),1);
+        String c=(String) C_ExistenciaSucursal_tabla.getValueAt(C_ExistenciaSucursal_tabla.getSelectedRow(),2);
+        String ce=(String)C_ExistenciaSucursal_tabla.getValueAt(C_ExistenciaSucursal_tabla.getSelectedRow(),3);
+        String f=(String) C_ExistenciaSucursal_tabla.getValueAt(C_ExistenciaSucursal_tabla.getSelectedRow(),6);
+
+        
+        if(evt.getClickCount()==2){
+        C_MOD_ExistenciaSucursal pro =new C_MOD_ExistenciaSucursal();
+        pro.setLocationRelativeTo(pro);
+        pro.Datos(a, b, c, ce, f);
+        pro.setVisible(true);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_C_ExistenciaSucursal_tablaMouseClicked
+
+    private void C_ExistenciaSucursal_tablaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C_ExistenciaSucursal_tablaMouseEntered
+        btnBuscar.doClick();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_C_ExistenciaSucursal_tablaMouseEntered
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
