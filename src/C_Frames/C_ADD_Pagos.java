@@ -99,6 +99,11 @@ public class C_ADD_Pagos extends javax.swing.JFrame {
         cmbFp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione forma de pago            " }));
 
         SelectP.setText("Selecione pedido");
+        SelectP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SelectPActionPerformed(evt);
+            }
+        });
 
         jLabel4.setBackground(new java.awt.Color(254, 254, 254));
         jLabel4.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
@@ -242,6 +247,20 @@ public class C_ADD_Pagos extends javax.swing.JFrame {
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
        
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void SelectPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectPActionPerformed
+        // TODO add your handling code here:
+        /* select P.idPedido,p.fecharegistro,p.fecharecepcion,p.totalpagar,
+ p.cantidadpagada,p.estatus, c.idproveedor,c.nombre
+ from Pedidos P inner join Proveedores c on p.idproveedor = c.idproveedor 
+ where p.estatus = 'A';
+        el id de pedido lo tomo y consulto en detalles
+ select idPedidoDetalle, cantPedida,precioCompra,subtotal,
+ cantRecibida,cantRechazada,cantAceptada from PedidoDetalle where idPedido = n*/
+        C_Select_Pedido erp = new C_Select_Pedido();
+        erp.setLocationRelativeTo(erp);
+        erp.setVisible(true);
+    }//GEN-LAST:event_SelectPActionPerformed
 
     /**
      * @param args the command line arguments
