@@ -92,7 +92,7 @@ public class C_CuentasProveedor extends javax.swing.JPanel {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, true
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -177,21 +177,21 @@ public class C_CuentasProveedor extends javax.swing.JPanel {
     }//GEN-LAST:event_txfConsultarActionPerformed
 
     private void btnAgregarCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCuentasActionPerformed
-        C_ADD_ProductosProveedor erp = new C_ADD_ProductosProveedor();
+        C_ADD_CuentasProveedor erp = new C_ADD_CuentasProveedor();
         erp.setLocationRelativeTo(erp);
         erp.setVisible(true);
     }//GEN-LAST:event_btnAgregarCuentasActionPerformed
 
     private void btnEliminarCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCuentasActionPerformed
-        int idcuenta=0;
+        String idcuenta;
         int con=tblCuentas.getSelectedRow();
         if (con>=0){
-            String es= String.valueOf(tblCuentas.getValueAt(con,7));
+            String es= String.valueOf(tblCuentas.getValueAt(con,4));
             if(es.equals("A"))
             {
-                idcuenta=(Integer)tblCuentas.getValueAt(tblCuentas.getSelectedRow(),0);
+                idcuenta=(String)tblCuentas.getValueAt(tblCuentas.getSelectedRow(),0);
             if(JOptionPane.showConfirmDialog (null, "Desea eliminar","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
-                erp.SQL("update CuentasProveedor set estatus='B' where idcuentasproveedor="+idcuenta);
+                erp.SQL("update CuentasProveedor set estatus='B' where idcuentaproveedor="+idcuenta);
                 btnConsultarCuentasProveedor.doClick();
             }
             }else {
@@ -267,9 +267,7 @@ public void borrarTabla(JTable tab) {
     }//GEN-LAST:event_txfBuscarKeyReleased
 
     private void tblCuentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCuentasMouseEntered
-        borrarTabla(tblCuentas);
-        erp.OpenCon("ERP", "erp");
-        erp.CuentasProveedor_Search(txfBuscar.getText(),tblCuentas);
+        btnConsultarCuentasProveedor.doClick();
     }//GEN-LAST:event_tblCuentasMouseEntered
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

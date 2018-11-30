@@ -285,11 +285,7 @@ public class Conexion {
                 String cat = rs.getString("nomb");
                 Object datosRenglon[]={ idPro, Nom, descripcion,ingrediente,banda,apli,uso,estatus,lab,cat};
                 tablaTemp.addRow(datosRenglon);
-            }
-            if (tablaTemp.getRowCount() == 0){
-                JOptionPane.showMessageDialog(null,"El producto no se encuentra en la Base de Datos","Información",JOptionPane.INFORMATION_MESSAGE);
-            }
-            
+            }     
             tabla.setModel(tablaTemp);
         } catch (SQLException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
@@ -772,7 +768,7 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
             Sql = "select cu.idcuentaproveedor, cu.nocuenta,cu.estatus,\n" +
                     "cu.banco,pro.nombre as nom  from CuentasProveedor cu\n" +
                     "inner join Proveedores pro on pro.idproveedor=cu.idproveedor\n" +
-                    "where cu.estatus='A';";
+                    "where cu.estatus='A'";
             
         else if(!Nombre.isEmpty())
             Sql = "select cu.idcuentaproveedor, cu.nocuenta,cu.estatus,\n" +

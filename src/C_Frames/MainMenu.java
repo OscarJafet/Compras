@@ -649,6 +649,14 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_C_Lab2ActionPerformed
 
     private void C_Lab3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_Lab3ActionPerformed
+        C_CuentasProveedor erp= new C_CuentasProveedor();
+        erp.setSize(jFrames.getSize());
+        erp.setLocation(0, 0);
+        jFrames.removeAll();
+        erp.btnConsultarCuentasProveedor.doClick();
+        jFrames.add(erp);
+        jFrames.revalidate();
+        jFrames.repaint(); 
         // TODO add your handling code here:
     }//GEN-LAST:event_C_Lab3ActionPerformed
 
