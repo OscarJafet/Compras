@@ -280,12 +280,12 @@ public class C_MOD_ContactosProveedores extends javax.swing.JFrame {
 
             erp.OpenCon("ERP", "erp");
             int ID = Integer.parseInt(txfIdProveedor.getText());
-            erp.SQLlupita2("update contactosproveedores set nombre ="
+            erp.SQLlupita2("update contactosproveedor set nombre ="
                     + "'" + C_MOD_Proveedor_txfnom.getText() + "',"
                     + "telefono ='" + C_MOD_Proveedor_txftel.getText() + "',"
                     + "email='" + C_MOD_Proveedor_txfemail.getText() + "',"
                     + "idproveedor="+ idc
-                    + "where idcontactosproveedor ="
+                    + "where idcontacto ="
                     + ID);
         } else {
             JOptionPane.showMessageDialog(null, "No se permiten campos vacios", "Error", JOptionPane.INFORMATION_MESSAGE);
@@ -308,10 +308,11 @@ C_Proveedores p= new C_Proveedores();
 
     private void C_MOD_Proveedor_txftelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_MOD_Proveedor_txftelKeyTyped
         int c=evt.getKeyChar();
-        if((c<'0' || c>'9')&&(c<'-' || c>'-'))evt.consume();
-        if (C_MOD_Proveedor_txftel.getText().length() == limite2) {
-            evt.consume();
-        }
+        if((c<'0' || c>'9'))evt.consume();
+        if (C_MOD_Proveedor_txftel.getText().length() == limite2){
+            evt.consume();}
+            
+        
     }//GEN-LAST:event_C_MOD_Proveedor_txftelKeyTyped
 
     private void C_MOD_Proveedor_txfemailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_MOD_Proveedor_txfemailKeyTyped
