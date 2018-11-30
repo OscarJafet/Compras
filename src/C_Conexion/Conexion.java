@@ -355,12 +355,12 @@ public void ExistenciaSucursal_search(JTable tabla,String Sql){
                 String idLab=rs.getString("NOMBRE");
                 String Nom=rs.getString("PRECIOVENTA");
                 String Ori=rs.getString("PUNTOREORDEN");
-                
+                String nombre=rs.getString("nomb");
                 String Stat2 = rs.getString("CANTIDAD");
                 String Stat = rs.getString("NOM");
                  String Stat3 = rs.getString("NO");
                  String Stat4 = rs.getString("estatus");
-                Object datosRenglon[]={idLab1,idLab2, idLab, Nom, Ori,Stat2,Stat,Stat3,Stat4};
+                Object datosRenglon[]={idLab1,nombre,idLab2, idLab, Nom, Ori,Stat2,Stat,Stat3,Stat4};
                 tablaTemp.addRow(datosRenglon);
             }
             
@@ -385,12 +385,12 @@ public void ExistenciaSucursal_search_nombre(JTable tabla, String Sql){
                 String idLab=rs.getString("NOMBRE");
                 String Nom=rs.getString("PRECIOVENTA");
                 String Ori=rs.getString("PUNTOREORDEN");
-                
+                String nombre=rs.getString("nomb");
                 String Stat2 = rs.getString("CANTIDAD");
                 String Stat = rs.getString("NOM");
                  String Stat3 = rs.getString("NO");
                  String Stat4 = rs.getString("estatus");
-                Object datosRenglon[]={idLab1,idLab2, idLab, Nom, Ori,Stat2,Stat,Stat3,Stat4};
+                Object datosRenglon[]={idLab1,nombre,idLab2, idLab, Nom, Ori,Stat2,Stat,Stat3,Stat4};
                 tablaTemp.addRow(datosRenglon);
             }
             
