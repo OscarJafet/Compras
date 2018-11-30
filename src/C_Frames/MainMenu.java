@@ -654,6 +654,13 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void C_Lab4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_Lab4ActionPerformed
         // TODO add your handling code here:
+        C_Pagos erp = new C_Pagos();
+        erp.setSize(jFrames.getSize());
+        erp.setLocation(0, 0);
+        jFrames.removeAll();
+        jFrames.add(erp);
+        jFrames.revalidate();
+        jFrames.repaint();
     }//GEN-LAST:event_C_Lab4ActionPerformed
 
     void setTitulo(int i) {

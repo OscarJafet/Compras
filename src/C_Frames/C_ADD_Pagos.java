@@ -209,7 +209,7 @@ public class C_ADD_Pagos extends javax.swing.JFrame {
         }
         
     }
-    public void llenarC_Pagos(){
+    public void llenarC_Proveedor(){
         try {
             erp.OpenCon("ERP", "erp");
             erp.stn= (Statement) erp.con.createStatement();
