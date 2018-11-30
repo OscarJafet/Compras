@@ -74,10 +74,9 @@ public class C_ADD_ProductosProveedor extends javax.swing.JFrame {
             erp.OpenCon("ERP", "erp");
             erp.stn= (Statement) erp.con.createStatement();
             erp.rs= erp.stn.executeQuery("select pre.idpresentacion, pre.nombre,em.nombre\n" +
-                                            "as nom from ProductosProveedor pro\n" +
-                                        "inner join PresentacionesProducto pre on pro.idpresentacion=pre.idpresentacion\n" +
-                                        "inner join Empaques em on\n" +
-                                            "pre.idempaque= em.idempaque  where pre.estatus='A' and pre.idproducto= "+ idpro);
+                                            "as nom from PresentacionesProducto pre\n" +
+                                            "inner join Empaques em on\n" +
+                                            "pre.idempaque= em.idempaque  where pre.estatus='A' and pre.idproducto="+ idpro);
             modelocombo1.addElement("Seleccione Presentacion");
             cmbPre.setModel(modelocombo1);
             while (erp.rs.next()){
@@ -487,7 +486,7 @@ public class C_ADD_ProductosProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbProveedorFocusGained
 
     private void cmbProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProductoActionPerformed
-        if(cmbProducto.getSelectedIndex()>=0){
+        if(cmbProducto.getSelectedIndex()>1){
             llenarCombo2();
             cmbPre.setEnabled(true);
         }        // TODO add your handling code here:

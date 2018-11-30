@@ -25,9 +25,7 @@ public class C_ContactosProveedores extends javax.swing.JPanel {
     public C_ContactosProveedores() {
         initComponents();
         erp = new Conexion();
-        erp.OpenCon("ERP", "erp");
-        erp.ContactosProveedores_Search(txfBuscar.getText(),tblContactosProveedor);
-       
+        
     }
 
     /**
@@ -40,7 +38,7 @@ public class C_ContactosProveedores extends javax.swing.JPanel {
     private void initComponents() {
 
         txfBuscar = new javax.swing.JTextField();
-        btnConsultarSucursal = new javax.swing.JButton();
+        btnConsultar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblContactosProveedor = new javax.swing.JTable();
         btnAgregarPercepcion = new javax.swing.JButton();
@@ -72,17 +70,17 @@ public class C_ContactosProveedores extends javax.swing.JPanel {
         add(txfBuscar);
         txfBuscar.setBounds(200, 30, 330, 30);
 
-        btnConsultarSucursal.setBackground(new java.awt.Color(254, 254, 254));
-        btnConsultarSucursal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon-buscar.png"))); // NOI18N
-        btnConsultarSucursal.setBorderPainted(false);
-        btnConsultarSucursal.setContentAreaFilled(false);
-        btnConsultarSucursal.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultar.setBackground(new java.awt.Color(254, 254, 254));
+        btnConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon-buscar.png"))); // NOI18N
+        btnConsultar.setBorderPainted(false);
+        btnConsultar.setContentAreaFilled(false);
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarSucursalActionPerformed(evt);
+                btnConsultarActionPerformed(evt);
             }
         });
-        add(btnConsultarSucursal);
-        btnConsultarSucursal.setBounds(540, 10, 60, 50);
+        add(btnConsultar);
+        btnConsultar.setBounds(540, 10, 60, 50);
 
         tblContactosProveedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -216,12 +214,12 @@ public void borrarTabla(JTable tab) {
         }
     }
     
-    private void btnConsultarSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarSucursalActionPerformed
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         borrarTabla(tblContactosProveedor);
         erp.OpenCon("ERP", "erp");
-        erp.Proveedores_Search(txfBuscar.getText(),tblContactosProveedor);
+        erp.ContactosProveedores_Search(txfBuscar.getText(),tblContactosProveedor);
         
-    }//GEN-LAST:event_btnConsultarSucursalActionPerformed
+    }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnEditarsucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarsucursalActionPerformed
         int con=tblContactosProveedor.getSelectedRow();
@@ -305,7 +303,7 @@ public void borrarTabla(JTable tab) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarPercepcion;
-    private javax.swing.JButton btnConsultarSucursal;
+    private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnEditarsucursal;
     private javax.swing.JButton btnEliminarPercepcion;
     private javax.swing.JButton jButton1;
