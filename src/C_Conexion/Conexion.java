@@ -941,29 +941,30 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
         
          if(Nombre.isEmpty())
             Sql = "select cpro.idcontacto, cpro.nombre, cpro.telefono, cpro.email,"
-                    + "cpro.estatus, cpro.idproveedor, pro.nombre" 
-                     +"as nom from contactosproveedor cpro" 
-                     +"inner join proveedores pro" 
+                    + "cpro.estatus, cpro.idproveedor, pro.nombre " 
+                     +"as nom from contactosproveedor cpro " 
+                     +"inner join proveedores pro " 
                      +"on cpro.idproveedor=pro.idproveedor where cpro.estatus='A'";
         else if(!Nombre.isEmpty())
             Sql = "select cpro.idcontacto, cpro.nombre, cpro.telefono,"
-                    + " cpro.email, cpro.estatus, cpro.idproveedor, pro.nombre," 
-                     +"as nom from contactosproveedor cpro" 
-                     +"inner join proveedores pro" 
-                     +"on cpro.idproveedor=pro.idproveedor where cpro.nombre like '="+Nombre+"%'";
+                    + "cpro.email, cpro.estatus, cpro.idproveedor, pro.nombre " 
+                     +"as nom from contactosproveedor cpro " 
+                     +"inner join proveedores pro " 
+                     +"on cpro.idproveedor=pro.idproveedor where cpro.nombre like '"+Nombre+"%'";
         
                try {
             stn=(Statement) con.createStatement();
             rs=stn.executeQuery(Sql);
         
             while(rs.next()){
-                String idsuc=rs.getString("idproveedor");
-                String Nom=rs.getString("nombre");
-                String tel=rs.getString("telefono");
-                String email=rs.getString("email");
+                String idcon=rs.getString("idcontacto");
+                String nomBRE=rs.getString("nombre");
+                String tele=rs.getString("telefono");
+                String emaill=rs.getString("email");
+                String estatus=rs.getString("estatus");
                 String idprovee=rs.getString("idproveedor");
-                String ciudad = rs.getString("nom");
-                Object datosRenglon[]={idsuc,Nom,tel,email,idprovee,ciudad};
+                String proveedor = rs.getString("nom");
+                Object datosRenglon[]={idcon,nomBRE,tele,emaill,estatus,idprovee,proveedor};
                 tablaTemp.addRow(datosRenglon);
             }
             tabla.setModel(tablaTemp);
