@@ -25,6 +25,9 @@ public class C_ContactosProveedores extends javax.swing.JPanel {
     public C_ContactosProveedores() {
         initComponents();
         erp = new Conexion();
+         erp.OpenCon("ERP", "erp");
+        erp.ContactosProveedores_Search(txfBuscarProve.getText(),tblContactosProveedor);
+
         
     }
 
@@ -37,7 +40,7 @@ public class C_ContactosProveedores extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txfBuscar = new javax.swing.JTextField();
+        txfBuscarProve = new javax.swing.JTextField();
         btnConsultar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblContactosProveedor = new javax.swing.JTable();
@@ -52,23 +55,23 @@ public class C_ContactosProveedores extends javax.swing.JPanel {
         setForeground(new java.awt.Color(254, 254, 254));
         setLayout(null);
 
-        txfBuscar.setBackground(new java.awt.Color(254, 254, 254));
-        txfBuscar.setForeground(new java.awt.Color(1, 1, 1));
-        txfBuscar.addActionListener(new java.awt.event.ActionListener() {
+        txfBuscarProve.setBackground(new java.awt.Color(254, 254, 254));
+        txfBuscarProve.setForeground(new java.awt.Color(1, 1, 1));
+        txfBuscarProve.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txfBuscarActionPerformed(evt);
+                txfBuscarProveActionPerformed(evt);
             }
         });
-        txfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+        txfBuscarProve.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txfBuscarKeyReleased(evt);
+                txfBuscarProveKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txfBuscarKeyTyped(evt);
+                txfBuscarProveKeyTyped(evt);
             }
         });
-        add(txfBuscar);
-        txfBuscar.setBounds(200, 30, 330, 30);
+        add(txfBuscarProve);
+        txfBuscarProve.setBounds(200, 30, 330, 30);
 
         btnConsultar.setBackground(new java.awt.Color(254, 254, 254));
         btnConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon-buscar.png"))); // NOI18N
@@ -186,14 +189,14 @@ public class C_ContactosProveedores extends javax.swing.JPanel {
         
         if (con>=0){
             
-            String es= String.valueOf(tblContactosProveedor.getValueAt(con,7));
+            String es= String.valueOf(tblContactosProveedor.getValueAt(con,4));
             if(es.equals("A"))
             {
             ID = Integer.parseInt(tblContactosProveedor.getValueAt(tblContactosProveedor.getSelectedRow(),0)+"");
             if(JOptionPane.showConfirmDialog (null, "Desea eliminar","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
                 erp.OpenCon("ERP", "erp");
-                erp.SQLlupita2("update CONTACTOSproveedores set ESTATUS='B'"
-                    + "where idproveedor ="
+                erp.SQLlupita2("update CONTACTOSproveedor set ESTATUS='B'"
+                    + "where idcontacto ="
                     + ID);
             }
             }else {
@@ -217,7 +220,7 @@ public void borrarTabla(JTable tab) {
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         borrarTabla(tblContactosProveedor);
         erp.OpenCon("ERP", "erp");
-        erp.ContactosProveedores_Search(txfBuscar.getText(),tblContactosProveedor);
+        erp.ContactosProveedores_Search(txfBuscarProve.getText(),tblContactosProveedor);
         
     }//GEN-LAST:event_btnConsultarActionPerformed
 
@@ -253,18 +256,19 @@ public void borrarTabla(JTable tab) {
         }
     }//GEN-LAST:event_btnEditarsucursalActionPerformed
 
-    private void txfBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfBuscarActionPerformed
+    private void txfBuscarProveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfBuscarProveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txfBuscarActionPerformed
+    }//GEN-LAST:event_txfBuscarProveActionPerformed
 
-    private void txfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyTyped
+    private void txfBuscarProveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarProveKeyTyped
          char c = evt.getKeyChar();
         if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')&&(c<' '||c>' '))  evt.consume();
-    }//GEN-LAST:event_txfBuscarKeyTyped
+    }//GEN-LAST:event_txfBuscarProveKeyTyped
 
     private void tblContactosProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblContactosProveedorMouseClicked
         
         int idprovee;
+       
         String nom=(String) tblContactosProveedor.getValueAt(tblContactosProveedor.getSelectedRow(),1);
         String tel=(String) tblContactosProveedor.getValueAt(tblContactosProveedor.getSelectedRow(),2);
         String ema=(String) tblContactosProveedor.getValueAt(tblContactosProveedor.getSelectedRow(),3);
@@ -274,26 +278,28 @@ public void borrarTabla(JTable tab) {
 
          if (evt.getClickCount()==2){
          int id= Integer.parseInt(tblContactosProveedor.getValueAt(tblContactosProveedor.getSelectedRow(),0)+"");
+         
          C_MOD_ContactosProveedores cpro =new C_MOD_ContactosProveedores();
          cpro.setLocationRelativeTo(cpro);
-         cpro.Datos(id, provee, nom, tel, ema);
+         cpro.txfIdProveedor.setText(id+"");
+         cpro.Datos(idprovee, provee, nom, tel, ema);
          cpro.setVisible(true);
          }
          
     }//GEN-LAST:event_tblContactosProveedorMouseClicked
 
-    private void txfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyReleased
+    private void txfBuscarProveKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarProveKeyReleased
         borrarTabla(tblContactosProveedor);
         erp.OpenCon("ERP", "erp");
-        erp.ContactosProveedores_Search(txfBuscar.getText(), tblContactosProveedor);
+        erp.ContactosProveedores_Search(txfBuscarProve.getText(),tblContactosProveedor);
 
 
-    }//GEN-LAST:event_txfBuscarKeyReleased
+    }//GEN-LAST:event_txfBuscarProveKeyReleased
 
     private void tblContactosProveedorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblContactosProveedorMouseEntered
         borrarTabla(tblContactosProveedor);
         erp.OpenCon("ERP", "erp");
-        erp.ContactosProveedores_Search(txfBuscar.getText(), tblContactosProveedor);
+        erp.ContactosProveedores_Search(txfBuscarProve.getText(), tblContactosProveedor);
 
 
     }//GEN-LAST:event_tblContactosProveedorMouseEntered
@@ -311,6 +317,6 @@ public void borrarTabla(JTable tab) {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable tblContactosProveedor;
-    private javax.swing.JTextField txfBuscar;
+    private javax.swing.JTextField txfBuscarProve;
     // End of variables declaration//GEN-END:variables
 }
