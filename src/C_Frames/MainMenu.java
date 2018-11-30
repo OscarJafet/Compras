@@ -645,9 +645,15 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_C_Lab1ActionPerformed
 
     private void C_Lab2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_Lab2ActionPerformed
-        // TODO add your handling code here:
+        C_ContactosProveedores cpro = new C_ContactosProveedores();
+        cpro.setSize(jFrames.getSize());
+        cpro.setLocation(0, 0);
+        jFrames.removeAll();
+        jFrames.add(cpro);
+        jFrames.revalidate();
+        jFrames.repaint();
     }//GEN-LAST:event_C_Lab2ActionPerformed
-
+      
     private void C_Lab3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_Lab3ActionPerformed
         C_CuentasProveedor erp= new C_CuentasProveedor();
         erp.setSize(jFrames.getSize());

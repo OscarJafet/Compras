@@ -692,7 +692,8 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
         else if(!Nombre.isEmpty())
             Sql = "select p.idproveedor, p.nombre, p.telefono,"
                     + "p.email,p.direccion,p.colonia,"
-                    + "p.codigopostal,p.estatus p.idciudad, cd.nombre as nom from Proveedores p inner join Ciudad cd "
+                    + "p.codigopostal,p.estatus p.idciudad, "
+                    + "cd.nombre as nom from Proveedores p inner join Ciudad cd "
                     + "on p.idciudad=cd.idciudad"
                     + " where p.nombre like '"+Nombre+"%'";
         
@@ -871,12 +872,14 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
          DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
         
          if(Nombre.isEmpty())
-            Sql = "select cpro.idcontacto, cpro.nombre, cpro.telefono, cpro.email, cpro.estatus, cpro.idproveedor, pro.nombre" 
+            Sql = "select cpro.idcontacto, cpro.nombre, cpro.telefono, cpro.email,"
+                    + "cpro.estatus, cpro.idproveedor, pro.nombre" 
                      +"as nom from contactosproveedor cpro" 
                      +"inner join proveedores pro" 
                      +"on cpro.idproveedor=pro.idproveedor where cpro.estatus='A'";
         else if(!Nombre.isEmpty())
-            Sql = "select cpro.idcontacto, cpro.nombre, cpro.telefono, cpro.email, cpro.estatus, cpro.idproveedor, pro.nombre" 
+            Sql = "select cpro.idcontacto, cpro.nombre, cpro.telefono,"
+                    + " cpro.email, cpro.estatus, cpro.idproveedor, pro.nombre," 
                      +"as nom from contactosproveedor cpro" 
                      +"inner join proveedores pro" 
                      +"on cpro.idproveedor=pro.idproveedor where cpro.nombre like '="+Nombre+"%'";
@@ -886,11 +889,11 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
             rs=stn.executeQuery(Sql);
         
             while(rs.next()){
-                String idsuc=rs.getString("idProveedor");
+                String idsuc=rs.getString("idproveedor");
                 String Nom=rs.getString("nombre");
                 String tel=rs.getString("telefono");
                 String email=rs.getString("email");
-                String idprovee=rs.getString("idproveedores");
+                String idprovee=rs.getString("idproveedor");
                 String ciudad = rs.getString("nom");
                 Object datosRenglon[]={idsuc,Nom,tel,email,idprovee,ciudad};
                 tablaTemp.addRow(datosRenglon);
