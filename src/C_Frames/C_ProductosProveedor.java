@@ -186,7 +186,7 @@ public class C_ProductosProveedor extends javax.swing.JPanel {
         int idproveedor=0,idpresentacion=0;
         int con=tblProPro.getSelectedRow();
         if (con>=0){
-            String es= String.valueOf(tblProPro.getValueAt(con,7));
+            String es= String.valueOf(tblProPro.getValueAt(con,8));
             if(es.equals("A"))
             {
                             try {
@@ -204,7 +204,7 @@ public class C_ProductosProveedor extends javax.swing.JPanel {
                         try {
             erp.OpenCon("ERP", "erp");
             erp.stn= (Statement) erp.con.createStatement();
-            erp.rs= erp.stn.executeQuery("select * from PresentacionesProducto where nombre='"+tblProPro.getValueAt(tblProPro.getSelectedRow(),1)+"'");
+            erp.rs= erp.stn.executeQuery("select * from PresentacionesProducto where nombre='"+tblProPro.getValueAt(tblProPro.getSelectedRow(),2)+"'");
             while (erp.rs.next()){
                 String id= String.valueOf(erp.rs.getObject("idpresentacion"));
                 idpresentacion= Integer.parseInt(id);
@@ -223,8 +223,10 @@ public class C_ProductosProveedor extends javax.swing.JPanel {
             }
         }else {
             JOptionPane.showMessageDialog(null,"Seleccione un producto","Error" ,JOptionPane.INFORMATION_MESSAGE);
+                    btnConsultarProPro.doClick();
         }
-        btnConsultarProPro.doClick();//confirma eliminacion
+        
+        //confirma eliminacion
     }//GEN-LAST:event_btnEliminarProProActionPerformed
 public void borrarTabla(JTable tab) {
         try {
@@ -241,6 +243,7 @@ public void borrarTabla(JTable tab) {
     private void btnConsultarProProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarProProActionPerformed
         borrarTabla(tblProPro);
         erp.OpenCon("ERP", "erp");
+        tblProPro.removeAll();
         erp.ProductoProveedor_Search(txfBuscar.getText(),tblProPro);
     }//GEN-LAST:event_btnConsultarProProActionPerformed
 
@@ -347,14 +350,15 @@ public void borrarTabla(JTable tab) {
     private void txfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyReleased
         borrarTabla(tblProPro);
         erp.OpenCon("ERP", "erp");
+        tblProPro.removeAll();
         erp.ProductoProveedor_Search(txfBuscar.getText(), tblProPro);
     }//GEN-LAST:event_txfBuscarKeyReleased
 
     private void tblProProMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProProMouseEntered
         borrarTabla(tblProPro);
         erp.OpenCon("ERP", "erp");
+        tblProPro.removeAll();
         erp.ProductoProveedor_Search(txfBuscar.getText(), tblProPro);
-// TODO add your handling code here:
     }//GEN-LAST:event_tblProProMouseEntered
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

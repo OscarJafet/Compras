@@ -199,6 +199,7 @@ public class C_CuentasProveedor extends javax.swing.JPanel {
             }
         }else {
             JOptionPane.showMessageDialog(null,"Seleccione un producto","Error" ,JOptionPane.INFORMATION_MESSAGE);
+            btnConsultarCuentasProveedor.doClick();
         }       //confirma eliminacion
     }//GEN-LAST:event_btnEliminarCuentasActionPerformed
 public void borrarTabla(JTable tab) {
@@ -215,6 +216,7 @@ public void borrarTabla(JTable tab) {
     
     private void btnConsultarCuentasProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarCuentasProveedorActionPerformed
         borrarTabla(tblCuentas);
+        tblCuentas.removeAll();
         erp.OpenCon("ERP", "erp");
         erp.CuentasProveedor_Search(txfBuscar.getText(),tblCuentas);
     }//GEN-LAST:event_btnConsultarCuentasProveedorActionPerformed
@@ -263,11 +265,15 @@ public void borrarTabla(JTable tab) {
     private void txfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyReleased
         borrarTabla(tblCuentas);
         erp.OpenCon("ERP", "erp");
+        tblCuentas.removeAll();
         erp.CuentasProveedor_Search(txfBuscar.getText(),tblCuentas);
     }//GEN-LAST:event_txfBuscarKeyReleased
 
     private void tblCuentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCuentasMouseEntered
-        btnConsultarCuentasProveedor.doClick();
+                borrarTabla(tblCuentas);
+        erp.OpenCon("ERP", "erp");
+        tblCuentas.removeAll();
+        erp.CuentasProveedor_Search(txfBuscar.getText(),tblCuentas);
     }//GEN-LAST:event_tblCuentasMouseEntered
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
