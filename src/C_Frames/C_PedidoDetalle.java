@@ -59,7 +59,6 @@ public class C_PedidoDetalle extends javax.swing.JPanel {
         tablaPedidoDet = new javax.swing.JTable();
         btnConsultar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         cmbSe = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(254, 254, 254));
@@ -157,19 +156,6 @@ public class C_PedidoDetalle extends javax.swing.JPanel {
         add(jLabel1);
         jLabel1.setBounds(40, 30, 129, 16);
 
-        jButton1.setBackground(new java.awt.Color(254, 254, 254));
-        jButton1.setForeground(new java.awt.Color(254, 254, 254));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/refresh_icon.png"))); // NOI18N
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        add(jButton1);
-        jButton1.setBounds(38, 468, 97, 73);
-
         cmbSe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estatus", "A Pagado", "C Cancelado", "E En Espera" }));
         cmbSe.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -203,13 +189,13 @@ int A = 0;
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
-        erp.Id.setText(ID+"");
+        erp.IdDet.setText(ID+"");
         erp.preCom.setText(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(),2)+"");
         erp.CantP.setText(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(),1)+"");
-        erp.Sub.setText(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(),3)+"");
+        erp.SubTotal.setText(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(),3)+"");
         erp.CantRec.setText(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(),4)+"");
         erp.CantRech.setText(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(),5)+"");
-        erp.Acp.setText(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(),6)+"");
+        erp.CantAcep.setText(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(),6)+"");
         //erp.cmbPed.setS
        
         int b = 0;
@@ -253,34 +239,6 @@ public void borrarTabla(JTable tab) {
         }
     }//GEN-LAST:event_btnConsultarActionPerformed
 
-    private void btnEliDeduccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliDeduccionesActionPerformed
-       int ID = 0;
-        try{
-             StringTokenizer b = new StringTokenizer(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 7)+""," ");
-      ID = Integer.parseInt(b.nextToken());
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
-        }
-        //confirma eliminacion
-            if(JOptionPane.showConfirmDialog(null, "¿Desea darlo de baja?","Informacion",
-        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                erp.SQL("Update Pedidos set Estatus = 'B' where idPedido = "+ID);
-              }else{
-                JOptionPane.showMessageDialog(null,"NO Eliminado","Infromación" ,JOptionPane.INFORMATION_MESSAGE);
-            }
-              btnConsultar.doClick();
-            
-    }//GEN-LAST:event_btnEliDeduccionesActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       //System.out.println(tablaPress.getValueAt(tablaPress.getSelectedRow(), 6));
-      //
-      StringTokenizer b = new StringTokenizer(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 7)+""," ");
-      int a = Integer.parseInt(b.nextToken());
-      erp.SQL("Update Pedidos set Estatus = '"+cmbSe.getItemAt(cmbSe.getSelectedIndex()).charAt(0)+"' where idPedido = "+a);
-        btnConsultar.doClick();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void cmbSeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbSeMouseClicked
         // TODO add your handling code here:
         //txfConsultar.setText("");
@@ -320,13 +278,31 @@ public void borrarTabla(JTable tab) {
         }// TODO add your handling code here:
     }//GEN-LAST:event_txfConsultarKeyReleased
 
+    private void btnEliDeduccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliDeduccionesActionPerformed
+        int ID = 0;
+        try{
+            StringTokenizer b = new StringTokenizer(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 7)+""," ");
+            ID = Integer.parseInt(b.nextToken());
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
+        }
+        //confirma eliminacion
+        if(JOptionPane.showConfirmDialog(null, "¿Desea darlo de baja?\nEliminar la eliminación pedido","Informacion",
+            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+        erp.SQL("Update Pedidos set Estatus = 'C' where idPedido = "+ID);
+        }else{
+            JOptionPane.showMessageDialog(null,"NO Eliminado","Infromación" ,JOptionPane.INFORMATION_MESSAGE);
+        }
+        btnConsultar.doClick();
+
+    }//GEN-LAST:event_btnEliDeduccionesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnConsultar;
     public javax.swing.JButton btnEditarDeducciones;
-    public javax.swing.JButton btnEliDeducciones;
+    private javax.swing.JButton btnEliDeducciones;
     private javax.swing.JComboBox<String> cmbSe;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable tablaPedidoDet;
