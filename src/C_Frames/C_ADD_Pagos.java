@@ -216,10 +216,10 @@ public class C_ADD_Pagos extends javax.swing.JFrame {
             erp.rs= erp.stn.executeQuery("select * from Empaques");
             modelocombo1.addElement("Seleccione Empaque");
             modelocombo1.addElement("Crear Empaque");
-            cmbEmp.setModel(modelocombo1);
+            cmbCP.setModel(modelocombo1);
             while (erp.rs.next()){
                 modelocombo1.addElement(erp.rs.getObject("idEmpaque")+" "+erp.rs.getObject("nombre"));
-                cmbEmp.setModel(modelocombo1);
+                cmbCP.setModel(modelocombo1);
             }
         
         }catch(SQLException ex){
