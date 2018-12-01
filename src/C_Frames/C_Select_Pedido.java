@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.TabableView;
 
 /**
  *
@@ -26,19 +27,16 @@ public class C_Select_Pedido extends javax.swing.JFrame {
     public C_Select_Pedido() {
         initComponents();
         erp = new Conexion();
-        borrarTabla(SelectTable);
-        erp.SelectP_Search(SelectTable);
+        PanelDetalles.setEnabled(false);
+         PanelDetalles.setVisible(false);
+         TableDet.setEnabled(false);
+         TableDet.setVisible(false);
+         jScrollPane2.setEnabled(false);
+         jScrollPane2.setVisible(false);
+        erp.SelectP_Search(TablePed);
+        
     }
-    public void borrarTabla(JTable tab) {
-        try {
-            DefaultTableModel tabT = (DefaultTableModel) tab.getModel();
-            for (int i = tabT.getRowCount() - 1; i > -1; i--) {
-                tabT.removeRow(i);
-            }
-        } catch (Exception e) {
-       
-        }
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,8 +48,6 @@ public class C_Select_Pedido extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        SelectTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         btnAgregarDe = new javax.swing.JButton();
         idPe = new javax.swing.JLabel();
@@ -62,14 +58,21 @@ public class C_Select_Pedido extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
+        L_CantAcp = new javax.swing.JLabel();
+        L_IdD = new javax.swing.JLabel();
+        L_CantPed = new javax.swing.JLabel();
+        L_PreComp = new javax.swing.JLabel();
+        L_Subtotal = new javax.swing.JLabel();
+        L_CantReci = new javax.swing.JLabel();
+        L_CantRh = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        jFrames = new javax.swing.JPanel();
+        PanelPedido = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TablePed = new javax.swing.JTable();
+        PanelDetalles = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TableDet = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(254, 254, 254));
@@ -77,32 +80,6 @@ public class C_Select_Pedido extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(254, 254, 254));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(206, 255, 0)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 0))); // NOI18N
-
-        SelectTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "idPedido", "fecha Regis", "fecha Recep", "Total a pagar", "Cantidad Pagada", "Estatus", "idProveedor", "Nombre"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        SelectTable.setToolTipText("");
-        SelectTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        SelectTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        SelectTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SelectTableMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(SelectTable);
 
         jLabel2.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(1, 1, 1));
@@ -126,7 +103,7 @@ public class C_Select_Pedido extends javax.swing.JFrame {
         idPe.setForeground(new java.awt.Color(1, 1, 1));
         idPe.setText("ninguno");
 
-        jButton1.setText("Ver Detalles");
+        jButton1.setText("Ver detalles");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -157,37 +134,119 @@ public class C_Select_Pedido extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(1, 1, 1));
         jLabel9.setText("CANT. RECHAZADA");
 
-        jLabel10.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel10.setText("CANT. ACEPTADA");
+        L_CantAcp.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
+        L_CantAcp.setForeground(new java.awt.Color(1, 1, 1));
+        L_CantAcp.setText("CANT. ACEPTADA");
 
-        jLabel11.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel11.setText("NA");
+        L_IdD.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
+        L_IdD.setForeground(new java.awt.Color(1, 1, 1));
+        L_IdD.setText("NA");
 
-        jLabel12.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel12.setText("NA");
+        L_CantPed.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
+        L_CantPed.setForeground(new java.awt.Color(1, 1, 1));
+        L_CantPed.setText("NA");
 
-        jLabel13.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel13.setText("NA");
+        L_PreComp.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
+        L_PreComp.setForeground(new java.awt.Color(1, 1, 1));
+        L_PreComp.setText("NA");
 
-        jLabel14.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel14.setText("NA");
+        L_Subtotal.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
+        L_Subtotal.setForeground(new java.awt.Color(1, 1, 1));
+        L_Subtotal.setText("NA");
 
-        jLabel15.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel15.setText("NA");
+        L_CantReci.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
+        L_CantReci.setForeground(new java.awt.Color(1, 1, 1));
+        L_CantReci.setText("NA");
 
-        jLabel16.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel16.setText("NA");
+        L_CantRh.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
+        L_CantRh.setForeground(new java.awt.Color(1, 1, 1));
+        L_CantRh.setText("NA");
 
         jLabel17.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(1, 1, 1));
         jLabel17.setText("NA");
+
+        jFrames.setMinimumSize(new java.awt.Dimension(838, 380));
+        jFrames.setLayout(null);
+
+        TablePed.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "idPedido", "fecha Regis", "fecha Recep", "Total a pagar", "Cantidad Pagada", "Estatus", "idProveedor", "Nombre"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TablePed.setToolTipText("");
+        TablePed.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        TablePed.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablePedMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(TablePed);
+
+        javax.swing.GroupLayout PanelPedidoLayout = new javax.swing.GroupLayout(PanelPedido);
+        PanelPedido.setLayout(PanelPedidoLayout);
+        PanelPedidoLayout.setHorizontalGroup(
+            PanelPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 830, Short.MAX_VALUE)
+        );
+        PanelPedidoLayout.setVerticalGroup(
+            PanelPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+        );
+
+        jFrames.add(PanelPedido);
+        PanelPedido.setBounds(0, 0, 830, 360);
+
+        TableDet.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "idPed_Det", "Cant Pedida", "Precio Compra", "Subtotal", "Cant Recibida", "Cant Rechazada", "Cant Aceptada"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TableDet.setToolTipText("");
+        TableDet.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        TableDet.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        TableDet.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableDetMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(TableDet);
+
+        javax.swing.GroupLayout PanelDetallesLayout = new javax.swing.GroupLayout(PanelDetalles);
+        PanelDetalles.setLayout(PanelDetallesLayout);
+        PanelDetallesLayout.setHorizontalGroup(
+            PanelDetallesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 830, Short.MAX_VALUE)
+        );
+        PanelDetallesLayout.setVerticalGroup(
+            PanelDetallesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+        );
+
+        jFrames.add(PanelDetalles);
+        PanelDetalles.setBounds(0, 0, 830, 340);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -197,14 +256,13 @@ public class C_Select_Pedido extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnAgregarDe)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(idPe)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(idPe)
+                        .addGap(552, 552, 552)
+                        .addComponent(jButton1))
+                    .addComponent(jFrames, javax.swing.GroupLayout.PREFERRED_SIZE, 838, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -213,8 +271,8 @@ public class C_Select_Pedido extends javax.swing.JFrame {
                             .addComponent(jLabel5))
                         .addGap(38, 38, 38)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel11)))
+                            .addComponent(L_CantPed)
+                            .addComponent(L_IdD)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
@@ -222,18 +280,18 @@ public class C_Select_Pedido extends javax.swing.JFrame {
                             .addComponent(jLabel8))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel13)))
+                            .addComponent(L_CantReci)
+                            .addComponent(L_Subtotal)
+                            .addComponent(L_PreComp)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
-                            .addComponent(jLabel10))
+                            .addComponent(L_CantAcp))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel17)
-                            .addComponent(jLabel16))))
-                .addContainerGap(189, Short.MAX_VALUE))
+                            .addComponent(L_CantRh))))
+                .addContainerGap(171, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,34 +311,33 @@ public class C_Select_Pedido extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel11))
+                            .addComponent(L_IdD))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel12))
+                            .addComponent(L_CantPed))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel13))
+                            .addComponent(L_PreComp))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(jLabel14))
+                            .addComponent(L_Subtotal))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(jLabel15))
+                            .addComponent(L_CantReci))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(jLabel16))
+                            .addComponent(L_CantRh))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel17))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(L_CantAcp)
+                            .addComponent(jLabel17)))
+                    .addComponent(jFrames, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAgregarDe)
                 .addGap(20, 20, 20))
         );
@@ -299,11 +356,6 @@ public class C_Select_Pedido extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SelectTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SelectTableMouseClicked
-        // TODO add your handling code here:
-        idPe.setText(SelectTable.getValueAt(SelectTable.getSelectedRow(), 0)+"");
-    }//GEN-LAST:event_SelectTableMouseClicked
-
     private void btnAgregarDeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarDeMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarDeMouseClicked
@@ -311,22 +363,79 @@ public class C_Select_Pedido extends javax.swing.JFrame {
     private void btnAgregarDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarDeActionPerformed
-
+public void borrarTabla(JTable tab) {
+        try {
+            DefaultTableModel tabT = (DefaultTableModel) tab.getModel();
+            for (int i = tabT.getRowCount() - 1; i > -1; i--) {
+                tabT.removeRow(i);
+            }
+        } catch (Exception e) {
+       
+        }
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        int idP_D = 0;
-        try{
-            idP_D =Integer.parseInt( SelectTable.getValueAt(SelectTable.getSelectedRow(), 0)+"");
-            //erp.SelectP_Detalles_Search(SelectTable, idP_D);
-            
-        }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
-        }
-        C_Select_Detalles edg = new C_Select_Detalles();
-            edg.setLocationRelativeTo(edg);
-            edg.setVisible(true);
-            edg.IDPED.setText(idP_D+"");
+     /*C_S_Pedido erp = new C_S_Pedido();
+        erp.setSize(jFrames.getSize());
+        erp.setLocation(0, 0);
+        jFrames.removeAll();
+        jFrames.add(erp);
+        jFrames.revalidate();
+        jFrames.repaint();*/
+     if(jButton1.getText().equals("Ver detalles")){
+         borrarTabla(TableDet);
+         jButton1.setText("Ver pedidos");
+         PanelPedido.setEnabled(false);
+         PanelPedido.setVisible(false);
+         TablePed.setVisible(false);
+         TablePed.setEnabled(false);
+         jScrollPane1.setEnabled(false);
+         jScrollPane1.setVisible(false);
+         
+         PanelDetalles.setEnabled(true);
+         PanelDetalles.setVisible(true);
+         TableDet.setEnabled(true);
+         TableDet.setVisible(true);
+         jScrollPane2.setEnabled(true);
+         jScrollPane2.setVisible(true);
+         erp.SelectP_Detalles_Search(TableDet,Integer.parseInt(idPe.getText()));
+     }else {
+         borrarTabla(TablePed);
+         jButton1.setText("Ver detalles");
+         PanelDetalles.setEnabled(false);
+         PanelDetalles.setVisible(false);
+         TableDet.setEnabled(false);
+         TableDet.setVisible(false);
+         jScrollPane2.setEnabled(false);
+         jScrollPane2.setVisible(false);
+         
+         PanelPedido.setEnabled(true);
+         PanelPedido.setVisible(true);
+         TablePed.setVisible(true);
+         TablePed.setEnabled(true);
+         jScrollPane1.setEnabled(true);
+         jScrollPane1.setVisible(true);
+         erp.SelectP_Search(TablePed);
+     }
+     
+    
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void TablePedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablePedMouseClicked
+        // TODO add your handling code here:
+       idPe.setText(TablePed.getValueAt(TablePed.getSelectedRow(), 0)+"");
+    }//GEN-LAST:event_TablePedMouseClicked
+
+    private void TableDetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableDetMouseClicked
+        // TODO add your handling code here:
+        L_IdD.setText(TableDet.getValueAt(TableDet.getSelectedRow(), 0)+"");
+        L_CantPed.setText(TableDet.getValueAt(TableDet.getSelectedRow(), 1)+"");
+        L_PreComp.setText(TableDet.getValueAt(TableDet.getSelectedRow(), 2)+"");
+        L_Subtotal.setText(TableDet.getValueAt(TableDet.getSelectedRow(), 3)+"");
+        L_CantReci.setText(TableDet.getValueAt(TableDet.getSelectedRow(), 4)+"");
+        L_CantRh.setText(TableDet.getValueAt(TableDet.getSelectedRow(), 5)+"");
+        L_CantAcp.setText(TableDet.getValueAt(TableDet.getSelectedRow(), 6)+"");
+    }//GEN-LAST:event_TableDetMouseClicked
 
     /**
      * @param args the command line arguments
@@ -367,17 +476,21 @@ public class C_Select_Pedido extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTable SelectTable;
+    private javax.swing.JLabel L_CantAcp;
+    private javax.swing.JLabel L_CantPed;
+    private javax.swing.JLabel L_CantReci;
+    private javax.swing.JLabel L_CantRh;
+    private javax.swing.JLabel L_IdD;
+    private javax.swing.JLabel L_PreComp;
+    private javax.swing.JLabel L_Subtotal;
+    private javax.swing.JPanel PanelDetalles;
+    private javax.swing.JPanel PanelPedido;
+    public javax.swing.JTable TableDet;
+    public javax.swing.JTable TablePed;
     private javax.swing.JButton btnAgregarDe;
     public javax.swing.JLabel idPe;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
+    private javax.swing.JPanel jFrames;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -388,5 +501,6 @@ public class C_Select_Pedido extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

@@ -173,7 +173,7 @@ public class Conexion {
         Sql = " select P.idPedido,p.fecharegistro,p.fecharecepcion,p.totalpagar,\n" +
 " p.cantidadpagada,p.estatus, c.idproveedor,c.nombre\n" +
 " from Pedidos P inner join Proveedores c on p.idproveedor = c.idproveedor \n" +
-" where p.estatus = 'A'";
+" where p.estatus = 'E'";
                try {
             stn=(Statement) con.createStatement();
             rs=stn.executeQuery(Sql);
