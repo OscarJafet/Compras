@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  * @author rocker
  */
 public class Pedidos extends javax.swing.JPanel {
-
+String usuario;
     /**
      * Creates new form Ciudades
      */int ids=0,idp = 0;
@@ -30,6 +30,32 @@ public class Pedidos extends javax.swing.JPanel {
     public Pedidos() {
         initComponents();
        erp = new Conexion();
+       borrarTabla(C_ExistenciaSucursal_tabla);
+      C_ExistenciaSucursal_tabla.setVisible(false);
+    
+    
+        
+        
+      C_ExistenciaSucursal_tabla.setVisible(true);
+      erp.OpenCon("ERP", "erp");
+      String a=C_Categorias_txfBuscar.getText();
+      if(a.isEmpty()){
+           Sql = "select p.idpedido, p.fecharesgistro,p.fecharecepcion ,p.totalpagar,p.cantidadpagada ,p.estatus,pr.nombre, s.nombre as nom, \n" +
+"em.nombre as nom1 from \n" +
+"pedidos p inner join proveedores pr on p.idproveedor=pr.idproveedor \n" +
+"inner join sucursal s on p.idsucursal=s.idsucursal\n" +
+"inner join empleados em on p.idempleado=em.idempleado where p.estatus ='A' or p.estatus='E'";
+        
+      erp.pedidos_search_claves(C_ExistenciaSucursal_tabla, Sql);}else{
+          
+            Sql = "select p.idpedido, p.fecharesgistro,p.fecharecepcion ,p.totalpagar,p.cantidadpagada ,p.estatus,pr.nombre, s.nombre as nom, \n" +
+            "em.nombre as nom1 from \n" +
+            "pedidos p inner join proveedores pr on p.idproveedor=pr.idproveedor \n" +
+            "inner join sucursal s on p.idsucursal=s.idsucursal\n" +
+            "inner join empleados em on p.idempleado=em.idempleado where pr.nombre like '"+a.toString()+"%' and p.estatus not like 'C'";
+        
+      erp.pedidos_search_claves(C_ExistenciaSucursal_tabla, Sql);
+      }
        
     }
     
@@ -72,6 +98,11 @@ public class Pedidos extends javax.swing.JPanel {
 
         C_Categorias_txfBuscar.setBackground(new java.awt.Color(254, 254, 254));
         C_Categorias_txfBuscar.setForeground(new java.awt.Color(1, 1, 1));
+        C_Categorias_txfBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                C_Categorias_txfBuscarActionPerformed(evt);
+            }
+        });
         C_Categorias_txfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 C_Categorias_txfBuscarKeyPressed(evt);
@@ -111,6 +142,9 @@ public class Pedidos extends javax.swing.JPanel {
         C_ExistenciaSucursal_tabla.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 C_ExistenciaSucursal_tablaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                C_ExistenciaSucursal_tablaMouseEntered(evt);
             }
         });
         jScrollPane1.setViewportView(C_ExistenciaSucursal_tabla);
@@ -243,6 +277,7 @@ public void borrarTabla(JTable tab) {
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         C_ADD_Pedido aCiu = new C_ADD_Pedido();
+        aCiu.usuario=usuario;
         aCiu.setLocationRelativeTo(aCiu);
         aCiu.setVisible(true);
     }//GEN-LAST:event_btnNuevoActionPerformed
@@ -373,6 +408,39 @@ public void borrarTabla(JTable tab) {
        
         // TODO add your handling code here:
     }//GEN-LAST:event_C_ExistenciaSucursal_tablaMouseClicked
+
+    private void C_ExistenciaSucursal_tablaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C_ExistenciaSucursal_tablaMouseEntered
+        borrarTabla(C_ExistenciaSucursal_tabla);
+      C_ExistenciaSucursal_tabla.setVisible(false);
+    
+    
+        
+        
+      C_ExistenciaSucursal_tabla.setVisible(true);
+      erp.OpenCon("ERP", "erp");
+      String a=C_Categorias_txfBuscar.getText();
+      if(a.isEmpty()){
+           Sql = "select p.idpedido, p.fecharesgistro,p.fecharecepcion ,p.totalpagar,p.cantidadpagada ,p.estatus,pr.nombre, s.nombre as nom, \n" +
+"em.nombre as nom1 from \n" +
+"pedidos p inner join proveedores pr on p.idproveedor=pr.idproveedor \n" +
+"inner join sucursal s on p.idsucursal=s.idsucursal\n" +
+"inner join empleados em on p.idempleado=em.idempleado where p.estatus ='A' or p.estatus='E'";
+        
+      erp.pedidos_search_claves(C_ExistenciaSucursal_tabla, Sql);}else{
+          
+            Sql = "select p.idpedido, p.fecharesgistro,p.fecharecepcion ,p.totalpagar,p.cantidadpagada ,p.estatus,pr.nombre, s.nombre as nom, \n" +
+            "em.nombre as nom1 from \n" +
+            "pedidos p inner join proveedores pr on p.idproveedor=pr.idproveedor \n" +
+            "inner join sucursal s on p.idsucursal=s.idsucursal\n" +
+            "inner join empleados em on p.idempleado=em.idempleado where pr.nombre like '"+a.toString()+"%' and p.estatus not like 'C'";
+        
+      erp.pedidos_search_claves(C_ExistenciaSucursal_tabla, Sql);
+      }
+    }//GEN-LAST:event_C_ExistenciaSucursal_tablaMouseEntered
+
+    private void C_Categorias_txfBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_Categorias_txfBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_C_Categorias_txfBuscarActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
