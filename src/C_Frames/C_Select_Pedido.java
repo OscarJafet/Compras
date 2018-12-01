@@ -58,14 +58,14 @@ public class C_Select_Pedido extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        L_CantAcp = new javax.swing.JLabel();
+        label99 = new javax.swing.JLabel();
         L_IdD = new javax.swing.JLabel();
         L_CantPed = new javax.swing.JLabel();
         L_PreComp = new javax.swing.JLabel();
         L_Subtotal = new javax.swing.JLabel();
         L_CantReci = new javax.swing.JLabel();
         L_CantRh = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        L_CantAcp = new javax.swing.JLabel();
         jFrames = new javax.swing.JPanel();
         PanelPedido = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -73,6 +73,7 @@ public class C_Select_Pedido extends javax.swing.JFrame {
         PanelDetalles = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TableDet = new javax.swing.JTable();
+        btnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(254, 254, 254));
@@ -134,9 +135,9 @@ public class C_Select_Pedido extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(1, 1, 1));
         jLabel9.setText("CANT. RECHAZADA");
 
-        L_CantAcp.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
-        L_CantAcp.setForeground(new java.awt.Color(1, 1, 1));
-        L_CantAcp.setText("CANT. ACEPTADA");
+        label99.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
+        label99.setForeground(new java.awt.Color(1, 1, 1));
+        label99.setText("CANT. ACEPTADA");
 
         L_IdD.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         L_IdD.setForeground(new java.awt.Color(1, 1, 1));
@@ -162,9 +163,9 @@ public class C_Select_Pedido extends javax.swing.JFrame {
         L_CantRh.setForeground(new java.awt.Color(1, 1, 1));
         L_CantRh.setText("NA");
 
-        jLabel17.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel17.setText("NA");
+        L_CantAcp.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
+        L_CantAcp.setForeground(new java.awt.Color(1, 1, 1));
+        L_CantAcp.setText("NA");
 
         jFrames.setMinimumSize(new java.awt.Dimension(838, 380));
         jFrames.setLayout(null);
@@ -248,6 +249,20 @@ public class C_Select_Pedido extends javax.swing.JFrame {
         jFrames.add(PanelDetalles);
         PanelDetalles.setBounds(0, 0, 830, 340);
 
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icono-salir.png"))); // NOI18N
+        btnEliminar.setBorderPainted(false);
+        btnEliminar.setContentAreaFilled(false);
+        btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEliminarMouseClicked(evt);
+            }
+        });
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -255,7 +270,6 @@ public class C_Select_Pedido extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnAgregarDe)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -286,12 +300,16 @@ public class C_Select_Pedido extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
-                            .addComponent(L_CantAcp))
+                            .addComponent(label99))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel17)
-                            .addComponent(L_CantRh))))
-                .addContainerGap(171, Short.MAX_VALUE))
+                            .addComponent(L_CantAcp)
+                            .addComponent(L_CantRh)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnEliminar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnAgregarDe)))))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,7 +325,7 @@ public class C_Select_Pedido extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -334,12 +352,13 @@ public class C_Select_Pedido extends javax.swing.JFrame {
                             .addComponent(L_CantRh))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(L_CantAcp)
-                            .addComponent(jLabel17)))
-                    .addComponent(jFrames, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAgregarDe)
-                .addGap(20, 20, 20))
+                            .addComponent(label99)
+                            .addComponent(L_CantAcp))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEliminar))
+                    .addComponent(jFrames, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgregarDe, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -362,6 +381,12 @@ public class C_Select_Pedido extends javax.swing.JFrame {
 
     private void btnAgregarDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDeActionPerformed
         // TODO add your handling code here:
+        C_ADD_Pagos edg;
+        edg = new C_ADD_Pagos();
+        edg.setLocationRelativeTo(edg);
+        edg.setVisible(true);
+        edg.ID_Ped.setText(idPe.getText());
+       
     }//GEN-LAST:event_btnAgregarDeActionPerformed
 public void borrarTabla(JTable tab) {
         try {
@@ -437,6 +462,15 @@ public void borrarTabla(JTable tab) {
         L_CantAcp.setText(TableDet.getValueAt(TableDet.getSelectedRow(), 6)+"");
     }//GEN-LAST:event_TableDetMouseClicked
 
+    private void btnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarMouseClicked
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -488,10 +522,10 @@ public void borrarTabla(JTable tab) {
     public javax.swing.JTable TableDet;
     public javax.swing.JTable TablePed;
     private javax.swing.JButton btnAgregarDe;
+    private javax.swing.JButton btnEliminar;
     public javax.swing.JLabel idPe;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jFrames;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -502,5 +536,6 @@ public void borrarTabla(JTable tab) {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel label99;
     // End of variables declaration//GEN-END:variables
 }
