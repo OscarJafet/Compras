@@ -24,7 +24,7 @@ public class C_MOD_Presentacion extends javax.swing.JFrame {
     /**
      * Creates new form EditarDeducciones
      */
-    Conexion erp;
+    Conexion erp;   
     public C_MOD_Presentacion() {
         initComponents();
         this.Id.setEditable(false);
@@ -67,6 +67,10 @@ public void llenarCombo2(){
             JOptionPane.showMessageDialog(null,ex.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
         
+    }
+    public void datos(String a, String b){
+        modelocombo.setSelectedItem(a);
+        modelocombo1.setSelectedItem(b);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -306,7 +310,7 @@ public void llenarCombo2(){
        int ID =Integer.parseInt(Id.getText()),idEmp = 0,idPro = 0;
         float Vent = 0,Com = 0,Re = 0;
         StringTokenizer idPr = new StringTokenizer(cmbProd.getItemAt(cmbProd.getSelectedIndex()).toString()," ");
-        StringTokenizer idEmps = new StringTokenizer(cmbEmp.getItemAt(cmbEmp.getSelectedIndex()).toString()," ");
+        StringTokenizer idEmps = new StringTokenizer(cmbEmp.getSelectedItem().toString()," ");
         try{
             Vent = Float.parseFloat(this.preVen.getText());
             Com = Float.parseFloat(preCom.getText());

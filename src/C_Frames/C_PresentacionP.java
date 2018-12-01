@@ -59,7 +59,6 @@ public class C_PresentacionP extends javax.swing.JPanel {
         btnAgregarDe = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        cmbSe = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(254, 254, 254));
         setForeground(new java.awt.Color(254, 254, 254));
@@ -73,6 +72,9 @@ public class C_PresentacionP extends javax.swing.JPanel {
             }
         });
         txfConsultar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txfConsultarKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txfConsultarKeyTyped(evt);
             }
@@ -128,6 +130,9 @@ public class C_PresentacionP extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablaPressMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tablaPressMouseEntered(evt);
+            }
         });
         jScrollPane1.setViewportView(tablaPress);
 
@@ -181,15 +186,6 @@ public class C_PresentacionP extends javax.swing.JPanel {
         });
         add(jButton1);
         jButton1.setBounds(38, 468, 97, 73);
-
-        cmbSe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estatus", "A", "B" }));
-        cmbSe.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cmbSeMouseClicked(evt);
-            }
-        });
-        add(cmbSe);
-        cmbSe.setBounds(600, 30, 90, 20);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarDeduccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarDeduccionesActionPerformed
@@ -214,37 +210,9 @@ int A = 0;
         erp.preCom.setText(tablaPress.getValueAt(tablaPress.getSelectedRow(),1)+"");
         erp.preVen.setText(tablaPress.getValueAt(tablaPress.getSelectedRow(),2)+"");
         erp.preRe.setText(tablaPress.getValueAt(tablaPress.getSelectedRow(),3)+"");
-        int b = 0;
-        for (int i = 0; i < erp.cmbProd.getItemCount(); i++) {
-            StringTokenizer idPr = new StringTokenizer(erp.cmbProd.getItemAt(i).toString()," ");
-             int a = Integer.parseInt((tablaPress.getValueAt(tablaPress.getSelectedRow(),4)+""));
-            try{
-                b = Integer.parseInt(idPr.nextToken());
-            }catch(Exception e){
-                b = 0;
-            }
-            System.out.println(a+" "+b);
-            if(a==b){
-                System.out.println("entro");
-                erp.cmbProd.setSelectedIndex(i);
-            }
-        }
-        int b1;
-        System.out.println("dossssssss");
-        for (int i = 0; i < erp.cmbEmp.getItemCount(); i++) {
-            StringTokenizer idE = new StringTokenizer(erp.cmbEmp.getItemAt(i).toString()," ");
-            int a = Integer.parseInt((tablaPress.getValueAt(tablaPress.getSelectedRow(),5)+""));
-            try{
-                b1 = Integer.parseInt(idE.nextToken());
-            }catch(Exception e){
-                b1 = 0;
-            }
-            System.out.println(a+" "+b1);
-            if(a==b1){
-                System.out.println("entro");
-                erp.cmbEmp.setSelectedIndex(i);
-            }
-        }
+        String producto=(tablaPress.getValueAt(tablaPress.getSelectedRow(),4)+"");
+        String empaque =(tablaPress.getValueAt(tablaPress.getSelectedRow(),5)+"");
+        erp.datos(producto,empaque);
         }
     
     }//GEN-LAST:event_btnEditarDeduccionesActionPerformed
@@ -261,24 +229,27 @@ public void borrarTabla(JTable tab) {
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         borrarTabla(tablaPress);
         erp.OpenCon("ERP", "erp");
-        erp.Presentacion_seacrh(txfConsultar.getText(), tablaPress,cmbSe.getItemAt(cmbSe.getSelectedIndex()).charAt(0));
+        erp.Presentacion_seacrh(txfConsultar.getText(), tablaPress);
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnEliDeduccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliDeduccionesActionPerformed
-       int ID = 0;
-        try{
+        int ID = 0;
+        int con=tablaPress.getSelectedRow();
+        if (con>=0){
+            String es= String.valueOf(tablaPress.getValueAt(con,7));
+            if(es.equals("A"))
+            {    
             ID = Integer.parseInt(tablaPress.getValueAt(tablaPress.getSelectedRow(),0)+"");
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
-        }
-        //confirma eliminacion
-            if(JOptionPane.showConfirmDialog(null, "¿Desea darlo de baja?","Informacion",
-        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            if(JOptionPane.showConfirmDialog (null, "Desea eliminar","Informacion",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
                 erp.SQL("update PresentacionesProducto set estatus = 'B' where idPresentacion = "+ID);
-              }else{
-                JOptionPane.showMessageDialog(null,"NO Eliminado","Infromación" ,JOptionPane.INFORMATION_MESSAGE);
             }
-              btnConsultar.doClick();
+            }else {
+                JOptionPane.showMessageDialog(null,"Seleccione un producto con estatus A","Error" ,JOptionPane.INFORMATION_MESSAGE);
+            }
+        }else {
+            JOptionPane.showMessageDialog(null,"Seleccione un producto","Error" ,JOptionPane.INFORMATION_MESSAGE);
+        }
+        btnConsultar.doClick();
             
     }//GEN-LAST:event_btnEliDeduccionesActionPerformed
 
@@ -313,11 +284,6 @@ public void borrarTabla(JTable tab) {
         btnConsultar.doClick();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void cmbSeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbSeMouseClicked
-        // TODO add your handling code here:
-        //txfConsultar.setText("");
-    }//GEN-LAST:event_cmbSeMouseClicked
-
     private void txfConsultarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txfConsultarMouseClicked
         // TODO add your handling code here:
         //cmbSe.setSelectedIndex(0);
@@ -336,13 +302,22 @@ public void borrarTabla(JTable tab) {
         }
     }//GEN-LAST:event_txfConsultarKeyTyped
 
+    private void txfConsultarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfConsultarKeyReleased
+        btnConsultar.doClick();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txfConsultarKeyReleased
+
+    private void tablaPressMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPressMouseEntered
+        btnConsultar.doClick();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tablaPressMouseEntered
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarDe;
     public javax.swing.JButton btnConsultar;
     public javax.swing.JButton btnEditarDeducciones;
     public javax.swing.JButton btnEliDeducciones;
-    private javax.swing.JComboBox<String> cmbSe;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
