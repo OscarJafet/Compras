@@ -5,8 +5,12 @@
  */
 package C_Conexion;
 import C_Frames.C_ADD_ProductosProveedor;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -23,14 +27,16 @@ import javax.swing.table.DefaultTableModel;
  * @author Emilio
  */
 public class Conexion {
-    public static String conexionURL;
+     public static String conexionURL;
     public static Connection con=null;
     public Statement stn=null;
     public ResultSet rs=null;
     JTable tablaTemp;
+     PreparedStatement st=null;
     public String Sql;
     public boolean conex;
     private String usuarioname;
+  
     public static Connection getConnection(String User, String Password){
         if(con == null){
             conexionURL = "jdbc:oracle:thin:@localhost:1521:XE";
@@ -65,7 +71,7 @@ public class Conexion {
               //Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
           }
      }
-     
+    
           public void SQLLupita(String Sql) {
         try {
 
@@ -85,7 +91,7 @@ public class Conexion {
             //Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+  
     public void SQLlupita2(String Sql) {
         try {
 
@@ -101,6 +107,98 @@ public class Conexion {
            // Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
+      public void SQLAI(String Sql,String array[],File blob,FileInputStream in,String ruta){
+          try {
+              
+     
+        
+                        
+                        st = con.prepareStatement(Sql);
+                        
+                        
+                                st.setString(1, array[0]);
+                        
+                            blob = new File(ruta);
+                        
+                          in = new FileInputStream(blob);
+                        
+                            st.setBinaryStream(2, in, (int)blob.length());
+                        
+                                 st.setString(3 ,"A");
+                        
+                        
+                        
+                          st.setInt(4, Integer.parseInt(array[1]));
+                        
+                                st.setInt(5, Integer.parseInt(array[2]));
+                        
+                              
+                              rs = st.executeQuery();
+                                
+              con.commit();
+              stn.close();
+              JOptionPane.showMessageDialog(null," Acción realizada","Informacion", JOptionPane.INFORMATION_MESSAGE);
+              //return true;
+              // erp.V = null;
+          } catch (SQLException ex) {
+              JOptionPane.showMessageDialog(null,ex.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
+              //return false;
+              //Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+          } catch (FileNotFoundException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     }
+     
+     
+      public void SQLima(String Sql,String array[],File blob,FileInputStream in,String ruta){
+          try {
+              
+     
+      st = con.prepareStatement(Sql);
+           
+   
+         st.setString(1, array[0]);
+          blob = new File(ruta);
+  
+          in = new FileInputStream(blob);
+          
+  st.setBinaryStream(2,in, (int)blob.length());
+         
+    
+      st.setString(3,"A");
+      st.setInt(4, Integer.parseInt(array[1]));
+     rs= st.executeQuery();
+             
+              con.commit();
+              stn.close();
+              JOptionPane.showMessageDialog(null," Acción realizada","Informacion", JOptionPane.INFORMATION_MESSAGE);
+              //return true;
+              // erp.V = null;
+          } catch (SQLException ex) {
+              JOptionPane.showMessageDialog(null,ex.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
+              //return false;
+              //Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+          } catch (FileNotFoundException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     }
+      public void SQLpp(String Sql){
+          try {
+              
+              stn=(Statement) con.createStatement();
+              stn.executeUpdate(Sql);
+              con.commit();
+              stn.close();
+            
+          } catch (SQLException ex) {
+              JOptionPane.showMessageDialog(null,ex.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
+              //return false;
+              //Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+          }
+     }  
+        
      public boolean Log_in(String Usr, String Psw){
        Sql = "select estatus from ERP.Usuarios where nombre ='"+Usr+"' and CONTRASEÑA = '"+Psw+"'";
            
@@ -127,7 +225,31 @@ public class Conexion {
             JOptionPane.showMessageDialog(null, "Usuario incorrecto o contraseña incorrecta");
             return false;
      }
+               public void imagen(JTable tabla, String Sql){
+         DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
+               try {
+            stn=(Statement) con.createStatement();
+            rs=stn.executeQuery(Sql);
+
+    
+    
+        
+            while(rs.next()){
+                String pro= rs.getString("IDIMAGEN");
+                String pre= rs.getString("NOBREIMAGEN");
+                String dias=rs.getString("PRINCIPAL");
+                String precioes = rs.getString("NOMBRE");
              
+                
+                Object datosRenglon[]={pro,pre,dias,precioes};
+                tablaTemp.addRow(datosRenglon);
+            }
+            
+            tabla.setModel(tablaTemp);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }    
      public void Update_Ped_Det_Total(int idPed){
          float Total = 0;
         Sql = "select subtotal from pedidodetalle where idpedido ="+idPed;
