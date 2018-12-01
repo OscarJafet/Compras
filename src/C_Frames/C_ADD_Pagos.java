@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import C_Frames.C_Categorias;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -28,15 +29,8 @@ public class C_ADD_Pagos extends javax.swing.JFrame {
     public C_ADD_Pagos() {
         initComponents();
         erp = new Conexion();
-        if(ID_Ped.getText().equals("Ninguno")){
-            cmbFp.setEnabled(false);
-            cmbCP.setEnabled(false);
-            Importe.setEnabled(false);
-        }else{
-            cmbFp.setEnabled(true);
-            cmbCP.setEnabled(true);
-            Importe.setEnabled(true);
-        }
+        llenarC_Proveedor();
+        llenarF_Pago();
     }
     C_Categorias cd;
     /**
@@ -249,12 +243,13 @@ public class C_ADD_Pagos extends javax.swing.JFrame {
         try {
             erp.OpenCon("ERP", "erp");
             erp.stn= (Statement) erp.con.createStatement();
-            erp.rs= erp.stn.executeQuery("select * from Empaques");
-            modelocombo1.addElement("Seleccione Empaque");
-            modelocombo1.addElement("Crear Empaque");
-            cmbCP.setModel(modelocombo1);
+            erp.rs= erp.stn.executeQuery("select c.idCuentaProveedor, c.idproveedor, p.nombre, c.nocuenta,c.banco \n" +
+"from cuentasproveedor c inner join Proveedores p on c.idproveedor = p.idproveedor where c.estatus = 'A'");
+            modelocombo.addElement("Seleccione cuenta");
+            cmbFp.setModel(modelocombo);
             while (erp.rs.next()){
-                modelocombo1.addElement(erp.rs.getObject("idEmpaque")+" "+erp.rs.getObject("nombre"));
+                modelocombo1.addElement(erp.rs.getObject("nombre")+" "+erp.rs.getObject("nocuenta")+" "+erp.rs.getObject("banco")+" idPro: "+erp.rs.getObject("idproveedor")+" idC:"+erp.rs.getObject("idcuentaproveedor"));
+                
                 cmbCP.setModel(modelocombo1);
             }
         
@@ -334,13 +329,13 @@ public class C_ADD_Pagos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel ID_Ped;
-    private javax.swing.JLabel Importe;
+    public javax.swing.JLabel Importe;
     private javax.swing.JButton SelectP;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JComboBox<String> cmbCP;
-    private javax.swing.JComboBox<String> cmbFp;
+    public javax.swing.JComboBox<String> cmbCP;
+    public javax.swing.JComboBox<String> cmbFp;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

@@ -225,6 +225,9 @@ public void borrarTabla(JTable tab) {
        C_ADD_Pagos erp = new C_ADD_Pagos();
         erp.setLocationRelativeTo(erp);
         erp.setVisible(true);
+        erp.cmbFp.setEnabled(false);
+        erp.cmbCP.setEnabled(false);
+        erp.Importe.setEnabled(false);
     }//GEN-LAST:event_btnAgregarDeActionPerformed
 
     private void btnAgregarDeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarDeMouseClicked
