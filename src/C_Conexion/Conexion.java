@@ -624,31 +624,30 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
      
      
      }
-      public void Presentacion_seacrh(String Nombre, JTable tabla, char Stat) {
+      public void Presentacion_seacrh(String Nombre, JTable tabla) {
         DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
-        if (Nombre.isEmpty() && Stat == 'E') {
-            Sql = "select PresentacionesProducto.idPresentacion, PresentacionesProducto.precioCompra,\n"
-                    + "PresentacionesProducto.precioVenta,PresentacionesProducto.puntoReorden,\n"
-                    + "PresentacionesProducto.idProducto,PresentacionesProducto.idEmpaque,PresentacionesProducto.estatus,PresentacionesProducto.nombre\n"
-                    + "from presentacionesproducto\n"
-                    + "inner join ERP.Productos\n"
-                    + "on PresentacionesProducto.idProducto = Productos.idProducto and Productos.estatus = 'A'";
-        } else if (!Nombre.isEmpty() && Stat == 'E') {
-            Sql = "select PresentacionesProducto.idPresentacion, PresentacionesProducto.precioCompra,\n"
-                    + "PresentacionesProducto.precioVenta,PresentacionesProducto.puntoReorden,\n"
-                    + "PresentacionesProducto.idProducto,PresentacionesProducto.idEmpaque,PresentacionesProducto.estatus,PresentacionesProducto.nombre\n"
-                    + "from presentacionesproducto\n"
-                    + "inner join ERP.Productos\n"
-                    + "on PresentacionesProducto.idProducto = Productos.idProducto and Productos.estatus = 'A' and Productos.nombre = '" + Nombre + "'";
-        } else if (Stat == 'A' || Stat == 'B') {
-            Sql = "select PresentacionesProducto.idPresentacion, PresentacionesProducto.precioCompra,\n"
-                    + "PresentacionesProducto.precioVenta,PresentacionesProducto.puntoReorden,\n"
-                    + "PresentacionesProducto.idProducto,PresentacionesProducto.idEmpaque,PresentacionesProducto.estatus,PresentacionesProducto.nombre\n"
-                    + "from presentacionesproducto\n"
-                    + "inner join ERP.Productos\n"
-                    + "on PresentacionesProducto.idProducto = Productos.idProducto and PresentacionesProducto.estatus = '" + Stat + "'";
+        if (Nombre.isEmpty()) {
+            Sql = "select PresentacionesProducto.idPresentacion, PresentacionesProducto.precioCompra,\n" +
+                    "PresentacionesProducto.precioVenta,PresentacionesProducto.puntoReorden,\n" +
+                    "PresentacionesProducto.idProducto,PresentacionesProducto.idEmpaque,PresentacionesProducto.estatus,PresentacionesProducto.nombre,\n" +
+                    "Productos.nombre as nom, Empaques.nombre as nomb\n" +
+                    "from presentacionesproducto\n" +
+                    "inner join ERP.Empaques\n" +
+                    "on PresentacionesProducto.idEmpaque = Empaques.idEmpaque\n" +
+                    "inner join ERP.Productos\n" +
+                     "on PresentacionesProducto.idProducto = Productos.idProducto where PresentacionesProducto.estatus = 'A'";
+        } else if (!Nombre.isEmpty()) {
+            Sql = "select PresentacionesProducto.idPresentacion, PresentacionesProducto.precioCompra,\n" +
+                    "PresentacionesProducto.precioVenta,PresentacionesProducto.puntoReorden,\n" +
+                    "PresentacionesProducto.idProducto,PresentacionesProducto.idEmpaque,PresentacionesProducto.estatus,PresentacionesProducto.nombre,\n" +
+                    "Productos.nombre as nom, Empaques.nombre as nomb\n" +
+                    "from presentacionesproducto\n" +
+                    "inner join ERP.Empaques\n" +
+                    "on PresentacionesProducto.idEmpaque = Empaques.idEmpaque\n" +
+                    "inner join ERP.Productos\n" +
+                    "on PresentacionesProducto.idProducto = Productos.idProducto where Productos.nombre like '" + Nombre + "%'";
         }
-        //System.out.println(Sql);
+    //System.out.println(Sql);
                try {
             stn= con.createStatement();
             rs=stn.executeQuery(Sql);
@@ -659,39 +658,20 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
                 String preVent=rs.getString("precioVenta");
                 String pReorden = rs.getString("puntoReorden");
                 String idPro = rs.getString("idProducto");
+                String nom1 = rs.getString("nom");
                 String idEmp = rs.getString("idEmpaque");
+                String nomb = rs.getString("nomb");
                 String stat = rs.getString("estatus");
                 String nom = rs.getString("nombre");
-                Object datosRenglon[]={idPress, preCom, preVent,pReorden,idPro,idEmp,stat,nom};
+                Object datosRenglon[]={idPress, preCom, preVent,pReorden,idPro+" "+nom1,idEmp+" "+nomb,stat,nom};
                 tablaTemp.addRow(datosRenglon);
-            }
-            Sql = "select Productos.nombre from Productos\n"
-                    + "inner join ERP.PresentacionesProducto\n"
-                    + "on PresentacionesProducto.idProducto = Productos.idProducto";
-            stn= con.createStatement();
-            rs=stn.executeQuery(Sql);
-        
-            for (int i = 0; rs.next(); i++) {
-                 String nombre=rs.getString("nombre");
-                 tablaTemp.setValueAt(tablaTemp.getValueAt(i, 4)+" "+nombre, i, 4);
-            }
-            
-            Sql = "select Empaques.nombre from Empaques\n"
-                    + "inner join ERP.PresentacionesProducto\n"
-                    + "on PresentacionesProducto.idEmpaque = Empaques.idEmpaque";
-            stn= con.createStatement();
-            rs=stn.executeQuery(Sql);
-        
-            for (int i = 0; rs.next(); i++) {
-                 String nombre=rs.getString("nombre");
-                 tablaTemp.setValueAt(tablaTemp.getValueAt(i, 5)+" "+nombre, i, 5);
             }
             
             tabla.setModel(tablaTemp);
         } catch (SQLException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    }   
       public void Detalles_seacrh(String Nombre, JTable tabla, char Stat) {
         DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
         if (Nombre.isEmpty() && Stat == 'E') {

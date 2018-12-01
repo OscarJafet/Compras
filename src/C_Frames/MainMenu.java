@@ -577,6 +577,7 @@ public class MainMenu extends javax.swing.JFrame {
          C_PresentacionP erp = new C_PresentacionP();
         erp.setSize(jFrames.getSize());
         erp.setLocation(0, 0);
+        erp.btnConsultar.doClick();
         jFrames.removeAll();
         jFrames.add(erp);
         jFrames.revalidate();
