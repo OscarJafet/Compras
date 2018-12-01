@@ -409,21 +409,26 @@ public void borrarTabla(JTable tab) {
         jFrames.repaint();*/
      if(jButton1.getText().equals("Ver detalles")){
          borrarTabla(TableDet);
-         jButton1.setText("Ver pedidos");
-         PanelPedido.setEnabled(false);
-         PanelPedido.setVisible(false);
-         TablePed.setVisible(false);
-         TablePed.setEnabled(false);
-         jScrollPane1.setEnabled(false);
-         jScrollPane1.setVisible(false);
+          try{
+             erp.SelectP_Detalles_Search(TableDet,Integer.parseInt(idPe.getText()));
+             jButton1.setText("Ver pedidos");
+                PanelPedido.setEnabled(false);
+                PanelPedido.setVisible(false);
+                TablePed.setVisible(false);
+                TablePed.setEnabled(false);
+                jScrollPane1.setEnabled(false);
+                jScrollPane1.setVisible(false);
+
+                PanelDetalles.setEnabled(true);
+                PanelDetalles.setVisible(true);
+                TableDet.setEnabled(true);
+                TableDet.setVisible(true);
+                jScrollPane2.setEnabled(true);
+                jScrollPane2.setVisible(true);
+         }catch(Exception e){
+             JOptionPane.showMessageDialog(null,"Seleccione un pedido","Atención", JOptionPane.INFORMATION_MESSAGE);
+         }
          
-         PanelDetalles.setEnabled(true);
-         PanelDetalles.setVisible(true);
-         TableDet.setEnabled(true);
-         TableDet.setVisible(true);
-         jScrollPane2.setEnabled(true);
-         jScrollPane2.setVisible(true);
-         erp.SelectP_Detalles_Search(TableDet,Integer.parseInt(idPe.getText()));
      }else {
          borrarTabla(TablePed);
          jButton1.setText("Ver detalles");

@@ -266,7 +266,7 @@ public class C_ADD_Pagos extends javax.swing.JFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
       
       erp.OpenCon("ERP", "erp");
-     
+     erp.SQL(Sql);
       
     }//GEN-LAST:event_btnAgregarActionPerformed
 

@@ -120,11 +120,11 @@ public class C_Pagos extends javax.swing.JPanel {
 
             },
             new String [] {
-                "idPago", "fecha", "Nom.Emp", "Puesto", "ID Cuenta", "Nomb. Cuenta", "Dir.", "Telefono", "Forma Pago", "Cantidad", "Descripcion", "Precio unidad", "Subtotal", "Total", "Importe"
+                "idPago", "fecha", "Dir. Suc.", "Tel. Suc.", "Nom.Emp", "Puesto", "Proveedor", "ID Cuenta", "No Cuenta", "Dir. Prov.", "Telefono", "Forma Pago", "Cantidad", "Descripcion", "Precio unidad", "Subtotal", "Total", "Importe"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
