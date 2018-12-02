@@ -59,6 +59,8 @@ public class C_ADD_Pagos extends javax.swing.JFrame {
         lABELcP = new javax.swing.JLabel();
         ID_Ped = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        Sucursal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -141,6 +143,16 @@ public class C_ADD_Pagos extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(1, 1, 1));
         jLabel5.setText("PEDIDO SELECCIONADO");
 
+        jLabel6.setBackground(new java.awt.Color(254, 254, 254));
+        jLabel6.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel6.setText("SUCURSAL: ");
+
+        Sucursal.setBackground(new java.awt.Color(254, 254, 254));
+        Sucursal.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
+        Sucursal.setForeground(new java.awt.Color(1, 1, 1));
+        Sucursal.setText("0");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -151,25 +163,29 @@ public class C_ADD_Pagos extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(Importe))
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ID_Ped)
+                                .addGap(56, 56, 56)
+                                .addComponent(SelectP))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(4, 4, 4)
-                                        .addComponent(lABELcP)))
+                                        .addComponent(lABELcP))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Importe)))
                                 .addGap(21, 21, 21)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Sucursal))
                                     .addComponent(cmbCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmbFp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(ID_Ped)
-                                .addGap(56, 56, 56)
-                                .addComponent(SelectP))))
+                                    .addComponent(cmbFp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,7 +210,9 @@ public class C_ADD_Pagos extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(Importe))
+                    .addComponent(Importe)
+                    .addComponent(jLabel6)
+                    .addComponent(Sucursal))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lABELcP)
@@ -249,9 +267,10 @@ public class C_ADD_Pagos extends javax.swing.JFrame {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         float Imp = 0;
-        int FP = 0, IC = 0,IP = 0;
+        int FP = 0, IC = 0,IP = 0,IS = 0;
         StringTokenizer Cuenta = new StringTokenizer(cmbCP.getItemAt(cmbCP.getSelectedIndex())+""," ");
         StringTokenizer idFP = new StringTokenizer(cmbFp.getItemAt(cmbFp.getSelectedIndex())+""," ");
+        
         try{
             Imp = Float.parseFloat(Importe.getText());
             FP = Integer.parseInt(idFP.nextToken());
@@ -259,14 +278,32 @@ public class C_ADD_Pagos extends javax.swing.JFrame {
             Cuenta.nextToken();
             IC = Integer.parseInt(Cuenta.nextToken());
             IP = Integer.parseInt(ID_Ped.getText());
+            IS = Integer.parseInt(Sucursal.getText());
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
         }
         //System.out.println(IC+" idcuenta");
         erp.OpenCon("ERP", "erp");
+        float Pre = erp.Presupuesto_Sucursal(IP),newP = 0;
+        if (Pre >= Imp){
+            newP = Pre-Imp;
+            erp.SQL("insert into pagos values(IDPago.nextval,TO_DATE('"+dateFormat.format(date)+"','YYYY-MM-DD'),"+Imp+","+IP+","+FP+","+IC+")");
+            erp.SQL("update Pedidos set estatus = 'A' where idpedido = "+IP);
+            erp.SQL("update sucursal set presupuesto = "+newP+" where idsucursal = "+IS);
+        }else{
+             //confirma eliminacion
+        if(JOptionPane.showConfirmDialog(null, "No cuentas con el presupuesto suficiente\n¿Deseás continuar?\n*Si fuerzas el pago la sucursal estara en numeros negativos","Informacion",
+            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            erp.SQL("insert into pagos values(IDPago.nextval,TO_DATE('"+dateFormat.format(date)+"','YYYY-MM-DD'),"+Imp+","+IP+","+FP+","+IC+")");
+            erp.SQL("update Pedidos set estatus = 'A' where idpedido = "+IP);
+            erp.SQL("update sucursal set presupuesto = "+newP+" where idsucursal = "+IS);
+        
+        }else{
+            JOptionPane.showMessageDialog(null,"Pago no realizado","Infromación" ,JOptionPane.INFORMATION_MESSAGE);
+        }
+        }
         //cree la secuencia IDPago
-        erp.SQL("insert into pagos values(IDPago.nextval,TO_DATE('"+dateFormat.format(date)+"','YYYY-MM-DD'),"+Imp+","+IP+","+FP+","+IC+")");
-        erp.SQL("update Pedidos set estatus = 'A' where idpedido = "+IP);
+        
     }//GEN-LAST:event_btnAgregarActionPerformed
 //for( e = name(first),r = name(last), p= name(other_last);e<r<p;e+=r,r+= p,p++ ){
 //}
@@ -351,6 +388,7 @@ public class C_ADD_Pagos extends javax.swing.JFrame {
     public javax.swing.JLabel ID_Ped;
     public javax.swing.JLabel Importe;
     private javax.swing.JButton SelectP;
+    public javax.swing.JLabel Sucursal;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnLimpiar;
@@ -359,6 +397,7 @@ public class C_ADD_Pagos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lABELcP;
     // End of variables declaration//GEN-END:variables

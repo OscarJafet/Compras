@@ -175,11 +175,11 @@ public class C_Select_Pedido extends javax.swing.JFrame {
 
             },
             new String [] {
-                "idPedido", "fecha Regis", "fecha Recep", "Total a pagar", "Cantidad Pagada", "Estatus", "idProveedor", "Nombre"
+                "idPedido", "fecha Regis", "fecha Recep", "Total a pagar", "Cantidad Pagada", "Estatus", "idProveedor", "Nombre", "IdSucursal"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -387,6 +387,7 @@ public class C_Select_Pedido extends javax.swing.JFrame {
         edg.setVisible(true);
         edg.ID_Ped.setText(idPe.getText());
         edg.Importe.setText(TablePed.getValueAt(TablePed.getSelectedRow(), 3)+"");
+        edg.Sucursal.setText(TablePed.getValueAt(TablePed.getSelectedRow(), 8)+"");
         dispose();
     }//GEN-LAST:event_btnAgregarDeActionPerformed
 public void borrarTabla(JTable tab) {

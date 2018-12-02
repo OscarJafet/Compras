@@ -267,6 +267,23 @@ public class Conexion {
             JOptionPane.showMessageDialog(null,ex.getMessage(),"Error Categorias" ,JOptionPane.INFORMATION_MESSAGE);
         }
     }
+     public float Presupuesto_Sucursal(int id){
+         float Re = 0;
+         Sql = "select sc.presupuesto from  sucursal sc inner join Pedidos pe on pe.idsucursal = sc.idsucursal where idpedido = "+id;
+               try {
+            stn=(Statement) con.createStatement();
+            rs=stn.executeQuery(Sql);
+        
+            while(rs.next()){
+                String pre=rs.getString("presupuesto");
+                Re = Float.parseFloat(pre);
+            }
+            return Re;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,ex.getMessage(),"Error Categorias" ,JOptionPane.INFORMATION_MESSAGE);
+        }
+               return Re;
+    }
      public void Categorias_Search(String Nombre, JTable tabla){
          DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
         if(Nombre.isEmpty())
@@ -332,8 +349,8 @@ public class Conexion {
     }
      public void SelectP_Search(JTable tabla){
          DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
-        Sql = "select P.idPedido,p.fecharegistro,p.fecharecepcion,p.totalpagar,\n" +
-"p.cantidadpagada,p.estatus, c.idproveedor,c.nombre\n" +
+        Sql = "select P.idPedido,p.fecharesgistro,p.fecharecepcion,p.totalpagar,\n" +
+"p.cantidadpagada,p.estatus, c.idproveedor,c.nombre,p.idsucursal\n" +
 "from ERP.Pedidos P inner join ERP.Proveedores c on p.idproveedor = c.idproveedor \n" +
 "where p.estatus = 'E'";
                try {
@@ -342,14 +359,15 @@ public class Conexion {
         int idPe = 0;
             while(rs.next()){
                 String idPed=rs.getString("IDPEDIDO");
-                String feReg=rs.getString("FECHAREGISTRO");
+                String feReg=rs.getString("FECHARESGISTRO");
                 String feRecp=rs.getString("FECHARECEPCION");
                 String Tp = rs.getString("TOTALPAGAR");
                 String CantPag = rs.getString("CANTIDADPAGADA");
                 String Est = rs.getString("ESTATUS");
                 String idProv = rs.getString("IDPROVEEDOR");
                 String NomPro = rs.getString("NOMBRE");
-                Object datosRenglon[]={ idPed, feReg, feRecp,Tp,CantPag,Est,idProv,NomPro};
+                String idSc = rs.getString("idSucursal");
+                Object datosRenglon[]={ idPed, feReg, feRecp,Tp,CantPag,Est,idProv,NomPro,idSc};
                 tablaTemp.addRow(datosRenglon);
             }
             tabla.setModel(tablaTemp);
