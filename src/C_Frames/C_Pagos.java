@@ -53,12 +53,9 @@ public class C_Pagos extends javax.swing.JPanel {
     private void initComponents() {
 
         NomPro = new javax.swing.JTextField();
-        btnEditarDeducciones = new javax.swing.JButton();
-        btnEliDeducciones = new javax.swing.JButton();
         btnConsultar = new javax.swing.JButton();
         btnAgregarDe = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -90,32 +87,6 @@ public class C_Pagos extends javax.swing.JPanel {
         });
         add(NomPro);
         NomPro.setBounds(180, 30, 386, 25);
-
-        btnEditarDeducciones.setBackground(new java.awt.Color(254, 254, 254));
-        btnEditarDeducciones.setForeground(new java.awt.Color(254, 254, 254));
-        btnEditarDeducciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon-cambiar.png"))); // NOI18N
-        btnEditarDeducciones.setBorderPainted(false);
-        btnEditarDeducciones.setContentAreaFilled(false);
-        btnEditarDeducciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarDeduccionesActionPerformed(evt);
-            }
-        });
-        add(btnEditarDeducciones);
-        btnEditarDeducciones.setBounds(444, 484, 81, 57);
-
-        btnEliDeducciones.setBackground(new java.awt.Color(254, 254, 254));
-        btnEliDeducciones.setForeground(new java.awt.Color(254, 254, 254));
-        btnEliDeducciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borar1-icon.png"))); // NOI18N
-        btnEliDeducciones.setBorderPainted(false);
-        btnEliDeducciones.setContentAreaFilled(false);
-        btnEliDeducciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliDeduccionesActionPerformed(evt);
-            }
-        });
-        add(btnEliDeducciones);
-        btnEliDeducciones.setBounds(572, 468, 79, 73);
 
         btnConsultar.setBackground(new java.awt.Color(254, 254, 254));
         btnConsultar.setForeground(new java.awt.Color(254, 254, 254));
@@ -151,19 +122,6 @@ public class C_Pagos extends javax.swing.JPanel {
         jLabel1.setText("BUSCAR POR NOMBRE");
         add(jLabel1);
         jLabel1.setBounds(40, 30, 129, 16);
-
-        jButton1.setBackground(new java.awt.Color(254, 254, 254));
-        jButton1.setForeground(new java.awt.Color(254, 254, 254));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/refresh_icon.png"))); // NOI18N
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        add(jButton1);
-        jButton1.setBounds(38, 468, 97, 73);
 
         jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -212,10 +170,6 @@ public class C_Pagos extends javax.swing.JPanel {
         add(jScrollPane3);
         jScrollPane3.setBounds(10, 70, 840, 380);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnEditarDeduccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarDeduccionesActionPerformed
-
-    }//GEN-LAST:event_btnEditarDeduccionesActionPerformed
 public void borrarTabla(JTable tab) {
         try {
             DefaultTableModel tabT = (DefaultTableModel) tab.getModel();
@@ -238,10 +192,6 @@ public void borrarTabla(JTable tab) {
         }
     }//GEN-LAST:event_btnConsultarActionPerformed
 
-    private void btnEliDeduccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliDeduccionesActionPerformed
-      
-    }//GEN-LAST:event_btnEliDeduccionesActionPerformed
-
     private void btnAgregarDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDeActionPerformed
 // TODO add your handling code here:
        C_ADD_Pagos erp = new C_ADD_Pagos();
@@ -250,17 +200,12 @@ public void borrarTabla(JTable tab) {
         erp.cmbFp.setEnabled(false);
         erp.cmbCP.setEnabled(false);
         erp.Importe.setEnabled(false);
+        erp.Sucursal.setEnabled(false);
     }//GEN-LAST:event_btnAgregarDeActionPerformed
 
     private void btnAgregarDeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarDeMouseClicked
               // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarDeMouseClicked
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       //System.out.println(tablaPress.getValueAt(tablaPress.getSelectedRow(), 6));
-      //
-      btnConsultar.doClick();
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void NomProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NomProMouseClicked
         // TODO add your handling code here:
@@ -269,8 +214,6 @@ public void borrarTabla(JTable tab) {
 
     private void tablaPedidoDetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPedidoDetMouseClicked
         // TODO add your handling code here:
-        if(evt.getClickCount()==2)
-        btnEditarDeducciones.doClick();
     }//GEN-LAST:event_tablaPedidoDetMouseClicked
 
     private void NomProKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NomProKeyTyped
@@ -301,9 +244,6 @@ public void borrarTabla(JTable tab) {
     public javax.swing.JTextField NomPro;
     private javax.swing.JButton btnAgregarDe;
     public javax.swing.JButton btnConsultar;
-    public javax.swing.JButton btnEditarDeducciones;
-    public javax.swing.JButton btnEliDeducciones;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
