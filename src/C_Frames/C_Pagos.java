@@ -52,96 +52,41 @@ public class C_Pagos extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txfConsultar = new javax.swing.JTextField();
-        btnEditarDeducciones = new javax.swing.JButton();
-        btnEliDeducciones = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaPedidoDet = new javax.swing.JTable();
+        NomPro = new javax.swing.JTextField();
         btnConsultar = new javax.swing.JButton();
         btnAgregarDe = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaPedidoDet = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(254, 254, 254));
         setForeground(new java.awt.Color(254, 254, 254));
         setLayout(null);
 
-        txfConsultar.setBackground(new java.awt.Color(254, 254, 254));
-        txfConsultar.setForeground(new java.awt.Color(1, 1, 1));
-        txfConsultar.addMouseListener(new java.awt.event.MouseAdapter() {
+        NomPro.setBackground(new java.awt.Color(254, 254, 254));
+        NomPro.setForeground(new java.awt.Color(1, 1, 1));
+        NomPro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txfConsultarMouseClicked(evt);
+                NomProMouseClicked(evt);
             }
         });
-        txfConsultar.addActionListener(new java.awt.event.ActionListener() {
+        NomPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txfConsultarActionPerformed(evt);
+                NomProActionPerformed(evt);
             }
         });
-        txfConsultar.addKeyListener(new java.awt.event.KeyAdapter() {
+        NomPro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txfConsultarKeyReleased(evt);
+                NomProKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txfConsultarKeyTyped(evt);
+                NomProKeyTyped(evt);
             }
         });
-        add(txfConsultar);
-        txfConsultar.setBounds(180, 30, 386, 25);
-
-        btnEditarDeducciones.setBackground(new java.awt.Color(254, 254, 254));
-        btnEditarDeducciones.setForeground(new java.awt.Color(254, 254, 254));
-        btnEditarDeducciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon-cambiar.png"))); // NOI18N
-        btnEditarDeducciones.setBorderPainted(false);
-        btnEditarDeducciones.setContentAreaFilled(false);
-        btnEditarDeducciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarDeduccionesActionPerformed(evt);
-            }
-        });
-        add(btnEditarDeducciones);
-        btnEditarDeducciones.setBounds(444, 484, 81, 57);
-
-        btnEliDeducciones.setBackground(new java.awt.Color(254, 254, 254));
-        btnEliDeducciones.setForeground(new java.awt.Color(254, 254, 254));
-        btnEliDeducciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borar1-icon.png"))); // NOI18N
-        btnEliDeducciones.setBorderPainted(false);
-        btnEliDeducciones.setContentAreaFilled(false);
-        btnEliDeducciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliDeduccionesActionPerformed(evt);
-            }
-        });
-        add(btnEliDeducciones);
-        btnEliDeducciones.setBounds(572, 468, 79, 73);
-
-        tablaPedidoDet.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "idPago", "fecha", "Nom.Emp", "Puesto", "ID Cuenta", "Nomb. Cuenta", "Dir.", "Telefono", "Forma Pago", "Cantidad", "Descripcion", "Precio unidad", "Subtotal", "Total", "Importe"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tablaPedidoDet.setToolTipText("");
-        tablaPedidoDet.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tablaPedidoDet.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaPedidoDetMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tablaPedidoDet);
-
-        add(jScrollPane1);
-        jScrollPane1.setBounds(10, 100, 820, 320);
+        add(NomPro);
+        NomPro.setBounds(180, 30, 386, 25);
 
         btnConsultar.setBackground(new java.awt.Color(254, 254, 254));
         btnConsultar.setForeground(new java.awt.Color(254, 254, 254));
@@ -178,23 +123,53 @@ public class C_Pagos extends javax.swing.JPanel {
         add(jLabel1);
         jLabel1.setBounds(40, 30, 129, 16);
 
-        jButton1.setBackground(new java.awt.Color(254, 254, 254));
-        jButton1.setForeground(new java.awt.Color(254, 254, 254));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/refresh_icon.png"))); // NOI18N
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        tablaPedidoDet.setFont(new java.awt.Font("Ebrima", 0, 11)); // NOI18N
+        tablaPedidoDet.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "idPago", "fecha", "Dir. Suc.", "Tel. Suc.", "Proveedor", "ID Cuenta", "No Cuenta", "Dir. Prov.", "Telefono", "Forma Pago", "Cantidad", "Descripcion", "Precio unidad", "Subtotal", "Total", "Importe"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        add(jButton1);
-        jButton1.setBounds(38, 468, 97, 73);
+        tablaPedidoDet.setToolTipText("");
+        tablaPedidoDet.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tablaPedidoDet.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaPedidoDetMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablaPedidoDet);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1259, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jScrollPane3.setViewportView(jPanel1);
+
+        add(jScrollPane3);
+        jScrollPane3.setBounds(10, 70, 840, 380);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnEditarDeduccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarDeduccionesActionPerformed
-
-    }//GEN-LAST:event_btnEditarDeduccionesActionPerformed
 public void borrarTabla(JTable tab) {
         try {
             DefaultTableModel tabT = (DefaultTableModel) tab.getModel();
@@ -209,16 +184,13 @@ public void borrarTabla(JTable tab) {
         borrarTabla(tablaPedidoDet);
         try{
         erp.OpenCon("ERP", "erp");
+        erp.Pagos_Search_Bien_Vergas(NomPro.getText(), tablaPedidoDet);
         //erp.Detalles_seacrh(txfConsultar.getText(), tablaPedidoDet, cmbSe.getItemAt(cmbSe.getSelectedIndex()).charAt(0) );
         }
         catch(Exception e){
         
         }
     }//GEN-LAST:event_btnConsultarActionPerformed
-
-    private void btnEliDeduccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliDeduccionesActionPerformed
-      
-    }//GEN-LAST:event_btnEliDeduccionesActionPerformed
 
     private void btnAgregarDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDeActionPerformed
 // TODO add your handling code here:
@@ -228,37 +200,30 @@ public void borrarTabla(JTable tab) {
         erp.cmbFp.setEnabled(false);
         erp.cmbCP.setEnabled(false);
         erp.Importe.setEnabled(false);
+        erp.Sucursal.setEnabled(false);
     }//GEN-LAST:event_btnAgregarDeActionPerformed
 
     private void btnAgregarDeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarDeMouseClicked
               // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarDeMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       //System.out.println(tablaPress.getValueAt(tablaPress.getSelectedRow(), 6));
-      //
-      btnConsultar.doClick();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void txfConsultarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txfConsultarMouseClicked
+    private void NomProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NomProMouseClicked
         // TODO add your handling code here:
         //cmbSe.setSelectedIndex(0);
-    }//GEN-LAST:event_txfConsultarMouseClicked
+    }//GEN-LAST:event_NomProMouseClicked
 
     private void tablaPedidoDetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPedidoDetMouseClicked
         // TODO add your handling code here:
-        if(evt.getClickCount()==2)
-        btnEditarDeducciones.doClick();
     }//GEN-LAST:event_tablaPedidoDetMouseClicked
 
-    private void txfConsultarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfConsultarKeyTyped
+    private void NomProKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NomProKeyTyped
                         char c=evt.getKeyChar();
         if((c<'0' || c>'9')&&(c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')){
             evt.consume();
         }
-    }//GEN-LAST:event_txfConsultarKeyTyped
+    }//GEN-LAST:event_NomProKeyTyped
 
-    private void txfConsultarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfConsultarKeyReleased
+    private void NomProKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NomProKeyReleased
 
         borrarTabla(tablaPedidoDet);
         try{
@@ -268,22 +233,21 @@ public void borrarTabla(JTable tab) {
         catch(Exception e){
         
         }// TODO add your handling code here:
-    }//GEN-LAST:event_txfConsultarKeyReleased
+    }//GEN-LAST:event_NomProKeyReleased
 
-    private void txfConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfConsultarActionPerformed
+    private void NomProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomProActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txfConsultarActionPerformed
+    }//GEN-LAST:event_NomProActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JTextField NomPro;
     private javax.swing.JButton btnAgregarDe;
     public javax.swing.JButton btnConsultar;
-    public javax.swing.JButton btnEditarDeducciones;
-    public javax.swing.JButton btnEliDeducciones;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     public javax.swing.JTable tablaPedidoDet;
-    public javax.swing.JTextField txfConsultar;
     // End of variables declaration//GEN-END:variables
 }

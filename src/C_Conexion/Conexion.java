@@ -267,6 +267,23 @@ public class Conexion {
             JOptionPane.showMessageDialog(null,ex.getMessage(),"Error Categorias" ,JOptionPane.INFORMATION_MESSAGE);
         }
     }
+     public float Presupuesto_Sucursal(int id){
+         float Re = 0;
+         Sql = "select sc.presupuesto from  sucursal sc inner join Pedidos pe on pe.idsucursal = sc.idsucursal where idpedido = "+id;
+               try {
+            stn=(Statement) con.createStatement();
+            rs=stn.executeQuery(Sql);
+        
+            while(rs.next()){
+                String pre=rs.getString("presupuesto");
+                Re = Float.parseFloat(pre);
+            }
+            return Re;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,ex.getMessage(),"Error Categorias" ,JOptionPane.INFORMATION_MESSAGE);
+        }
+               return Re;
+    }
      public void Categorias_Search(String Nombre, JTable tabla){
          DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
         if(Nombre.isEmpty())
@@ -290,26 +307,67 @@ public class Conexion {
             JOptionPane.showMessageDialog(null,ex.getMessage(),"Error Categorias" ,JOptionPane.INFORMATION_MESSAGE);
         }
     }
+     public void Pagos_Search_Bien_Vergas(String Nombre, JTable tabla){
+         DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
+        if(Nombre.isEmpty())
+            Sql = "select pg.idpago,pg.fecha,sc.direccion,sc.telefono,pr.nombre,pg.idcuentaproveedor,cp.nocuenta,pr.direccion,pr.telefono,fp.nombre,pe.cantidadpagada,pg.importe,pg.idpedido from pagos pg\n" +
+"inner join pedidos pe on pg.idpedido = pe.idpedido inner join sucursal sc on pe.idsucursal = sc.idsucursal \n" +
+"inner join cuentasproveedor cp on pg.idcuentaproveedor = cp.idcuentaproveedor inner join proveedores pr on cp.idproveedor = pr.idproveedor\n" +
+"inner join Formaspago fp on pg.idformapago = fp.idformapago";
+        else if(!Nombre.isEmpty())
+            Sql = "select pg.idpago,pg.fecha,sc.direccion,sc.telefono,pr.nombre,pg.idcuentaproveedor,cp.nocuenta,pr.direccion,pr.telefono,fp.nombre,pe.cantidadpagada,pg.importe,pg.idpedido from pagos pg\n" +
+"inner join pedidos pe on pg.idpedido = pe.idpedido inner join sucursal sc on pe.idsucursal = sc.idsucursal \n" +
+"inner join cuentasproveedor cp on pg.idcuentaproveedor = cp.idcuentaproveedor inner join proveedores pr on cp.idproveedor = pr.idproveedor\n" +
+"inner join Formaspago fp on pg.idformapago = fp.idformapago where pr.nombre like '"+Nombre+"%'";
+               try {
+            stn=(Statement) con.createStatement();
+            rs=stn.executeQuery(Sql);
+        
+            while(rs.next()){
+                System.out.println("entra");
+                String IDP=rs.getString(1);
+                String F=rs.getString(2);
+                String DIRS=rs.getString(3);
+                String TELS=rs.getString(4);
+                String NP=rs.getString(5);
+                String IDC=rs.getString(6);
+                String NC=rs.getString(7);
+                String DIRP=rs.getString(8);
+                String TELP=rs.getString(9);
+                String NFP=rs.getString(10);
+                String CP = rs.getString(11);
+                String IMP=rs.getString(12);
+                String IDPED=rs.getString(13);
+                Object datosRenglon[]={IDP,F,DIRS,TELS,NP,IDC,NC,DIRP,TELP,NFP,CP,"Ver Detalles","Ver Detalles",IMP,IMP,IMP};
+                tablaTemp.addRow(datosRenglon);
+            }
+            
+            tabla.setModel(tablaTemp);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,ex.getMessage(),"Error Categorias" ,JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
      public void SelectP_Search(JTable tabla){
          DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
-        Sql = " select P.idPedido,p.fecharegistro,p.fecharecepcion,p.totalpagar,\n" +
-" p.cantidadpagada,p.estatus, c.idproveedor,c.nombre\n" +
-" from Pedidos P inner join Proveedores c on p.idproveedor = c.idproveedor \n" +
-" where p.estatus = 'E'";
+        Sql = "select P.idPedido,p.fecharesgistro,p.fecharecepcion,p.totalpagar,\n" +
+"p.cantidadpagada,p.estatus, c.idproveedor,c.nombre,p.idsucursal\n" +
+"from ERP.Pedidos P inner join ERP.Proveedores c on p.idproveedor = c.idproveedor \n" +
+"where p.estatus = 'E'";
                try {
             stn=(Statement) con.createStatement();
             rs=stn.executeQuery(Sql);
         int idPe = 0;
             while(rs.next()){
                 String idPed=rs.getString("IDPEDIDO");
-                String feReg=rs.getString("FECHAREGISTRO");
+                String feReg=rs.getString("FECHARESGISTRO");
                 String feRecp=rs.getString("FECHARECEPCION");
                 String Tp = rs.getString("TOTALPAGAR");
                 String CantPag = rs.getString("CANTIDADPAGADA");
                 String Est = rs.getString("ESTATUS");
                 String idProv = rs.getString("IDPROVEEDOR");
                 String NomPro = rs.getString("NOMBRE");
-                Object datosRenglon[]={ idPed, feReg, feRecp,Tp,CantPag,Est,idProv,NomPro};
+                String idSc = rs.getString("idSucursal");
+                Object datosRenglon[]={ idPed, feReg, feRecp,Tp,CantPag,Est,idProv,NomPro,idSc};
                 tablaTemp.addRow(datosRenglon);
             }
             tabla.setModel(tablaTemp);
