@@ -55,12 +55,14 @@ public class C_Pagos extends javax.swing.JPanel {
         txfConsultar = new javax.swing.JTextField();
         btnEditarDeducciones = new javax.swing.JButton();
         btnEliDeducciones = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaPedidoDet = new javax.swing.JTable();
         btnConsultar = new javax.swing.JButton();
         btnAgregarDe = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaPedidoDet = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(254, 254, 254));
         setForeground(new java.awt.Color(254, 254, 254));
@@ -115,34 +117,6 @@ public class C_Pagos extends javax.swing.JPanel {
         add(btnEliDeducciones);
         btnEliDeducciones.setBounds(572, 468, 79, 73);
 
-        tablaPedidoDet.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "idPago", "fecha", "Dir. Suc.", "Tel. Suc.", "Nom.Emp", "Puesto", "Proveedor", "ID Cuenta", "No Cuenta", "Dir. Prov.", "Telefono", "Forma Pago", "Cantidad", "Descripcion", "Precio unidad", "Subtotal", "Total", "Importe"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tablaPedidoDet.setToolTipText("");
-        tablaPedidoDet.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tablaPedidoDet.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaPedidoDetMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tablaPedidoDet);
-
-        add(jScrollPane1);
-        jScrollPane1.setBounds(10, 100, 820, 320);
-
         btnConsultar.setBackground(new java.awt.Color(254, 254, 254));
         btnConsultar.setForeground(new java.awt.Color(254, 254, 254));
         btnConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon-buscar.png"))); // NOI18N
@@ -190,6 +164,53 @@ public class C_Pagos extends javax.swing.JPanel {
         });
         add(jButton1);
         jButton1.setBounds(38, 468, 97, 73);
+
+        jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        tablaPedidoDet.setFont(new java.awt.Font("Ebrima", 0, 11)); // NOI18N
+        tablaPedidoDet.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "idPago", "fecha", "Dir. Suc.", "Tel. Suc.", "Nom.Emp", "Puesto", "Proveedor", "ID Cuenta", "No Cuenta", "Dir. Prov.", "Telefono", "Forma Pago", "Cantidad", "Descripcion", "Precio unidad", "Subtotal", "Total", "Importe"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaPedidoDet.setToolTipText("");
+        tablaPedidoDet.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tablaPedidoDet.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaPedidoDetMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablaPedidoDet);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1259, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jScrollPane3.setViewportView(jPanel1);
+
+        add(jScrollPane3);
+        jScrollPane3.setBounds(10, 70, 840, 380);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarDeduccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarDeduccionesActionPerformed
@@ -282,7 +303,9 @@ public void borrarTabla(JTable tab) {
     public javax.swing.JButton btnEliDeducciones;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     public javax.swing.JTable tablaPedidoDet;
     public javax.swing.JTextField txfConsultar;
     // End of variables declaration//GEN-END:variables
