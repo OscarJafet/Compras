@@ -290,6 +290,46 @@ public class Conexion {
             JOptionPane.showMessageDialog(null,ex.getMessage(),"Error Categorias" ,JOptionPane.INFORMATION_MESSAGE);
         }
     }
+     public void Pagos_Search_Bien_Vergas(String Nombre, JTable tabla){
+         DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
+        if(Nombre.isEmpty())
+            Sql = "select pg.idpago,pg.fecha,sc.direccion,sc.telefono,pr.nombre,pg.idcuentaproveedor,cp.nocuenta,pr.direccion,pr.telefono,fp.nombre,pe.cantidadpagada,pg.importe,pg.idpedido from pagos pg\n" +
+"inner join pedidos pe on pg.idpedido = pe.idpedido inner join sucursal sc on pe.idsucursal = sc.idsucursal \n" +
+"inner join cuentasproveedor cp on pg.idcuentaproveedor = cp.idcuentaproveedor inner join proveedores pr on cp.idproveedor = pr.idproveedor\n" +
+"inner join Formaspago fp on pg.idformapago = fp.idformapago";
+        else if(!Nombre.isEmpty())
+            Sql = "select pg.idpago,pg.fecha,sc.direccion,sc.telefono,pr.nombre,pg.idcuentaproveedor,cp.nocuenta,pr.direccion,pr.telefono,fp.nombre,pe.cantidadpagada,pg.importe,pg.idpedido from pagos pg\n" +
+"inner join pedidos pe on pg.idpedido = pe.idpedido inner join sucursal sc on pe.idsucursal = sc.idsucursal \n" +
+"inner join cuentasproveedor cp on pg.idcuentaproveedor = cp.idcuentaproveedor inner join proveedores pr on cp.idproveedor = pr.idproveedor\n" +
+"inner join Formaspago fp on pg.idformapago = fp.idformapago where pr.nombre like '"+Nombre+"%'";
+               try {
+            stn=(Statement) con.createStatement();
+            rs=stn.executeQuery(Sql);
+        
+            while(rs.next()){
+                System.out.println("entra");
+                String IDP=rs.getString(1);
+                String F=rs.getString(2);
+                String DIRS=rs.getString(3);
+                String TELS=rs.getString(4);
+                String NP=rs.getString(5);
+                String IDC=rs.getString(6);
+                String NC=rs.getString(7);
+                String DIRP=rs.getString(8);
+                String TELP=rs.getString(9);
+                String NFP=rs.getString(10);
+                String CP = rs.getString(11);
+                String IMP=rs.getString(12);
+                String IDPED=rs.getString(13);
+                Object datosRenglon[]={IDP,F,DIRS,TELS,NP,IDC,NC,DIRP,TELP,NFP,CP,"Ver Detalles","Ver Detalles",IMP,IMP,IMP};
+                tablaTemp.addRow(datosRenglon);
+            }
+            
+            tabla.setModel(tablaTemp);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,ex.getMessage(),"Error Categorias" ,JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
      public void SelectP_Search(JTable tabla){
          DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
         Sql = "select P.idPedido,p.fecharegistro,p.fecharecepcion,p.totalpagar,\n" +

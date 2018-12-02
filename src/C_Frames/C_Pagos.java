@@ -52,7 +52,7 @@ public class C_Pagos extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txfConsultar = new javax.swing.JTextField();
+        NomPro = new javax.swing.JTextField();
         btnEditarDeducciones = new javax.swing.JButton();
         btnEliDeducciones = new javax.swing.JButton();
         btnConsultar = new javax.swing.JButton();
@@ -68,28 +68,28 @@ public class C_Pagos extends javax.swing.JPanel {
         setForeground(new java.awt.Color(254, 254, 254));
         setLayout(null);
 
-        txfConsultar.setBackground(new java.awt.Color(254, 254, 254));
-        txfConsultar.setForeground(new java.awt.Color(1, 1, 1));
-        txfConsultar.addMouseListener(new java.awt.event.MouseAdapter() {
+        NomPro.setBackground(new java.awt.Color(254, 254, 254));
+        NomPro.setForeground(new java.awt.Color(1, 1, 1));
+        NomPro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txfConsultarMouseClicked(evt);
+                NomProMouseClicked(evt);
             }
         });
-        txfConsultar.addActionListener(new java.awt.event.ActionListener() {
+        NomPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txfConsultarActionPerformed(evt);
+                NomProActionPerformed(evt);
             }
         });
-        txfConsultar.addKeyListener(new java.awt.event.KeyAdapter() {
+        NomPro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txfConsultarKeyReleased(evt);
+                NomProKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txfConsultarKeyTyped(evt);
+                NomProKeyTyped(evt);
             }
         });
-        add(txfConsultar);
-        txfConsultar.setBounds(180, 30, 386, 25);
+        add(NomPro);
+        NomPro.setBounds(180, 30, 386, 25);
 
         btnEditarDeducciones.setBackground(new java.awt.Color(254, 254, 254));
         btnEditarDeducciones.setForeground(new java.awt.Color(254, 254, 254));
@@ -174,11 +174,11 @@ public class C_Pagos extends javax.swing.JPanel {
 
             },
             new String [] {
-                "idPago", "fecha", "Dir. Suc.", "Tel. Suc.", "Nom.Emp", "Puesto", "Proveedor", "ID Cuenta", "No Cuenta", "Dir. Prov.", "Telefono", "Forma Pago", "Cantidad", "Descripcion", "Precio unidad", "Subtotal", "Total", "Importe"
+                "idPago", "fecha", "Dir. Suc.", "Tel. Suc.", "Proveedor", "ID Cuenta", "No Cuenta", "Dir. Prov.", "Telefono", "Forma Pago", "Cantidad", "Descripcion", "Precio unidad", "Subtotal", "Total", "Importe"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -230,6 +230,7 @@ public void borrarTabla(JTable tab) {
         borrarTabla(tablaPedidoDet);
         try{
         erp.OpenCon("ERP", "erp");
+        erp.Pagos_Search_Bien_Vergas(NomPro.getText(), tablaPedidoDet);
         //erp.Detalles_seacrh(txfConsultar.getText(), tablaPedidoDet, cmbSe.getItemAt(cmbSe.getSelectedIndex()).charAt(0) );
         }
         catch(Exception e){
@@ -261,10 +262,10 @@ public void borrarTabla(JTable tab) {
       btnConsultar.doClick();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void txfConsultarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txfConsultarMouseClicked
+    private void NomProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NomProMouseClicked
         // TODO add your handling code here:
         //cmbSe.setSelectedIndex(0);
-    }//GEN-LAST:event_txfConsultarMouseClicked
+    }//GEN-LAST:event_NomProMouseClicked
 
     private void tablaPedidoDetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPedidoDetMouseClicked
         // TODO add your handling code here:
@@ -272,14 +273,14 @@ public void borrarTabla(JTable tab) {
         btnEditarDeducciones.doClick();
     }//GEN-LAST:event_tablaPedidoDetMouseClicked
 
-    private void txfConsultarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfConsultarKeyTyped
+    private void NomProKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NomProKeyTyped
                         char c=evt.getKeyChar();
         if((c<'0' || c>'9')&&(c<'a' || c>'z')&&(c<'A' || c>'Z')&&(c<' '||c>' ')){
             evt.consume();
         }
-    }//GEN-LAST:event_txfConsultarKeyTyped
+    }//GEN-LAST:event_NomProKeyTyped
 
-    private void txfConsultarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfConsultarKeyReleased
+    private void NomProKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NomProKeyReleased
 
         borrarTabla(tablaPedidoDet);
         try{
@@ -289,14 +290,15 @@ public void borrarTabla(JTable tab) {
         catch(Exception e){
         
         }// TODO add your handling code here:
-    }//GEN-LAST:event_txfConsultarKeyReleased
+    }//GEN-LAST:event_NomProKeyReleased
 
-    private void txfConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfConsultarActionPerformed
+    private void NomProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomProActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txfConsultarActionPerformed
+    }//GEN-LAST:event_NomProActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JTextField NomPro;
     private javax.swing.JButton btnAgregarDe;
     public javax.swing.JButton btnConsultar;
     public javax.swing.JButton btnEditarDeducciones;
@@ -307,6 +309,5 @@ public void borrarTabla(JTable tab) {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     public javax.swing.JTable tablaPedidoDet;
-    public javax.swing.JTextField txfConsultar;
     // End of variables declaration//GEN-END:variables
 }
