@@ -292,10 +292,10 @@ public class Conexion {
     }
      public void SelectP_Search(JTable tabla){
          DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
-        Sql = " select P.idPedido,p.fecharegistro,p.fecharecepcion,p.totalpagar,\n" +
-" p.cantidadpagada,p.estatus, c.idproveedor,c.nombre\n" +
-" from Pedidos P inner join Proveedores c on p.idproveedor = c.idproveedor \n" +
-" where p.estatus = 'E'";
+        Sql = "select P.idPedido,p.fecharegistro,p.fecharecepcion,p.totalpagar,\n" +
+"p.cantidadpagada,p.estatus, c.idproveedor,c.nombre\n" +
+"from ERP.Pedidos P inner join ERP.Proveedores c on p.idproveedor = c.idproveedor \n" +
+"where p.estatus = 'E'";
                try {
             stn=(Statement) con.createStatement();
             rs=stn.executeQuery(Sql);

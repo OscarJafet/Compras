@@ -386,6 +386,7 @@ public class C_Select_Pedido extends javax.swing.JFrame {
         edg.setLocationRelativeTo(edg);
         edg.setVisible(true);
         edg.ID_Ped.setText(idPe.getText());
+        edg.Importe.setText(TablePed.getValueAt(TablePed.getSelectedRow(), 3)+"");
         dispose();
     }//GEN-LAST:event_btnAgregarDeActionPerformed
 public void borrarTabla(JTable tab) {

@@ -13,7 +13,11 @@ import javax.swing.JOptionPane;
 import C_Frames.C_Categorias;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.StringTokenizer;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -142,7 +146,7 @@ public class C_ADD_Pagos extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,16 +169,15 @@ public class C_ADD_Pagos extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(ID_Ped)
                                 .addGap(56, 56, 56)
-                                .addComponent(SelectP)))
-                        .addGap(0, 54, Short.MAX_VALUE))
+                                .addComponent(SelectP))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 262, Short.MAX_VALUE)
                         .addComponent(btnLimpiar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAgregar)
-                .addGap(26, 26, 26))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,8 +202,8 @@ public class C_ADD_Pagos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnLimpiar, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnAgregar, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgregar, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
 
@@ -208,7 +211,7 @@ public class C_ADD_Pagos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,6 +220,54 @@ public class C_ADD_Pagos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void SelectPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectPActionPerformed
+        // TODO add your handling code here:
+        /* select P.idPedido,p.fecharegistro,p.fecharecepcion,p.totalpagar,
+        p.cantidadpagada,p.estatus, c.idproveedor,c.nombre
+        from Pedidos P inner join Proveedores c on p.idproveedor = c.idproveedor
+        where p.estatus = 'A';
+        el id de pedido lo tomo y consulto en detalles
+        select idPedidoDetalle, cantPedida,precioCompra,subtotal,
+        cantRecibida,cantRechazada,cantAceptada from PedidoDetalle where idPedido = n*/
+        C_Select_Pedido erp = new C_Select_Pedido();
+        erp.setLocationRelativeTo(erp);
+        erp.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_SelectPActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        float Imp = 0;
+        int FP = 0, IC = 0,IP = 0;
+        StringTokenizer Cuenta = new StringTokenizer(cmbCP.getItemAt(cmbCP.getSelectedIndex())+""," ");
+        StringTokenizer idFP = new StringTokenizer(cmbFp.getItemAt(cmbFp.getSelectedIndex())+""," ");
+        try{
+            Imp = Float.parseFloat(Importe.getText());
+            FP = Integer.parseInt(idFP.nextToken());
+            Cuenta.nextToken();Cuenta.nextToken();Cuenta.nextToken();Cuenta.nextToken();Cuenta.nextToken();
+            Cuenta.nextToken();
+            IC = Integer.parseInt(Cuenta.nextToken());
+            IP = Integer.parseInt(ID_Ped.getText());
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
+        }
+        //System.out.println(IC+" idcuenta");
+        erp.OpenCon("ERP", "erp");
+        //cree la secuencia IDPago
+        erp.SQL("insert into pagos values(IDPago.nextval,TO_DATE('"+dateFormat.format(date)+"','YYYY-MM-DD'),"+Imp+","+IP+","+FP+","+IC+")");
+        erp.SQL("update Pedidos set estatus = 'A' where idpedido = "+IP);
+    }//GEN-LAST:event_btnAgregarActionPerformed
 //for( e = name(first),r = name(last), p= name(other_last);e<r<p;e+=r,r+= p,p++ ){
 //}
      DefaultComboBoxModel modelocombo = new DefaultComboBoxModel();
@@ -245,10 +296,10 @@ public class C_ADD_Pagos extends javax.swing.JFrame {
             erp.stn= (Statement) erp.con.createStatement();
             erp.rs= erp.stn.executeQuery("select c.idCuentaProveedor, c.idproveedor, p.nombre, c.nocuenta,c.banco \n" +
 "from cuentasproveedor c inner join Proveedores p on c.idproveedor = p.idproveedor where c.estatus = 'A'");
-            modelocombo.addElement("Seleccione cuenta");
+            modelocombo1.addElement("Seleccione cuenta");
             cmbFp.setModel(modelocombo);
             while (erp.rs.next()){
-                modelocombo1.addElement(erp.rs.getObject("nombre")+" "+erp.rs.getObject("nocuenta")+" "+erp.rs.getObject("banco")+" idPro: "+erp.rs.getObject("idproveedor")+" idC:"+erp.rs.getObject("idcuentaproveedor"));
+                modelocombo1.addElement(erp.rs.getObject("nombre")+" "+erp.rs.getObject("nocuenta")+" "+erp.rs.getObject("banco")+" idPro: "+erp.rs.getObject("idproveedor")+" idC: "+erp.rs.getObject("idcuentaproveedor"));
                 
                 cmbCP.setModel(modelocombo1);
             }
@@ -258,37 +309,6 @@ public class C_ADD_Pagos extends javax.swing.JFrame {
         }
         
     }
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-
-        this.dispose();
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-      
-      erp.OpenCon("ERP", "erp");
-     erp.SQL(Sql);
-      
-    }//GEN-LAST:event_btnAgregarActionPerformed
-
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-       
-    }//GEN-LAST:event_btnLimpiarActionPerformed
-
-    private void SelectPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectPActionPerformed
-        // TODO add your handling code here:
-        /* select P.idPedido,p.fecharegistro,p.fecharecepcion,p.totalpagar,
- p.cantidadpagada,p.estatus, c.idproveedor,c.nombre
- from Pedidos P inner join Proveedores c on p.idproveedor = c.idproveedor 
- where p.estatus = 'A';
-        el id de pedido lo tomo y consulto en detalles
- select idPedidoDetalle, cantPedida,precioCompra,subtotal,
- cantRecibida,cantRechazada,cantAceptada from PedidoDetalle where idPedido = n*/
-        C_Select_Pedido erp = new C_Select_Pedido();
-        erp.setLocationRelativeTo(erp);
-        erp.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_SelectPActionPerformed
-
     /**
      * @param args the command line arguments
      */
