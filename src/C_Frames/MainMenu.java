@@ -676,6 +676,7 @@ public class MainMenu extends javax.swing.JFrame {
         C_Pagos erp = new C_Pagos();
         erp.setSize(jFrames.getSize());
         erp.setLocation(0, 0);
+        erp.Usuario.setText(lblUsuario.getText());
         jFrames.removeAll();
         jFrames.add(erp);
         jFrames.revalidate();
@@ -752,7 +753,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel lblMinimizar;
     private javax.swing.JLabel lblTitulo;
     public javax.swing.JLabel lblUsers;
-    private javax.swing.JLabel lblUsuario;
+    public javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel lblreloj;
     // End of variables declaration//GEN-END:variables
 }

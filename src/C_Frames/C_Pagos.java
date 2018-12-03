@@ -7,11 +7,14 @@ package C_Frames;
 
 import C_Conexion.Conexion;
 import static C_Conexion.Conexion.con;
+import java.security.Principal;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.StringTokenizer;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -20,6 +23,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -60,6 +69,8 @@ public class C_Pagos extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaPedidoDet = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        Usuario = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(254, 254, 254));
         setForeground(new java.awt.Color(254, 254, 254));
@@ -99,7 +110,7 @@ public class C_Pagos extends javax.swing.JPanel {
             }
         });
         add(btnConsultar);
-        btnConsultar.setBounds(720, 10, 75, 57);
+        btnConsultar.setBounds(750, 10, 75, 57);
 
         btnAgregarDe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregar.png"))); // NOI18N
         btnAgregarDe.setBorderPainted(false);
@@ -132,11 +143,11 @@ public class C_Pagos extends javax.swing.JPanel {
 
             },
             new String [] {
-                "idPago", "fecha", "Dir. Suc.", "Tel. Suc.", "Proveedor", "ID Cuenta", "No Cuenta", "Dir. Prov.", "Telefono", "Forma Pago", "Cantidad", "Descripcion", "Precio unidad", "Subtotal", "Total", "Importe"
+                "idPago", "fecha", "Sucursal", "Dir. Suc.", "Tel. Suc.", "Proveedor", "ID Cuenta", "No Cuenta", "Dir. Prov.", "Telefono", "Forma Pago", "Cantidad", "Descripcion", "Precio unidad", "Subtotal", "Total", "Importe", "ID Pedido"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -169,6 +180,17 @@ public class C_Pagos extends javax.swing.JPanel {
 
         add(jScrollPane3);
         jScrollPane3.setBounds(10, 70, 840, 380);
+
+        jButton1.setText("Orden de Compra");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1);
+        jButton1.setBounds(590, 30, 130, 23);
+        add(Usuario);
+        Usuario.setBounds(10, 470, 180, 0);
     }// </editor-fold>//GEN-END:initComponents
 public void borrarTabla(JTable tab) {
         try {
@@ -214,6 +236,13 @@ public void borrarTabla(JTable tab) {
 
     private void tablaPedidoDetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPedidoDetMouseClicked
         // TODO add your handling code here:
+        if(evt.getClickCount()==2){
+            C_DET_PAGOS erp = new C_DET_PAGOS();
+                erp.setLocationRelativeTo(erp);
+                erp.setVisible(true);
+                erp.idPe.setText(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 17)+"");
+        }
+            
     }//GEN-LAST:event_tablaPedidoDetMouseClicked
 
     private void NomProKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NomProKeyTyped
@@ -239,11 +268,47 @@ public void borrarTabla(JTable tab) {
         // TODO add your handling code here:
     }//GEN-LAST:event_NomProActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        try{
+            String Detalles = erp.Det_Pagos_Ya_Me_Enfade(Integer.parseInt(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 17)+""));
+            String PreCompra = erp.Det_Pagos_Neta_Ya(Integer.parseInt(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 17)+""));
+            JasperReport jr = (JasperReport)JRLoader.loadObject(Principal.class.getResource("/C_Frames/ORDENCOMPRA.jasper"));
+            Map parametros = new HashMap<String,Object>();
+            parametros.put("NF", tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 0));
+            parametros.put("FE",tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 1));
+            parametros.put("NSC", tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 2));
+            parametros.put("DSC",tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 3));
+            parametros.put("TSC", tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 4));
+            parametros.put("NE",Usuario.getText());
+            parametros.put("NP",tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 5));
+            parametros.put("DP", tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 8));
+            parametros.put("TP",tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 9));
+            parametros.put("CNT", tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 11));
+            parametros.put("DESC",""+Detalles);
+            parametros.put("PU", ""+PreCompra);
+            parametros.put("IM",tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 16));
+            parametros.put("ST", tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 14));
+            parametros.put("IV", "0.0");
+            parametros.put("T", tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 15));
+            
+            JasperPrint jp = JasperFillManager.fillReport(jr, parametros, new JREmptyDataSource());
+            JasperViewer jv = new JasperViewer(jp);
+            jv.show();
+        }catch(Exception e){
+            
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextField NomPro;
+    public javax.swing.JLabel Usuario;
     private javax.swing.JButton btnAgregarDe;
     public javax.swing.JButton btnConsultar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

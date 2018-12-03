@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="478"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="98" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="14" width="153" height="77"/>
+				<imageExpression class="java.lang.String"><![CDATA["C:\\Users\\Emilio\\Documents\\NetBeansProjects\\Compras\\src\\Imagenes\\if-advantage-teamwork-1034367_88840 (1).png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="153" y="38" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Número de factura:]]></text>
+			</staticText>
+			<textField>
+				<reportElement key="Nfac" x="253" y="38" width="100" height="20"/>
+				<textElement/>
+			</textField>
+			<staticText>
+				<reportElement x="153" y="71" width="132" height="20"/>
+				<textElement/>
+				<text><![CDATA[Fecha de facturación:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="430" y="71" width="100" height="20" forecolor="#FFFF00"/>
+			</rectangle>
+			<textField>
+				<reportElement key="Fecha" x="430" y="71" width="100" height="20"/>
+				<textElement/>
+			</textField>
+			<staticText>
+				<reportElement x="409" y="0" width="146" height="20"/>
+				<textElement>
+					<font size="13" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[ORDEN DE COMPRA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="11" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="223" splitType="Stretch">
+			<rectangle>
+				<reportElement x="268" y="15" width="262" height="84" forecolor="#FFFF00"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="268" y="99" width="262" height="113" forecolor="#FFFF00"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="285" y="25" width="100" height="20"/>
+				<textElement>
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Autorizado por:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="285" y="45" width="42" height="20"/>
+				<textElement/>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="285" y="65" width="42" height="20"/>
+				<textElement/>
+				<text><![CDATA[Puesto:]]></text>
+			</staticText>
+			<textField>
+				<reportElement key="NomEmp" x="338" y="45" width="177" height="20"/>
+				<textElement/>
+			</textField>
+			<textField>
+				<reportElement key="PuesEmp" x="338" y="65" width="177" height="20"/>
+				<textElement/>
+			</textField>
+			<staticText>
+				<reportElement x="285" y="116" width="145" height="20"/>
+				<textElement>
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Datos del proveedor:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="285" y="136" width="42" height="20"/>
+				<textElement/>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="285" y="156" width="53" height="20"/>
+				<textElement/>
+				<text><![CDATA[Dirección:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="285" y="176" width="53" height="20"/>
+				<textElement/>
+				<text><![CDATA[Teléfono:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="15" width="100" height="20"/>
+				<textElement>
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Emitido para:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="45" width="43" height="20"/>
+				<textElement/>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="65" width="59" height="20"/>
+				<textElement/>
+				<text><![CDATA[Dirección:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="85" width="59" height="20"/>
+				<textElement/>
+				<text><![CDATA[Teléfono:]]></text>
+			</staticText>
+			<textField>
+				<reportElement key="NomPr" x="338" y="136" width="177" height="20"/>
+				<textElement/>
+			</textField>
+			<textField>
+				<reportElement key="DirPr" x="338" y="156" width="177" height="20"/>
+				<textElement/>
+			</textField>
+			<textField>
+				<reportElement key="TelPr" x="338" y="176" width="177" height="20"/>
+				<textElement/>
+			</textField>
+			<textField>
+				<reportElement key="NomSc" x="59" y="45" width="177" height="20"/>
+				<textElement/>
+			</textField>
+			<textField>
+				<reportElement key="DirSc" x="59" y="65" width="177" height="20"/>
+				<textElement/>
+			</textField>
+			<textField>
+				<reportElement key="TelSc" x="59" y="85" width="177" height="20"/>
+				<textElement/>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="12" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="381" splitType="Stretch">
+			<rectangle>
+				<reportElement x="11" y="15" width="533" height="34" forecolor="#FFFF00"/>
+			</rectangle>
+			<line>
+				<reportElement x="268" y="15" width="1" height="34" forecolor="#FFFF00"/>
+			</line>
+			<line>
+				<reportElement x="100" y="15" width="1" height="34" forecolor="#FFFF00"/>
+			</line>
+			<line>
+				<reportElement x="408" y="15" width="1" height="34" forecolor="#FFFF00"/>
+			</line>
+			<rectangle>
+				<reportElement x="11" y="49" width="533" height="317" forecolor="#FFFF00"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="25" y="29" width="53" height="20"/>
+				<textElement/>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="29" width="157" height="20"/>
+				<textElement/>
+				<text><![CDATA[DESCRIPCIÓN DEL ARTICULO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="274" y="29" width="111" height="20"/>
+				<textElement/>
+				<text><![CDATA[PRECIO UNITARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="430" y="29" width="53" height="20"/>
+				<textElement/>
+				<text><![CDATA[IMPORTE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="267" y="49" width="1" height="317" forecolor="#FFFF00"/>
+			</line>
+			<line>
+				<reportElement x="408" y="49" width="1" height="317" forecolor="#FFFF00"/>
+			</line>
+			<line>
+				<reportElement x="100" y="49" width="1" height="317" forecolor="#FFFF00"/>
+			</line>
+			<textField>
+				<reportElement x="25" y="60" width="53" height="231"/>
+				<textElement/>
+			</textField>
+			<textField>
+				<reportElement x="122" y="60" width="131" height="231"/>
+				<textElement/>
+			</textField>
+			<textField>
+				<reportElement x="285" y="60" width="100" height="231"/>
+				<textElement/>
+			</textField>
+			<textField>
+				<reportElement x="415" y="60" width="115" height="231"/>
+				<textElement/>
+			</textField>
+			<line>
+				<reportElement x="409" y="291" width="135" height="1" forecolor="#FFFF00"/>
+			</line>
+			<line>
+				<reportElement x="409" y="315" width="135" height="1" forecolor="#FFFF00"/>
+			</line>
+			<line>
+				<reportElement x="408" y="342" width="135" height="1" forecolor="#FFFF00"/>
+			</line>
+			<line>
+				<reportElement x="267" y="292" width="141" height="1" forecolor="#FFFF00"/>
+			</line>
+			<line>
+				<reportElement x="269" y="316" width="141" height="1" forecolor="#FFFF00"/>
+			</line>
+			<line>
+				<reportElement x="267" y="341" width="141" height="1" forecolor="#FFFF00"/>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="89" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

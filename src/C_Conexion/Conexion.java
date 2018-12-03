@@ -310,12 +310,12 @@ public class Conexion {
      public void Pagos_Search_Bien_Vergas(String Nombre, JTable tabla){
          DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
         if(Nombre.isEmpty())
-            Sql = "select pg.idpago,pg.fecha,sc.direccion,sc.telefono,pr.nombre,pg.idcuentaproveedor,cp.nocuenta,pr.direccion,pr.telefono,fp.nombre,pe.cantidadpagada,pg.importe,pg.idpedido from pagos pg\n" +
+            Sql = "select pg.idpago,pg.fecha,sc.nombre,sc.direccion,sc.telefono,pr.nombre,pg.idcuentaproveedor,cp.nocuenta,pr.direccion,pr.telefono,fp.nombre,pe.cantidadpagada,pg.importe,pg.idpedido from pagos pg\n" +
 "inner join pedidos pe on pg.idpedido = pe.idpedido inner join sucursal sc on pe.idsucursal = sc.idsucursal \n" +
 "inner join cuentasproveedor cp on pg.idcuentaproveedor = cp.idcuentaproveedor inner join proveedores pr on cp.idproveedor = pr.idproveedor\n" +
 "inner join Formaspago fp on pg.idformapago = fp.idformapago";
         else if(!Nombre.isEmpty())
-            Sql = "select pg.idpago,pg.fecha,sc.direccion,sc.telefono,pr.nombre,pg.idcuentaproveedor,cp.nocuenta,pr.direccion,pr.telefono,fp.nombre,pe.cantidadpagada,pg.importe,pg.idpedido from pagos pg\n" +
+            Sql = "select pg.idpago,pg.fecha,sc.nombre, sc.direccion,sc.telefono,pr.nombre,pg.idcuentaproveedor,cp.nocuenta,pr.direccion,pr.telefono,fp.nombre,pe.cantidadpagada,pg.importe,pg.idpedido from pagos pg\n" +
 "inner join pedidos pe on pg.idpedido = pe.idpedido inner join sucursal sc on pe.idsucursal = sc.idsucursal \n" +
 "inner join cuentasproveedor cp on pg.idcuentaproveedor = cp.idcuentaproveedor inner join proveedores pr on cp.idproveedor = pr.idproveedor\n" +
 "inner join Formaspago fp on pg.idformapago = fp.idformapago where pr.nombre like '"+Nombre+"%'";
@@ -324,21 +324,22 @@ public class Conexion {
             rs=stn.executeQuery(Sql);
         
             while(rs.next()){
-                System.out.println("entra");
+                //System.out.println("entra");
                 String IDP=rs.getString(1);
                 String F=rs.getString(2);
-                String DIRS=rs.getString(3);
-                String TELS=rs.getString(4);
-                String NP=rs.getString(5);
-                String IDC=rs.getString(6);
-                String NC=rs.getString(7);
-                String DIRP=rs.getString(8);
-                String TELP=rs.getString(9);
-                String NFP=rs.getString(10);
-                String CP = rs.getString(11);
-                String IMP=rs.getString(12);
-                String IDPED=rs.getString(13);
-                Object datosRenglon[]={IDP,F,DIRS,TELS,NP,IDC,NC,DIRP,TELP,NFP,CP,"Ver Detalles","Ver Detalles",IMP,IMP,IMP};
+                String NomSC = rs.getString(3);
+                String DIRS=rs.getString(4);
+                String TELS=rs.getString(5);
+                String NP=rs.getString(6);
+                String IDC=rs.getString(7);
+                String NC=rs.getString(8);
+                String DIRP=rs.getString(9);
+                String TELP=rs.getString(10);
+                String NFP=rs.getString(11);
+                String CP = rs.getString(12);
+                String IMP=rs.getString(13);
+                String IDPED=rs.getString(14);
+                Object datosRenglon[]={IDP,F,NomSC,DIRS,TELS,NP,IDC,NC,DIRP,TELP,NFP,CP,"Ver Detalles","Ver Detalles",IMP,IMP,IMP,IDPED};
                 tablaTemp.addRow(datosRenglon);
             }
             
@@ -375,7 +376,43 @@ public class Conexion {
             JOptionPane.showMessageDialog(null,ex.getMessage(),"No hay pedidos?" ,JOptionPane.INFORMATION_MESSAGE);
         }
     }
-     
+     public String Det_Pagos_Ya_Me_Enfade(int id){
+         String Det = "";
+        Sql = "select cantPedida,subtotal,\n" +
+" cantRecibida,cantRechazada,cantAceptada from PedidoDetalle where idPedido = "+id;
+               try {
+            stn=(Statement) con.createStatement();
+            rs=stn.executeQuery(Sql);
+            while(rs.next()){
+                String feReg=rs.getString("CANTPEDIDA");
+                //String feRecp=rs.getString("PRECIOCOMPRA");
+                String Tp = rs.getString("SUBTOTAL");
+                String CantPag = rs.getString("CANTRECIBIDA");
+                String Est = rs.getString("CANTRECHAZADA");
+                String idProv = rs.getString("CANTACEPTADA");
+                Det += "Cant P: "+feReg+", Cant R: "+CantPag+"\nCant Re: "+Est+", Cant A: "+idProv+"\n SubTotal:"+Tp+"\n";
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,ex.getMessage(),"No hay detalles?" ,JOptionPane.INFORMATION_MESSAGE);
+        }
+               return Det;
+    }
+     public String Det_Pagos_Neta_Ya(int id){
+         String Det = "";
+        Sql = "select precioCompra\n" +
+"  from PedidoDetalle where idPedido = "+id;
+               try {
+            stn=(Statement) con.createStatement();
+            rs=stn.executeQuery(Sql);
+            while(rs.next()){
+                String feRecp=rs.getString("PRECIOCOMPRA");
+                Det += "P.Unitario: "+feRecp+"\n\n\n";
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,ex.getMessage(),"No hay detalles?" ,JOptionPane.INFORMATION_MESSAGE);
+        }
+               return Det;
+    }
      public void SelectP_Detalles_Search(JTable tabla, int id){
          DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
         Sql = "select idPedidoDetalle, cantPedida,precioCompra,subtotal,\n" +
