@@ -7,13 +7,19 @@ package C_Frames;
 
 import C_Conexion.Conexion;
 import static C_Conexion.Conexion.con;
+import java.awt.Image;
+import java.io.IOException;
+import java.sql.Blob;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -64,6 +70,7 @@ public class C_IMAGENESProducto extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        lblfoto = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(254, 254, 254));
         setForeground(new java.awt.Color(254, 254, 254));
@@ -120,20 +127,25 @@ public class C_IMAGENESProducto extends javax.swing.JPanel {
         });
         tblContactos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblContactos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                tblContactosMouseReleased(evt);
-            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblContactosMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 tblContactosMouseEntered(evt);
             }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tblContactosMouseReleased(evt);
+            }
+        });
+        tblContactos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tblContactosKeyReleased(evt);
+            }
         });
         jScrollPane1.setViewportView(tblContactos);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(30, 80, 789, 311);
+        jScrollPane1.setBounds(30, 80, 400, 311);
 
         btnAgregarPercepcion.setBackground(new java.awt.Color(254, 254, 254));
         btnAgregarPercepcion.setForeground(new java.awt.Color(254, 254, 254));
@@ -196,6 +208,10 @@ public class C_IMAGENESProducto extends javax.swing.JPanel {
         jButton1.setBounds(10, 440, 68, 60);
         add(jLabel2);
         jLabel2.setBounds(343, 465, 0, 0);
+
+        lblfoto.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "IMAGEN"));
+        add(lblfoto);
+        lblfoto.setBounds(460, 120, 220, 230);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txfConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfConsultarActionPerformed
@@ -270,36 +286,67 @@ public void borrarTabla(JTable tab) {
       }
         
     }//GEN-LAST:event_btnConsultarSucursalActionPerformed
+void im(String fecha) throws SQLException, IOException{
+    
+     erp.OpenCon("ERP", "erp");
+     erp.con.commit();
+            erp.stn= (Statement) erp.con.createStatement();
+            
+            erp.rs= erp.stn.executeQuery("select imagen,nobreimagen from imagenesproducto where idimagen= "+fecha );
 
+         
+            while (erp.rs.next()){
+             
+                    Image i=null;
+          
+          Blob blob = erp.rs.getBlob("imagen");
+           String n = erp.rs.getString("nobreimagen");
+                    
+i= javax.imageio.ImageIO.read(blob.getBinaryStream());
+                   
+    ImageIcon imagen = new ImageIcon(i);
+                 
+   Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(lblfoto.getWidth(),
+    
+               lblfoto.getHeight(), 
+Image.SCALE_DEFAULT));
+       
+             lblfoto.setIcon(icono);
+                 
+            }
+    
+    
+ 
+                  
+                 
+   
+                    
+}
+    
     private void btnEditarsucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarsucursalActionPerformed
-        int con=tblContactos.getSelectedRow();
-         int idc;
-        if (con>=0){
+     int ID;
+        String idc = tblContactos.getValueAt(tblContactos.getSelectedRow(),0).toString();
         String nom=(String) tblContactos.getValueAt(tblContactos.getSelectedRow(),1);
         String tel=(String) tblContactos.getValueAt(tblContactos.getSelectedRow(),2);
         String dir=(String) tblContactos.getValueAt(tblContactos.getSelectedRow(),3);
-        String col=(String) tblContactos.getValueAt(tblContactos.getSelectedRow(),4);
-        String cod=(String) tblContactos.getValueAt(tblContactos.getSelectedRow(),5);
-        String pre=(String) tblContactos.getValueAt(tblContactos.getSelectedRow(),6);
-        idc=Integer.parseInt(tblContactos.getValueAt(tblContactos.getSelectedRow(),8)+"");
-        String nomc=(String) tblContactos.getValueAt(tblContactos.getSelectedRow(),9);
+       
+           
+         if (tblContactos.getSelectedRow()!=-1){
+        
+             C_MOD_IMG suc= new C_MOD_IMG();
+        
+             suc.setLocationRelativeTo(suc);
+            try {
+                suc.Datos(idc, nom,tel, dir);
+            } catch (SQLException ex) {
+                Logger.getLogger(C_IMAGENESProducto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+         suc.setVisible(true);
+         }
+         
+                                             
 
-        
-        C_MOD_Sucursales suc =new C_MOD_Sucursales();
-        suc.setLocationRelativeTo(suc);
-        suc.Datos(idc, nomc, nom, tel, dir, col, cod, pre);
-        suc.setVisible(true);
-        
-        int ID = 0;
-        try{
-            ID = Integer.parseInt(tblContactos.getValueAt(tblContactos.getSelectedRow(),0)+"");
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,e.getMessage(),"Error" ,JOptionPane.INFORMATION_MESSAGE);
-        }
-      suc.txfIdSucursal.setText(ID+"");
-      }else {
-            JOptionPane.showMessageDialog(null,"Seleccione un renglon","Error" ,JOptionPane.INFORMATION_MESSAGE);
-        }
     }//GEN-LAST:event_btnEditarsucursalActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -343,7 +390,13 @@ public void borrarTabla(JTable tab) {
         String nom=(String) tblContactos.getValueAt(tblContactos.getSelectedRow(),1);
         String tel=(String) tblContactos.getValueAt(tblContactos.getSelectedRow(),2);
         String dir=(String) tblContactos.getValueAt(tblContactos.getSelectedRow(),3);
-      
+        try {
+            im(idc);
+        } catch (SQLException ex) {
+            Logger.getLogger(C_IMAGENESProducto.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(C_IMAGENESProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
            
          if (evt.getClickCount()==2){
@@ -413,6 +466,18 @@ public void borrarTabla(JTable tab) {
       }
         // TODO add your handling code here:
     }//GEN-LAST:event_txfBuscarKeyPressed
+
+    private void tblContactosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblContactosKeyReleased
+
+        String idc = tblContactos.getValueAt(tblContactos.getSelectedRow(),0).toString();
+        try {
+            im(idc);
+        } catch (SQLException ex) {
+            Logger.getLogger(C_IMAGENESProducto.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(C_IMAGENESProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+    }//GEN-LAST:event_tblContactosKeyReleased
      
       
             public void ProcedimientoSucursalAlta(){
@@ -445,6 +510,7 @@ public void borrarTabla(JTable tab) {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblfoto;
     public javax.swing.JTable tblContactos;
     public javax.swing.JTextField txfBuscar;
     // End of variables declaration//GEN-END:variables

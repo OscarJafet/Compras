@@ -633,6 +633,7 @@ public class MainMenu extends javax.swing.JFrame {
       Pedidos erp = new Pedidos();
         erp.setSize(jFrames.getSize());
         erp.setLocation(0, 0);
+        erp.usuario=usuario;
         jFrames.removeAll();
         jFrames.add(erp);
         jFrames.revalidate();
@@ -640,13 +641,13 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_C_PED1ActionPerformed
 
     private void C_Lab1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_Lab1ActionPerformed
- C_IMAGENESProducto erp = new C_IMAGENESProducto();
+        C_IMAGENESProducto erp = new C_IMAGENESProducto();
         erp.setSize(jFrames.getSize());
         erp.setLocation(0, 0);
         jFrames.removeAll();
         jFrames.add(erp);
         jFrames.revalidate();
-        jFrames.repaint();        // TODO add your handling code here:
+        jFrames.repaint();
     }//GEN-LAST:event_C_Lab1ActionPerformed
 
     private void C_Lab2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_Lab2ActionPerformed
