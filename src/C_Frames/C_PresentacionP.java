@@ -236,7 +236,7 @@ public void borrarTabla(JTable tab) {
         int ID = 0;
         int con=tablaPress.getSelectedRow();
         if (con>=0){
-            String es= String.valueOf(tablaPress.getValueAt(con,7));
+            String es= String.valueOf(tablaPress.getValueAt(con,6));
             if(es.equals("A"))
             {    
             ID = Integer.parseInt(tablaPress.getValueAt(tablaPress.getSelectedRow(),0)+"");
