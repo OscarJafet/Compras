@@ -623,6 +623,7 @@ public class MainMenu extends javax.swing.JFrame {
         C_PedidoDetalle erp = new C_PedidoDetalle();
         erp.setSize(jFrames.getSize());
         erp.setLocation(0, 0);
+        erp.btnConsultar.doClick();
         jFrames.removeAll();
         jFrames.add(erp);
         jFrames.revalidate();
@@ -677,6 +678,7 @@ public class MainMenu extends javax.swing.JFrame {
         C_Pagos erp = new C_Pagos();
         erp.setSize(jFrames.getSize());
         erp.setLocation(0, 0);
+        erp.btnConsultar.doClick();
         erp.Usuario.setText(lblUsuario.getText());
         jFrames.removeAll();
         jFrames.add(erp);

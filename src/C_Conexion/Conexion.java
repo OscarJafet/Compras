@@ -919,9 +919,9 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
                 Object datosRenglon[]={idDt, cPd, pC,sb,cRe,cRh,cAp,idPed,idPress};
                 tablaTemp.addRow(datosRenglon);
             }
-            Sql = "SELECT SUCURSALES.NOMBRE FROM PEDIDOS\n" +
-"INNER JOIN ERP.SUCURSALES\n" +
-"ON PEDIDOS.IDSUCURSAL = SUCURSALES.IDSUCURSAL WHERE PEDIDOS.ESTATUS = 'A' or PEDIDOS.ESTATUS = 'E'";
+            Sql = "SELECT SUCURSAL.NOMBRE FROM PEDIDOS\n" +
+"INNER JOIN ERP.SUCURSAL\n" +
+"ON PEDIDOS.IDSUCURSAL = SUCURSAL.IDSUCURSAL WHERE PEDIDOS.ESTATUS = 'A' or PEDIDOS.ESTATUS = 'E'";
             stn= con.createStatement();
             rs=stn.executeQuery(Sql);
         
