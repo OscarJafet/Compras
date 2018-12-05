@@ -127,17 +127,20 @@ public class C_IMAGENESProducto extends javax.swing.JPanel {
         });
         tblContactos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblContactos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tblContactosMouseReleased(evt);
+            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblContactosMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 tblContactosMouseEntered(evt);
             }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                tblContactosMouseReleased(evt);
-            }
         });
         tblContactos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tblContactosKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 tblContactosKeyReleased(evt);
             }
@@ -418,7 +421,30 @@ Image.SCALE_DEFAULT));
     }//GEN-LAST:event_tblContactosMouseReleased
 
     private void txfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyReleased
-      
+       borrarTabla(tblContactos);
+      tblContactos.setVisible(false);
+    
+    
+        
+        
+      tblContactos.setVisible(true);
+      erp.OpenCon("ERP", "erp");
+      String a=txfBuscar.getText();
+      if(a.isEmpty()){
+         String  Sql = "select i.idimagen,i.nobreimagen,i.principal,pd.nombre\n" +
+"from imagenesproducto i inner join productos pd on i.idproducto= pd.idproducto where i.principal='A'" ;
+        
+     erp.imagen(tblContactos, Sql);}else{
+          
+         String   Sql = "select i.idimagen,i.nobreimagen,i.principal,pd.nombre\n" +
+"from imagenesproducto i inner join productos pd on i.idproducto= pd.idproducto  where pd.nombre like '" +a.toString()
+                 +"%' and i.principal not like 'B'" ;
+            
+        
+      erp.imagen(tblContactos, Sql);
+      }
+        
+        
 
     }//GEN-LAST:event_txfBuscarKeyReleased
 
@@ -442,28 +468,6 @@ Image.SCALE_DEFAULT));
     }//GEN-LAST:event_tblContactosMouseEntered
 
     private void txfBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyPressed
-           borrarTabla(tblContactos);
-      tblContactos.setVisible(false);
-    
-    
-        
-        
-      tblContactos.setVisible(true);
-      erp.OpenCon("ERP", "erp");
-      String a=txfBuscar.getText();
-      if(a.isEmpty()){
-         String  Sql = "select i.idimagen,i.nobreimagen,i.principal,pd.nombre\n" +
-"from imagenesproducto i inner join productos pd on i.idproducto= pd.idproducto where i.principal='A'" ;
-        
-     erp.imagen(tblContactos, Sql);}else{
-          
-         String   Sql = "select i.idimagen,i.nobreimagen,i.principal,pd.nombre\n" +
-"from imagenesproducto i inner join productos pd on i.idproducto= pd.idproducto  where pd.nombre like '" +a.toString()
-                 +"%' and i.principal not like 'B'" ;
-            
-        
-      erp.imagen(tblContactos, Sql);
-      }
         // TODO add your handling code here:
     }//GEN-LAST:event_txfBuscarKeyPressed
 
@@ -478,6 +482,10 @@ Image.SCALE_DEFAULT));
             Logger.getLogger(C_IMAGENESProducto.class.getName()).log(Level.SEVERE, null, ex);
         }        
     }//GEN-LAST:event_tblContactosKeyReleased
+
+    private void tblContactosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblContactosKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblContactosKeyPressed
      
       
             public void ProcedimientoSucursalAlta(){

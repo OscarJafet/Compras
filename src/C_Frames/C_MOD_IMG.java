@@ -59,6 +59,7 @@ cbxproveedor.addItem(llenar(a1)+" "+a4);
     } catch (IOException ex) {
         Logger.getLogger(C_MOD_IMG.class.getName()).log(Level.SEVERE, null, ex);
     }
+    txfclave.setEditable(false);
 }
 String llenar(String fecha){
     
