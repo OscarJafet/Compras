@@ -354,14 +354,13 @@ public void borrarTabla(JTable tab) {
 
     private void realizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_realizarActionPerformed
         // TODO add your handling code here:
-        if((tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 18)+"").equals("P") ||(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 18)+"").isEmpty())
+        if((tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 18)+"").equals("P") ||(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 18)+"").equals("null"))
         if(JOptionPane.showConfirmDialog(null, "¿Ya se deposito el pago?\tenga en cuenta que no se podra modificar después","Informacion",
             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             
-            erp.SQL("Update Pagos set estatus = 'R' where idpago = "+tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 0));
+            erp.SQL("Update Pagos set estatus = 'R' where idpago = "+tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow()+1, 0));
         
         }else{
-            System.out.println("noo");
         }
         btnConsultar.doClick();
     }//GEN-LAST:event_realizarActionPerformed
@@ -372,11 +371,11 @@ public void borrarTabla(JTable tab) {
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         // TODO add your handling code here:
-        if((tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 18)+"").equals("P")||(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 18)+"").isEmpty())
+        if((tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 18)+"").equals("P")||(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 18)+"").equals("null"))
         if(JOptionPane.showConfirmDialog(null, "¿Deséa cancelarlo?\tenga en cuenta que no se podra modificar después","Informacion",
             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             
-            erp.SQL("Update Pagos set estatus = 'C' where idpago = "+tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 0));
+            erp.SQL("Update Pagos set estatus = 'C' where idpago = "+tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow()+1, 0));
         
         }
         btnConsultar.doClick();
