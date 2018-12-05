@@ -310,12 +310,12 @@ public class Conexion {
      public void Pagos_Search_Bien_Vergas(String Nombre, JTable tabla){
          DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
         if(Nombre.isEmpty())
-            Sql = "select pg.idpago,pg.fecha,sc.nombre,sc.direccion,sc.telefono,pr.nombre,pg.idcuentaproveedor,cp.nocuenta,pr.direccion,pr.telefono,fp.nombre,pe.cantidadpagada,pg.importe,pg.idpedido from pagos pg\n" +
+            Sql = "select pg.idpago,pg.fecha,sc.nombre,sc.direccion,sc.telefono,pr.nombre,pg.idcuentaproveedor,cp.nocuenta,pr.direccion,pr.telefono,fp.nombre,pe.cantidadpagada,pg.importe,pg.idpedido,pg.estatus from pagos pg\n" +
 "inner join pedidos pe on pg.idpedido = pe.idpedido inner join sucursal sc on pe.idsucursal = sc.idsucursal \n" +
 "inner join cuentasproveedor cp on pg.idcuentaproveedor = cp.idcuentaproveedor inner join proveedores pr on cp.idproveedor = pr.idproveedor\n" +
 "inner join Formaspago fp on pg.idformapago = fp.idformapago";
         else if(!Nombre.isEmpty())
-            Sql = "select pg.idpago,pg.fecha,sc.nombre, sc.direccion,sc.telefono,pr.nombre,pg.idcuentaproveedor,cp.nocuenta,pr.direccion,pr.telefono,fp.nombre,pe.cantidadpagada,pg.importe,pg.idpedido from pagos pg\n" +
+            Sql = "select pg.idpago,pg.fecha,sc.nombre, sc.direccion,sc.telefono,pr.nombre,pg.idcuentaproveedor,cp.nocuenta,pr.direccion,pr.telefono,fp.nombre,pe.cantidadpagada,pg.importe,pg.idpedido,pg.estatus from pagos pg\n" +
 "inner join pedidos pe on pg.idpedido = pe.idpedido inner join sucursal sc on pe.idsucursal = sc.idsucursal \n" +
 "inner join cuentasproveedor cp on pg.idcuentaproveedor = cp.idcuentaproveedor inner join proveedores pr on cp.idproveedor = pr.idproveedor\n" +
 "inner join Formaspago fp on pg.idformapago = fp.idformapago where pr.nombre like '"+Nombre+"%'";
@@ -339,7 +339,8 @@ public class Conexion {
                 String CP = rs.getString(12);
                 String IMP=rs.getString(13);
                 String IDPED=rs.getString(14);
-                Object datosRenglon[]={IDP,F,NomSC,DIRS,TELS,NP,IDC,NC,DIRP,TELP,NFP,CP,"Ver Detalles","Ver Detalles",IMP,IMP,IMP,IDPED};
+                String Est = rs.getString(15);
+                Object datosRenglon[]={IDP,F,NomSC,DIRS,TELS,NP,IDC,NC,DIRP,TELP,NFP,CP,"Ver Detalles","Ver Detalles",IMP,IMP,IMP,IDPED,Est};
                 tablaTemp.addRow(datosRenglon);
             }
             

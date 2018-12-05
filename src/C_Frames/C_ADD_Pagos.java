@@ -287,14 +287,14 @@ public class C_ADD_Pagos extends javax.swing.JFrame {
         float Pre = erp.Presupuesto_Sucursal(IP),newP = 0;
         if (Pre >= Imp){
             newP = Pre-Imp;
-            erp.SQL("insert into pagos values(IDPago.nextval,TO_DATE('"+dateFormat.format(date)+"','YYYY-MM-DD'),"+Imp+","+IP+","+FP+","+IC+")");
+            erp.SQL("insert into pagos values(IDPago.nextval,TO_DATE('"+dateFormat.format(date)+"','YYYY-MM-DD'),"+Imp+","+IP+","+FP+","+IC+",'P')");
             erp.SQL("update Pedidos set estatus = 'A' where idpedido = "+IP);
             erp.SQL("update sucursal set presupuesto = "+newP+" where idsucursal = "+IS);
         }else{
              //confirma eliminacion
         if(JOptionPane.showConfirmDialog(null, "No cuentas con el presupuesto suficiente\n¿Deseás continuar?\n*Si fuerzas el pago la sucursal estara en numeros negativos","Informacion",
             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            erp.SQL("insert into pagos values(IDPago.nextval,TO_DATE('"+dateFormat.format(date)+"','YYYY-MM-DD'),"+Imp+","+IP+","+FP+","+IC+")");
+            erp.SQL("insert into pagos values(IDPago.nextval,TO_DATE('"+dateFormat.format(date)+"','YYYY-MM-DD'),"+Imp+","+IP+","+FP+","+IC+",'P')");
             erp.SQL("update Pedidos set estatus = 'A' where idpedido = "+IP);
             erp.SQL("update sucursal set presupuesto = "+newP+" where idsucursal = "+IS);
         

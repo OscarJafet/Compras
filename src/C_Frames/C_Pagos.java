@@ -47,6 +47,7 @@ public class C_Pagos extends javax.swing.JPanel {
     public C_Pagos() {
         initComponents();
         erp = new Conexion();
+        Ord.setEnabled(false);
         
         
     }
@@ -69,8 +70,10 @@ public class C_Pagos extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaPedidoDet = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        Ord = new javax.swing.JButton();
         Usuario = new javax.swing.JLabel();
+        btnAgregarDe1 = new javax.swing.JButton();
+        btnAgregarDe2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(254, 254, 254));
         setForeground(new java.awt.Color(254, 254, 254));
@@ -126,7 +129,7 @@ public class C_Pagos extends javax.swing.JPanel {
             }
         });
         add(btnAgregarDe);
-        btnAgregarDe.setBounds(697, 484, 81, 57);
+        btnAgregarDe.setBounds(760, 470, 81, 57);
 
         jLabel1.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(1, 1, 1));
@@ -143,11 +146,11 @@ public class C_Pagos extends javax.swing.JPanel {
 
             },
             new String [] {
-                "idPago", "fecha", "Sucursal", "Dir. Suc.", "Tel. Suc.", "Proveedor", "ID Cuenta", "No Cuenta", "Dir. Prov.", "Telefono", "Forma Pago", "Cantidad", "Descripcion", "Precio unidad", "Subtotal", "Total", "Importe", "ID Pedido"
+                "idPago", "fecha", "Sucursal", "Dir. Suc.", "Tel. Suc.", "Proveedor", "ID Cuenta", "No Cuenta", "Dir. Prov.", "Telefono", "Forma Pago", "Cantidad", "Descripcion", "Precio unidad", "Subtotal", "Total", "Importe", "ID Pedido", "Estatus"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -181,16 +184,48 @@ public class C_Pagos extends javax.swing.JPanel {
         add(jScrollPane3);
         jScrollPane3.setBounds(10, 70, 840, 380);
 
-        jButton1.setText("Orden de Compra");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Ord.setText("Orden de Compra");
+        Ord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                OrdActionPerformed(evt);
             }
         });
-        add(jButton1);
-        jButton1.setBounds(590, 30, 130, 23);
+        add(Ord);
+        Ord.setBounds(590, 30, 130, 23);
         add(Usuario);
         Usuario.setBounds(10, 470, 180, 0);
+
+        btnAgregarDe1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icono-ingresar.png"))); // NOI18N
+        btnAgregarDe1.setBorderPainted(false);
+        btnAgregarDe1.setContentAreaFilled(false);
+        btnAgregarDe1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAgregarDe1MouseClicked(evt);
+            }
+        });
+        btnAgregarDe1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarDe1ActionPerformed(evt);
+            }
+        });
+        add(btnAgregarDe1);
+        btnAgregarDe1.setBounds(680, 480, 60, 40);
+
+        btnAgregarDe2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icono-salir.png"))); // NOI18N
+        btnAgregarDe2.setBorderPainted(false);
+        btnAgregarDe2.setContentAreaFilled(false);
+        btnAgregarDe2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAgregarDe2MouseClicked(evt);
+            }
+        });
+        btnAgregarDe2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarDe2ActionPerformed(evt);
+            }
+        });
+        add(btnAgregarDe2);
+        btnAgregarDe2.setBounds(600, 480, 60, 50);
     }// </editor-fold>//GEN-END:initComponents
 public void borrarTabla(JTable tab) {
         try {
@@ -242,6 +277,11 @@ public void borrarTabla(JTable tab) {
                 erp.setVisible(true);
                 erp.idPe.setText(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 17)+"");
         }
+        if(tablaPedidoDet.getSelectedRow()>=0){
+         Ord.setEnabled(true);
+        }else{
+            Ord.setEnabled(false);
+        }
             
     }//GEN-LAST:event_tablaPedidoDetMouseClicked
 
@@ -268,7 +308,7 @@ public void borrarTabla(JTable tab) {
         // TODO add your handling code here:
     }//GEN-LAST:event_NomProActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void OrdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrdActionPerformed
         // TODO add your handling code here:
         
         try{
@@ -294,21 +334,57 @@ public void borrarTabla(JTable tab) {
             parametros.put("T", tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 15));
             
             JasperPrint jp = JasperFillManager.fillReport(jr, parametros, new JREmptyDataSource());
-            JasperViewer jv = new JasperViewer(jp);
+            JasperViewer jv = new JasperViewer(jp,false);
             jv.show();
+            //jv.setDefaultCloseOperation(jv.DISPOSE_ON_CLOSE);
+            //jv.show();
         }catch(Exception e){
             
         }
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_OrdActionPerformed
+
+    private void btnAgregarDe1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarDe1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarDe1MouseClicked
+
+    private void btnAgregarDe1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDe1ActionPerformed
+        // TODO add your handling code here:
+        if((tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 18)+"").equals("P"))
+        if(JOptionPane.showConfirmDialog(null, "¿Ya se deposito el pago?\tenga en cuenta que no se podra modificar después","Informacion",
+            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            
+            erp.SQL("Update Pagos set estatus = 'R' where idpago = "+tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 0));
+        
+        }
+        btnConsultar.doClick();
+    }//GEN-LAST:event_btnAgregarDe1ActionPerformed
+
+    private void btnAgregarDe2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarDe2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarDe2MouseClicked
+
+    private void btnAgregarDe2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDe2ActionPerformed
+        // TODO add your handling code here:
+        if((tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 18)+"").equals("P"))
+        if(JOptionPane.showConfirmDialog(null, "¿Deséa cancelarlo?\tenga en cuenta que no se podra modificar después","Informacion",
+            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            
+            erp.SQL("Update Pagos set estatus = 'C' where idpago = "+tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 0));
+        
+        }
+        btnConsultar.doClick();
+    }//GEN-LAST:event_btnAgregarDe2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextField NomPro;
+    private javax.swing.JButton Ord;
     public javax.swing.JLabel Usuario;
     private javax.swing.JButton btnAgregarDe;
+    private javax.swing.JButton btnAgregarDe1;
+    private javax.swing.JButton btnAgregarDe2;
     public javax.swing.JButton btnConsultar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
