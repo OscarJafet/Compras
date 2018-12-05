@@ -72,8 +72,8 @@ public class C_Pagos extends javax.swing.JPanel {
         tablaPedidoDet = new javax.swing.JTable();
         Ord = new javax.swing.JButton();
         Usuario = new javax.swing.JLabel();
-        btnAgregarDe1 = new javax.swing.JButton();
-        btnAgregarDe2 = new javax.swing.JButton();
+        realizar = new javax.swing.JButton();
+        cancelar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(254, 254, 254));
         setForeground(new java.awt.Color(254, 254, 254));
@@ -195,37 +195,37 @@ public class C_Pagos extends javax.swing.JPanel {
         add(Usuario);
         Usuario.setBounds(10, 470, 180, 0);
 
-        btnAgregarDe1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icono-ingresar.png"))); // NOI18N
-        btnAgregarDe1.setBorderPainted(false);
-        btnAgregarDe1.setContentAreaFilled(false);
-        btnAgregarDe1.addMouseListener(new java.awt.event.MouseAdapter() {
+        realizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icono-ingresar.png"))); // NOI18N
+        realizar.setBorderPainted(false);
+        realizar.setContentAreaFilled(false);
+        realizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAgregarDe1MouseClicked(evt);
+                realizarMouseClicked(evt);
             }
         });
-        btnAgregarDe1.addActionListener(new java.awt.event.ActionListener() {
+        realizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarDe1ActionPerformed(evt);
+                realizarActionPerformed(evt);
             }
         });
-        add(btnAgregarDe1);
-        btnAgregarDe1.setBounds(680, 480, 60, 40);
+        add(realizar);
+        realizar.setBounds(680, 480, 60, 40);
 
-        btnAgregarDe2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icono-salir.png"))); // NOI18N
-        btnAgregarDe2.setBorderPainted(false);
-        btnAgregarDe2.setContentAreaFilled(false);
-        btnAgregarDe2.addMouseListener(new java.awt.event.MouseAdapter() {
+        cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icono-salir.png"))); // NOI18N
+        cancelar.setBorderPainted(false);
+        cancelar.setContentAreaFilled(false);
+        cancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAgregarDe2MouseClicked(evt);
+                cancelarMouseClicked(evt);
             }
         });
-        btnAgregarDe2.addActionListener(new java.awt.event.ActionListener() {
+        cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarDe2ActionPerformed(evt);
+                cancelarActionPerformed(evt);
             }
         });
-        add(btnAgregarDe2);
-        btnAgregarDe2.setBounds(600, 480, 60, 50);
+        add(cancelar);
+        cancelar.setBounds(600, 480, 60, 50);
     }// </editor-fold>//GEN-END:initComponents
 public void borrarTabla(JTable tab) {
         try {
@@ -344,13 +344,13 @@ public void borrarTabla(JTable tab) {
         
     }//GEN-LAST:event_OrdActionPerformed
 
-    private void btnAgregarDe1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarDe1MouseClicked
+    private void realizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_realizarMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregarDe1MouseClicked
+    }//GEN-LAST:event_realizarMouseClicked
 
-    private void btnAgregarDe1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDe1ActionPerformed
+    private void realizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_realizarActionPerformed
         // TODO add your handling code here:
-        if((tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 18)+"").equals("P"))
+        if((tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 18)+"").equals("P") ||(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 18)+"").equals(""))
         if(JOptionPane.showConfirmDialog(null, "¿Ya se deposito el pago?\tenga en cuenta que no se podra modificar después","Informacion",
             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             
@@ -358,15 +358,15 @@ public void borrarTabla(JTable tab) {
         
         }
         btnConsultar.doClick();
-    }//GEN-LAST:event_btnAgregarDe1ActionPerformed
+    }//GEN-LAST:event_realizarActionPerformed
 
-    private void btnAgregarDe2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarDe2MouseClicked
+    private void cancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregarDe2MouseClicked
+    }//GEN-LAST:event_cancelarMouseClicked
 
-    private void btnAgregarDe2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDe2ActionPerformed
+    private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         // TODO add your handling code here:
-        if((tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 18)+"").equals("P"))
+        if((tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 18)+"").equals("P")||(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 18)+"").equals(""))
         if(JOptionPane.showConfirmDialog(null, "¿Deséa cancelarlo?\tenga en cuenta que no se podra modificar después","Informacion",
             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             
@@ -374,7 +374,7 @@ public void borrarTabla(JTable tab) {
         
         }
         btnConsultar.doClick();
-    }//GEN-LAST:event_btnAgregarDe2ActionPerformed
+    }//GEN-LAST:event_cancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -382,13 +382,13 @@ public void borrarTabla(JTable tab) {
     private javax.swing.JButton Ord;
     public javax.swing.JLabel Usuario;
     private javax.swing.JButton btnAgregarDe;
-    private javax.swing.JButton btnAgregarDe1;
-    private javax.swing.JButton btnAgregarDe2;
     public javax.swing.JButton btnConsultar;
+    private javax.swing.JButton cancelar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JButton realizar;
     public javax.swing.JTable tablaPedidoDet;
     // End of variables declaration//GEN-END:variables
 }
