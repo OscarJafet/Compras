@@ -271,18 +271,22 @@ public void borrarTabla(JTable tab) {
 
     private void tablaPedidoDetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPedidoDetMouseClicked
         // TODO add your handling code here:
+       try{
         if(evt.getClickCount()==2){
             C_DET_PAGOS erp = new C_DET_PAGOS();
+            erp.idPe.setText(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 17)+"");
                 erp.setLocationRelativeTo(erp);
                 erp.setVisible(true);
-                erp.idPe.setText(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 17)+"");
+                
         }
         if(tablaPedidoDet.getSelectedRow()>=0){
          Ord.setEnabled(true);
         }else{
             Ord.setEnabled(false);
         }
-            
+       }catch(Exception e){
+           
+       }    
     }//GEN-LAST:event_tablaPedidoDetMouseClicked
 
     private void NomProKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NomProKeyTyped
@@ -350,12 +354,14 @@ public void borrarTabla(JTable tab) {
 
     private void realizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_realizarActionPerformed
         // TODO add your handling code here:
-        if((tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 18)+"").equals("P") ||(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 18)+"").equals(""))
+        if((tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 18)+"").equals("P") ||(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 18)+"").isEmpty())
         if(JOptionPane.showConfirmDialog(null, "¿Ya se deposito el pago?\tenga en cuenta que no se podra modificar después","Informacion",
             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             
             erp.SQL("Update Pagos set estatus = 'R' where idpago = "+tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 0));
         
+        }else{
+            System.out.println("noo");
         }
         btnConsultar.doClick();
     }//GEN-LAST:event_realizarActionPerformed
@@ -366,7 +372,7 @@ public void borrarTabla(JTable tab) {
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         // TODO add your handling code here:
-        if((tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 18)+"").equals("P")||(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 18)+"").equals(""))
+        if((tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 18)+"").equals("P")||(tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 18)+"").isEmpty())
         if(JOptionPane.showConfirmDialog(null, "¿Deséa cancelarlo?\tenga en cuenta que no se podra modificar después","Informacion",
             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             
