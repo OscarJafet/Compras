@@ -39,7 +39,7 @@ public class Conexion {
   
     public static Connection getConnection(String User, String Password){
         if(con == null){
-            conexionURL = "jdbc:oracle:thin:@localhost:1521:XE";
+            conexionURL = "jdbc:oracle:thin:@192.168.0.1:1521:XE";
             try{
                 DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
                 con = (DriverManager.getConnection(conexionURL,User,Password));
@@ -893,12 +893,20 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
       public void Detalles_seacrh(String Nombre, JTable tabla, char Stat) {
         DefaultTableModel tablaTemp = (DefaultTableModel) tabla.getModel();
         if (Nombre.isEmpty() && Stat == 'E') {
-            Sql = "SELECT * FROM ERP.PEDIDODETALLE d INNER JOIN PEDIDOS  p ON p.idpedido = d.idpedido where p.estatus = 'E'";
+            Sql = "SELECT d.idpedidodetalle,d.cantPedida,d.preciocompra,d.subtotal,d.cantrecibida,d.cantrechazada,d.cantAceptada,"
+                    + "d.idpedido,sc.nombre,r.idpresentacion, r.nombre from Pedidodetalle d inner join Pedidos p on d.idPedido = p.idpedido"
+                    + " inner join Presentacionesproducto r on r.idpresentacion = d.idpresentacion inner join sucursal sc "
+                    + "on p.idsucursal = sc.idsucursal where d.estatus = 'E'";
         } else if (!Nombre.isEmpty() && Stat == 'E') {
-            Sql = "SELECT * FROM PEDIDODETALLE d INNER JOIN PEDIDOS p ON p.idpedido = d.idpedido INNER JOIN PRESENTACIONESPRODUCTO R ON R.NOMBRE like '"+Nombre+"%' where p.estatus = 'A'";
+            Sql = "SELECT d.idpedidodetalle,d.cantPedida,d.preciocompra,d.subtotal,d.cantrecibida,d.cantrechazada,d.cantAceptada,"
+                    + "d.idpedido,sc.nombre,r.idpresentacion, r.nombre from Pedidodetalle d inner join Pedidos p on d.idPedido = p.idpedido"
+                    + " inner join Presentacionesproducto r on r.idpresentacion = d.idpresentacion inner join sucursal sc "
+                    + "on p.idsucursal = sc.idsucursal where r.nombre like '"+Nombre+"%' and d.estatus = 'E'";
         } else if (Stat == 'A' || Stat == 'C' || Stat == 'E') {
-            Sql = "SELECT P.idPedidoDetalle, p.cantPedida,p.precioCompra,p.subTotal,p.cantRecibida,p.CantRechazada,p.cantAceptada,p.idPedido,p.idPresentacion\n" +
-"FROM PEDIDODETALLE p INNER JOIN PEDIDOS d ON  p.idpedido = d.idpedido where d.estatus = '"+Stat+"'";
+            Sql = "SELECT d.idpedidodetalle,d.cantPedida,d.preciocompra,d.subtotal,d.cantrecibida,d.cantrechazada,d.cantAceptada,"
+                    + "d.idpedido,sc.nombre,r.idpresentacion, r.nombre from Pedidodetalle d inner join Pedidos p on d.idPedido = p.idpedido"
+                    + " inner join Presentacionesproducto r on r.idpresentacion = d.idpresentacion inner join sucursal sc "
+                    + "on p.idsucursal = sc.idsucursal where p.estatus = '"+Stat+"'";
         }
       try {
             stn=(Statement) con.createStatement();
@@ -907,38 +915,22 @@ public void ExistenciaSucursal_search_claves(JTable tabla, String Sql){
           
             while(rs.next()){
                 
-                String idDt=rs.getString("idPedidoDetalle");
-                String cPd=rs.getString("cantPedida");
-                String pC=rs.getString("precioCompra");
-                String sb = rs.getString("subtotal");
-                String cAp = rs.getString("cantAceptada");
-                String cRe = rs.getString("cantRecibida");
-                String cRh = rs.getString("cantRechazada");
-                String idPed = rs.getString("idPedido");
-                String idPress = rs.getString("idPresentacion");
-                Object datosRenglon[]={idDt, cPd, pC,sb,cRe,cRh,cAp,idPed,idPress};
+                String idDt=rs.getString(1);
+                String cPd=rs.getString(2);
+                String pC=rs.getString(3);
+                String sb = rs.getString(4);
+                String cAp = rs.getString(5);
+                String cRe = rs.getString(6);
+                String cRh = rs.getString(7);
+                String idPed = rs.getString(8);
+                String SCnom = rs.getString(9);
+                String idPress = rs.getString(10);
+                String NomPres = rs.getString(11);
+                
+                Object datosRenglon[]={idDt, cPd, pC,sb,cRe,cRh,cAp,idPed,SCnom,idPress,NomPres};
                 tablaTemp.addRow(datosRenglon);
             }
-            Sql = "SELECT SUCURSAL.NOMBRE FROM PEDIDOS\n" +
-"INNER JOIN ERP.SUCURSAL\n" +
-"ON PEDIDOS.IDSUCURSAL = SUCURSAL.IDSUCURSAL WHERE PEDIDOS.ESTATUS = 'A' or PEDIDOS.ESTATUS = 'E'";
-            stn= con.createStatement();
-            rs=stn.executeQuery(Sql);
-        
-            for (int i = 0; rs.next(); i++) {
-                 String nombre=rs.getString("nombre");
-                 //System.out.println(nombre+"ped");
-                 tablaTemp.setValueAt(tablaTemp.getValueAt(i, 7)+" "+nombre, i, 7);
-            }
-            //comentario
-            Sql = "SELECT P.NOMBRE FROM PRESENTACIONESPRODUCTO P inner join PEDIDODETALLE D on P.idPresentacion = D.idpresentacion where P.estatus ='A' or P.estatus = 'E' or P.estatus = 'C'";
-            stn= con.createStatement();
-            rs=stn.executeQuery(Sql);
-          for (int i = 0; rs.next(); i++) {
-                 String nombre=rs.getString("NOMBRE");
-                 //System.out.println(nombre+"pres");
-                 tablaTemp.setValueAt(tablaTemp.getValueAt(i, 8)+" "+nombre, i, 8);
-            }
+ 
          
             
             tabla.setModel(tablaTemp);

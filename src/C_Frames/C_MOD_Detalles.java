@@ -30,8 +30,8 @@ public class C_MOD_Detalles extends javax.swing.JFrame {
         initComponents();
         this.IdDet.setEditable(false);
         this.IdDet.setEnabled(false);
-        this.cmbPed.setEnabled(false);
-        this.cmbPres.setEnabled(false);
+       this.cmbPed.setEnabled(false);
+       this.cmbPres.setEnabled(false);
         this.preCom.setEnabled(false);
         
         erp = new Conexion();
@@ -46,9 +46,9 @@ public void llenarCombo1(){
         try {
             erp.OpenCon("ERP", "erp");
             erp.stn= (Statement) erp.con.createStatement();
-            erp.rs= erp.stn.executeQuery("SELECT SUCURSALES.NOMBRE, PEDIDOS.idPedido FROM PEDIDOS\n" +
-"INNER JOIN ERP.SUCURSALES \n" +
-"ON PEDIDOS.IDSUCURSAL = SUCURSALES.IDSUCURSAL WHERE PEDIDOS.ESTATUS = 'A' or PEDIDOS.ESTATUS = 'E'");
+            erp.rs= erp.stn.executeQuery("SELECT SUCURSAL.NOMBRE, PEDIDOS.idPedido FROM PEDIDOS\n" +
+"INNER JOIN ERP.SUCURSAL \n" +
+"ON PEDIDOS.IDSUCURSAL = SUCURSAL.IDSUCURSAL WHERE PEDIDOS.ESTATUS = 'A' or PEDIDOS.ESTATUS = 'E'");
             cmbPed.setModel(modelocombo);
             modelocombo.addElement("Selecione Pedido");
             while (erp.rs.next()){

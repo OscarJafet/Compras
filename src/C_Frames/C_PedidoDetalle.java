@@ -59,7 +59,7 @@ public class C_PedidoDetalle extends javax.swing.JPanel {
         tablaPedidoDet = new javax.swing.JTable();
         btnConsultar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        cmbSe = new javax.swing.JComboBox<>();
+        cmbSe = new javax.swing.JComboBox<String>();
 
         setBackground(new java.awt.Color(254, 254, 254));
         setForeground(new java.awt.Color(254, 254, 254));
@@ -114,11 +114,11 @@ public class C_PedidoDetalle extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID P. Detalle", "Cant. Pedida", "Precio compra", "Subtotal", "Cant. Recibida", "Cant. Rechazada", "Cant. Aceptada", "ID Pedido", "ID Presentación"
+                "ID P. Detalle", "Cant. Pedida", "Precio compra", "Subtotal", "Cant. Recibida", "Cant. Rechazada", "Cant. Aceptada", "ID Pedido", "Sucursal", "ID Presentación", "Nombre Press"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, true, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -156,7 +156,7 @@ public class C_PedidoDetalle extends javax.swing.JPanel {
         add(jLabel1);
         jLabel1.setBounds(40, 30, 129, 16);
 
-        cmbSe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estatus", "A Pagado", "C Cancelado", "E En Espera" }));
+        cmbSe.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Estatus", "A Pagado", "C Cancelado", "E En Espera" }));
         cmbSe.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cmbSeMouseClicked(evt);
@@ -199,14 +199,14 @@ int A = 0;
         //erp.cmbPed.setS
        
         int b = 0;
-        String iP = tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 7).toString();
+        String iP = (tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 7).toString()+" "+tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 8).toString());
             for (int i = 0; i < erp.cmbPed.getItemCount(); i++) {
                 if(erp.cmbPed.getItemAt(i).equals(iP)){
                     erp.cmbPed.setSelectedIndex(i);
                     break;
                 }
             }
-        String IPs = tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 8).toString();
+        String IPs = (tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 9).toString()+" "+tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow(), 10).toString());
             for (int i = 0; i < erp.cmbPres.getItemCount(); i++) {
                 if(erp.cmbPres.getItemAt(i).equals(IPs)){
                     erp.cmbPres.setSelectedIndex(i);
@@ -301,7 +301,7 @@ public void borrarTabla(JTable tab) {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnConsultar;
     public javax.swing.JButton btnEditarDeducciones;
-    private javax.swing.JButton btnEliDeducciones;
+    public javax.swing.JButton btnEliDeducciones;
     private javax.swing.JComboBox<String> cmbSe;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

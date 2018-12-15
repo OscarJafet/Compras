@@ -297,15 +297,8 @@ public void borrarTabla(JTable tab) {
     }//GEN-LAST:event_NomProKeyTyped
 
     private void NomProKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NomProKeyReleased
-
-        borrarTabla(tablaPedidoDet);
-        try{
-        erp.OpenCon("ERP", "erp");
-      //erp.Detalles_seacrh(txfConsultar.getText(), tablaPedidoDet, cmbSe.getItemAt(cmbSe.getSelectedIndex()).charAt(0) );
-        }
-        catch(Exception e){
-        
-        }// TODO add your handling code here:
+        btnConsultar.doClick();
+// TODO add your handling code here:
     }//GEN-LAST:event_NomProKeyReleased
 
     private void NomProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomProActionPerformed
@@ -359,7 +352,7 @@ public void borrarTabla(JTable tab) {
             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             
             erp.SQL("Update Pagos set estatus = 'R' where idpago = "+tablaPedidoDet.getValueAt(tablaPedidoDet.getSelectedRow()+1, 0));
-        
+            
         }else{
         }
         btnConsultar.doClick();

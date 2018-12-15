@@ -404,12 +404,12 @@ public void borrarTabla(JTable tab) {
         String c4=(String) C_ExistenciaSucursal_tabla.getValueAt(C_ExistenciaSucursal_tabla.getSelectedRow(),6);
         String c5=(String) C_ExistenciaSucursal_tabla.getValueAt(C_ExistenciaSucursal_tabla.getSelectedRow(),7);
         String c6=(String) C_ExistenciaSucursal_tabla.getValueAt(C_ExistenciaSucursal_tabla.getSelectedRow(),8);
-        
+        if(evt.getClickCount()==2){
         C_MOD_Pedidos lab=new C_MOD_Pedidos();
         lab.setLocationRelativeTo(lab);
         lab.Datos(a, b, c,c1,c2,c3,c4,c5,c6);
         lab.setVisible(true);
-        
+        }
        
         // TODO add your handling code here:
     }//GEN-LAST:event_C_ExistenciaSucursal_tablaMouseClicked
